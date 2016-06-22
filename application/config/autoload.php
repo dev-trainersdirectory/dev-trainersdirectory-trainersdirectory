@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array();
+$autoload['libraries'] = array('database','session');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array();
+$autoload['helper'] = array( 'url', 'form' );
 
 
 /*
@@ -109,8 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array();
-
+$autoload['model'] = array( 'CEosSingular', 'CEosPlural', 'CCity', 'CCities', 'CTrSubject', 'CTrSubjects', 'CState', 'CStates', 'CUser', 'CUsers', 'CLead', 'CLeads', 'CBaseTrainer', 'CTrainer', 'CTrainers' );
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

@@ -38,9 +38,13 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "chomecontroller";
 $route['404_override'] = '';
 
+/*$arrControllerMapping = array( 'search' => 'CSearchTrainerController' );
+$strController = getController( $arrControllerMapping, $_REQUEST['module'] );
+echo APPPATH;
+echo $strController;die;*/
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
