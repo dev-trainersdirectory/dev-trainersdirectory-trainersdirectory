@@ -1,0 +1,12 @@
+.icon {
+	width: 28px;
+	height: 28px;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-size: cover;
+	vertical-align: top;
+	&-calendar {
+		background-image: url('#{$image-path}icon-calendar.png');
+	}
+}

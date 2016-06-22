@@ -1,0 +1,56 @@
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+
+.clearfix {
+    display: inline-block;
+    &:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: '';
+        clear: both;
+        height: 0;
+    }
+}
+
+/*font color*/
+.primary-text {
+  color: $primary-color;
+}
+.dark-black-text {
+  color: $dark-black;
+}
+/*fonts*/
+.bold-text {
+  font-weight: bold;
+}
+
+.reset-margin-right {
+  margin-right: 0;
+}
+
+.purple-bg {
+  background-color: $purple;
+}
+.white-text {
+  color: $white;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}

@@ -1,0 +1,105 @@
+// add below class to the direct parent TABLE of tab-menu and its tab's direct parent TR tag
+.table-tab-menu {
+  &--tr {
+    >td {
+      border-bottom: 2px solid $purple;
+    }
+  }
+}
+.nav {
+  &-tabs {
+    border-bottom: 2px solid $purple;
+    &>li {
+      overflow: hidden;
+      width: 100%;
+      text-align: center;
+      a {
+        text-align: center;
+      }
+      @media (min-width:550px) {
+        width: auto;
+        &:first-child a {
+          @include border-radius(6px 0 0 0);
+        }
+        &:last-child a {
+          @include border-radius(0 6px 0 0);
+        }
+        a {
+          text-align: left;
+        }
+      }
+      a {
+        @include border-radius(0);
+        border: 1px solid $purple;
+        margin-right: 0;
+        color: $black;
+        background: $white-ddd;
+      }
+      a:hover,a:focus {
+        border: 1px solid $purple;
+        background: darken($white-ddd,10%);
+      }
+    }
+    &>li.active {
+        a {
+          border-color: $purple;
+          color: $white;
+          background: $purple;
+        }
+        a:hover,a:focus {
+          border-color: $purple;
+          color: $white;
+          background: $purple;
+        }
+    }
+    &>li.tab-link {
+      @media (max-width: 400px) {
+        display: block;
+      }
+      & a {
+        background: transparent;
+        color: $link-color;
+        border-color: transparent;
+        &:hover,&:focus {
+          border-color: transparent;
+        }
+      }
+      &+li a {
+        @include border-radius(6px 0 0 0);
+      }
+    }
+  }
+}
+
+.nav-tabs-right {
+  text-align: right;
+  font-size: 0; // prevent floated child bug
+  &>li {
+    display: inline-block;
+    clear: left;
+    float: none;
+    text-align: right;
+    font-size: 12px;
+  }
+}
+
+.below-tab {
+  padding: 5px;
+  background: $white-ddd;
+  border-top: 2px solid $purple;
+  .nav-tabs + & {
+    border-top: 0;
+  }
+}
+
+.tab-component{
+  @media (min-width:550px) {
+    margin-top:-48px;
+  }
+  @media only screen
+    and (min-device-width: 320px)
+    and (max-device-width: 480px)
+    and (-webkit-min-device-pixel-ratio: 2) {
+      margin-top: 0px !important;
+  }
+}

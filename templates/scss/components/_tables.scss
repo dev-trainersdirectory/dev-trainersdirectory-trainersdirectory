@@ -1,0 +1,90 @@
+.table-big-data {
+  td[colspan="2"] {
+    border-top: 1px solid $purple;
+    background: $light-white;
+    ~td {
+      border-top: 1px solid $purple;
+      background: $light-white;
+    }
+  }
+  td {
+    .adhoc a {
+      padding: 2px 4px;
+      font-size: 10px;
+      color: $white;
+      background: $purple;
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+}
+
+.table {
+  margin-bottom: 0;
+  caption {
+    color: $white;
+    padding: 8px;
+    border-top: 1px solid $dark-99;
+    background: $dark-99;
+    a {
+      color: $white;
+      text-decoration: underline;
+      &:hover,&:focus {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+  &-border-outer {
+    >thead {
+      border-left: 1px solid $purple;
+      border-right: 1px solid $purple;
+    }
+    >tbody {
+      border: 1px solid $white-ddd;
+    }
+  }
+  thead {
+    tr>th {
+      background-color: $purple;
+      border-bottom-color: $purple;
+      color: $white;
+    }
+  }
+  &-controls {
+    width: 100%;
+    padding: 5px;
+    line-height: 0;
+    background: $white-ddd;
+  }
+}
+
+.text-center {
+  thead th {
+    text-align: center;
+  }
+}
+
+
+.table-primary{
+  thead{
+    th{
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
+      color:$white;
+    }
+  }
+}
+
+.table-striped {
+  > tbody > tr:nth-of-type(even) {
+    background-color: $light-white;
+  }
+  > tbody > tr:nth-of-type(odd) {
+    background-color: $white;
+  }
+}
+
+.table-responsive {
+  padding: 5px 0;
+}
