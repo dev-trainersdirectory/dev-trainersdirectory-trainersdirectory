@@ -39,6 +39,10 @@
 */
 
 $route['default_controller'] = "chomecontroller";
+$route['search'] = "csearchtrainercontroller";
+$route['search/(.*)'] = "csearchtrainercontroller/$1";
+$route['register'] = "cregistercontroller";
+$route['register/(.*)'] = "cregistercontroller/$1";
 $route['404_override'] = '';
 
 /*$arrControllerMapping = array( 'search' => 'CSearchTrainerController' );
