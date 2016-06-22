@@ -1,0 +1,17 @@
+body {
+	font-size: $base-font-size; /* from style.css */
+	font-family: $base-font-family;
+	color:$dark-black;
+}
+
+.v-top {
+	vertical-align: top;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.strong {
+	font-weight: bold;
+}

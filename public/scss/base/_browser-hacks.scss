@@ -1,0 +1,12 @@
+// Browser hack
+
+// Chrome Hacks
+@supports (-webkit-appearance:none) {
+  .input-group {
+    &-btn {
+      .btn {
+        padding-top: 7px;
+      }
+    }
+  }
+}

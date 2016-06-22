@@ -1,0 +1,96 @@
+
+.form-control,
+input[type=password],
+input[type=text],
+select,
+textarea {
+
+}
+
+.search-box {
+  border: 1px solid $white-c5;
+  height:50px;
+  outline: none;
+  @include box-shadow(none);
+    &:focus {
+    outline: none;
+    @include box-shadow(none);
+    border-color: $primary-color;
+    }
+}
+input[type=checkbox],
+input[type=radio] {
+  margin-top: 1px;
+}
+
+.form-block {
+  display: block; // to break form element to next line
+}
+.inline-block {
+  display: inline-block; // to keep form element in same line
+}
+
+// =Search Criteria Page
+.form-panel {
+  padding-top: 10px;
+}
+
+.form-search {
+  padding: 15px 5px;
+}
+.form-label-heading {
+  padding-top: 5px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid $white-ddd;
+  color: $purple;
+  font-weight: bold;
+}
+.below-tab {
+  .form-control {
+    @extend .input-sm;
+  }
+  .btn {
+    @extend .btn-sm;
+  }
+}
+
+// batch print page
+.form-batch-result {
+  .form-block {
+    border-bottom: 1px solid $white-ddd;
+    margin-bottom: 10px;
+    &.no-border-bottom {
+      border-bottom: 0;
+    }
+  }
+}
+// form-horizontal
+.form-horizontal {
+    &.form-group-reset {
+      .form-group {
+        margin-bottom: 0;
+      }
+  }
+  .radio, .checkbox {
+    padding-top: 6px;
+    vertical-align: top;
+  }
+  .control-label {
+    padding-top: 7px;
+  }
+  .form-control-static {
+    min-height: 10px;
+  }
+}
+
+.form-control-static {
+  word-wrap: break-word;
+}
+.bulk-checkbox {
+  padding: 10px 0;
+  .form-block {
+    label {
+      font-weight: normal;
+    }
+  }
+}

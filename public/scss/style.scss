@@ -1,0 +1,21 @@
+@import 'bootstrap';
+
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/buttons';
+@import 'components/footer';
+@import 'components/tables';
+@import 'components/forms';
+@import 'components/vcenter';
+@import 'components/buttons';
+@import 'components/tabs';
+@import 'components/header';
+@import 'components/pagination';
+@import 'components/panels';
+@import 'base/base';
+@import 'base/generic';
+@import 'base/browser-hacks';
+@import 'base/utilities';
+
+/*page wise*/
+@import "components/search"

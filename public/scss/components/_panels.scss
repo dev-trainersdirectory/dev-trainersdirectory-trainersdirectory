@@ -1,0 +1,13 @@
+/*overwrite on main css*/
+.panel {
+  &-heading {
+    background-color: $white-ddd;
+   }
+   &-title {
+     font-weight: bold;
+   }
+   .bg-danger {
+     padding: 5px
+   }
+}
+

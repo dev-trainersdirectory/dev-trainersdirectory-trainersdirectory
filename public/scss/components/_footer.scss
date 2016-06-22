@@ -1,0 +1,19 @@
+// =Sticky footer
+html {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 37px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%; // Set the fixed height of the footer here
+  padding:10px 0;
+  background-color: $white;
+  .text-muted{
+    margin: 0
+  }
+}

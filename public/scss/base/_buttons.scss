@@ -1,0 +1,48 @@
+.btn-secondary {
+//    @extend .btn;
+    border-color: $white-c5;
+    color: $black;
+    background-color: $white-c5;
+    &:hover,&:focus {
+      border-color: darken($white-c5, 10%);
+      color: $black;
+      background: darken($white-c5, 10%);
+    }
+}
+.btn-primary {
+//    @extend .btn ;
+    border-color: $primary-color;
+    color: $white;
+    background-color: $primary-color;
+    &:hover,&:focus {
+      border-color: lighten($primary-color, 10%);
+      background: lighten($primary-color, 10%);
+    }
+    &:active,&.active {
+      border-color: darken($primary-color, 10%);
+      background: darken($primary-color, 10%);
+    }
+}
+a.btnprint {
+    width: 41px;
+    margin: 3px;
+    height: 13px;
+    float: right;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background: url(../images/btn-print.gif) 0 0 no-repeat;
+}
+.btnclose {
+    margin: 15px 0 0 10px;
+    display: block;
+    overflow: hidden;
+    height: 19px;
+    width: 19px;
+    float: right;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background: url(../images/btn-close.gif) 0 0 no-repeat;
+}
