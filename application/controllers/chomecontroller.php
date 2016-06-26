@@ -6,12 +6,24 @@ class CHomeController extends CSystemController {
 
 	public function index() {
 
-		$arrstrSubjects = CTrSubjects::fetchAllPublishedSubjects( $this->db );
-		$arrstrCities 	= CCities::fetchAllPublishedCities( $this->db );
+		$arrstrTrCategories = CTrCategories::fetchAllPublishedTrCategories( $this->db );
 
 		$arrstrExitTages['search'] = base_url() . '/search';
-		$data['subjects'] 	= $arrstrSubjects;
-		$data['cities']		= $arrstrCities;
+
+		foreach( $arrstrTrCategories as $strTrCategory ) {
+			if( NULL == $strTrCategory->getParentTrCategoryId() ) {
+				$arrstrParentTrCategories[$strTrCategory->getId()] = $strTrCategory;
+			} else {
+				$arrstrSubTrCategories[$strTrCategory->getId()] = $strTrCategory;
+			}
+		}
+
+		$arrstrTrSubjects = CTrSubjects::fetchAllPublishedSubjects( $this->db );
+
+		$data['arrstrParentTrCategories'] = $arrstrParentTrCategories;
+		$data['arrstrSubTrCategories'] = $arrstrSubTrCategories;
+		$data['arrstrTrSubjects'] = $arrstrTrSubjects;
+
 		$this->load->view('home', $data);
 	}
 

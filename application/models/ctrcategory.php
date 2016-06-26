@@ -159,7 +159,7 @@ class CTrCategory extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
-								'parent_tr_category_id'	=> $this->intParentTrCategoryId
+								'parent_tr_category_id'	=> $this->intParentTrCategoryId,
 								'name'					=> $this->strName,
 								'description'			=> $this->strDescription,
 								'icon'					=> $this->strIcon,
@@ -195,7 +195,7 @@ class CTrCategory extends CEosSingular {
 	public function delete() {
 
 		$arrStrDeleteData = array(
-								'delete_by'	=> $this->intDeletedBy
+								'delete_by'	=> $this->intDeletedBy,
 								'delete_by'	=> 'NOW()',
 							);
 
