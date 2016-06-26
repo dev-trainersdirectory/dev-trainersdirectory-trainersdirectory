@@ -2,6 +2,13 @@ body {
 	font-size: $base-font-size; /* from style.css */
 	font-family: $base-font-family;
 	color:$dark-black;
+	background: url(../images/bg.png) top left repeat, url(../images/bg.png) top left no-repeat;
+	background-attachment: fixed;
+	background-position: top left;
+	-webkit-background-size: auto, cover;
+	-moz-background-size: auto, cover;
+	-o-background-size: auto, cover;
+	background-size: auto, cover;
 }
 
 .v-top {

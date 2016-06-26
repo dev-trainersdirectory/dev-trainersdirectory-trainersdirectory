@@ -17,6 +17,13 @@
     border-color:$white-1;
 }
 
+.btn {
+    &-transparent {
+        background: none;
+        background-color: transparent;
+        border: none;
+    }
+}
 .icon-btn {
 
 }
