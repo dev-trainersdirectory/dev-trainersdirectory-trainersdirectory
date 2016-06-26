@@ -17,5 +17,14 @@
 @import 'base/browser-hacks';
 @import 'base/utilities';
 
+/*carousel*/
+@import 'components/carousel';
+
+@import 'components/ratings';
+/*profile cards*/
+@import 'components/profilecards';
+// @import 'components/flip';
+
 /*page wise*/
-@import "components/search"
+@import "components/search";
+@import "components/search-result";
