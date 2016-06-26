@@ -62,106 +62,38 @@
                       <form class="form-horizontal" role="form">
                         <!-- tabs names -->
                         <ul class="nav nav-pills">
-                          <li class="active"><a data-toggle="pill" href="#menu1">Educational</a></li>
-                          <li><a data-toggle="pill" href="#menu2">Fitness</a></li>
-                          <li><a data-toggle="pill" href="#menu3"> Hobby</a></li>
+                          <?php foreach( $arrstrParentTrCategories as $strParentTrCategory ) { ?>
+                          	<li>
+                              <a data-toggle="pill" href="#menu<?=$strParentTrCategory->getId()?>"><?=$strParentTrCategory->getName()?>
+                              </a></li>
+                          <?php } ?>
                         </ul>
                         <!-- / tabs names -->
                         <!--tab container-->
-                        <div class="tab-content">
-                          <!-- tab-->
-                          <div id="menu1" class="tab-pane fade in active">
+                        <?php foreach( $arrstrParentTrCategories as $strParentTrCategory ) { ?>
+                        <div id="menu<?=$strParentTrCategory->getId()?>" class="tab-pane fade">
+                          <?php foreach( $arrstrSubTrCategories as $strSubTrCategory ) { ?>
+                          <?php if($strParentTrCategory->getId() == $strSubTrCategory->getParentTrCategoryId()){ ?>
                             <div class="sub-category">
-                              <p>Academic</p>
+                              <p><?=$strSubTrCategory->getName()?></p>
                               <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
-                                <li><a href="">French</a></li>
+                              <?php foreach( $arrstrTrSubjects as $strTrSubject ) { ?>
+                                <?php if($strSubTrCategory->getId() == $strTrSubject->getTrCategoryId()){ ?>
+                                  <li>
+                                    <a href="search/searchTrainer/<?=$strTrSubject->getId()?>/1">
+                                      <?=$strTrSubject->getName()?>
+                                    </a>
+                                  </li>
+                                <?php } ?>
+                              <?php } ?>
                               </ul>
                             </div>
-                            <div class="sub-category">
-                              <p>Academic</p>
-                              <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
-                                <li><a href="">French</a></li>
-                              </ul>
-                            </div>
-                            <div class="sub-category">
-                              <p>Academic</p>
-                              <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
-                                <li><a href="">French</a></li>
-                              </ul>
-                            </div>
-                            <div class="sub-category">
-                              <p>Academic</p>
-                              <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
-                                <li><a href="">French</a></li>
-                              </ul>
-                            </div>
-                            <div class="sub-category">
-                              <p>Test Preparation</p>
-                              <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
-                                <li><a href="">French</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!--/tab-->
-                          <!-- tab-->
-                          <div id="menu2" class="tab-pane fade">
-                            <div class="sub-category">
-                              <p>Academic</p>
-                              <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
-                                <li><a href="">French</a></li>
-                              </ul>
-                            </div>
-                            <div class="sub-category">
-                              <p>Academic</p>
-                              <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
-                                <li><a href="">French</a></li>
-                              </ul>
-                            </div>
-                            <div class="sub-category">
-                              <p>Test Preparation</p>
-                              <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
-                                <li><a href="">French</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!-- /tab-->
-                          <!-- tab-->
-                          <div id="menu3" class="tab-pane fade">
-                            <div class="sub-category">
-                              <p>Academic</p>
-                              <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
-                                <li><a href="">French</a></li>
-                              </ul>
-                            </div>
-                            <div class="sub-category">
-                              <p>Academic</p>
-                              <ul>
-                                <li><a href="">English</a></li>
-                                <li><a href="">German</a></li>
-                                <li><a href="">French</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <!-- /tab-->
+                          <?php } ?>
+                          <?php } ?>
+                          
                         </div>
+                        <?php } ?>
+                        
                         <!--tab container end-->
                       </form>
                       <!-- / drop down tab form-->
