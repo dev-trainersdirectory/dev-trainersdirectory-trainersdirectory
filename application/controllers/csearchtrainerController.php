@@ -13,9 +13,13 @@ class CSearchTrainerController extends CSystemController {
 
 		$arrObjTrainers = CTrainers::fetchAllActiveTrainersBySubjectIdByCityId( 1, 1, $this->db );
 
-		print "<pre>";
+/*		print "<pre>";
 print_r($arrObjTrainers);
 print "</pre>";
-die;
+die;*/
+		$data = array();
+		$data['baseUrl'] = base_url();
+		$data['trainers'] = $arrObjTrainers;
+		$this->load->view('search_trainer', $data);
 	}
 }
