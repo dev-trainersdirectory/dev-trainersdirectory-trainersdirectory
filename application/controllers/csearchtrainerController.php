@@ -4,5 +4,5 @@ require_once( getcwd(). '/application/controllers/CSystemController.php' );
 
 class CSearchTrainerController extends CSystemController {
 
-	}
+	// Delete this file
 }
