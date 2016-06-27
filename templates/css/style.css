@@ -9257,6 +9257,86 @@ li {
   padding: 0px;
 }
 
+/* line 4, ../scss/components/_modal-pop.scss */
+.thumbnail {
+  margin-bottom: 6px;
+}
+
+/* line 8, ../scss/components/_modal-pop.scss */
+.carousel-control.left,
+.carousel-control.right {
+  background-image: none;
+  margin-top: 10%;
+  width: 5%;
+}
+
+/* line 15, ../scss/components/_modal-pop.scss */
+.modal-dialog {
+  width: 70%;
+}
+
+/* line 18, ../scss/components/_modal-pop.scss */
+.thumbnail {
+  margin-bottom: 6px;
+}
+
+/* line 22, ../scss/components/_modal-pop.scss */
+.carousel-control.left, .carousel-control.right {
+  background-image: none;
+  margin-top: 10%;
+  width: 5%;
+}
+
+/* line 27, ../scss/components/_modal-pop.scss */
+.modal-header {
+  height: 40px;
+  background: #4db6ac;
+  display: block;
+}
+
+/* line 32, ../scss/components/_modal-pop.scss */
+.trainer-profile-pic a:hover {
+  opacity: 1;
+}
+
+/* line 35, ../scss/components/_modal-pop.scss */
+.details-contact {
+  width: 570px;
+  height: 270px;
+}
+
+/* line 39, ../scss/components/_modal-pop.scss */
+.trainer-location {
+  margin-top: 150px;
+}
+
+/* line 42, ../scss/components/_modal-pop.scss */
+.details-contact .trainer-profile-pic {
+  top: 10%;
+  left: 45%;
+}
+
+/* line 46, ../scss/components/_modal-pop.scss */
+.modal-dialog .left.carousel-control {
+  position: absolute;
+  left: -60px;
+  top: 30%;
+  height: 40px;
+}
+
+/* line 52, ../scss/components/_modal-pop.scss */
+.modal-dialog .right.carousel-control {
+  position: absolute;
+  right: -60px;
+  top: 30%;
+  height: 40px;
+}
+
+/* line 58, ../scss/components/_modal-pop.scss */
+.modal.and.carousel {
+  position: absolute;
+}
+
 /*page wise*/
 /* line 2, ../scss/components/_search.scss */
 .search-control .col-md-10.form-group {
