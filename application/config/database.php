@@ -48,10 +48,16 @@
 $active_group = 'default';
 $active_record = TRUE;
 
+if( 'development' == ENVIRONMENT ) {
+	$db['default']['username'] = 'web';
+	$db['default']['password'] = 'web_td';
+	$db['default']['database'] = 'trainers_dir';
+} else {
+	$db['default']['username'] = 'traingqf_web';
+	$db['default']['password'] = 'traingqf_web';
+	$db['default']['database'] = 'traingqf_trainers_dir';
+}
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'traingqf_web';
-$db['default']['password'] = 'traingqf_web';
-$db['default']['database'] = 'traingqf_trainers_dir';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

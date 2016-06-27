@@ -5,7 +5,7 @@ class CBaseTrainer extends CEosSingular {
 	public $intId;
 	public $intLeadId;
 	public $intUserId;
-	public $strDecription;
+	public $strDescription;
 	public $intProfileStepId;
 	public $boolIsPaidProfile;
 	public $strCompletedOn;
@@ -77,6 +77,9 @@ class CBaseTrainer extends CEosSingular {
 		if( true == array_key_exists( 'qualities', $arrstrRequestData ) )
 			$this->setQualities( $arrstrRequestData['qualities'] );
 
+		if( true == array_key_exists( 'views', $arrstrRequestData ) )
+			$this->setViews( $arrstrRequestData['views'] );
+
 		if( true == array_key_exists( 'deleted_by', $arrstrRequestData ) )
 			$this->setDeletedBy( $arrstrRequestData['deleted_by'] );
 
@@ -105,6 +108,10 @@ class CBaseTrainer extends CEosSingular {
 
 	public function setIsPaidProfile( $boolIsPaidProfile ) {
 		$this->boolIsPaidProfile = $boolIsPaidProfile;	
+	}
+
+	public function setDescription( $strDescription ) {
+		$this->strDescription = $strDescription;
 	}
 
 	public function setProfileStepId( $intProfileStepId ) {
@@ -151,6 +158,10 @@ class CBaseTrainer extends CEosSingular {
 		$this->strQualities = $strQualities;
 	}
 
+	public function setViews( $strViews ) {
+		$this->strViews = $strViews;
+	}
+
 	public function setDeletedBy( $intDeletedBy ) {
 		$this->intDeletedBy = $intDeletedBy;
 	}
@@ -177,6 +188,10 @@ class CBaseTrainer extends CEosSingular {
 
 	public function getUserId() {
 		return $this->intUserId;
+	}
+
+	public function getDescription(){
+		return $this->strDescription;
 	}
 
 	public function getProfileStepId() {
@@ -231,6 +246,10 @@ class CBaseTrainer extends CEosSingular {
 		return $this->strQualities;
 	}
 
+	public function getViews() {
+		return $this->strViews;
+	}
+
 	public function getDeletedBy() {
 		return $this->intDeletedBy;
 	}
@@ -278,6 +297,7 @@ class CBaseTrainer extends CEosSingular {
 								'available_start_time_id'		=> $this->intAvailableStartTimeId,
 								'available_end_time_id'			=> $this->intAvailableEndTimeId,
 								'qualities'						=> $this->strQualities,
+								'views'							=> $this->strViews,
 								'deleted_by'					=> $this->intDeletedBy,
 								'deleted_on'					=> $this->intDeletedOn,
 								'created_by'					=> $this->strCreatedBy,
@@ -321,6 +341,8 @@ class CBaseTrainer extends CEosSingular {
 			$arrStrUpdateData['available_end_time_id'] = $this->intAvailableEndTimeId;
 		if( false == is_null( $this->strQualities ) )
 			$arrStrUpdateData['qualities'] = $this->strQualities;
+		if( false == is_null( $this->strViews ) )
+			$arrStrUpdateData['views'] = $this->strViews;
 
 		$this->db->where( 'id =', $this->intId );
 
