@@ -9337,6 +9337,36 @@ li {
   position: absolute;
 }
 
+/* line 1, ../scss/components/_minimized-tray.scss */
+ul.minimized-tray {
+  list-style: none;
+}
+/* line 3, ../scss/components/_minimized-tray.scss */
+ul.minimized-tray li {
+  width: 205px;
+  background: #4db6ac;
+  padding: 5px 5px 5px 10px;
+  float: left;
+  color: #fff;
+  margin-right: 5px;
+}
+/* line 10, ../scss/components/_minimized-tray.scss */
+ul.minimized-tray li a {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 100;
+  margin-right: 5px;
+  display: inline-block;
+}
+/* line 16, ../scss/components/_minimized-tray.scss */
+ul.minimized-tray li a.minimized-trainer-name {
+  width: 133px;
+}
+/* line 19, ../scss/components/_minimized-tray.scss */
+ul.minimized-tray li a.minimized-trainer-min, ul.minimized-tray li a.minimized-trainer-close {
+  font-size: 18px;
+}
+
 /*page wise*/
 /* line 2, ../scss/components/_search.scss */
 .search-control .col-md-10.form-group {

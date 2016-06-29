@@ -1,0 +1,26 @@
+ul.minimized-tray {
+list-style: none;
+   & li{
+      width: 205px;
+      background: $green;
+      padding: 5px 5px 5px 10px;
+      float:left;
+      color: $white;
+      margin-right: 5px;
+      & a {
+         color: $white;
+         font-size: 14px;
+         font-weight: 100;
+         margin-right: 5px;
+         display: inline-block;
+         &.minimized-trainer-name {
+            width: 133px;
+         }
+         &.minimized-trainer-min,
+         &.minimized-trainer-close {
+            font-size: 18px;
+         }
+
+      }
+   }
+}
