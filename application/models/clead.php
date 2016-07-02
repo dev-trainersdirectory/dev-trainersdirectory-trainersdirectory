@@ -55,10 +55,10 @@ class CLead extends CEosSingular {
 			$this->setAddress( $arrstrRequestData['address'] );
 
 		if( true == array_key_exists( 'city_id', $arrstrRequestData ) )
-			$this->setCity( $arrstrRequestData['city_id'] );
+			$this->setCityId( $arrstrRequestData['city_id'] );
 		
 		if( true == array_key_exists( 'state_id', $arrstrRequestData ) )
-			$this->setState( $arrstrRequestData['state_id'] );
+			$this->setStateId( $arrstrRequestData['state_id'] );
 
 		if( true == array_key_exists( 'pin_code', $arrstrRequestData ) )
 			$this->setPinCode( $arrstrRequestData['pin_code'] );
@@ -93,7 +93,7 @@ class CLead extends CEosSingular {
 		$this->intId = $intId;
 	}
 
-	public function setUserId( $intId ) {
+	public function setUserId( $intUserId ) {
 		$this->intUserId = $intUserId;
 	}
 
@@ -239,6 +239,10 @@ class CLead extends CEosSingular {
 
 	public function getCreatedBy() {
 		return $this->strCreatedBy;
+	}
+
+	public function getFullName() {
+		return $this->getFirstName() . ' ' . $this->getLastName();
 	}
 
 	public function validate() {
