@@ -1,4 +1,6 @@
 <?php
+require_once( getcwd(). '\application\libraries\commonfunctions.php' );
+
 class CEosPlural extends CI_Model {
 	
 	function __construct() {
@@ -12,9 +14,14 @@ class CEosPlural extends CI_Model {
 		foreach( $arrmixResults as $key => $arrmixResult) {
 			$objResult = new $strClassName();
 			$objResult->assignData( $arrmixResult );
-			$arrobjResults[] = $objResult;
-		}
 
+			$strKey = ( true == method_exists( $strClassName, 'getId' ) ) ? $objResult->getId() : NULL; 
+			if( false == is_null( $strKey ) ) {
+				$arrobjResults[$strKey] = $objResult;
+			} else {
+				$arrobjResults[] = $objResult;
+			}
+		}
 		return $arrobjResults;
 	}
 
