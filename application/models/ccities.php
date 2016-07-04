@@ -15,7 +15,7 @@ class CCities extends CEosPlural {
 	}
 
 	public static function fetchAllPublishedCities( $objDatabase ) {
-		$strSQL = 'SELECT * FROM cities';
+		$strSQL = 'SELECT * FROM cities WHERE is_published = true';
 
 		return self::fetchCities( $strSQL, $objDatabase );
 	}
