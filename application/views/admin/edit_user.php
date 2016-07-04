@@ -26,10 +26,10 @@ State : <select name=lead[state_id]>
 		</select>
 Pincode : <input type="text" name=lead[pin_code] value="<?php echo $lead->getPinCode()?>">
 <br/><br/>
-Preferences : <br/>
-<input type="checkbox" value="1" <?php if( true == $lead->getIsNumberVerified()) { ?> checked<?php } ?> > Is mobile number verified<br/>
-<input type="checkbox" value="1" <?php if( true == $lead->getIsNumberPrivate()) { ?> checked<?php } ?> > Is mobile number private<br/>
-<input type="checkbox" value="1" <?php if( true == $lead->getAllowSmsAlert()) { ?> checked<?php } ?> > Allow SMS alert<br/>
+Preferences : <?php echo $lead->getIsNumberVerified()?><br/>
+<input type="checkbox" name=lead[is_number_verified] value="1" <?php if( 1 == $lead->getIsNumberVerified()) { ?> checked<?php } ?> > Is mobile number verified<br/>
+<input type="checkbox" name=lead[is_number_private] value="1" <?php if( true == $lead->getIsNumberPrivate()) { ?> checked<?php } ?> > Is mobile number private<br/>
+<input type="checkbox" name=lead[allow_sms_alert] value="1" <?php if( true == $lead->getAllowSmsAlert()) { ?> checked<?php } ?> > Allow SMS alert<br/>
 <br/><br/>
 <input type="hidden" name=user[id] value="<?php echo $user->getId()?>"> 
 <input type="hidden" name=lead[id] value="<?php echo $lead->getId()?>">
