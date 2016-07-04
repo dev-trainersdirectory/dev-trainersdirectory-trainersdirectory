@@ -6,7 +6,21 @@ class CAdminUsersController extends CAdminSystemController {
 	public $_arrstrUserFields = array( 
 		'id' => NULL,
 		'contact_number' => NULL,
-		'email_address' => NULL );
+		'email_address' => NULL,
+		'user_id' => NULL );
+
+	public $_arrstrLeadFields = array(
+		'first_name' => NULL,
+		'last_name'  => NULL,
+		'alternate_contact_number' => NULL,
+		'address' => NULL,
+		'city_id' => NULL,
+		'state_id' => NULL,
+		'pin_code' => NULL,
+		'is_number_verified' => false,
+		'is_number_private' => false,
+		'allow_sms_alert' => false
+		);
 
 	public function index() {
 
@@ -56,14 +70,19 @@ class CAdminUsersController extends CAdminSystemController {
 		$intUserId = $this->input->post( 'user')['id'];
 		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
-		
-		$objUser->applyRequestForm( $this->input->post( 'user'), $this->_arrstrUserFields );
+
+		$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
+		$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
 
 		switch( NULL ) {
 			default:
 				$this->db->trans_begin();
 
 				if( false == $objUser->update( $this->db ) ) {
+					break;
+				}
+
+				if( false == $objLead->update( $this->db ) ) {
 					break;
 				}
 

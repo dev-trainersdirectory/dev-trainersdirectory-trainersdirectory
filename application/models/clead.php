@@ -13,7 +13,7 @@ class CLead extends CEosSingular {
 	public $intCityId;
 	public $intStateId;
 	public $intPinCode;
-	public $strAlternateContactNumber;
+	public $intAlternateContactNumber;
 	public $boolIsNumberVerified;
 	public $boolIsNumberPrivate;
 	public $boolAllowSmsAlert;	
@@ -133,8 +133,8 @@ class CLead extends CEosSingular {
 		$this->intPinCode = $intPinCode;
 	}
 
-	public function setAlternateContactNumber( $strAlternateContactNumber ) {
-		$this->strAlternateContactNumber = $strAlternateContactNumber;
+	public function setAlternateContactNumber( $intAlternateContactNumber ) {
+		$this->intAlternateContactNumber = $intAlternateContactNumber;
 	}
 
 	public function setIsNumberVerified( $boolIsNumberVerified ) {
@@ -210,7 +210,7 @@ class CLead extends CEosSingular {
 	}
 
 	public function getAlternateContactNumber() {
-		return $this->strAlternateContactNumber;
+		return $this->intAlternateContactNumber;
 	}
 
 	public function getIsNumberVerified() {
@@ -264,15 +264,13 @@ class CLead extends CEosSingular {
 		$arrStrInsertData = array(
 								'first_name'				=> $this->strFirstName,
 								'last_name'					=> $this->strLastName,
-								'gender'					=> $this->strGender,
+								'gender_id'					=> $this->intGenderId,
 								'birth_date'				=> $this->strBirthDate,
 								'address' 					=> $this->strAddress,
 								'city'						=> $this->strCity,
 								'state'						=> $this->strState,
 								'pin_code'					=> $this->intPinCode,
-								'email_address'				=> $this->strEmailAddress,
-								'contact_number'			=> $this->strContactNumber,
-								'alternate_contact_number'	=> $this->strAlternateContactNumber,
+								'alternate_contact_number'	=> $this->intAlternateContactNumber,
 								'is_number_verified'		=> $this->boolIsNumberPrivate,
 								'is_number_private'			=> $this->boolIsNumberVerified,
 								'allow_sms_alert'			=> $this->boolAllowSmsAlert,
@@ -290,39 +288,20 @@ class CLead extends CEosSingular {
 	public function update() {
 
 		$arrStrUpdateData = array();
-
-		if( false == is_null( $this->strFirstName ) )
-			$arrStrUpdateData['first_name'] = $this->strFirstName;
-		if( false == is_null( $this->strLastName ) )
-			$arrStrUpdateData['last_name'] = $this->strLastName;
-		if( false == is_null( $this->strGender ) )
-			$arrStrUpdateData['gender'] = $this->strGender;
-		if( false == is_null( $this->strBirthDate ) )
-			$arrStrUpdateData['birth_date'] = $this->strBirthDate;
-		if( false == is_null( $this->strAddress ) )
-			$arrStrUpdateData['address'] = $this->strAddress;
-		if( false == is_null( $this->strCity ) )
-			$arrStrUpdateData['city'] = $this->strCity;
-		if( false == is_null( $this->strState ) )
-			$arrStrUpdateData['state']	= $this->strState;
-		if( false == is_null( $this->intPinCode ) )
-			$arrStrUpdateData['pin_code'] = $this->intPinCode;
-		if( false == is_null( $this->strEmailAddress ) )
-			$arrStrUpdateData['email_address'] = $this->strEmailAddress;
-		if( false == is_null( $this->strContactNumber ) )
-			$arrStrUpdateData['contact_number'] = $this->strContactNumber;
-		if( false == is_null( $this->strAlternateContactNumber ) )
-			$arrStrUpdateData['alternate_contact_number'] = $this->strAlternateContactNumber;
-		if( false == is_null( $this->boolIsNumberPrivate ) )
-			$arrStrUpdateData['is_number_private'] = $this->boolIsNumberPrivate;
-		if( false == is_null( $this->boolIsNumberVerified ) )
-			$arrStrUpdateData['is_number_verified']	= $this->boolIsNumberVerified;
-		if( false == is_null( $this->boolAllowSmsAlert ) )
-			$arrStrUpdateData['allow_sms_alert'] = $this->boolAllowSmsAlert;
-		if( false == is_null( $this->intCoins ) )
-			$arrStrUpdateData['coins'] = $this->intCoins;
-		if( false == is_null( $this->boolIsActive ) )
-			$arrStrUpdateData['is_active']	= $this->boolIsActive;
+		$arrStrUpdateData['first_name'] = $this->strFirstName;
+		$arrStrUpdateData['last_name'] = $this->strLastName;
+		$arrStrUpdateData['gender_id'] = $this->intGenderId;
+		$arrStrUpdateData['birth_date'] = $this->strBirthDate;
+		$arrStrUpdateData['address'] = $this->strAddress;
+		$arrStrUpdateData['city_id'] = $this->intCityId;
+		$arrStrUpdateData['state_id']	= $this->intStateId;
+		$arrStrUpdateData['pin_code'] = $this->intPinCode;
+		$arrStrUpdateData['alternate_contact_number'] = $this->intAlternateContactNumber;
+		$arrStrUpdateData['is_number_private'] = $this->boolIsNumberPrivate;
+		$arrStrUpdateData['is_number_verified']	= $this->boolIsNumberVerified;
+		$arrStrUpdateData['allow_sms_alert'] = $this->boolAllowSmsAlert;
+		$arrStrUpdateData['coins'] = $this->intCoins;
+		$arrStrUpdateData['is_active']	= $this->boolIsActive;
 		
 		$this->db->where( 'id =', $this->intId );
 
