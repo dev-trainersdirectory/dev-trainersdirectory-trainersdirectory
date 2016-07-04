@@ -4,22 +4,56 @@ class CAdminTrainersController extends CI_Controller {
 
 	public function index() {
 
-		$arrObjTrainers = CTrainers::fetchAllTrainersDetails( $this->db );
-echo '<pre>'; print_r($arrObjTrainers); die;
-		$arrMixAssignData['trainers'] = $arrObjTrainers;
+		$arrobjUsers = CUsers::fetchUsersByUserTypeId( 3 ,$this->db );
+//echo '<pre>'; print_r($arrobjUsers); die;
+		$arrintUserIds = array();
+		foreach( $arrobjUsers as $objUser )
+			$arrintUserIds[] = $objUser->getId();
 
-		$this->load->view( 'admin/view_trainers', $arrMixAssignData );
+		$arrobjLeads = ( array ) CLeads::fetchLeadsByUserIds( $arrintUserIds, $this->db );
+		$arrobjLeads = ( array ) rekeyObjects( 'UserId', $arrobjLeads );
+
+		$arrobjTrainers = ( array ) Ctrainers::fetchTrainersByUserIds( $arrintUserIds, $this->db );
+		$arrobjTrainers = ( array ) rekeyObjects( 'UserId', $arrobjTrainers );
+
+		$arrobjStatuses = ( array ) CStatuses::fetchAllStatuses( $this->db );
+
+		$data = array();
+		$data['users'] = $arrobjUsers;
+		$data['leads'] = $arrobjLeads;
+		$data['statuses'] = $arrobjStatuses;
+		$data['trainers'] = $arrobjTrainers;
+
+		$this->load->view( 'admin/view_trainers', $data );
 	}
 
-	public function view() {
+	public function editTrainer() {
 
-		$intLeadId = $this->input->post( 'lead_id' );
+		$intUserId = $this->input->post( 'id' );
 
-		$objLead = CLeads::fetchLeadById( $intLeadId );
+		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
+		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
+		$objTrainer = CTrainers::fetchTrainerByUserId( $intUserId, $this->db );
+		$arrobjStatuses = ( array ) CStatuses::fetchAllStatuses( $this->db );
+		$arrobjCities = ( array ) CCities::fetchAllPublishedCities( $this->db );
+		$arrobjStates = ( array ) CStates::fetchAllPublishedStates( $this->db );
 
-		$arrMixAssignData['objLead'] = $objLead;
+		$data = array();
+		$data['user'] = $objUser;
+		$data['lead'] = $objLead;
+		$data['trainer'] = $objTrainer;
+		$data['statuses'] = $arrobjStatuses;
+		$data['cities'] = $arrobjCities;
+		$data['states'] = $arrobjStates;
 
-		$this->load->view( 'admin/view_lead_details', $arrMixAssignData );
+		$this->load->view( 'admin/edit_trainer', $data );
+	}
+
+	public function updateTrainer() {
+
+		$mixFormData = $this->input->post('user')['email_id'];
+
+		echo $mixFormData;
 	}
 
 	public function updateLead() {
