@@ -23,6 +23,13 @@ class CTrainers extends CEosPlural {
 		return self::fetchTrainers( $strSQL, $objDatabase );
 	}
 
+	public static function fetchTrainerById( $intTrainerId, $objDatabase ) {
+		
+		$strSQL = 'SELECT * FROM trainers WHERE id = ' . $intTrainerId;
+
+		return self::fetchTrainer( $strSQL, $objDatabase );
+	}
+
 	public static function fetchAllActiveTrainersBySubjectIdByCityId( $intSubjectId, $intCityId, $objDatabase ) {
 		
 		$strSQL = ' SELECT
@@ -41,10 +48,42 @@ class CTrainers extends CEosPlural {
 		return self::fetchTrainers( $strSQL, $objDatabase );
 	}
 
-	public static function fetchTrainerById( $intTrainerId, $objDatabase ) {
-		
-		$strSQL = 'SELECT * FROM trainers WHERE id = ' . $intTrainerId;
+	public static function fetchAllTrainersDetails( $objDatabase ) {
 
+		$strSQL = ' SELECT
+						u.*,
+						l.first_name,
+						l.last_name
+					FROM
+						users u
+						JOIN leads l ON ( l.user_id = u.id )';
+
+		return self::fetchTrainers( $strSQL, $objDatabase );
+	}
+
+	public function fetchTrainersByUserIds( $arrintUserIds, $objDatabase ) {
+		if( false == valArr( $arrintUserIds ) ) return NULL;
+
+		$strSQL = ' SELECT
+						*
+					FROM
+						trainers
+					WHERE
+						user_id IN ( ' . implode( $arrintUserIds, ',' ) . ' )';
+		
+		return self::fetchTrainers( $strSQL, $objDatabase );
+	}
+
+	public function fetchTrainerByUserId( $intUserId, $objDatabase ) {
+		if( false == isset( $intUserId ) ) return NULL;
+
+		$strSQL = ' SELECT
+						*
+					FROM
+						trainers
+					WHERE
+						user_id = ' . ( int ) $intUserId;
+		
 		return self::fetchTrainer( $strSQL, $objDatabase );
 	}
 }
