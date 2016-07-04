@@ -6361,6 +6361,57 @@ tbody.collapse.in {
   border-top-right-radius: 3px;
 }
 
+/* line 6, ../scss/bootstrap/_jumbotron.scss */
+.jumbotron {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #eeeeee;
+}
+/* line 13, ../scss/bootstrap/_jumbotron.scss */
+.jumbotron h1,
+.jumbotron .h1 {
+  color: inherit;
+}
+/* line 18, ../scss/bootstrap/_jumbotron.scss */
+.jumbotron p {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 200;
+}
+/* line 24, ../scss/bootstrap/_jumbotron.scss */
+.jumbotron > hr {
+  border-top-color: #d5d5d5;
+}
+/* line 28, ../scss/bootstrap/_jumbotron.scss */
+.container .jumbotron, .container-fluid .jumbotron {
+  border-radius: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/* line 35, ../scss/bootstrap/_jumbotron.scss */
+.jumbotron .container {
+  max-width: 100%;
+}
+@media screen and (min-width: 768px) {
+  /* line 6, ../scss/bootstrap/_jumbotron.scss */
+  .jumbotron {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  /* line 43, ../scss/bootstrap/_jumbotron.scss */
+  .container .jumbotron, .container-fluid .jumbotron {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  /* line 49, ../scss/bootstrap/_jumbotron.scss */
+  .jumbotron h1,
+  .jumbotron .h1 {
+    font-size: 63px;
+  }
+}
+
 /* line 9, ../scss/bootstrap/_alerts.scss */
 .alert {
   padding: 15px;
@@ -7366,6 +7417,271 @@ button.close {
     width: 900px;
   }
 }
+/* line 7, ../scss/bootstrap/_carousel.scss */
+.carousel {
+  position: relative;
+}
+
+/* line 11, ../scss/bootstrap/_carousel.scss */
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+/* line 16, ../scss/bootstrap/_carousel.scss */
+.carousel-inner > .item {
+  display: none;
+  position: relative;
+  -webkit-transition: 0.6s ease-in-out left;
+  -o-transition: 0.6s ease-in-out left;
+  transition: 0.6s ease-in-out left;
+}
+/* line 22, ../scss/bootstrap/_carousel.scss */
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  line-height: 1;
+}
+@media all and (transform-3d), (-webkit-transform-3d) {
+  /* line 16, ../scss/bootstrap/_carousel.scss */
+  .carousel-inner > .item {
+    -webkit-transition: -webkit-transform 0.6s ease-in-out;
+    -moz-transition: -moz-transform 0.6s ease-in-out;
+    -o-transition: -o-transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    perspective: 1000px;
+  }
+  /* line 34, ../scss/bootstrap/_carousel.scss */
+  .carousel-inner > .item.next, .carousel-inner > .item.active.right {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    left: 0;
+  }
+  /* line 39, ../scss/bootstrap/_carousel.scss */
+  .carousel-inner > .item.prev, .carousel-inner > .item.active.left {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    left: 0;
+  }
+  /* line 44, ../scss/bootstrap/_carousel.scss */
+  .carousel-inner > .item.next.left, .carousel-inner > .item.prev.right, .carousel-inner > .item.active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    left: 0;
+  }
+}
+/* line 53, ../scss/bootstrap/_carousel.scss */
+.carousel-inner > .active,
+.carousel-inner > .next,
+.carousel-inner > .prev {
+  display: block;
+}
+/* line 59, ../scss/bootstrap/_carousel.scss */
+.carousel-inner > .active {
+  left: 0;
+}
+/* line 63, ../scss/bootstrap/_carousel.scss */
+.carousel-inner > .next,
+.carousel-inner > .prev {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+/* line 70, ../scss/bootstrap/_carousel.scss */
+.carousel-inner > .next {
+  left: 100%;
+}
+/* line 73, ../scss/bootstrap/_carousel.scss */
+.carousel-inner > .prev {
+  left: -100%;
+}
+/* line 76, ../scss/bootstrap/_carousel.scss */
+.carousel-inner > .next.left,
+.carousel-inner > .prev.right {
+  left: 0;
+}
+/* line 81, ../scss/bootstrap/_carousel.scss */
+.carousel-inner > .active.left {
+  left: -100%;
+}
+/* line 84, ../scss/bootstrap/_carousel.scss */
+.carousel-inner > .active.right {
+  left: 100%;
+}
+
+/* line 93, ../scss/bootstrap/_carousel.scss */
+.carousel-control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 15%;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  background-color: transparent;
+}
+/* line 109, ../scss/bootstrap/_carousel.scss */
+.carousel-control.left {
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+}
+/* line 112, ../scss/bootstrap/_carousel.scss */
+.carousel-control.right {
+  left: auto;
+  right: 0;
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+}
+/* line 119, ../scss/bootstrap/_carousel.scss */
+.carousel-control:hover, .carousel-control:focus {
+  outline: 0;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+/* line 128, ../scss/bootstrap/_carousel.scss */
+.carousel-control .icon-prev,
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right {
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  z-index: 5;
+  display: inline-block;
+}
+/* line 138, ../scss/bootstrap/_carousel.scss */
+.carousel-control .icon-prev,
+.carousel-control .glyphicon-chevron-left {
+  left: 50%;
+  margin-left: -10px;
+}
+/* line 143, ../scss/bootstrap/_carousel.scss */
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-right {
+  right: 50%;
+  margin-right: -10px;
+}
+/* line 148, ../scss/bootstrap/_carousel.scss */
+.carousel-control .icon-prev,
+.carousel-control .icon-next {
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  font-family: serif;
+}
+/* line 158, ../scss/bootstrap/_carousel.scss */
+.carousel-control .icon-prev:before {
+  content: '\2039';
+}
+/* line 163, ../scss/bootstrap/_carousel.scss */
+.carousel-control .icon-next:before {
+  content: '\203a';
+}
+
+/* line 174, ../scss/bootstrap/_carousel.scss */
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 15;
+  width: 60%;
+  margin-left: -30%;
+  padding-left: 0;
+  list-style: none;
+  text-align: center;
+}
+/* line 185, ../scss/bootstrap/_carousel.scss */
+.carousel-indicators li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+  text-indent: -999px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #000 \9;
+  background-color: transparent;
+}
+/* line 207, ../scss/bootstrap/_carousel.scss */
+.carousel-indicators .active {
+  margin: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+}
+
+/* line 218, ../scss/bootstrap/_carousel.scss */
+.carousel-caption {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 20px;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+/* line 229, ../scss/bootstrap/_carousel.scss */
+.carousel-caption .btn {
+  text-shadow: none;
+}
+
+@media screen and (min-width: 768px) {
+  /* line 240, ../scss/bootstrap/_carousel.scss */
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-prev,
+  .carousel-control .icon-next {
+    width: 30px;
+    height: 30px;
+    margin-top: -10px;
+    font-size: 30px;
+  }
+  /* line 249, ../scss/bootstrap/_carousel.scss */
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .icon-prev {
+    margin-left: -10px;
+  }
+  /* line 253, ../scss/bootstrap/_carousel.scss */
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-next {
+    margin-right: -10px;
+  }
+
+  /* line 260, ../scss/bootstrap/_carousel.scss */
+  .carousel-caption {
+    left: 20%;
+    right: 20%;
+    padding-bottom: 30px;
+  }
+
+  /* line 267, ../scss/bootstrap/_carousel.scss */
+  .carousel-indicators {
+    bottom: 20px;
+  }
+}
 /* line 14, ../scss/bootstrap/mixins/_clearfix.scss */
 .clearfix:before, .clearfix:after {
   content: " ";
@@ -8072,6 +8388,13 @@ html, body {
   border-color: #efefef;
 }
 
+/* line 21, ../scss/components/buttons.scss */
+.btn-transparent {
+  background: none;
+  background-color: transparent;
+  border: none;
+}
+
 /* line 4, ../scss/components/_tabs.scss */
 .table-tab-menu--tr > td {
   border-bottom: 2px solid #650360;
@@ -8232,6 +8555,12 @@ html, body {
   padding: 10px 20px;
 }
 
+/*inner header*/
+/* line 28, ../scss/components/_header.scss */
+.inner-header {
+  padding: 20px 0;
+}
+
 /* line 1, ../scss/components/_pagination.scss */
 .ally-pagination {
   margin: 0;
@@ -8280,21 +8609,28 @@ html, body {
 body {
   font-size: 12px;
   /* from style.css */
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto";
   color: #2A2A2A;
+  background: url(../images/bg.png) top left repeat, url(../images/bg.png) top left no-repeat;
+  background-attachment: fixed;
+  background-position: top left;
+  -webkit-background-size: auto, cover;
+  -moz-background-size: auto, cover;
+  -o-background-size: auto, cover;
+  background-size: auto, cover;
 }
 
-/* line 7, ../scss/base/_base.scss */
+/* line 14, ../scss/base/_base.scss */
 .v-top {
   vertical-align: top;
 }
 
-/* line 11, ../scss/base/_base.scss */
+/* line 18, ../scss/base/_base.scss */
 .no-wrap {
   white-space: nowrap;
 }
 
-/* line 15, ../scss/base/_base.scss */
+/* line 22, ../scss/base/_base.scss */
 .strong {
   font-weight: bold;
 }
@@ -8315,7 +8651,7 @@ body {
   border-bottom: 0;
   margin: 0;
   color: #650360;
-  font-family: "Arial Narrow", Arial, Helvetica, sans-serif;
+  font-family: "Arial Narrow", "Roboto";
 }
 /* line 18, ../scss/base/_generic.scss */
 .page-header-title {
@@ -8326,7 +8662,7 @@ body {
 .page-header-subtext {
   color: #666;
   font-size: 14px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto";
   font-weight: normal;
 }
 
@@ -8336,157 +8672,163 @@ body {
   color: #fff;
 }
 
-/* line 34, ../scss/base/_generic.scss */
+/*font size*/
+/* line 37, ../scss/base/_generic.scss */
+.font-20 {
+  font-size: 20px;
+}
+
+/* line 41, ../scss/base/_generic.scss */
 .info-text {
   font-size: 12px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto";
   color: #d9534f;
 }
 
-/* line 40, ../scss/base/_generic.scss */
+/* line 47, ../scss/base/_generic.scss */
 .help-text {
   color: #999;
 }
 
-/* line 44, ../scss/base/_generic.scss */
+/* line 51, ../scss/base/_generic.scss */
 .purple-bg {
   background-color: #650360;
 }
 
 /*borders*/
-/* line 49, ../scss/base/_generic.scss */
+/* line 56, ../scss/base/_generic.scss */
 .border-bottom-1 {
   border-bottom: 1px solid #d8d8d8;
 }
 
 /* margins */
-/* line 54, ../scss/base/_generic.scss */
+/* line 61, ../scss/base/_generic.scss */
 .margin-bottom-10 {
   margin-bottom: 10px;
 }
 
-/* line 57, ../scss/base/_generic.scss */
+/* line 64, ../scss/base/_generic.scss */
 .margin-top-10 {
   margin-top: 10px;
 }
 
-/* line 61, ../scss/base/_generic.scss */
+/* line 68, ../scss/base/_generic.scss */
 .margin-top--45 {
   margin-top: -48px;
 }
 
-/* line 64, ../scss/base/_generic.scss */
+/* line 71, ../scss/base/_generic.scss */
 .margin-left-15 {
   margin-left: 15px;
 }
 
-/* line 67, ../scss/base/_generic.scss */
+/* line 74, ../scss/base/_generic.scss */
 .margin-right-15 {
   margin-left: 15px;
 }
 
 /*padding*/
-/* line 73, ../scss/base/_generic.scss */
+/* line 80, ../scss/base/_generic.scss */
 .row-no-padding [class*="col-"] {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
-/* line 80, ../scss/base/_generic.scss */
+/* line 87, ../scss/base/_generic.scss */
 .no-padding {
   padding: 0;
 }
-/* line 82, ../scss/base/_generic.scss */
+/* line 89, ../scss/base/_generic.scss */
 .no-padding-r {
   padding-right: 0;
 }
-/* line 85, ../scss/base/_generic.scss */
+/* line 92, ../scss/base/_generic.scss */
 .no-padding-l {
   padding-left: 0;
 }
 
-/* line 91, ../scss/base/_generic.scss */
+/* line 98, ../scss/base/_generic.scss */
 .page-controls {
   padding: 8px 15px;
 }
 
-/* line 95, ../scss/base/_generic.scss */
+/* line 102, ../scss/base/_generic.scss */
 .row-col-group {
   width: 100%;
   margin: 0;
 }
-/* line 98, ../scss/base/_generic.scss */
+/* line 105, ../scss/base/_generic.scss */
 .row-col-group > [class^="col-"] {
   padding: 0;
 }
-/* line 100, ../scss/base/_generic.scss */
+/* line 107, ../scss/base/_generic.scss */
 .row-col-group > [class^="col-"] .form-control {
   border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
 }
-/* line 104, ../scss/base/_generic.scss */
+/* line 111, ../scss/base/_generic.scss */
 .row-col-group > [class^="col-"]:first-child .form-control {
   border-right: 0;
   border-radius: 4px 0 0 4px;
   -webkit-border-radius: 4px 0 0 4px;
   -moz-border-radius: 4px 0 0 4px;
 }
-/* line 107, ../scss/base/_generic.scss */
+/* line 114, ../scss/base/_generic.scss */
 .row-col-group > [class^="col-"]:first-child .form-control:focus {
   border-right: 1px solid #006899;
 }
-/* line 114, ../scss/base/_generic.scss */
+/* line 121, ../scss/base/_generic.scss */
 .row-col-group > [class^="col-"]:last-child .form-control {
   border-left: 0;
   border-radius: 0 4px 4px 0;
   -webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius: 0 4px 4px 0;
 }
-/* line 117, ../scss/base/_generic.scss */
+/* line 124, ../scss/base/_generic.scss */
 .row-col-group > [class^="col-"]:last-child .form-control:focus {
   border-left: 1px solid #006899;
 }
 
-/* line 127, ../scss/base/_generic.scss */
+/* line 134, ../scss/base/_generic.scss */
 .View-request .form-group {
   margin-bottom: 5px;
 }
 
-/* line 132, ../scss/base/_generic.scss */
+/* line 139, ../scss/base/_generic.scss */
 .list-verified {
   overflow: hidden;
 }
-/* line 134, ../scss/base/_generic.scss */
+/* line 141, ../scss/base/_generic.scss */
 .list-verified > li {
   width: 100%;
   padding: 7px 5px;
   float: left;
 }
 @media (min-width: 768px) {
-  /* line 134, ../scss/base/_generic.scss */
+  /* line 141, ../scss/base/_generic.scss */
   .list-verified > li {
     width: 50%;
   }
 }
 @media (min-width: 992px) {
-  /* line 134, ../scss/base/_generic.scss */
+  /* line 141, ../scss/base/_generic.scss */
   .list-verified > li {
     width: 33.3333%;
   }
 }
 @media (min-width: 1200px) {
-  /* line 134, ../scss/base/_generic.scss */
+  /* line 141, ../scss/base/_generic.scss */
   .list-verified > li {
     width: 25%;
   }
 }
 
-/* line 150, ../scss/base/_generic.scss */
+/* line 157, ../scss/base/_generic.scss */
 .grid {
   overflow: hidden;
 }
-/* line 152, ../scss/base/_generic.scss */
+/* line 159, ../scss/base/_generic.scss */
 .grid-item {
   width: 120px;
   height: 120px;
@@ -8497,13 +8839,13 @@ body {
   overflow: hidden;
   cursor: pointer;
 }
-/* line 163, ../scss/base/_generic.scss */
+/* line 170, ../scss/base/_generic.scss */
 .grid-image img {
   width: 100%;
   min-height: 100%;
 }
 
-/* line 171, ../scss/base/_generic.scss */
+/* line 178, ../scss/base/_generic.scss */
 .page-action {
   padding-top: 15px;
   border-top: 1px solid #DDD;
@@ -8590,6 +8932,410 @@ body {
 /* line 54, ../scss/base/_utilities.scss */
 .mt-15 {
   margin-top: 15px;
+}
+
+/*carousel*/
+/* line 3, ../scss/components/_carousel.scss */
+img {
+  max-width: 100%;
+}
+
+/* line 5, ../scss/components/_carousel.scss */
+a {
+  -webkit-transition: all 150ms ease;
+  -moz-transition: all 150ms ease;
+  -ms-transition: all 150ms ease;
+  -o-transition: all 150ms ease;
+  transition: all 150ms ease;
+}
+
+/* line 13, ../scss/components/_carousel.scss */
+a:hover {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  /* IE 8 */
+  filter: alpha(opacity=50);
+  /* IE7 */
+  opacity: 0.6;
+  text-decoration: none;
+}
+
+/* line 20, ../scss/components/_carousel.scss */
+.thumbnails li > .fff .caption {
+  background: #fff !important;
+  padding: 10px;
+}
+
+/* Page Header */
+/* line 26, ../scss/components/_carousel.scss */
+.page-header {
+  background: #f9f9f9;
+  margin: -30px -40px 40px;
+  padding: 20px 40px;
+  border-top: 4px solid #ccc;
+  color: #999;
+  text-transform: uppercase;
+}
+
+/* line 35, ../scss/components/_carousel.scss */
+.page-header h3 {
+  line-height: 0.88rem;
+  color: #000;
+}
+
+/* line 40, ../scss/components/_carousel.scss */
+ul.thumbnails {
+  margin-bottom: 0px;
+}
+/* line 42, ../scss/components/_carousel.scss */
+ul.thumbnails .col-sm-3 {
+  width: 24%;
+}
+
+/* Thumbnail Box */
+/* line 50, ../scss/components/_carousel.scss */
+.caption h4 {
+  color: #444;
+}
+
+/* line 54, ../scss/components/_carousel.scss */
+.caption p {
+  color: #999;
+}
+
+/* Carousel Control */
+/* line 61, ../scss/components/_carousel.scss */
+.control-box {
+  text-align: right;
+  width: auto;
+}
+/* line 64, ../scss/components/_carousel.scss */
+.control-box.pager {
+  font-size: 20px;
+}
+/* line 67, ../scss/components/_carousel.scss */
+.control-box .left-pager {
+  position: absolute;
+  left: -10px;
+  top: 46.5%;
+}
+/* line 72, ../scss/components/_carousel.scss */
+.control-box .right-pager {
+  position: absolute;
+  right: -10px;
+  top: 46.5%;
+}
+
+/* line 79, ../scss/components/_carousel.scss */
+.carousel-control {
+  background: #666;
+  border: 0px;
+  border-radius: 0px;
+  display: inline-block;
+  font-size: 34px;
+  font-weight: 200;
+  line-height: 18px;
+  opacity: 0.5;
+  padding: 4px 10px 0px;
+  position: static;
+  height: 30px;
+  width: 15px;
+}
+
+/* Mobile Only */
+@media (max-width: 767px) {
+  /* line 98, ../scss/components/_carousel.scss */
+  .page-header, .control-box {
+    text-align: center;
+  }
+}
+@media (max-width: 479px) {
+  /* line 103, ../scss/components/_carousel.scss */
+  .caption {
+    word-break: break-all;
+  }
+}
+/* line 109, ../scss/components/_carousel.scss */
+li {
+  list-style-type: none;
+}
+
+/* line 2, ../scss/components/_ratings.scss */
+.star-ratings-css {
+  unicode-bidi: bidi-override;
+  color: #c5c5c5;
+  font-size: 17px;
+  height: 25px;
+  width: 100px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0;
+}
+/* line 11, ../scss/components/_ratings.scss */
+.star-ratings-css-top {
+  color: gold;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: 0;
+  left: 8px;
+  overflow: hidden;
+}
+/* line 21, ../scss/components/_ratings.scss */
+.star-ratings-css-bottom {
+  padding: 0;
+  display: block;
+  z-index: 0;
+}
+
+/*profile cards*/
+/* line 1, ../scss/components/_profilecards.scss */
+.trainer-panel {
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.075);
+  border-radius: 0;
+  border: 0;
+  margin-bottom: 24px;
+  background: #fff;
+}
+
+/* line 8, ../scss/components/_profilecards.scss */
+.trainer-panel .panel-heading, .trainer-panel > :first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* line 12, ../scss/components/_profilecards.scss */
+.bg-primary, .bg-primary a {
+  color: #fff;
+}
+
+/* line 15, ../scss/components/_profilecards.scss */
+.bg-success, .bg-success a {
+  color: #fff;
+}
+
+/* line 18, ../scss/components/_profilecards.scss */
+.bg-success {
+  background-color: #4db6ac;
+}
+
+/* line 22, ../scss/components/_profilecards.scss */
+.widget-header {
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* line 27, ../scss/components/_profilecards.scss */
+.trainer-panel .panel-footer, .trainer-panel > :last-child {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* line 31, ../scss/components/_profilecards.scss */
+.widget-body {
+  padding: 60px 15px 15px;
+  position: relative;
+  height: 262px;
+}
+
+/* line 36, ../scss/components/_profilecards.scss */
+.panel-body {
+  padding: 25px 20px;
+}
+
+/* line 40, ../scss/components/_profilecards.scss */
+.img-border-light {
+  box-shadow: 0 0 0 4px #fff;
+}
+
+/* line 43, ../scss/components/_profilecards.scss */
+.img-border {
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* line 46, ../scss/components/_profilecards.scss */
+.mar-no {
+  margin: 0 !important;
+}
+
+/* line 51, ../scss/components/_profilecards.scss */
+.trainer-profile-pic {
+  overflow: hidden;
+  border-radius: 50%;
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  left: 47%;
+  margin-left: -32px;
+  top: -32px;
+}
+/* line 60, ../scss/components/_profilecards.scss */
+.trainer-profile-pic img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+/* line 67, ../scss/components/_profilecards.scss */
+.trainer-name {
+  font-weight: Medium;
+  margin-top: 5px;
+}
+/* line 71, ../scss/components/_profilecards.scss */
+.trainer-profession {
+  font-size: 13px;
+  color: #848484;
+  font-weight: regular;
+}
+/* line 76, ../scss/components/_profilecards.scss */
+.trainer-subjects {
+  width: 150px;
+  margin: 0 auto;
+  color: #242424;
+  font-size: 13px;
+  font-weight: regular;
+  word-break: break-all;
+}
+/* line 84, ../scss/components/_profilecards.scss */
+.trainer-social {
+  border-top: 1px solid #efefef;
+  margin-top: 15px;
+  padding-top: 15px;
+  font-size: 17px;
+}
+/* line 89, ../scss/components/_profilecards.scss */
+.trainer-social a {
+  margin-right: 20px;
+}
+/* line 91, ../scss/components/_profilecards.scss */
+.trainer-social a:last-child {
+  margin-right: 0;
+}
+/* line 94, ../scss/components/_profilecards.scss */
+.trainer-social a .watch-count {
+  font-size: 10px;
+  margin: 0px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -2px 0 0 5px;
+  color: #242424;
+}
+
+/* line 106, ../scss/components/_profilecards.scss */
+.more-details {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+/* line 110, ../scss/components/_profilecards.scss */
+.details-page {
+  background-color: #4db6ac;
+}
+/* line 112, ../scss/components/_profilecards.scss */
+.details-page .widget-header {
+  padding: 10px;
+}
+/* line 114, ../scss/components/_profilecards.scss */
+.details-page .widget-header .more-details {
+  float: right;
+  color: #fff;
+  margin: 0px;
+}
+/* line 120, ../scss/components/_profilecards.scss */
+.details-page .widget-body {
+  padding: 0 10px 10px;
+  margin-top: 0;
+  font-size: 13px;
+}
+/* line 125, ../scss/components/_profilecards.scss */
+.details-page h3 {
+  text-align: left;
+  color: #000;
+  margin-top: 0;
+  padding: 0px;
+}
+
+/* entire container, keeps perspective */
+/* line 2, ../scss/components/_flip.scss */
+.flip-container {
+  /*perspective*/
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  -o-perspective: 1000;
+  perspective: 1000;
+}
+
+/* flip the pane when hovered */
+/* line 11, ../scss/components/_flip.scss */
+.flipped {
+  /*transform*/
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+/* line 19, ../scss/components/_flip.scss */
+.flip-container, .front, .back {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 22, ../scss/components/_flip.scss */
+.flip-container {
+  height: 312px;
+  margin-bottom: 20px;
+}
+
+/* flip speed goes here */
+/* line 24, ../scss/components/_flip.scss */
+.flipper {
+  /*transition*/
+  -webkit-transition: 0.6s;
+  -moz-transition: 0.6s;
+  -o-transition: 0.6s;
+  transition: 0.6s;
+  /*transform-style*/
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* hide back of pane during swap */
+/* line 39, ../scss/components/_flip.scss */
+.front, .back {
+  /*backface-visibility*/
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* front pane, placed above back */
+/* line 51, ../scss/components/_flip.scss */
+.front {
+  z-index: 2;
+}
+
+/* back, initially hidden pane */
+/* line 55, ../scss/components/_flip.scss */
+.back {
+  /*transform*/
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 /*page wise*/
@@ -8735,4 +9481,13 @@ body {
   .dropdown.dropdown-lg .dropdown-menu {
     min-width: 500px;
   }
+}
+/* line 1, ../scss/components/_search-result.scss */
+.search-control-top {
+  margin-top: 10px;
+}
+
+/* line 4, ../scss/components/_search-result.scss */
+.inner-header {
+  height: 78px;
 }
