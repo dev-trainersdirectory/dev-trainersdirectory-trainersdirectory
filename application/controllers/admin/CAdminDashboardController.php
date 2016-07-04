@@ -1,7 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-require_once( getcwd(). '/application/controllers/admin/cadminsystemcontroller.php' );
 
-class CAdminDashboardController extends CAdminSystemController {
+class CAdminDashboardController extends CI_Controller {
 
 	public function index() {
 
@@ -10,6 +9,10 @@ class CAdminDashboardController extends CAdminSystemController {
 		}
 
 		$this->load->view( 'admin/view_admin_dashboard' );
+	}
+
+	public function admin_panel() {
+		$this->load->view( 'admin/view_admin_panel' );
 	}
 
 	public function logout() {
