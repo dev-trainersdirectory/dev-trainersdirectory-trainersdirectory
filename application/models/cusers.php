@@ -36,8 +36,8 @@ class CUsers extends CEosPlural
 						users u
 					' . $strCond . '
 					WHERE
-					email_id = \'' . $strEmailId . '\'
-					AND encrypted_password = \'' . md5( $strPassword ) . '\'';
+						email_id = \'' . $strEmailId . '\'
+						AND encrypted_password = \'' . md5( $strPassword ) . '\'';
 
 		return self::fetchUser( $strSQL, $objDatabase );
 	}

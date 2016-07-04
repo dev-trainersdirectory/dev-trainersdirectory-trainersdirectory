@@ -14,7 +14,7 @@ class CLead extends CEosSingular {
 	public $intStateId;
 	public $intPinCode;
 	public $strAlternateContactNumber;
-	public $boolIsNmberVerified;
+	public $boolIsNumberVerified;
 	public $boolIsNumberPrivate;
 	public $boolAllowSmsAlert;	
 	public $intCoins;
@@ -67,7 +67,7 @@ class CLead extends CEosSingular {
 			$this->setAlternateContactNumber( $arrstrRequestData['alternate_contact_number'] );
 
 		if( true == array_key_exists( 'is_number_verified', $arrstrRequestData ) )
-			$this->setIsNmberVerified( $arrstrRequestData['is_number_verified'] );
+			$this->setIsNumberVerified( $arrstrRequestData['is_number_verified'] );
 
 		if( true == array_key_exists( 'is_number_private', $arrstrRequestData ) )
 			$this->setIsNumberPrivate( $arrstrRequestData['is_number_private'] );
@@ -137,8 +137,8 @@ class CLead extends CEosSingular {
 		$this->strAlternateContactNumber = $strAlternateContactNumber;
 	}
 
-	public function setIsNmberVerified( $boolIsNmberVerified ) {
-		$this->boolIsNmberVerified = $boolIsNmberVerified;
+	public function setIsNumberVerified( $boolIsNumberVerified ) {
+		$this->boolIsNumberVerified = $boolIsNumberVerified;
 	}
 
 	public function setIsNumberPrivate( $boolIsNumberPrivate ) {
@@ -197,12 +197,12 @@ class CLead extends CEosSingular {
 		return $this->strAddress;
 	}
 
-	public function getCity() {
-		return $this->strCity;
+	public function getCityId() {
+		return $this->intCityId;
 	}
 
-	public function getState() {
-		return $this->strState;
+	public function getStateId() {
+		return $this->intStateId;
 	}
 
 	public function getPinCode() {
@@ -213,8 +213,8 @@ class CLead extends CEosSingular {
 		return $this->strAlternateContactNumber;
 	}
 
-	public function getIsNmberVerified() {
-		return $this->boolIsNmberVerified;
+	public function getIsNumberVerified() {
+		return $this->boolIsNumberVerified;
 	}
 
 	public function getIsNumberPrivate() {
@@ -274,7 +274,7 @@ class CLead extends CEosSingular {
 								'contact_number'			=> $this->strContactNumber,
 								'alternate_contact_number'	=> $this->strAlternateContactNumber,
 								'is_number_verified'		=> $this->boolIsNumberPrivate,
-								'is_number_private'			=> $this->boolIsNmberVerified,
+								'is_number_private'			=> $this->boolIsNumberVerified,
 								'allow_sms_alert'			=> $this->boolAllowSmsAlert,
 								'coins'						=> $this->intCoins,
 								'is_active'					=> $this->boolIsActive,
@@ -314,9 +314,9 @@ class CLead extends CEosSingular {
 		if( false == is_null( $this->strAlternateContactNumber ) )
 			$arrStrUpdateData['alternate_contact_number'] = $this->strAlternateContactNumber;
 		if( false == is_null( $this->boolIsNumberPrivate ) )
-			$arrStrUpdateData['is_number_verified'] = $this->boolIsNumberPrivate;
-		if( false == is_null( $this->boolIsNmberVerified ) )
-			$arrStrUpdateData['is_number_private']	= $this->boolIsNmberVerified;
+			$arrStrUpdateData['is_number_private'] = $this->boolIsNumberPrivate;
+		if( false == is_null( $this->boolIsNumberVerified ) )
+			$arrStrUpdateData['is_number_verified']	= $this->boolIsNumberVerified;
 		if( false == is_null( $this->boolAllowSmsAlert ) )
 			$arrStrUpdateData['allow_sms_alert'] = $this->boolAllowSmsAlert;
 		if( false == is_null( $this->intCoins ) )

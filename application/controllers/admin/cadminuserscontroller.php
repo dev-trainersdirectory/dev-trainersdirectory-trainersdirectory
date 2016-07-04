@@ -38,11 +38,15 @@ class CAdminUsersController extends CAdminSystemController {
 		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
 		$arrobjStatuses = ( array ) CStatuses::fetchAllStatuses( $this->db );
-		
+		$arrobjCities = ( array ) CCities::fetchAllPublishedCities( $this->db );
+		$arrobjStates = ( array ) CStates::fetchAllPublishedStates( $this->db );
+
 		$data = array();
 		$data['user'] = $objUser;
 		$data['lead'] = $objLead;
 		$data['statuses'] = $arrobjStatuses;
+		$data['cities'] = $arrobjCities;
+		$data['states'] = $arrobjStates;
 
 		$this->load->view( 'admin/edit_user', $data );
 	}
@@ -52,10 +56,8 @@ class CAdminUsersController extends CAdminSystemController {
 		$intUserId = $this->input->post( 'user')['id'];
 		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
-		display($objUser);
 		
 		$objUser->applyRequestForm( $this->input->post( 'user'), $this->_arrstrUserFields );
-		
 
 		switch( NULL ) {
 			default:
