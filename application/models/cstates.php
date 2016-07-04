@@ -16,7 +16,7 @@ class CStates extends CEosPlural
 	}
 
 	public static function fetchAllPublishedStates( $objDatabase ) {
-		$strSQL = 'SELECT * FROM tr_subjects';
+		$strSQL = 'SELECT * FROM states WHERE is_published = true';
 
 		return self::fetchStates( $strSQL, $objDatabase );
 	}
