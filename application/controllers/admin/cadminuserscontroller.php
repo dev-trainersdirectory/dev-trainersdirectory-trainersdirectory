@@ -66,16 +66,35 @@ class CAdminUsersController extends CAdminSystemController {
 	}
 
 	public function updateUser() {
-		
+		 
 		$intUserId = $this->input->post( 'user')['id'];
 		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
 
+		$strTempImagePath = $_FILES['lead']['tmp_name']['profile_image'];
+		$strFilePath = 'public\images\profile_pics\\';
+		$strFileName = 'pp_' . $intUserId . '_' . $_FILES['lead']['name']['profile_image'];
+		$strThumbFilePath = $strFilePath . 'thumbnail\\';
+
+		$strDestFilePath = FCPATH . $strFilePath . $strFileName;
+		$strThumnailFile = FCPATH . $strThumbFilePath . $strFileName;
+
 		$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
 		$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
 
+		$objLead->setProfilePic( $strFilePath . $strFileName );
+
 		switch( NULL ) {
 			default:
+
+				if( false == copy( $strTempImagePath, $strDestFilePath ) ) {
+					break;
+				}
+
+				if( false == compressImage( $strDestFilePath, $strThumnailFile ) ) {
+					break;
+				}
+				
 				$this->db->trans_begin();
 
 				if( false == $objUser->update( $this->db ) ) {

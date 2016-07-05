@@ -1,4 +1,6 @@
-<form name="edit_user" method="post" action="<?=base_url()?>admin_users/updateUser">
+<form name="edit_user" method="post" enctype="multipart/form-data" action="<?=base_url()?>admin_users/updateUser">
+<image src="<?=base_url() . $lead->getProfilePic()?>" height="42" width="42">
+<input type="file" name="lead[profile_image]">
 First Name : <input type="text" name=lead[first_name] value="<?php echo $lead->getFirstName()?>" >
 Last Name : <input type="text" name=lead[last_name] value="<?php echo $lead->getLastName()?>" >
 Status : <select name=user[status_id]>
@@ -26,11 +28,11 @@ State : <select name=lead[state_id]>
 		</select>
 Pincode : <input type="text" name=lead[pin_code] value="<?php echo $lead->getPinCode()?>">
 <br/><br/>
-Preferences : <?php echo $lead->getIsNumberVerified()?><br/>
+Preferences :<br/>
 <input type="checkbox" name=lead[is_number_verified] value="1" <?php if( 1 == $lead->getIsNumberVerified()) { ?> checked<?php } ?> > Is mobile number verified<br/>
 <input type="checkbox" name=lead[is_number_private] value="1" <?php if( true == $lead->getIsNumberPrivate()) { ?> checked<?php } ?> > Is mobile number private<br/>
 <input type="checkbox" name=lead[allow_sms_alert] value="1" <?php if( true == $lead->getAllowSmsAlert()) { ?> checked<?php } ?> > Allow SMS alert<br/>
-<br/><br/>
+<br/>
 <input type="hidden" name=user[id] value="<?php echo $user->getId()?>"> 
 <input type="hidden" name=lead[id] value="<?php echo $lead->getId()?>">
 <input type="Submit" value="Update"></input>
