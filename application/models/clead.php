@@ -291,6 +291,7 @@ class CLead extends CEosSingular {
 		$arrStrUpdateData['first_name'] = $this->strFirstName;
 		$arrStrUpdateData['last_name'] = $this->strLastName;
 		$arrStrUpdateData['gender_id'] = $this->intGenderId;
+		$arrStrUpdateData['profile_pic'] = $this->strProfilePic;
 		$arrStrUpdateData['birth_date'] = $this->strBirthDate;
 		$arrStrUpdateData['address'] = $this->strAddress;
 		$arrStrUpdateData['city_id'] = $this->intCityId;
