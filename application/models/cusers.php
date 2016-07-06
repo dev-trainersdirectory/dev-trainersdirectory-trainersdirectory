@@ -52,6 +52,8 @@ class CUsers extends CEosPlural
 				$strWhere .= 'AND lower( u.email_id ) like \'%'. trim( strtolower ($arrstrFilter['email_id'] ) ) . '%\' ';
 			if( true == array_key_exists( 'contact_number', $arrstrFilter ) )
 				$strWhere .= 'AND u.contact_number like \'%'. trim( $arrstrFilter['contact_number'] ) . '%\' ';
+			if( true == array_key_exists( 'status_id', $arrstrFilter ) )
+				$strWhere .= 'AND u.status_id = ' . trim( $arrstrFilter['status_id'] );
 		}
 
 		$strSQL = 'SELECT

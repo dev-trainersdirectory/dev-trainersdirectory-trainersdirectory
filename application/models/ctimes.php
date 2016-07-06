@@ -1,6 +1,6 @@
 <?php
 
-class Ctimes extends CEosPlural {
+class CSubjects extends CEosPlural {
 	
 	function __construct() {
 		parent::__construct();
@@ -14,7 +14,7 @@ class Ctimes extends CEosPlural {
 		return self::fetchObject( 'CTime', $strSQL, $objDatabase );
 	}
 
-	public static function fetchAllPublishedTimes( $objDatabase ) {
+	public static function fetchAllPublishedTimes $objDatabase ) {
 		$strSQL = 'SELECT * FROM times';
 
 		return self::fetchTimes( $strSQL, $objDatabase );

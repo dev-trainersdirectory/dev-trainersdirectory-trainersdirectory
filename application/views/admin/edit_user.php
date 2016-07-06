@@ -1,4 +1,4 @@
-<form name="edit_user" method="post" enctype="multipart/form-data">
+<form name="edit_user" method="post" enctype="multipart/form-data" action="<?=base_url()?>admin_users/updateUser">
 <image src="<?=base_url() . $lead->getProfilePic()?>" height="42" width="42">
 <input type="file" name="lead[profile_image]">
 First Name : <input type="text" name=lead[first_name] value="<?php echo $lead->getFirstName()?>" >
@@ -35,22 +35,5 @@ Preferences :<br/>
 <br/>
 <input type="hidden" name=user[id] value="<?php echo $user->getId()?>"> 
 <input type="hidden" name=lead[id] value="<?php echo $lead->getId()?>">
-<input class="js-update_user" type="button" value="Update"></input>
+<input type="Submit" value="Update"></input>
 <a href="">cancel</a>
-
-<script type="text/javascript">
-
-    $(".js-update_user").click(function(){
-        $.ajax ({
-            type: "post",
-            data: $( "form" ).serialize(),
-            url: '<?=base_url()?>admin_users/updateUser',
-            success: function(result) {
-                //if(result) {
-                    $('.container-fluid').html(result);
-                //}
-            }
-        })
-    });
-
-</script>

@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array( 'CEosSingular', 'CEosPlural', 'CCity', 'CCities', 'CTrSubject', 'CTrSubjects', 'CState', 'CStates', 'CUser', 'CUsers', 'CLead', 'CLeads', 'CBaseTrainer', 'CTrainer', 'CTrainers', 'CTrCategory', 'CTrCategories', 'CStatus', 'CStatuses', 'CUserType', 'CUserTypes', 'CDay', 'CDays', 'CTime', 'CTimes', 'CTrainerLocations', 'CTrainerLocation', 'CTrainerPreferences', 'CTrainerPreference', 'CLocations', 'CLocation', 'CPreferences', 'CPreference' );
+$autoload['model'] = array( 'CEosSingular', 'CEosPlural', 'CCity', 'CCities', 'CTrSubject', 'CTrSubjects', 'CState', 'CStates', 'CUser', 'CUsers', 'CLead', 'CLeads', 'CBaseTrainer', 'CTrainer', 'CTrainers', 'CTrCategory', 'CTrCategories', 'CStatus', 'CStatuses' );
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

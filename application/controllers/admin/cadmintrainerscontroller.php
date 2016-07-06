@@ -1,41 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-require_once( getcwd(). '/application/controllers/admin/cadminsystemcontroller.php' );
 
-class CAdminTrainersController extends CAdminSystemController {
-
-	public $_arrstrUserFields = array( 
-		'id' => NULL,
-		'contact_number' => NULL,
-		'email_address' => NULL,
-		'user_id' => NULL );
-
-	public $_arrstrLeadFields = array(
-		'first_name' => NULL,
-		'last_name'  => NULL,
-		'alternate_contact_number' => NULL,
-		'address' => NULL,
-		'city_id' => NULL,
-		'state_id' => NULL,
-		'pin_code' => NULL,
-		'is_number_verified' => false,
-		'is_number_private' => false,
-		'allow_sms_alert' => false
-		);
-
-	public $_arrstrTrainerFields = array( 
-		'description' => NULL,
-		'experience' => NULL,
-		'min_rate' => NULL,
-		'max_rate' => NULL,
-		'is_paid_profile' => NULL,
-		'completed_on' => NULL,
-		'has_taught_in_school_colleges' => NULL,
-		'has_vehicle' => NULL,
-		'views' => NULL,
-		'available_day_id' => NULL,
-		'available_start_time_id' => NULL,
-		'available_end_time_id' => NULL,
-		'qualities' => NULL );
+class CAdminTrainersController extends CI_Controller {
 
 	public function index() {
 
@@ -69,51 +34,26 @@ class CAdminTrainersController extends CAdminSystemController {
 		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
 		$objTrainer = CTrainers::fetchTrainerByUserId( $intUserId, $this->db );
-		$objTrainerLocation = CTrainerLocations::fetchTrainerLocationsByTrainerId( $objTrainer->getId(), $this->db );
-		$objTrainerPreferences = CTrainerPreferences::fetchTrainerPreferencesByTrainerId( $objTrainer->getId(), $this->db );
+		$arrobjStatuses = ( array ) CStatuses::fetchAllStatuses( $this->db );
+		$arrobjCities = ( array ) CCities::fetchAllPublishedCities( $this->db );
+		$arrobjStates = ( array ) CStates::fetchAllPublishedStates( $this->db );
 
-		$data = $this->loadCommonData();
-
+		$data = array();
 		$data['user'] = $objUser;
 		$data['lead'] = $objLead;
 		$data['trainer'] = $objTrainer;
-		$data['trainer_locations'] = $objTrainerLocation;
-		$data['trainer_preferences'] = $objTrainerPreferences;
-		
+		$data['statuses'] = $arrobjStatuses;
+		$data['cities'] = $arrobjCities;
+		$data['states'] = $arrobjStates;
+
 		$this->load->view( 'admin/edit_trainer', $data );
 	}
 
 	public function updateTrainer() {
 
-		$intUserId = $this->input->post('user')['id'];
-		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
-		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
-		$objTrainer = CTrainers::fetchTrainerByUserId( $intUserId, $this->db );
+		$mixFormData = $this->input->post('user')['email_id'];
 
-		$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
-		$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
-		$objTrainer->applyRequestForm( $this->input->post( 'trainer' ), $this->_arrstrTrainerFields );
-
-		switch( NULL ) {
-			default:
-				$this->db->trans_begin();
-
-				if( false == $objUser->update( $this->db ) ) {
-					break;
-				}
-
-				if( false == $objLead->update( $this->db ) ) {
-					break;
-				}
-
-				if( false == $objTrainer->update( $this->db ) ) {
-					break;
-				}
-
-				$this->db->trans_commit();
-				$this->index();
-		}
-
+		echo $mixFormData;
 	}
 
 	public function updateLead() {

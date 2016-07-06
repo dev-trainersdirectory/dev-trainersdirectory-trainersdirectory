@@ -10,20 +10,14 @@ class CTrainerPreferences extends CEosPlural {
 		return self::fetchObjects( 'CTrainerPreference', $strSQL, $objDatabase );
 	}
 
-	public function fetchTrainerPreference( $strSQL, $objDatabase ) {
+	public function fetchTrainerPreferences( $strSQL, $objDatabase ) {
 		return self::fetchObject( 'CTrainerPreference', $strSQL, $objDatabase );
 	}
 
 	public static function fetchAllPublishedTrainerPreferences( $objDatabase ) {
-		$strSQL = 'SELECT * FROM  trainer_prefereces';
+		$strSQL = 'SELECT * FROM trainer_preferences';
 
-		return self::fetchTrainerPreferences( $strSQL, $objDatabase );
-	}
-
-	public static function fetchTrainerPreferencesByTrainerId( $intTrainerId, $objDatabase ) {
-		$strSQL = 'SELECT * FROM trainer_prefereces WHERE trainer_id = ' . ( int ) $intTrainerId;
-
-		return self::fetchTrainerPreferences( $strSQL, $objDatabase );
+		return self::fetchSubjects( $strSQL, $objDatabase );
 	}
 
 }

@@ -93,7 +93,7 @@ class CTrainerLocation extends CEosSingular {
 								'trainer_id'	=> $this->intTrainerId,
 								'location_id'  	=> $this->intLocationId,
 								'created_by'	=> $this->intCreatedBy,
-								'created_on'	=> 'NOW()'
+								'created_on'	=> 'NOW()';
 							);
 
 		if( false == $this->db->insert( 'trainer_locations', $arrStrInsertData ) ) return false;

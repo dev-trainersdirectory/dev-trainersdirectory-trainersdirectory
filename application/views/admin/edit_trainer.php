@@ -1,6 +1,4 @@
-<link href="<?=base_url()?>public/admin/css/dropdown-css.css" rel="stylesheet">
 <form name="edit_trainer" method="post">
-<strong>Personal Details</strong><br>
 First Name : <input type="text" name=lead[first_name] value="<?php echo $lead->getFirstName()?>" >
 Last Name : <input type="text" name=lead[last_name] value="<?php echo $lead->getLastName()?>" >
 Status : <select name=user[status_id]>
@@ -28,59 +26,6 @@ State : <select name=lead[state_id]>
 		</select>
 Pincode : <input type="text" name=lead[pin_code] value="<?php echo $lead->getPinCode()?>">
 <br/><br/>
-<strong>Trainers Details</strong><br>
-Description : <textarea name="trainer[description]"><?php echo $trainer->getDescription()?></textarea>
-Experience : <input type="text" name=trainer[experience] value="<?php echo $trainer->getExperience()?>">
-Qualities : <textarea name="trainer[qualities]"><?php echo $trainer->getQualities()?></textarea>
-<br/><br/>
-Min Rate : <input type="text" name="trainer[min_rate]" value="<?php echo $trainer->getMinRate()?>">
-Max Rate : <input type="text" name="trainer[max_rate]" value="<?php echo $trainer->getMaxRate()?>">
-<br/><br/>
-Is Paid Profile : 
-<input type="radio" name="trainer[is_paid_profile]" value="1" <?php if( 1==$trainer->getIsPaidProfile() ) { ?> checked <?php } ?> > Yes 
-<input type="radio" name="trainer[is_paid_profile]" value="0" <?php if( 0==$trainer->getIsPaidProfile() ) { ?> checked <?php } ?> > No
-Completed On: <input type="text" name="trainer[completed_on]" value="<?php echo $trainer->getCompletedOn()?>">
-Has Taught In School Colleges : 
-<input type="radio" name="trainer[has_taught_in_school_colleges]" value="1" <?php if( 1==$trainer->getHasTaughtInSchoolColleges() ) { ?> checked <?php } ?> > Yes 
-<input type="radio" name="trainer[has_taught_in_school_colleges]" value="0" <?php if( 0==$trainer->getHasTaughtInSchoolColleges() ) { ?> checked <?php } ?> > No
-<br/><br/>
-Has Vehicle : 
-<input type="radio" name="trainer[has_vehicle]" value="1" <?php if( 1==$trainer->getHasVehicle() ) { ?> checked <?php } ?> > Yes 
-<input type="radio" name="trainer[has_vehicle]" value="0" <?php if( 0==$trainer->getHasVehicle() ) { ?> checked <?php } ?> > No
-Views : <input type="text" name="trainer[views]" value="<?php echo $trainer->getViews()?>">
-<br/><br/>
-Available Days : 
-<select name=trainer[available_day_id]>
-	<?php foreach( $days AS $day ) { ?>
-		<option value="<?php echo $day->getId()?>" <?php if( $day->getId() == $trainer->getAvailableDayId() ) { ?> selected <?php } ?>><?php echo $day->getName()?></option>
-	<?php } ?>
-</select>
-Available Start Time : 
-<select name=trainer[available_start_time_id]>
-	<?php foreach( $times AS $time ) { ?>
-		<option value="<?php echo $time->getId()?>" <?php if( $time->getId() == $trainer->getAvailableStartTimeId() ) { ?> selected <?php } ?>><?php echo $time->getName()?></option>
-	<?php } ?>
-</select>
-Available End Time : 
-<select name=trainer[available_end_time_id]>
-	<?php foreach( $times AS $time ) { ?>
-		<option value="<?php echo $time->getId()?>" <?php if( $time->getId() == $trainer->getAvailableEndTimeId() ) { ?> selected <?php } ?>><?php echo $time->getName()?></option>
-	<?php } ?>
-</select>
-<br/><br/>
-Trainer's Locations: 
-<div class="btn-group">
-  <button data-toggle="dropdown" class="btn dropdown-toggle"  data-placeholder="Please select">Checked option <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-    <?php foreach( $locations AS $location ) { ?>
-      <li>
-      <input type="checkbox" id="<?=$location->getId()?>" value="<?=$location->getId()?>" name="trainer_location[location_id][<?=$location->getId()?>]">
-      <label for="<?=$location->getId()?>" name="trainer_location[location_id][<?=$location->getId()?>]"><?=$location->getName()?></label>
-      </li>
-    <?php } ?>
-    </ul>
-</div>
-<br/><br/>
 Preferences : <br/>
 <input type="checkbox" value="1" <?php if( true == $lead->getIsNumberVerified()) { ?> checked<?php } ?> > Is mobile number verified<br/>
 <input type="checkbox" value="1" <?php if( true == $lead->getIsNumberPrivate()) { ?> checked<?php } ?> > Is mobile number private<br/>
@@ -90,7 +35,7 @@ Preferences : <br/>
 <input type="hidden" name=lead[id] value="<?php echo $lead->getId()?>">
 <input class="js-update_trainer" type="button" value="Update"></input>
 <a href="">cancel</a>
-<script type="text/javascript" src="/public/admin/js/dropdown-js.js"></script>
+
 <script type="text/javascript">
 
     $(".js-update_trainer").click(function(){
@@ -105,5 +50,5 @@ Preferences : <br/>
             }
         })
     });
-
+        
 </script>
