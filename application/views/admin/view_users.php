@@ -3,6 +3,11 @@
 		<input type="text" name="filter[name]" value="<?php echo $filter['name']?>" placeholder="Name">
 		<input type="text" name="filter[email_id]" value="<?php echo $filter['email_id']?>" placeholder="Email Id">
 		<input type="text" name="filter[contact_number]" value="<?php echo $filter['contact_number']?>" placeholder="Contact Number">
+		<select name=filter[status_id] palceholder="Status">
+			<option>Status</option>
+			<?php foreach( $statuses AS $status ) { ?>
+				<option value="<?php echo $status->getId()?>" <?php if( $status->getId() == $filter['status_id'] ) { ?> selected <?php } ?>><?php echo $status->getName()?></option>
+			<?php } ?>
 		<input type="hidden" name="filter[reset]" vaue="0" id="filter_reset">
 		<input type="submit" value="Filter">
 		<input type="submit" value="Reset" onclick="document.getElementById('filter_reset').value = 1;" >

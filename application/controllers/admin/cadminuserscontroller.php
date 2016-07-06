@@ -24,7 +24,7 @@ class CAdminUsersController extends CAdminSystemController {
 
 	public function index() {
 
-		$arrstrFilter = array( 'name' => '', 'email_id' => '', 'contact_number' => '' );
+		$arrstrFilter = array( 'name' => '', 'email_id' => '', 'contact_number' => '', 'status_id' => '' );
 		$arrstrPostFilter = ( array ) $this->input->post( 'filter' );
 		$arrstrPostFilter = array_filter( $arrstrPostFilter );
 
