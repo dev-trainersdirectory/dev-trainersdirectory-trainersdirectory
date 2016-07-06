@@ -43,16 +43,23 @@ class CUsers extends CEosPlural
 	}
 
 	public static function fetchUsersByFilter( $arrstrFilter, $objDatabase ) {
-		$strWhere = '';
+		$strWhere = ' WHERE true ';
+		$arrstrFilter = array_filter( $arrstrFilter );
 		if( true == valArr( $arrstrFilter ) ) {
-			$strWhere = '';
+			if( true == array_key_exists( 'name', $arrstrFilter ) )
+				$strWhere .= 'AND lower( l.first_name ) like \'%'. trim( strtolower ($arrstrFilter['name'] ) ) . '%\' ';
+			if( true == array_key_exists( 'email_id', $arrstrFilter ) )
+				$strWhere .= 'AND lower( u.email_id ) like \'%'. trim( strtolower ($arrstrFilter['email_id'] ) ) . '%\' ';
+			if( true == array_key_exists( 'contact_number', $arrstrFilter ) )
+				$strWhere .= 'AND u.contact_number like \'%'. trim( $arrstrFilter['contact_number'] ) . '%\' ';
 		}
 
 		$strSQL = 'SELECT
 						u.*
 					FROM 
 						users u
-						JOIN user_type_associations uta ON ( u.id = uta.user_id )';
+						JOIN user_type_associations uta ON ( u.id = uta.user_id )
+						JOIN leads l ON ( u.id = l.user_id )' . $strWhere;
 
 		return self::fetchUsers( $strSQL, $objDatabase );
 	}
