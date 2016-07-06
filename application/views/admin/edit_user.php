@@ -1,6 +1,6 @@
-<form name="edit_user" method="post" enctype="multipart/form-data">
-<image src="<?=base_url() . $lead->getProfilePic()?>" height="42" width="42">
-<input type="file" name="lead[profile_image]">
+<form id="edit_user" method="post" enctype="multipart/form-data">
+<image src="<?=base_url() . $lead->getProfilePic()?>" height="42" width="42" class="js-profile_img">
+
 First Name : <input type="text" name=lead[first_name] value="<?php echo $lead->getFirstName()?>" >
 Last Name : <input type="text" name=lead[last_name] value="<?php echo $lead->getLastName()?>" >
 Status : <select name=user[status_id]>
@@ -37,13 +37,19 @@ Preferences :<br/>
 <input type="hidden" name=lead[id] value="<?php echo $lead->getId()?>">
 <input class="js-update_user" type="button" value="Update"></input>
 <a href="">cancel</a>
+</form>
+<form id="frm_profile_image" style="display:none" enctype="multipart/form-data"> 
+	 <input type="hidden" name=user[id] value="<?php echo $user->getId()?>">
+	<input type="file" name="lead[profile_image]" id="lead_profile_img">
+	<input type="submit" id="frm_profile_image_submit">
+</form>
 
 <script type="text/javascript">
 
     $(".js-update_user").click(function(){
         $.ajax ({
             type: "post",
-            data: $( "form" ).serialize(),
+            data: $( "#edit_user" ).serialize(),
             url: '<?=base_url()?>admin_users/updateUser',
             success: function(result) {
                 //if(result) {
@@ -51,6 +57,28 @@ Preferences :<br/>
                 //}
             }
         })
+    });
+
+	$(".js-profile_img").click(function(){
+       $( "#lead_profile_img" ).click();
+    });
+
+    $("#lead_profile_img").change(function(){
+    	var data1 = new FormData($('#frm_profile_image')[0]);
+    	
+    	 $.ajax ({
+            type: "post",
+            data: data1,
+            url: '<?=base_url()?>admin_users/uploadProfileImage',
+            contentType: false,
+    		processData: false,
+            success: function(result) {
+                $('.js-profile_img').attr('src', '<?=base_url() ?>' + result );
+            }
+        });
+
+    	//$("#frm_profile_image_submit").click();
+    	//alert('here');
     });
 
 </script>
