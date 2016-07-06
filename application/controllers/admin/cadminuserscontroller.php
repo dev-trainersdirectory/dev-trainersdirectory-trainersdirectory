@@ -70,22 +70,18 @@ class CAdminUsersController extends CAdminSystemController {
 		$this->load->view( 'admin/edit_user', $data );
 	}
 
-	public function updateUser() {
+	public function uploadProfileImage() {
 
 		$intUserId = $this->input->post('user')['id'];
-		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
 
-		/*$strTempImagePath = $_FILES['lead']['tmp_name']['profile_image'];
+		$strTempImagePath = $_FILES['lead']['tmp_name']['profile_image'];
 		$strFilePath = 'public\images\profile_pics\\';
 		$strFileName = 'pp_' . $intUserId . '_' . $_FILES['lead']['name']['profile_image'];
 		$strThumbFilePath = $strFilePath . 'thumbnail\\';
 
 		$strDestFilePath = FCPATH . $strFilePath . $strFileName;
-		$strThumnailFile = FCPATH . $strThumbFilePath . $strFileName;*/
-
-		$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
-		$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
+		$strThumnailFile = FCPATH . $strThumbFilePath . $strFileName;
 
 		$objLead->setProfilePic( $strFilePath . $strFileName );
 
@@ -102,6 +98,32 @@ class CAdminUsersController extends CAdminSystemController {
 				
 				$this->db->trans_begin();
 
+				if( false == $objLead->update( $this->db ) ) {
+					break;
+				}
+
+				$this->db->trans_commit();
+				echo $strThumbFilePath . $strFileName;
+				exit;
+		}
+
+		$this->db->trans_rollback();
+	}
+
+	public function updateUser() {
+
+		$intUserId = $this->input->post('user')['id'];
+		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
+		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
+
+		$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
+		$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
+
+		switch( NULL ) {
+			default:
+
+				$this->db->trans_begin();
+
 				if( false == $objUser->update( $this->db ) ) {
 					break;
 				}
@@ -111,8 +133,6 @@ class CAdminUsersController extends CAdminSystemController {
 				}
 
 				$this->db->trans_commit();
-				$objUser = CUsers::fetchUserById( $intUserId, $this->db );
-				display($objUser);
 				exit;
 		}
 
