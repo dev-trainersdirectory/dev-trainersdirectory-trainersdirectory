@@ -52,8 +52,7 @@ class CAdminUsersController extends CAdminSystemController {
 
 	public function editUser() {
 
-		//$intUserId = $this->input->post( 'user')['id'];
-		$intUserId = 2;
+		$intUserId = $this->input->post( 'id' );
 
 		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
@@ -72,18 +71,18 @@ class CAdminUsersController extends CAdminSystemController {
 	}
 
 	public function updateUser() {
-		 
-		$intUserId = $this->input->post( 'user')['id'];
+
+		$intUserId = $this->input->post('user')['id'];
 		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
 
-		$strTempImagePath = $_FILES['lead']['tmp_name']['profile_image'];
+		/*$strTempImagePath = $_FILES['lead']['tmp_name']['profile_image'];
 		$strFilePath = 'public\images\profile_pics\\';
 		$strFileName = 'pp_' . $intUserId . '_' . $_FILES['lead']['name']['profile_image'];
 		$strThumbFilePath = $strFilePath . 'thumbnail\\';
 
 		$strDestFilePath = FCPATH . $strFilePath . $strFileName;
-		$strThumnailFile = FCPATH . $strThumbFilePath . $strFileName;
+		$strThumnailFile = FCPATH . $strThumbFilePath . $strFileName;*/
 
 		$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
 		$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );

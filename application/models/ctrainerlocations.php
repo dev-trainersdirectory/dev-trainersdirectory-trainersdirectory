@@ -14,8 +14,8 @@ class CTrainerLocations extends CEosPlural {
 		return self::fetchObject( 'CTrainerLocation', $strSQL, $objDatabase );
 	}
 
-	public static function fetchAllPublishedSmsTemplates( $objDatabase ) {
-		$strSQL = 'SELECT * FROM trainer_locations';
+	public static function fetchTrainerLocationsByTrainerId( $intTrainerId, $objDatabase ) {
+		$strSQL = 'SELECT * FROM trainer_locations WHERE trainer_id = ' . ( int ) $intTrainerId;
 
 		return self::fetchTrainerLocations( $strSQL, $objDatabase );
 	}

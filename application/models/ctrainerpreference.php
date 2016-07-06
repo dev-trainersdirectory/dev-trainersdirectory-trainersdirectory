@@ -61,11 +61,11 @@ class CTrainerPreference extends CEosSingular {
 		return $this->intTrainerId;
 	}
 
-	public function setPreferenceId() {
+	public function getPreferenceId() {
 		return $this->intPreferenceId;
 	}
 
-	public function setCreatedBy() {
+	public function getCreatedBy() {
 		return $this->intCreatedBy;
 	}
 

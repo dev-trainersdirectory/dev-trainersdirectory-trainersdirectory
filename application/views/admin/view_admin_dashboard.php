@@ -72,7 +72,7 @@
                         <a href="#" onclick="loadTab('<?=base_url()?>admin_trainers')"><i class="fa fa-fw fa-bar-chart-o"></i> Trainers</a>
                     </li>
                     <li>
-                        <a href="<?=base_url()?>tables.html"><i class="fa fa-fw fa-table"></i> Users</a>
+                        <a href="#" onclick="loadTab('<?=base_url()?>admin_users')"><i class="fa fa-fw fa-table"></i> Users</a>
                     </li>
                 </ul>
             </div>
