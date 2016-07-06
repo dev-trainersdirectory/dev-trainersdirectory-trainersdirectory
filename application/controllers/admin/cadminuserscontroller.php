@@ -24,22 +24,28 @@ class CAdminUsersController extends CAdminSystemController {
 
 	public function index() {
 
-		$arrstrFilter = $this->input->post( 'filter' );
+		$arrstrFilter = array( 'name' => '', 'email_id' => '', 'contact_number' => '' );
+		$arrstrPostFilter = ( array ) $this->input->post( 'filter' );
+		$arrstrPostFilter = array_filter( $arrstrPostFilter );
+
+		if( true == array_key_exists( 'reset', $arrstrPostFilter ) ) {
+			$arrstrPostFilter = array();
+		}
+		$arrstrFilter = array_merge( $arrstrFilter, $arrstrPostFilter );
+		
 		$arrobjUsers = ( array ) CUsers::fetchUsersByFilter( $arrstrFilter, $this->db );
 
-		$arrintUserIds = array();
-		foreach( $arrobjUsers as $objUser )
-			$arrintUserIds[] = $objUser->getId();
-
+		$arrintUserIds =  array_keys( $arrobjUsers );
 		$arrobjLeads = ( array ) CLeads::fetchLeadsByUserIds( $arrintUserIds, $this->db );
 		$arrobjLeads = ( array ) rekeyObjects( 'UserId', $arrobjLeads );
 
 		$arrobjStatuses = ( array ) CStatuses::fetchAllStatuses( $this->db );
 		
 		$data = array();
-		$data['users'] = $arrobjUsers;
-		$data['leads'] = $arrobjLeads;
-		$data['statuses'] = $arrobjStatuses;
+		$data['users'] 		= $arrobjUsers;
+		$data['leads'] 		= $arrobjLeads;
+		$data['statuses'] 	= $arrobjStatuses;
+		$data['filter'] 	= $arrstrFilter;
 
 		$this->load->view( 'admin/view_users', $data );
 	}
