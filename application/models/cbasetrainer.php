@@ -285,6 +285,7 @@ class CBaseTrainer extends CEosSingular {
 		$arrStrInsertData = array(
 								'lead_id'						=> $this->intLeadId,
 								'user_id'						=> $this->intUserId,
+								'description'					=> $this->strDescription,
 								'is_paid_profile'				=> $this->boolIsPaidProfile,
 								'profile_step_id'				=> $this->intProfileStepId,
 								'completed_on'					=> $this->strCompletedOn,
@@ -313,36 +314,22 @@ class CBaseTrainer extends CEosSingular {
 
 		$arrStrUpdateData = array();
 
-		if( false == is_null( $this->intLeadId ) )
-			$arrStrUpdateData['lead_id'] = $this->intLeadId;
-		if( false == is_null( $this->intUserId ) )
-			$arrStrUpdateData['user_id'] = $this->intUserId;
-		if( false == is_null( $this->intProfileStepId ) )
-			$arrStrUpdateData['profile_step_id'] = $this->intProfileStepId;
-		if( false == is_null( $this->boolIsPaidProfile ) )
-			$arrStrUpdateData['is_paid_profile'] = $this->boolIsPaidProfile;
-		if( false == is_null( $this->strCompletedOn ) )
-			$arrStrUpdateData['completed_on'] = $this->strCompletedOn;
-		if( false == is_null( $this->floatExperience ) )
-			$arrStrUpdateData['experience'] = $this->floatExperience;
-		if( false == is_null( $this->boolHasTaughtInSchoolColleges ) )
-			$arrStrUpdateData['has_taught_in_school_colleges'] = $this->boolHasTaughtInSchoolColleges;
-		if( false == is_null( $this->boolHasVehicle ) )
-			$arrStrUpdateData['has_vehicle'] = $this->boolHasVehicle;
-		if( false == is_null( $this->floatMinRate ) )
-			$arrStrUpdateData['min_rate'] = $this->floatMinRate;
-		if( false == is_null( $this->floatMaxRate ) )
-			$arrStrUpdateData['max_rate'] = $this->floatMaxRate;
-		if( false == is_null( $this->intAvailableDayId ) )
-			$arrStrUpdateData['available_day_id'] = $this->intAvailableDayId;
-		if( false == is_null( $this->intAvailableStartTimeId ) )
-			$arrStrUpdateData['available_start_time_id'] = $this->intAvailableStartTimeId;
-		if( false == is_null( $this->intAvailableEndTimeId ) )
-			$arrStrUpdateData['available_end_time_id'] = $this->intAvailableEndTimeId;
-		if( false == is_null( $this->strQualities ) )
-			$arrStrUpdateData['qualities'] = $this->strQualities;
-		if( false == is_null( $this->strViews ) )
-			$arrStrUpdateData['views'] = $this->strViews;
+		$arrStrUpdateData['lead_id'] = $this->intLeadId;
+		$arrStrUpdateData['user_id'] = $this->intUserId;
+		$arrStrUpdateData['description'] = $this->strDescription;
+		$arrStrUpdateData['profile_step_id'] = $this->intProfileStepId;
+		$arrStrUpdateData['is_paid_profile'] = $this->boolIsPaidProfile;
+		$arrStrUpdateData['completed_on'] = $this->strCompletedOn;
+		$arrStrUpdateData['experience'] = $this->floatExperience;
+		$arrStrUpdateData['has_taught_in_school_colleges'] = $this->boolHasTaughtInSchoolColleges;
+		$arrStrUpdateData['has_vehicle'] = $this->boolHasVehicle;
+		$arrStrUpdateData['min_rate'] = $this->floatMinRate;
+		$arrStrUpdateData['max_rate'] = $this->floatMaxRate;
+		$arrStrUpdateData['available_day_id'] = $this->intAvailableDayId;
+		$arrStrUpdateData['available_start_time_id'] = $this->intAvailableStartTimeId;
+		$arrStrUpdateData['available_end_time_id'] = $this->intAvailableEndTimeId;
+		$arrStrUpdateData['qualities'] = $this->strQualities;
+		$arrStrUpdateData['views'] = $this->strViews;
 
 		$this->db->where( 'id =', $this->intId );
 

@@ -107,7 +107,7 @@ class CLocation extends CEosSingular {
 		return $this->intCreatedBy;
 	}
 
-	public function setCreatedOn() {
+	public function getCreatedOn() {
 		return $this->intCreatedOn;
 	}
 
