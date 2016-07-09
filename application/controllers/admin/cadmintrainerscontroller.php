@@ -39,8 +39,18 @@ class CAdminTrainersController extends CAdminSystemController {
 
 	public function index() {
 
-		$arrobjUsers = CUsers::fetchUsersByUserTypeId( 3 ,$this->db );
-//echo '<pre>'; print_r($arrobjUsers); die;
+		$arrstrFilter = array( 'name' => '', 'email_id' => '', 'contact_number' => '' );
+		$arrstrPostFilter = ( array ) $this->input->post( 'filter' );
+		$arrstrPostFilter = array_filter( $arrstrPostFilter );
+
+		if( true == array_key_exists( 'reset', $arrstrPostFilter ) ) {
+			$arrstrPostFilter = array();
+		}
+		$arrstrFilter = array_merge( $arrstrFilter, $arrstrPostFilter );
+		$arrstrFilter['user_type_id'] = CUserType::USER_TYPE_TRAINER;
+
+		$arrobjUsers = CUsers::fetchUsersByFilter( $arrstrFilter, $this->db );
+
 		$arrintUserIds = array();
 		foreach( $arrobjUsers as $objUser )
 			$arrintUserIds[] = $objUser->getId();
@@ -58,6 +68,7 @@ class CAdminTrainersController extends CAdminSystemController {
 		$data['leads'] = $arrobjLeads;
 		$data['statuses'] = $arrobjStatuses;
 		$data['trainers'] = $arrobjTrainers;
+		$data['filter'] 	= $arrstrFilter;
 
 		$this->load->view( 'admin/view_trainers', $data );
 	}
@@ -116,30 +127,45 @@ class CAdminTrainersController extends CAdminSystemController {
 
 	}
 
-	public function updateLead() {
+	public function addTrainer() {
 
-		$objLead = new CLead();
+		$data = $this->loadCommonData();
 
-		$objLead->intId = $this->input->post( 'lead_id' );
-		$objLead->strFirstName = $this->input->post( 'lead_' );
-		$objLead->strLastName = $this->input->post( 'lead_id' );
-		$objLead->strGender = $this->input->post( 'lead_id' );
-		$objLead->strBirthDate = $this->input->post( 'lead_id' );
-		$objLead->strAddress = $this->input->post( 'lead_id' );
-		$objLead->strCity = $this->input->post( 'lead_id' );
-		$objLead->strState = $this->input->post( 'lead_id' );
-		$objLead->intPinCode = $this->input->post( 'lead_id' );
-		$objLead->strEmailAddress = $this->input->post( 'lead_id' );
-		$objLead->strContactNumber = $this->input->post( 'lead_id' );
-		$objLead->strAlternateContactNumber = $this->input->post( 'lead_id' );
-		$objLead->boolIsNmberVerified = $this->input->post( 'lead_id' );
-		$objLead->boolIsNumberPrivate = $this->input->post( 'lead_id' );
-		$objLead->boolAllowSmsAlert = $this->input->post( 'lead_id' );
-		$objLead->intCoins = $this->input->post( 'lead_id' );
-		$objLead->boolIsActive = $this->input->post( 'lead_id' );
-		$objLead->strCreatedBy = $this->input->post( 'lead_id' );
-		$objLead->strCreatedOn = $this->input->post( 'lead_id' );
+		if( $this->input->post() ) {
 
+			$objUser = new CUser();
+			$objLead = new CLead();
+			$objTrainer = new CTrainer();
 
+			$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
+			$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
+			$objTrainer->applyRequestForm( $this->input->post( 'trainer' ), $this->_arrstrTrainerFields );
+
+			switch( NULL ) {
+				default:
+					$this->db->trans_begin();
+
+					if( false == $objUser->insert( $this->db ) ) {
+						$this->db->trans_rollback();
+						break;
+					}
+
+					if( false == $objLead->insert( $this->db ) ) {
+						$this->db->trans_rollback();
+						break;
+					}
+
+					if( false == $objTrainer->insert( $this->db ) ) {
+						$this->db->trans_rollback();
+						break;
+					}
+
+					$this->db->trans_commit();
+					$this->index();
+			}
+		}
+
+		$this->load->view( 'admin/add_trainer', $data );
 	}
+
 }
