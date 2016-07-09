@@ -1,16 +1,38 @@
 <!-- Page Heading -->
 <div class="row">
     <div class="col-lg-12">
-        <ol class="breadcrumb">
-            <li class="active">
-                <i class="fa fa-dashboard"></i> Users
-            </li>
-        </ol>
+        <h3 class="page-header">
+            Users
+        </h3>
     </div>
 </div>
 <!-- /.row -->
 <div class="row">
-    
+    <div class="col-lg-12">
+        <form name="user_filter" method="post" role="form">
+            <div class="row form-group">
+                <div class="col-lg-3">
+                    <input class="form-control" type="text" name="filter[name]" value="<?php echo $filter['name']?>" placeholder="Name">
+                </div>
+                <div class="col-lg-3">
+                    <input class="form-control" type="text" name="filter[email_id]" value="<?php echo $filter['email_id']?>" placeholder="Email Id">
+                </div>
+                <div class="col-lg-3">
+                    <input class="form-control" type="text" name="filter[contact_number]" value="<?php echo $filter['contact_number']?>" placeholder="Contact Number">
+                </div>
+                <div class="col-lg-3">
+                    <a href="#" class="btn btn-primary js-filter_user">Filter</a>
+                    <a href="#" class="btn btn-default js-filter_user" onclick="document.getElementById('filter_reset').value = 1;">
+                        Reset
+                    </a>
+                </div>
+                <input class="form-control" type="hidden" name="filter[reset]" vaue="0" id="filter_reset">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-lg-12">
         <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped">
@@ -49,6 +71,19 @@
             type: "post",
             data: { id: this.id },
             url: '<?=base_url()?>admin_users/editUser',
+            success: function(result) {
+                if(result) {
+                    $('.container-fluid').html(result);
+                }
+            }
+        })
+    });
+
+    $(".js-filter_user").click(function(){
+        $.ajax ({
+            type: "post",
+            data: $( "form" ).serialize(),
+            url: '<?=base_url()?>admin_users/',
             success: function(result) {
                 if(result) {
                     $('.container-fluid').html(result);
