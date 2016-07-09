@@ -267,8 +267,8 @@ class CLead extends CEosSingular {
 								'gender_id'					=> $this->intGenderId,
 								'birth_date'				=> $this->strBirthDate,
 								'address' 					=> $this->strAddress,
-								'city'						=> $this->strCity,
-								'state'						=> $this->strState,
+								'city_id'					=> $this->intCityId,
+								'state_id'					=> $this->intStateId,
 								'pin_code'					=> $this->intPinCode,
 								'alternate_contact_number'	=> $this->intAlternateContactNumber,
 								'is_number_verified'		=> $this->boolIsNumberPrivate,
@@ -277,7 +277,7 @@ class CLead extends CEosSingular {
 								'coins'						=> $this->intCoins,
 								'is_active'					=> $this->boolIsActive,
 								'created_by'				=> $this->strCreatedBy,
-								'created_on'				=> NOW(),
+								'created_on'				=> 'NOW()',
 							);
 
 		if( false == $this->db->insert( 'leads', $arrStrInsertData ) ) return false;

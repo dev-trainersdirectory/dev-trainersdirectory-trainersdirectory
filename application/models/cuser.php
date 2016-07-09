@@ -3,7 +3,6 @@
 class CUser extends CEosSingular {
 	
 	public $intId;
-	public $intUserTypeId;
 	public $intContactNumber;
 	public $intFacebookId;
 	public $intGoogleId;
@@ -11,7 +10,7 @@ class CUser extends CEosSingular {
 	public $intVerifiedBy;
 
 	public $strEmailId;
-	public $strPassword;
+	public $strEncryptedPassword;
 	public $strVerifiedOn;
 	public $strCreatedOn;
 
@@ -27,9 +26,6 @@ class CUser extends CEosSingular {
 
 		if( true == array_key_exists( 'id', $arrstrRequestData ) )
 			$this->setId( $arrstrRequestData['id'] );
-
-		if( true == array_key_exists( 'user_type_id', $arrstrRequestData ) )
-			$this->setUserTypeId( $arrstrRequestData['user_type_id'] );
 
 		if( true == array_key_exists( 'contact_number', $arrstrRequestData ) )
 			$this->setContactNumber( $arrstrRequestData['contact_number'] );
@@ -50,7 +46,7 @@ class CUser extends CEosSingular {
 			$this->setEmailId( $arrstrRequestData['email_id'] );
 
 		if( true == array_key_exists( 'password', $arrstrRequestData ) )
-			$this->setPassword( $arrstrRequestData['password'] );
+			$this->strEncryptedPassword( $arrstrRequestData['password'] );
 
 		if( true == array_key_exists( 'verified_on', $arrstrRequestData ) )
 			$this->setVerifiedOn( $arrstrRequestData['verified_on'] );
@@ -62,10 +58,6 @@ class CUser extends CEosSingular {
 
 	public function setId ( $intId ) {
 		$this->intId = $intId;
-	}
-
-	public function setUserTypeId ( $intUserTypeId ) {
-		$this->intUserTypeId = $intUserTypeId;
 	}
 
 	public function setContactNumber( $intContactNumber ) {
@@ -92,8 +84,8 @@ class CUser extends CEosSingular {
 		$this->strEmailId = $strEmailId;
 	}
 
-	public function setPassword ( $strPassword ) {
-		$this->strPassword = $strPassword;
+	public function setEncryptedPassword ( $strEncryptedPassword ) {
+		$this->strEncryptedPassword = $strEncryptedPassword;
 	}
 
 	public function setVerifiedOn ( $strVerifiedOn ) {
@@ -106,10 +98,6 @@ class CUser extends CEosSingular {
 
 	public function getId ( ) {
 		return $this->intId;
-	}
-
-	public function getUserTypeId () {
-		return $this->intUserTypeId;
 	}
 
 	public function getContactNumber() {
@@ -136,8 +124,8 @@ class CUser extends CEosSingular {
 		return $this->strEmailId;
 	}
 
-	public function getPassword (  ) {
-		return $this->strPassword;
+	public function getEncryptedPassword (  ) {
+		return $this->strEncryptedPassword;
 	}
 
 	public function getVerifiedOn (  ) {
@@ -167,7 +155,7 @@ class CUser extends CEosSingular {
 
 	public function validateLogin() {
 
-		if( '' == $this->strEmailId || '' == $this->strPassword ) return false;
+		if( '' == $this->strEmailId || '' == $this->strEncryptedPassword ) return false;
 
 		if( true == isset( $this->strEmailId ) ) {
 			return filter_var( $this->strEmailId, FILTER_VALIDATE_EMAIL );
@@ -176,9 +164,9 @@ class CUser extends CEosSingular {
 
 	public function processLogin( $intUserType = NULL ) {
 
-		if( false == $this->validate( 'login' ) ) return false;
+		//if( false == $this->validate( 'login' ) ) return false;
 
-		$this->intId = CUsers::fetchUserIdByEmailByPasswordByUserType( $this->strEmailId, $this->strPassword,  $intUserType, $this->db );
+		$this->intId = CUsers::fetchUserIdByEmailByPasswordByUserType( $this->strEmailId, $this->strEncryptedPassword, $intUserType, $this->db );
 
 		return $this->intId;
 	}
@@ -186,15 +174,15 @@ class CUser extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
-								'user_type_id'	=> $this->intUserTypeId,
-								'email_id'		=> $this->strEmailId,
-								'password'		=> $this->strPassword,
-								'facebook_id'	=> $this->intFacebookId,
-								'google_id' 	=> $this->intGoogleId,
-								'status_id'		=> $this->intStatusId,
-								'verified_by'	=> $this->intVerifiedBy,
-								'verified_on'	=> $this->strVerifiedOn,
-								'created_on'	=> $this->strCreatedOn,
+								'email_id'				=> $this->strEmailId,
+								'encrypted_password' 	=> $this->strEncryptedPassword,
+								'contact_number'		=> $this->intContactNumber,
+								'facebook_id'			=> $this->intFacebookId,
+								'google_id' 			=> $this->intGoogleId,
+								'status_id'				=> $this->intStatusId,
+								'verified_by'			=> $this->intVerifiedBy,
+								'verified_on'			=> $this->strVerifiedOn,
+								'created_on'			=> $this->strCreatedOn,
 							);
 
 		if( false == $this->db->insert( 'users', $arrStrInsertData ) ) return false;
@@ -208,7 +196,7 @@ class CUser extends CEosSingular {
 
 		$arrStrUpdateData['email_id'] = $this->strEmailId;
 		$arrStrUpdateData['contact_number'] = $this->intContactNumber;
-		//$arrStrUpdateData['password'] = $this->strPassword;
+		$arrStrUpdateData['encrypted_password'] = $this->strEncryptedPassword;
 		$arrStrUpdateData['facebook_id'] = $this->intFacebookId;
 		$arrStrUpdateData['google_id'] = $this->intGoogleId;
 		$arrStrUpdateData['status_id'] = $this->intStatusId;
