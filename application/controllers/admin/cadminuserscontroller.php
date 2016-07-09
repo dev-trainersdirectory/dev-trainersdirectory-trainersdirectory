@@ -6,13 +6,15 @@ class CAdminUsersController extends CAdminSystemController {
 	public $_arrstrUserFields = array( 
 		'id' => NULL,
 		'contact_number' => NULL,
-		'email_address' => NULL,
+		'email_id' => NULL,
+		'status_id' => NULL,
 		'user_id' => NULL );
 
 	public $_arrstrLeadFields = array(
 		'first_name' => NULL,
 		'last_name'  => NULL,
 		'alternate_contact_number' => NULL,
+		'gender_id' => NULL,
 		'address' => NULL,
 		'city_id' => NULL,
 		'state_id' => NULL,
@@ -50,22 +52,92 @@ class CAdminUsersController extends CAdminSystemController {
 		$this->load->view( 'admin/view_users', $data );
 	}
 
+	public function addUser() {
+
+		$data = $this->loadCommonData();
+
+		$objUser = new CUser();
+		$objLead = new CLead();
+		$objUserTypeAssociations = new CUserTypeAssociation();
+
+		$data['user'] = $objUser;
+		$data['lead'] = $objLead;
+		$data['user_type_associations'] = $objUserTypeAssociations;
+
+		$this->load->view( 'admin/edit_user', $data );
+	}
+
+	public function insertUser() {
+		
+		$objUser = new CUser();
+		$objLead = new CLead();
+		$objTrainer = NULL;
+		$objCloneUserTypeAssociations = new CUserTypeAssociation();
+
+		$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
+		$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
+
+		foreach( $this->input->post('user_type_associations') as $intUserTypeId ){
+			$objUserTypeAssociations = clone $objCloneUserTypeAssociations;
+			$objUserTypeAssociations->setUserTypeId( $intUserTypeId );
+			$arrobjInsertingUserTypeAssociations[ $intUserTypeId ] = $objUserTypeAssociations;
+		}
+
+		if( true == array_key_exists( CUserType::USER_TYPE_TRAINER , $arrobjInsertingUserTypeAssociations )){
+			$objTrainer = new CTrainer();
+		}
+
+		switch( NULL ) {
+			default:
+				$this->db->trans_begin();
+
+				if( false == $objUser->insert( $this->db ) ) {
+					$this->db->trans_rollback();
+					break;
+				}
+
+				$objLead->setUserId( $objUser->getId() );
+				if( false == $objLead->insert( $this->db ) ) {
+					$this->db->trans_rollback();
+					break;
+				}
+
+				if( NULL != $objTrainer ) {
+					$objTrainer->setUserId( $objUser->getId() );
+					$objTrainer->setLeadId( $objLead->getId() );
+					if( false == $objTrainer->insert( $this->db ) ) {
+						$this->db->trans_rollback();
+						break;
+					}
+				}
+
+				foreach( $arrobjInsertingUserTypeAssociations as $objInsertingUserTypeAssociation) {
+					$objInsertingUserTypeAssociation->setUserId( $objUser->getId() );
+					if( false == $objInsertingUserTypeAssociation->insert( $this->db ) ) {
+						$this->db->trans_rollback();
+						break;
+					}
+				}
+
+				$this->db->trans_commit();
+				echo json_encode( array( 'type' => 'success', 'message' => 'User added.' ) );
+		}
+	}
+
 	public function editUser() {
+
+		$data = $this->loadCommonData();
 
 		$intUserId = $this->input->post( 'id' );
 
 		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
-		$arrobjStatuses = ( array ) CStatuses::fetchAllStatuses( $this->db );
-		$arrobjCities = ( array ) CCities::fetchAllPublishedCities( $this->db );
-		$arrobjStates = ( array ) CStates::fetchAllPublishedStates( $this->db );
+		$objUserTypeAssociations = CUserTypeAssociations::fetchUserTypeAssociationsByUserId( $intUserId, $this->db );
+		$objUserTypeAssociations = ( array ) rekeyObjects( 'UserTypeId', $objUserTypeAssociations );
 
-		$data = array();
 		$data['user'] = $objUser;
 		$data['lead'] = $objLead;
-		$data['statuses'] = $arrobjStatuses;
-		$data['cities'] = $arrobjCities;
-		$data['states'] = $arrobjStates;
+		$data['user_type_associations'] = $objUserTypeAssociations;
 
 		$this->load->view( 'admin/edit_user', $data );
 	}

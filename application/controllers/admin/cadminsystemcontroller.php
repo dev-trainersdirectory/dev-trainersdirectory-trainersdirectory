@@ -9,6 +9,7 @@ class CAdminSystemController extends CI_Controller {
 	public function loadCommonData() {
 
 		$data['statuses'] = ( array ) CStatuses::fetchAllStatuses( $this->db );
+		$data['genders'] = ( array ) CGenders::fetchAllPublishedGender( $this->db );
 		$data['cities'] = ( array ) CCities::fetchAllPublishedCities( $this->db );
 		$data['states'] = ( array ) CStates::fetchAllPublishedStates( $this->db );
 		$data['days'] = ( array ) CDays::fetchAllPublishedDays( $this->db );
