@@ -1,12 +1,39 @@
 .icon {
-	width: 28px;
-	height: 28px;
 	display: inline-block;
 	background-repeat: no-repeat;
 	background-position: left top;
 	background-size: cover;
 	vertical-align: top;
-	&-calendar {
-		background-image: url('#{$image-path}icon-calendar.png');
+	&-search {
+		background-image: url('#{$image-path}icon-search.png');
+		height: 26px;
+		width: 42px;
 	}
+	&-video {
+		background-image: url('#{$image-path}icon-video.png');
+		height: 32px;
+		width: 32px;
+	}
+	&-hire {
+		background-image: url('#{$image-path}icon-hire.png');
+		height: 30px;
+		width: 41px;
+	}
+}
+.search-addon i{
+	color: #848484;
+	padding: 15px 10px 0 25px!important;
+	font-size: 19px;
+	z-index: 111;
+}
+.left-inner-addon {
+    position: relative;
+}
+.left-inner-addon input {
+    padding-left: 57px;
+}
+.left-inner-addon i {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
 }

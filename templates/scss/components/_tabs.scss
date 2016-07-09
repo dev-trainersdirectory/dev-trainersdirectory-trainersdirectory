@@ -1,105 +1,139 @@
-// add below class to the direct parent TABLE of tab-menu and its tab's direct parent TR tag
-.table-tab-menu {
-  &--tr {
-    >td {
-      border-bottom: 2px solid $purple;
-    }
-  }
+.nav-tabs {
+  border-bottom: 1px solid #DDD;
+
 }
-.nav {
-  &-tabs {
-    border-bottom: 2px solid $purple;
-    &>li {
-      overflow: hidden;
-      width: 100%;
-      text-align: center;
-      a {
-        text-align: center;
-      }
-      @media (min-width:550px) {
-        width: auto;
-        &:first-child a {
-          @include border-radius(6px 0 0 0);
-        }
-        &:last-child a {
-          @include border-radius(0 6px 0 0);
-        }
-        a {
-          text-align: left;
-        }
-      }
-      a {
-        @include border-radius(0);
-        border: 1px solid $purple;
-        margin-right: 0;
-        color: $black;
-        background: $white-ddd;
-      }
-      a:hover,a:focus {
-        border: 1px solid $purple;
-        background: darken($white-ddd,10%);
-      }
-    }
-    &>li.active {
-        a {
-          border-color: $purple;
-          color: $white;
-          background: $purple;
-        }
-        a:hover,a:focus {
-          border-color: $purple;
-          color: $white;
-          background: $purple;
-        }
-    }
-    &>li.tab-link {
-      @media (max-width: 400px) {
-        display: block;
-      }
-      & a {
-        background: transparent;
-        color: $link-color;
-        border-color: transparent;
-        &:hover,&:focus {
-          border-color: transparent;
-        }
-      }
-      &+li a {
-        @include border-radius(6px 0 0 0);
-      }
-    }
+.nav-tabs li {
+  padding: 6px 0px 0px 12px;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  border-width: 0; }
+.nav-tabs > li > a {
+  border: none;
+  color: #666;
+  background: none
+}.nav-tabs > li:last-child a {
+border-radius: 0 0 0 0;
+}
+.nav-tabs > li.active a:hover, .nav-tabs > li.active a:focus {
+border-color: none;
+color: #fff;
+background: none;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li > a:hover {
+  border: none;
+  color: #4285F4 !important;
+  background: transparent;
+}
+.nav-tabs > li > a::after {
+  content: "";
+  background: #4285F4;
+  height: 1px;
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  bottom: 0px;
+  transition: all 250ms ease 0s;
+  transform: scale(0);
+}
+.nav-tabs > li.active > a::after,
+.nav-tabs > li:hover > a::after {
+  transform: scale(1);
+}
+.tab-nav > li > a::after {
+  background: #21527d none repeat scroll 0% 0%;
+  color: #fff; }
+.tab-pane {
+  padding: 0 0 5px 0;
+}
+.tab-content{
+  padding: 0 27px;
+  padding-bottom: 10px;
+  background: #f4f4f4;
+      margin-bottom: -5px;
+}
+.card {
+  background: #FFF none repeat scroll 0% 0%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  padding:0 !important;
+  border-radius: 0 !important;
+  min-width: 400px !important;
+ }
+ .sub-category {
+   padding: 0px !important;
+   &-title {
+     color: #2196f3;
+     font-size: 13px;
+     margin: 12px 0 5px 0;
+   }
+   & li a {
+     font-size: 13px;
+     color: #353d40 !important;
+   }
+
+ }
+ .nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px 16px;
+ }
+.sub-category .sub-category-title + ul {
+  margin-top: 0 !important
+}
+ .sub-category ul {
+   margin-top: 0px !important;
+ }
+ .sub-category {
+    margin: 0 35px 0 0 !important;
+}
+
+.sub-category-box {
+  float: left;
+  & + .sub-category-box  {
+    margin-left:20px
   }
 }
 
-.nav-tabs-right {
-  text-align: right;
-  font-size: 0; // prevent floated child bug
-  &>li {
-    display: inline-block;
-    clear: left;
-    float: none;
-    text-align: right;
-    font-size: 12px;
-  }
+.card:before ,
+.search-by-city-container:before {
+    content: "";
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    top: -10px;
+    right: 94px;
+    z-index: 10;
 }
-
-.below-tab {
-  padding: 5px;
-  background: $white-ddd;
-  border-top: 2px solid $purple;
-  .nav-tabs + & {
-    border-top: 0;
-  }
+.card:after,
+.search-by-city-container:after {
+    content: "";
+    border-bottom: 12px solid #ccc;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -12px;
+    right: 92px;
+    z-index: 9;
 }
-
-.tab-component{
-  @media (min-width:550px) {
-    margin-top:-48px;
-  }
-  @media only screen
-    and (min-device-width: 320px)
-    and (max-device-width: 480px)
-    and (-webkit-min-device-pixel-ratio: 2) {
-      margin-top: 0px !important;
-  }
+.search-by-city-container:after {
+left: 11px;
+right: auto;
+}
+.search-by-city-container:before {
+  left: 13px;
+  right: auto;
+}
+/*sizes*/
+#educational {
+    width: 665px;
+}
+#fitness {
+      width: 490px;
+}
+#hobby {
+      width: 420px;
 }
