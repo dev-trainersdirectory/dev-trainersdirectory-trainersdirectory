@@ -1,23 +1,23 @@
 <?php
 
-class CDays extends CEosPlural {
+class CGenders extends CEosPlural {
 	
 	function __construct() {
 		parent::__construct();
 	}
 
-	public function fetchDays( $strSQL, $objDatabase ) {
-		return self::fetchObjects( 'CDay', $strSQL, $objDatabase );
+	public function fetchGenders( $strSQL, $objDatabase ) {
+		return self::fetchObjects( 'CGender', $strSQL, $objDatabase );
 	}
 
-	public function fetchDay( $strSQL, $objDatabase ) {
-		return self::fetchObject( 'CDay', $strSQL, $objDatabase );
+	public function fetchGender( $strSQL, $objDatabase ) {
+		return self::fetchObject( 'CGender', $strSQL, $objDatabase );
 	}
 
-	public static function fetchAllPublishedDays( $objDatabase ) {
-		$strSQL = 'SELECT * FROM days';
+	public static function fetchAllPublishedGender( $objDatabase ) {
+		$strSQL = 'SELECT * FROM genders';
 
-		return self::fetchDays( $strSQL, $objDatabase );
+		return self::fetchGenders( $strSQL, $objDatabase );
 	}
 }
 

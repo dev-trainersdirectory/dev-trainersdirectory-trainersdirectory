@@ -13,8 +13,14 @@ Coins : <?php echo $lead->getCoins()?>
 <br/><br/>
 Email Address : <input type="text" name=user[email_id] value="<?php echo $user->getEmailId()?>">
 Contact Number : <input type="text" name=user[contact_number] value="<?php echo $user->getContactNumber()?>">
-Alternate Contact Number : <input type="text" name=user[alternate_contact_number] value="<?php echo $lead->getAlternateContactNumber()?>">
+Alternate Contact Number : <input type="text" name=lead[alternate_contact_number] value="<?php echo $lead->getAlternateContactNumber()?>">
 <br/><br/>
+Gender : <select name=lead[gender_id]>
+			<?php foreach( $genders AS $gender ) { ?>
+				<option value="<?php echo $gender->getId()?>" <?php if( $gender->getId() == $lead->getGenderId() ) { ?> selected <?php } ?>>
+				<?php echo $gender->getName()?></option>
+			<?php } ?>
+		</select>
 Address : <input type="text" name=lead[address] value="<?php echo $lead->getAddress()?>">
 City : <select name=lead[city_id]>
 			<?php foreach( $cities AS $city ) { ?>
@@ -82,22 +88,31 @@ Trainer's Locations:
 </div>
 <br/><br/>
 Preferences : <br/>
-<input type="checkbox" value="1" <?php if( true == $lead->getIsNumberVerified()) { ?> checked<?php } ?> > Is mobile number verified<br/>
-<input type="checkbox" value="1" <?php if( true == $lead->getIsNumberPrivate()) { ?> checked<?php } ?> > Is mobile number private<br/>
-<input type="checkbox" value="1" <?php if( true == $lead->getAllowSmsAlert()) { ?> checked<?php } ?> > Allow SMS alert<br/>
+<input type="checkbox" name="lead[is_number_verified]" value="1" <?php if( true == $lead->getIsNumberVerified()) { ?> checked<?php } ?> > 
+Is mobile number verified<br/>
+<input type="checkbox" name="lead[is_number_private]" value="1" <?php if( true == $lead->getIsNumberPrivate()) { ?> checked<?php } ?> > 
+Is mobile number private<br/>
+<input type="checkbox" name="lead[allow_sms_alert]" value="1" <?php if( true == $lead->getAllowSmsAlert()) { ?> checked<?php } ?> > 
+Allow SMS alert<br/>
 <br/><br/>
 <input type="hidden" name=user[id] value="<?php echo $user->getId()?>"> 
 <input type="hidden" name=lead[id] value="<?php echo $lead->getId()?>">
-<input class="js-update_trainer" type="button" value="Update"></input>
+<input class="js-update_trainer" type="button" value="Update"></input><?php echo $user->getId()?>
 <a href="">cancel</a>
 <script type="text/javascript" src="/public/admin/js/dropdown-js.js"></script>
 <script type="text/javascript">
 
     $(".js-update_trainer").click(function(){
+
+    	if( 0 !== <?php echo ( int ) $user->getId() ?> )
+    		action = 'updateTrainer';
+    	else
+    		action = 'insertTrainer';
+
         $.ajax ({
             type: "post",
             data: $( "form" ).serialize(),
-            url: '<?=base_url()?>admin_trainers/updateTrainer',
+            url: '<?=base_url()?>admin_trainers/' + action,
             success: function(result) {
                 //if(result) {
                     $('.container-fluid').html(result);

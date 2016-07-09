@@ -262,6 +262,7 @@ class CLead extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'user_id'					=> $this->intUserId,
 								'first_name'				=> $this->strFirstName,
 								'last_name'					=> $this->strLastName,
 								'gender_id'					=> $this->intGenderId,
@@ -281,6 +282,8 @@ class CLead extends CEosSingular {
 							);
 
 		if( false == $this->db->insert( 'leads', $arrStrInsertData ) ) return false;
+
+		$this->setId( $this->db->insert_id() );
 
 		return true;
 	}
