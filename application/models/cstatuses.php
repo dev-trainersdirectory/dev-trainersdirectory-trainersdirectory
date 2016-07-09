@@ -14,7 +14,7 @@ class CStatuses extends CEosPlural {
 		return self::fetchObject( 'CStatus', $strSQL, $objDatabase );
 	}
 
-	public static function fetchAllPublishedStatuses( $objDatabase ) {
+	public static function fetchAllStatuses( $objDatabase ) {
 		$strSQL = 'SELECT * FROM statuses';
 
 		return self::fetchStatuses( $strSQL, $objDatabase );

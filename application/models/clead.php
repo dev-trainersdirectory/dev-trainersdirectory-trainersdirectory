@@ -13,8 +13,8 @@ class CLead extends CEosSingular {
 	public $intCityId;
 	public $intStateId;
 	public $intPinCode;
-	public $strAlternateContactNumber;
-	public $boolIsNmberVerified;
+	public $intAlternateContactNumber;
+	public $boolIsNumberVerified;
 	public $boolIsNumberPrivate;
 	public $boolAllowSmsAlert;	
 	public $intCoins;
@@ -55,10 +55,10 @@ class CLead extends CEosSingular {
 			$this->setAddress( $arrstrRequestData['address'] );
 
 		if( true == array_key_exists( 'city_id', $arrstrRequestData ) )
-			$this->setCity( $arrstrRequestData['city_id'] );
+			$this->setCityId( $arrstrRequestData['city_id'] );
 		
 		if( true == array_key_exists( 'state_id', $arrstrRequestData ) )
-			$this->setState( $arrstrRequestData['state_id'] );
+			$this->setStateId( $arrstrRequestData['state_id'] );
 
 		if( true == array_key_exists( 'pin_code', $arrstrRequestData ) )
 			$this->setPinCode( $arrstrRequestData['pin_code'] );
@@ -67,7 +67,7 @@ class CLead extends CEosSingular {
 			$this->setAlternateContactNumber( $arrstrRequestData['alternate_contact_number'] );
 
 		if( true == array_key_exists( 'is_number_verified', $arrstrRequestData ) )
-			$this->setIsNmberVerified( $arrstrRequestData['is_number_verified'] );
+			$this->setIsNumberVerified( $arrstrRequestData['is_number_verified'] );
 
 		if( true == array_key_exists( 'is_number_private', $arrstrRequestData ) )
 			$this->setIsNumberPrivate( $arrstrRequestData['is_number_private'] );
@@ -93,7 +93,7 @@ class CLead extends CEosSingular {
 		$this->intId = $intId;
 	}
 
-	public function setUserId( $intId ) {
+	public function setUserId( $intUserId ) {
 		$this->intUserId = $intUserId;
 	}
 
@@ -133,12 +133,12 @@ class CLead extends CEosSingular {
 		$this->intPinCode = $intPinCode;
 	}
 
-	public function setAlternateContactNumber( $strAlternateContactNumber ) {
-		$this->strAlternateContactNumber = $strAlternateContactNumber;
+	public function setAlternateContactNumber( $intAlternateContactNumber ) {
+		$this->intAlternateContactNumber = $intAlternateContactNumber;
 	}
 
-	public function setIsNmberVerified( $boolIsNmberVerified ) {
-		$this->boolIsNmberVerified = $boolIsNmberVerified;
+	public function setIsNumberVerified( $boolIsNumberVerified ) {
+		$this->boolIsNumberVerified = $boolIsNumberVerified;
 	}
 
 	public function setIsNumberPrivate( $boolIsNumberPrivate ) {
@@ -197,12 +197,12 @@ class CLead extends CEosSingular {
 		return $this->strAddress;
 	}
 
-	public function getCity() {
-		return $this->strCity;
+	public function getCityId() {
+		return $this->intCityId;
 	}
 
-	public function getState() {
-		return $this->strState;
+	public function getStateId() {
+		return $this->intStateId;
 	}
 
 	public function getPinCode() {
@@ -210,11 +210,11 @@ class CLead extends CEosSingular {
 	}
 
 	public function getAlternateContactNumber() {
-		return $this->strAlternateContactNumber;
+		return $this->intAlternateContactNumber;
 	}
 
-	public function getIsNmberVerified() {
-		return $this->boolIsNmberVerified;
+	public function getIsNumberVerified() {
+		return $this->boolIsNumberVerified;
 	}
 
 	public function getIsNumberPrivate() {
@@ -241,6 +241,10 @@ class CLead extends CEosSingular {
 		return $this->strCreatedBy;
 	}
 
+	public function getFullName() {
+		return $this->getFirstName() . ' ' . $this->getLastName();
+	}
+
 	public function validate() {
 
 		$boolResult = true;
@@ -258,27 +262,28 @@ class CLead extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'user_id'					=> $this->intUserId,
 								'first_name'				=> $this->strFirstName,
 								'last_name'					=> $this->strLastName,
-								'gender'					=> $this->strGender,
+								'gender_id'					=> $this->intGenderId,
 								'birth_date'				=> $this->strBirthDate,
 								'address' 					=> $this->strAddress,
-								'city'						=> $this->strCity,
-								'state'						=> $this->strState,
+								'city_id'					=> $this->intCityId,
+								'state_id'					=> $this->intStateId,
 								'pin_code'					=> $this->intPinCode,
-								'email_address'				=> $this->strEmailAddress,
-								'contact_number'			=> $this->strContactNumber,
-								'alternate_contact_number'	=> $this->strAlternateContactNumber,
+								'alternate_contact_number'	=> $this->intAlternateContactNumber,
 								'is_number_verified'		=> $this->boolIsNumberPrivate,
-								'is_number_private'			=> $this->boolIsNmberVerified,
+								'is_number_private'			=> $this->boolIsNumberVerified,
 								'allow_sms_alert'			=> $this->boolAllowSmsAlert,
 								'coins'						=> $this->intCoins,
 								'is_active'					=> $this->boolIsActive,
 								'created_by'				=> $this->strCreatedBy,
-								'created_on'				=> NOW(),
+								'created_on'				=> 'NOW()',
 							);
 
 		if( false == $this->db->insert( 'leads', $arrStrInsertData ) ) return false;
+
+		$this->setId( $this->db->insert_id() );
 
 		return true;
 	}
@@ -286,39 +291,21 @@ class CLead extends CEosSingular {
 	public function update() {
 
 		$arrStrUpdateData = array();
-
-		if( false == is_null( $this->strFirstName ) )
-			$arrStrUpdateData['first_name'] = $this->strFirstName;
-		if( false == is_null( $this->strLastName ) )
-			$arrStrUpdateData['last_name'] = $this->strLastName;
-		if( false == is_null( $this->strGender ) )
-			$arrStrUpdateData['gender'] = $this->strGender;
-		if( false == is_null( $this->strBirthDate ) )
-			$arrStrUpdateData['birth_date'] = $this->strBirthDate;
-		if( false == is_null( $this->strAddress ) )
-			$arrStrUpdateData['address'] = $this->strAddress;
-		if( false == is_null( $this->strCity ) )
-			$arrStrUpdateData['city'] = $this->strCity;
-		if( false == is_null( $this->strState ) )
-			$arrStrUpdateData['state']	= $this->strState;
-		if( false == is_null( $this->intPinCode ) )
-			$arrStrUpdateData['pin_code'] = $this->intPinCode;
-		if( false == is_null( $this->strEmailAddress ) )
-			$arrStrUpdateData['email_address'] = $this->strEmailAddress;
-		if( false == is_null( $this->strContactNumber ) )
-			$arrStrUpdateData['contact_number'] = $this->strContactNumber;
-		if( false == is_null( $this->strAlternateContactNumber ) )
-			$arrStrUpdateData['alternate_contact_number'] = $this->strAlternateContactNumber;
-		if( false == is_null( $this->boolIsNumberPrivate ) )
-			$arrStrUpdateData['is_number_verified'] = $this->boolIsNumberPrivate;
-		if( false == is_null( $this->boolIsNmberVerified ) )
-			$arrStrUpdateData['is_number_private']	= $this->boolIsNmberVerified;
-		if( false == is_null( $this->boolAllowSmsAlert ) )
-			$arrStrUpdateData['allow_sms_alert'] = $this->boolAllowSmsAlert;
-		if( false == is_null( $this->intCoins ) )
-			$arrStrUpdateData['coins'] = $this->intCoins;
-		if( false == is_null( $this->boolIsActive ) )
-			$arrStrUpdateData['is_active']	= $this->boolIsActive;
+		$arrStrUpdateData['first_name'] = $this->strFirstName;
+		$arrStrUpdateData['last_name'] = $this->strLastName;
+		$arrStrUpdateData['gender_id'] = $this->intGenderId;
+		$arrStrUpdateData['profile_pic'] = $this->strProfilePic;
+		$arrStrUpdateData['birth_date'] = $this->strBirthDate;
+		$arrStrUpdateData['address'] = $this->strAddress;
+		$arrStrUpdateData['city_id'] = $this->intCityId;
+		$arrStrUpdateData['state_id']	= $this->intStateId;
+		$arrStrUpdateData['pin_code'] = $this->intPinCode;
+		$arrStrUpdateData['alternate_contact_number'] = $this->intAlternateContactNumber;
+		$arrStrUpdateData['is_number_private'] = $this->boolIsNumberPrivate;
+		$arrStrUpdateData['is_number_verified']	= $this->boolIsNumberVerified;
+		$arrStrUpdateData['allow_sms_alert'] = $this->boolAllowSmsAlert;
+		$arrStrUpdateData['coins'] = $this->intCoins;
+		$arrStrUpdateData['is_active']	= $this->boolIsActive;
 		
 		$this->db->where( 'id =', $this->intId );
 

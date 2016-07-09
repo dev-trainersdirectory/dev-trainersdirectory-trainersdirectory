@@ -11,8 +11,9 @@ class CEosSingular extends CI_Model {
 			if( false == array_key_exists( $key, $arrstrFields ) )
 				unset( $arrstrRequestData[$key]);
 		}
-
+		$arrstrRequestData = array_merge( $arrstrFields, $arrstrRequestData );
 		$this->assignData( $arrstrRequestData );
 	}
+
 }
 ?>

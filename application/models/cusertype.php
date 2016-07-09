@@ -1,7 +1,12 @@
 <?php
 
 class CUserType extends CEosSingular {
-	
+
+	const USER_TYPE_ADMIN = 1;
+	const USER_TYPE_STUDENT = 2;
+	const USER_TYPE_TRAINER = 3;
+	const USER_TYPE_INSTITUTE = 4;
+
 	public $intId;
 	public $strName;
 	

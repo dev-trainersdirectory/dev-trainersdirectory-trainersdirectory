@@ -79,35 +79,35 @@ class CState extends CEosSingular {
 		$this->intCreatedOn = $intCreatedOn;
 	}
 
-	public function getId( $intId ) {
+	public function getId() {
 		return $this->intId;
 	}
 
-	public function getName( $strName ) {
+	public function getName() {
 		return $this->strName;
 	}
 
-	public function getMapLocation( $strMapLocation ) {
+	public function getMapLocation() {
 		return $this->strMapLocation;
 	}
 
-	public function getIsPublished( $boolIsPublished ) {
+	public function getIsPublished() {
 		return $this->boolIsPublished;
 	}
 
-	public function getDeletedBy( $intDeletedBy ) {
+	public function getDeletedBy() {
 		return $this->intDeletedBy;
 	}
 
-	public function getDeletedOn( $strDeletedOn ) {
+	public function getDeletedOn() {
 		return $this->strDeletedOn;
 	}
 
-	public function getCreatedBy( $intCreatedBy ) {
+	public function getCreatedBy() {
 		return $this->intCreatedBy;
 	}
 
-	public function getCreatedOn( $intCreatedOn ) {
+	public function getCreatedOn() {
 		return $this->intCreatedOn;
 	}
 

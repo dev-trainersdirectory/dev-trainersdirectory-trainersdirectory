@@ -41,6 +41,14 @@
 $route['default_controller'] = "chomecontroller";
 $route['search'] = "csearchtrainercontroller";
 $route['search/(.*)'] = "csearchtrainercontroller/$1";
+$route['admin'] = "admin/cadminauthenticationcontroller";
+$route['admin/(.*)'] = "admin/cadminauthenticationcontroller/$1";
+$route['admin_dashboard'] = "admin/cadmindashboardcontroller";
+$route['admin_dashboard/(.*)'] = "admin/cadmindashboardcontroller/$1";
+$route['admin_trainers'] = "admin/cadmintrainerscontroller";
+$route['admin_trainers/(.*)'] = "admin/cadmintrainerscontroller/$1";
+$route['admin_users'] = "admin/cadminuserscontroller";
+$route['admin_users/(.*)'] = "admin/cadminuserscontroller/$1";
 $route['register'] = "cregistercontroller";
 $route['register/(.*)'] = "cregistercontroller/$1";
 $route['404_override'] = '';

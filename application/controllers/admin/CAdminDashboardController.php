@@ -11,4 +11,14 @@ class CAdminDashboardController extends CI_Controller {
 		$this->load->view( 'admin/view_admin_dashboard' );
 	}
 
+	public function admin_panel() {
+		$this->load->view( 'admin/view_admin_panel' );
+	}
+
+	public function logout() {
+
+		$this->session->sess_destroy();
+		header("location:".base_url()."admin/");
+	}
+
 }
