@@ -53,6 +53,11 @@
 		return false;
     }
 
+	function valObj( $object, $strClassName ) {
+		if( false == is_null( $object ) && true == is_a( $object, $strClassName ) ) return true;
+		return false;
+    }    
+
     function rekeyObjects( $strKeyFieldName, $arrobjUnkeyedData, $boolHasMultipleObjectsWithSameKey = false, $boolExcludeNulls = false ) {
 
 	    if( false == valArr( $arrobjUnkeyedData ) ) return $arrobjUnkeyedData;
