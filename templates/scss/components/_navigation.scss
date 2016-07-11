@@ -1,0 +1,37 @@
+.navbar-default {
+    background-color: transparent !important;
+    border-color: transparent !important;;
+}
+
+
+.top-right-navigation {
+    list-style: none;
+    margin-top:30px;
+    li {
+        border-right: 1px solid #b8bbba;
+        font-size: 14px;
+        text-transform: uppercase;
+
+        &:last-child {
+            border-right: none;
+        }
+        & a {
+            line-height: 11px;
+            padding-top: 0;
+            padding-bottom: 0;
+            color: #353d40 !important ;
+            &:hover {
+                color:#5a6063;
+            }
+        }
+    }
+}
+
+.marketing {
+    a {
+        color: $black;
+        font-size: 14px;
+        margin-top: 25px;
+        display: block;
+    }
+}

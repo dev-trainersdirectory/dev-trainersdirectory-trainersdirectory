@@ -1,3 +1,35 @@
+
+div.well{
+  height: 250px;
+}
+
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+  width: 50%;
+  height: 60%;
+  min-width: 200px;
+  max-width: 630px;
+  padding: 0px;
+}
+.search-box {
+  max-width: 535px;
+  width: 515px  !important;
+  font-size: 15px;
+}
+#logo-container{
+  margin: auto;
+  margin-bottom: 10px;
+  width:200px;
+  height:30px;
+
+}
+
+
 .search-control {
   & .col-md-10.form-group {
     padding: 0;
@@ -18,7 +50,7 @@
 }
 
 
-.logo{padding:20px}
+.logo{padding:25px}
 
 
 .sub-category {
@@ -39,13 +71,24 @@
     }
   }
 }
-
+.note-box {
+  background: #f4f4f4;
+  color: #8d9193;
+  padding: 10px;
+}
 .search-by-city {
   & .dropdown-menu-right{
   width:300px;
+  left: 0 !important;
+  right: auto!important;
+  margin-top: 15px;
+  white-space: normal;
   }
   &-container{
-    padding: 10px;
+    padding: 0;
+    & form {
+      padding: 10px;
+    }
   }
 }
 .dropdown.dropdown-lg .dropdown-menu {
@@ -77,9 +120,30 @@
 }
 
 /*marketing*/
+.marketing {
+  margin-top: 25%;
+  margin-left: 15px;
+  width: 100%;
+  & a {
+    color: #1e1e1e !important;
+  }
+}
 .marketing .col-lg-4 {
     margin-bottom: 20px;
     text-align: center;
+}
+
+.marketing ul{
+  list-style: none;
+  padding: 0px;
+}
+.marketing ul li{
+  float: left;
+  margin-right: 160px;
+  text-align: center;
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .img-circle {
@@ -87,14 +151,7 @@
 }.marketing h2 {
     font-weight: normal;
 }
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #f5f5f5;
-    padding:25px;
-}
+
 @media screen and (min-width: 768px) {
     #adv-search {
         width: 500px;
