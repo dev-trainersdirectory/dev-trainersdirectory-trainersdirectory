@@ -6,13 +6,15 @@ class CAdminTrainersController extends CAdminSystemController {
 	public $_arrstrUserFields = array( 
 		'id' => NULL,
 		'contact_number' => NULL,
-		'email_address' => NULL,
+		'email_id' => NULL,
+		'status_id' => NULL,
 		'user_id' => NULL );
 
 	public $_arrstrLeadFields = array(
 		'first_name' => NULL,
 		'last_name'  => NULL,
 		'alternate_contact_number' => NULL,
+		'gender_id' => NULL,
 		'address' => NULL,
 		'city_id' => NULL,
 		'state_id' => NULL,
@@ -131,41 +133,61 @@ class CAdminTrainersController extends CAdminSystemController {
 
 		$data = $this->loadCommonData();
 
-		if( $this->input->post() ) {
+		$objUser = new CUser();
+		$objLead = new CLead();
+		$objTrainer = new CTrainer();
 
-			$objUser = new CUser();
-			$objLead = new CLead();
-			$objTrainer = new CTrainer();
+		$data['user'] = $objUser;
+		$data['lead'] = $objLead;
+		$data['trainer'] = $objTrainer;
 
-			$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
-			$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
-			$objTrainer->applyRequestForm( $this->input->post( 'trainer' ), $this->_arrstrTrainerFields );
+		$this->load->view( 'admin/edit_trainer', $data );
+	}
 
-			switch( NULL ) {
-				default:
-					$this->db->trans_begin();
+	public function insertTrainer() {
 
-					if( false == $objUser->insert( $this->db ) ) {
-						$this->db->trans_rollback();
-						break;
-					}
+		$objUser = new CUser();
+		$objLead = new CLead();
+		$objTrainer = new CTrainer();
+		$objUserTypeAssociation = new CUserTypeAssociation();
 
-					if( false == $objLead->insert( $this->db ) ) {
-						$this->db->trans_rollback();
-						break;
-					}
+		$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
+		$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
+		$objTrainer->applyRequestForm( $this->input->post( 'trainer' ), $this->_arrstrTrainerFields );
+		$objUserTypeAssociation->setUserTypeId( CUserType::USER_TYPE_TRAINER );
 
-					if( false == $objTrainer->insert( $this->db ) ) {
-						$this->db->trans_rollback();
-						break;
-					}
+		switch( NULL ) {
+			default:
+				$this->db->trans_begin();
 
-					$this->db->trans_commit();
-					$this->index();
-			}
+				if( false == $objUser->insert( $this->db ) ) {
+					$this->db->trans_rollback();
+					break;
+				}
+
+				$objLead->setUserId( $objUser->getId() );
+				if( false == $objLead->insert( $this->db ) ) {
+					$this->db->trans_rollback();
+					break;
+				}
+
+				$objTrainer->setUserId( $objUser->getId() );
+				$objTrainer->setLeadId( $objLead->getId() );
+				if( false == $objTrainer->insert( $this->db ) ) {
+					$this->db->trans_rollback();
+					break;
+				}
+
+				$objUserTypeAssociation->setUserId( $objUser->getId() );
+				if( false == $objUserTypeAssociation->insert( $this->db ) ) {
+					$this->db->trans_rollback();
+					break;
+				}
+
+				$this->db->trans_commit();
+				$this->index();
 		}
 
-		$this->load->view( 'admin/add_trainer', $data );
 	}
 
 }

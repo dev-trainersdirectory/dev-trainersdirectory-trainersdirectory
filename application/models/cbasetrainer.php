@@ -158,8 +158,8 @@ class CBaseTrainer extends CEosSingular {
 		$this->strQualities = $strQualities;
 	}
 
-	public function setViews( $strViews ) {
-		$this->strViews = $strViews;
+	public function setViews( $intViews ) {
+		$this->intViews = $intViews;
 	}
 
 	public function setDeletedBy( $intDeletedBy ) {
@@ -247,7 +247,7 @@ class CBaseTrainer extends CEosSingular {
 	}
 
 	public function getViews() {
-		return $this->strViews;
+		return $this->intViews;
 	}
 
 	public function getDeletedBy() {
@@ -259,7 +259,7 @@ class CBaseTrainer extends CEosSingular {
 	}
 
 	public function getCreatedBy() {
-		return $this->strCreatedBy;
+		return $this->intCreatedBy;
 	}
 
 	public function getCreatedOn() {
@@ -298,10 +298,10 @@ class CBaseTrainer extends CEosSingular {
 								'available_start_time_id'		=> $this->intAvailableStartTimeId,
 								'available_end_time_id'			=> $this->intAvailableEndTimeId,
 								'qualities'						=> $this->strQualities,
-								'views'							=> $this->strViews,
+								'views'							=> $this->intViews,
 								'deleted_by'					=> $this->intDeletedBy,
-								'deleted_on'					=> $this->intDeletedOn,
-								'created_by'					=> $this->strCreatedBy,
+								'deleted_on'					=> $this->strDeletedOn,
+								'created_by'					=> $this->intCreatedBy,
 								'created_on'					=> 'NOW()',
 							);
 
@@ -329,7 +329,7 @@ class CBaseTrainer extends CEosSingular {
 		$arrStrUpdateData['available_start_time_id'] = $this->intAvailableStartTimeId;
 		$arrStrUpdateData['available_end_time_id'] = $this->intAvailableEndTimeId;
 		$arrStrUpdateData['qualities'] = $this->strQualities;
-		$arrStrUpdateData['views'] = $this->strViews;
+		$arrStrUpdateData['views'] = $this->intViews;
 
 		$this->db->where( 'id =', $this->intId );
 

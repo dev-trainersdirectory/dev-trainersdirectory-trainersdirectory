@@ -14,5 +14,6 @@ class CEosSingular extends CI_Model {
 		$arrstrRequestData = array_merge( $arrstrFields, $arrstrRequestData );
 		$this->assignData( $arrstrRequestData );
 	}
+
 }
 ?>

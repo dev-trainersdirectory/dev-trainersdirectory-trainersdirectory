@@ -187,6 +187,8 @@ class CUser extends CEosSingular {
 
 		if( false == $this->db->insert( 'users', $arrStrInsertData ) ) return false;
 
+		$this->setId( $this->db->insert_id() );
+
 		return true;
 	}
 
