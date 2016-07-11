@@ -187,9 +187,27 @@ class CAdminUsersController extends CAdminSystemController {
 		$intUserId = $this->input->post('user')['id'];
 		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
+		$arrobjUserTypeAssociations = CUserTypeAssociations::fetchUserTypeAssociationsByUserId( $intUserId, $this->db );
+		$arrobjUserTypeAssociations = ( array ) rekeyObjects( 'UserTypeId', $arrobjUserTypeAssociations );
+		$objTrainer = NULL;
+		$objCloneUserTypeAssociations = new CUserTypeAssociation();
 
 		$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
 		$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
+
+		foreach( $this->input->post('user_type_associations') as $intUserTypeId ){
+			$objUserTypeAssociations = clone $objCloneUserTypeAssociations;
+			$objUserTypeAssociations->setUserTypeId( $intUserTypeId );
+			$arrobjInsertingUserTypeAssociations[ $intUserTypeId ] = $objUserTypeAssociations;
+		}
+
+		if( true == array_key_exists( CUserType::USER_TYPE_TRAINER , $arrobjInsertingUserTypeAssociations )
+			&& false == array_key_exists( CUserType::USER_TYPE_TRAINER , $arrobjUserTypeAssociations ) ){
+			$objTrainer = new CTrainer();
+		}
+
+		$arrobjDeletingUserTypeAssociations = array_diff_key( $arrobjUserTypeAssociations, $arrobjInsertingUserTypeAssociations );
+		$arrobjInsertingUserTypeAssociations = array_diff_key( $arrobjInsertingUserTypeAssociations, $arrobjUserTypeAssociations );
 
 		switch( NULL ) {
 			default:
@@ -197,15 +215,41 @@ class CAdminUsersController extends CAdminSystemController {
 				$this->db->trans_begin();
 
 				if( false == $objUser->update( $this->db ) ) {
+					$this->db->trans_rollback();
 					break;
 				}
 
 				if( false == $objLead->update( $this->db ) ) {
+					$this->db->trans_rollback();
 					break;
 				}
 
+				if( NULL != $objTrainer ) {
+					$objTrainer->setUserId( $objUser->getId() );
+					$objTrainer->setLeadId( $objLead->getId() );
+					if( false == $objTrainer->insert( $this->db ) ) {
+						$this->db->trans_rollback();
+						break;
+					}
+				}
+
+				foreach( $arrobjInsertingUserTypeAssociations as $objInsertingUserTypeAssociation) {
+					$objInsertingUserTypeAssociation->setUserId( $objUser->getId() );
+					if( false == $objInsertingUserTypeAssociation->insert( $this->db ) ) {
+						$this->db->trans_rollback();
+						break 2;
+					}
+				}
+
+				foreach ( $arrobjDeletingUserTypeAssociations as $objDeletingUserTypeAssociation ) {
+					if( false == $objDeletingUserTypeAssociation->delete( $this->db ) ) {
+						$this->db->trans_rollback();
+						break 2;
+					}
+				}
+
 				$this->db->trans_commit();
-				exit;
+				echo json_encode( array( 'type' => 'success', 'message' => 'User added.' ) );
 		}
 
 		$this->db->trans_rollback();
