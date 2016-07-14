@@ -74,6 +74,9 @@
                     <li>
                         <a href="#" onclick="loadTab('<?=base_url()?>admin_users')"><i class="fa fa-fw fa-table"></i> Users</a>
                     </li>
+                    <li>
+                        <a href="#" onclick="loadTab('<?=base_url()?>category_subjects')"><i class="fa fa-fw fa-table"></i> Category & Subject</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
