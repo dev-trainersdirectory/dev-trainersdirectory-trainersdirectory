@@ -145,5 +145,23 @@
     </div>
 </div>
 <script type="text/javascript">
-    
+    $(".js-profile_img").click(function(){
+       $( "#lead_profile_img" ).click();
+    });
+
+    $("#lead_profile_img").change(function(){
+        var data1 = new FormData($('#frm_profile_image')[0]);
+        
+         $.ajax ({
+            type: "post",
+            data: data1,
+            url: '<?=base_url()?>admin_users/uploadProfileImage',
+            contentType: false,
+            processData: false,
+            success: function(result) {
+                $('.js-profile_img').attr('src', '<?=base_url() ?>' + result );
+            }
+        });
+
+    });
 </script>
