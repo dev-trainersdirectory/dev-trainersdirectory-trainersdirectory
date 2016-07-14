@@ -9,6 +9,11 @@ body {
   }
 }
 
+.padding {
+  &-0{
+    padding: 0px;
+  }
+}
 
 .page-header {
   border-bottom: 0;
@@ -31,12 +36,21 @@ body {
   &-white {
     color:$white;
   }
+  &-blue {
+    color:#2196f3;
+  }
+  &-dark {
+    color: #353d40 ;
+  }
 }
 
 /*font size*/
 .font {
   &-20 {
     font-size: 20px;
+  }
+  &-10 {
+    font-size: 10px;
   }
 }
 .info-text {
@@ -54,8 +68,13 @@ body {
 }
 
 /*borders*/
-.border-bottom-1 {
-    border-bottom:1px solid $light-white2;
+.border {
+  &-no{
+    border: none;
+  }
+  &-bottom-1 {
+      border-bottom:1px solid $light-white2;
+  }
 }
 
 /* margins */
