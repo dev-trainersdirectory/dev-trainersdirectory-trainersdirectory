@@ -14,6 +14,8 @@ class CTrCategory extends CEosSingular {
 	public $intCreatedBy;
 	public $strCreatedOn;
 
+	public $arrobjTrCategories;
+
 	function __construct() {
 		parent::__construct();
 	}
@@ -142,18 +144,48 @@ class CTrCategory extends CEosSingular {
 		return $this->intCreatedOn;
 	}
 
-	public function validate( $strAction ) {
+	public function getTrCategories() {
+		return $this->arrobjTrCategories;
+	}
+
+	public function addTrCategory( $objTrCategory ) {
+		$this->arrobjTrCategories[$objTrCategory->getId()] = $objTrCategory;
+	}
+
+	public function createSubject( $arrstrSubject ) {
+		$objTrSubject = new CTrSubject();
+		$objTrSubject->setTrCategoryId( $this->getId() );
+		if( true == array_key_exists( 'name', $arrstrSubject ) )
+		$objTrSubject->setName( $arrstrSubject['name'] );
+		if( true == array_key_exists( 'is_published', $arrstrSubject ) )
+		$objTrSubject->setIsPublished( $arrstrSubject['is_published'] );
+
+		return $objTrSubject;
+	}
+
+	public function validate( $strAction, $objDatabase = NULL ) {
 
 		$boolResult = true;
 
 		switch ( $strAction ) {
 			
+			case 'insert':
+				$boolResult &= $this->validateDuplicateCategory( $objDatabase );
+				break;
+
 			default:
 				return true;
 				break;
 		}
 
 		return $boolResult;
+	}
+
+	public function validateDuplicateCategory( $objDatabase ) {
+		$intCount = ( int ) CTrCategories::fetchTrCategoriesCountByName( $objDatabase );
+
+		if( 0 < $intCount ) return false;
+		return true;
 	}
 
 	public function insert() {

@@ -15,7 +15,7 @@ class CAdminAuthenticationController extends CI_Controller {
 		$objUser = new CUser();
 
 		$objUser->strEmailId	= $this->input->post( 'admin_username' );
-		$objUser->strPassword 	= $this->input->post( 'admin_password' );
+		$objUser->strEncryptedPassword 	= $this->input->post( 'admin_password' );
 
 		if( NULL != $objUser->processLogin( CUserType::USER_TYPE_ADMIN ) ) {
 			$objUser->setSession();

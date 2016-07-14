@@ -16,7 +16,17 @@ class CTrSubjects extends CEosPlural {
 
 	public static function fetchAllPublishedSubjects( $objDatabase ) {
 		$strSQL = 'SELECT * FROM tr_subjects';
+		return self::fetchSubjects( $strSQL, $objDatabase );
+	}
 
+	public static function fetchSubjectsByTrcategoryId( $intTrCategoryId, $objDatabase ) {
+		$strSQL = 'SELECT 
+						* 
+					FROM 
+						tr_subjects 
+					WHERE 
+						tr_category_id = ' . ( int ) $intTrCategoryId . ' 
+						AND is_published = true';
 		return self::fetchSubjects( $strSQL, $objDatabase );
 	}
 }

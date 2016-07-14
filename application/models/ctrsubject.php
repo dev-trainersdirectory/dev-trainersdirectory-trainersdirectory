@@ -150,7 +150,7 @@ class CTrSubject extends CEosSingular {
 								'description'	=> $this->strDescription,
 								'is_published'	=> $this->boolIsPublished,
 								'created_by'	=> $this->intCreatedBy,
-								'created_on'	=> NOW(),
+								'created_on'	=> 'NOW()',
 							);
 
 		if( false == $this->db->insert( 'tr_subjects', $arrStrInsertData ) ) return false;
@@ -163,8 +163,10 @@ class CTrSubject extends CEosSingular {
 		$arrStrUpdateData = array();
 
 		if( false == is_null( $this->strName ) ) $arrStrUpdateData['name'] = $this->strName;
-		if( false == is_null( $this->strMapLocation ) ) $arrStrUpdateData['map_location'] = $this->strMapLocation;
+		if( false == is_null( $this->strDescription ) ) $arrStrUpdateData['description'] = $this->strDescription;
+		if( false == is_null( $this->intTrCategoryId ) ) $arrStrUpdateData['tr_category_id'] = $this->intTrCategoryId;
 		if( false == is_null( $this->boolIsPublished ) ) $arrStrUpdateData['is_published'] = $this->boolIsPublished;
+		if( false == is_null( $this->intOrderNum ) ) $arrStrUpdateData['order_num'] = $this->intOrderNum;
 
 		$this->db->where( 'id =', $this->intId );
 
@@ -177,7 +179,7 @@ class CTrSubject extends CEosSingular {
 
 		$arrStrDeleteData = array(
 								'deleted_by'	=> $this->intDeletedBy,
-								'deleted_on' 	=> NOW(),
+								'deleted_on' 	=> 'NOW()',
 							);
 
 		$this->db->where( 'id =', $this->intId );
