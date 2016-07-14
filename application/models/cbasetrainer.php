@@ -307,6 +307,8 @@ class CBaseTrainer extends CEosSingular {
 
 		if( false == $this->db->insert( 'trainers', $arrStrInsertData ) ) return false;
 
+		$this->setId( $this->db->insert_id() );
+
 		return true;
 	}
 

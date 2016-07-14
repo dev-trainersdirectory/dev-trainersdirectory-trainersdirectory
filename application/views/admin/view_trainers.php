@@ -6,7 +6,7 @@
         </h3>
     </div>
 </div>
-<div align="right"><a hre="#" class="btn btn-primary js-add_trainer">Add Trainer</a></div>
+<div align="right"><a hre="#" class="btn btn-primary js-add_trainer" data-toggle="modal" data-target="#myModal-add_user">Add Trainer</a></div>
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
@@ -67,20 +67,25 @@
     </div>    
 </div>
 
-<script type="text/javascript">
+<div class="modal fade" id="myModal-add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add User</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="js-modal_close" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary js-update_user" >Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    $(".js-edit_trainer").click(function(){
-        $.ajax ({
-            type: "post",
-            data: { id: this.id },
-            url: '<?=base_url()?>admin_trainers/editTrainer',
-            success: function(result) {
-                if(result) {
-                    $('.container-fluid').html(result);
-                }
-            }
-        })
-    });
+<script type="text/javascript">
 
     $(".js-filter_trainer").click(function(){
         $.ajax ({
@@ -101,7 +106,43 @@
             url: '<?=base_url()?>admin_trainers/addTrainer',
             success: function(result) {
                 if(result) {
+                    $('.modal-body').html(result);
+                }
+            }
+        })
+    });
+
+    $(".js-edit_trainer").click(function(){
+        $.ajax ({
+            type: "post",
+            data: { id: this.id },
+            url: '<?=base_url()?>admin_trainers/editTrainer',
+            success: function(result) {
+                if(result) {
                     $('.container-fluid').html(result);
+                }
+            }
+        })
+    });
+
+    $(".js-update_trainer").click(function(){
+
+        if( 0 !== <?php echo ( int ) $user->getId() ?> )
+            action = 'updateTrainer';
+        else
+            action = 'insertTrainer';
+
+        $.ajax ({
+            type: "post",
+            data: $( "form" ).serialize(),
+            url: '<?=base_url()?>admin_trainers/' + action,
+            success: function(result) {
+                output = JSON.parse(result);
+                if( 'success' == output.type ) {
+                    $( "#js-modal_close" ).trigger( "click" );
+                    loadTab('<?=base_url()?>admin_users')
+                } else {
+                    alert( output.message )
                 }
             }
         })
