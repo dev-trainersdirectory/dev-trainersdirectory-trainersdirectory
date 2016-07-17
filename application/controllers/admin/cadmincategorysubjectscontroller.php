@@ -130,11 +130,11 @@ class CAdminCategorySubjectsController extends CAdminSystemController {
 
 				$this->db->trans_begin();
 
-				if( false == $objTrCategory->validate( 'insert', $this->db ) ) {
+				if( false == $objTrCategory->validate( 'update', $this->db ) ) {
 					break;
 				}
 
-				if( false == $objTrCategory->insert( $this->db ) ) {
+				if( false == $objTrCategory->update( $this->db ) ) {
 					break;
 				}
 

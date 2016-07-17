@@ -62,7 +62,13 @@
             data: $( "#frm_edit_category" ).serialize(),
             url: '<?=base_url()?>category_subjects/updateCategory',
             success: function(result) {
-                
+            	result = JSON.parse(result);
+                if( 'success' == result.type ) {
+                    $( "#jsModal-edit_category" ).trigger( "click" );
+                    loadTab('<?=base_url()?>category_subjects')
+                } else {
+                    alert( result.message )
+                }
             }
 	    });
 	});
