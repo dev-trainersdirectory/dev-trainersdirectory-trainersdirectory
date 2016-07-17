@@ -115,3 +115,15 @@ input[type=radio] {
     }
   }
 }
+
+.select {
+  &-trasnperant{
+    background: none;
+    border: none;
+    box-shadow: 0 0 0 0;
+    &:focus {
+      box-shadow: 0 0 0 0;
+      
+    }
+  }
+}

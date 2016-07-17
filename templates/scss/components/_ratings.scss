@@ -1,27 +1,52 @@
-.star-ratings{
-  &-css {
-    unicode-bidi: bidi-override;
-    color: #c5c5c5;
-    font-size: 17px;
-    height: 25px;
-    width: 100px;
-    margin: 0 auto;
-    position: relative;
-    padding: 0;
-    &-top {
-      color: gold;
-      padding: 0;
-      position: absolute;
-      z-index: 1;
-      display: block;
-      top: 0;
-      left: 8px;
-      overflow: hidden;
-    }
-    &-bottom {
-      padding: 0;
-      display: block;
-      z-index: 0;
-    }
+.rating{
+width: 90px;
+margin: 0 auto;
+margin-top: -10px;
+position: relative;
+  & .one-rating{
+        left: 3px;
+  }
+  & .two-rating{
+    top: 10px;
+  left: 20px;
+  }
+  & .three-rating{
+    top: 15px;
+  left: 39px;
+  }
+  & .four-rating{
+    top: 10px;
+right: 16px;
+  }
+  & .five-rating{
+        right: -3px;
   }
 }
+
+// .star-ratings{
+//   &-css {
+//     unicode-bidi: bidi-override;
+//     color: #c5c5c5;
+//     font-size: 17px;
+//     height: 25px;
+//     width: 100px;
+//     margin: 0 auto;
+//     position: relative;
+//     padding: 0;
+//     &-top {
+//       color: gold;
+//       padding: 0;
+//       position: absolute;
+//       z-index: 1;
+//       display: block;
+//       top: 0;
+//       left: 8px;
+//       overflow: hidden;
+//     }
+//     &-bottom {
+//       padding: 0;
+//       display: block;
+//       z-index: 0;
+//     }
+//   }
+// }

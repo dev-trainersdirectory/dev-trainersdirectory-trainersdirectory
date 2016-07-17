@@ -19,6 +19,62 @@
 		height: 30px;
 		width: 41px;
 	}
+	&-search-sm {
+		background-image: url('#{$image-path}icon-search-sm.png');
+		height: 18px;
+    width: 19px;
+    position: absolute;
+	}
+	&-info {
+		background-image: url('#{$image-path}icon-info.png');
+		height: 24px;
+    width: 24px;
+    position: absolute;
+		top:12px;
+		left:12px;
+	}
+	&-dots {
+		background-image: url('#{$image-path}icon-dots.png');
+		height: 16px;
+    width: 4px;
+    position: absolute;
+		top: 0;
+		right: 3px;
+	}
+	&-likes {
+		background-image: url('#{$image-path}icon-likes.png');
+		height: 16px;
+		width: 18px;
+		position: absolute;
+	}
+	&-watched {
+		background-image: url('#{$image-path}icon-watched.png');
+		height: 14px;
+		width: 20px;
+		position: absolute;
+	}
+	&-msgs {
+		background-image: url('#{$image-path}icon-msgs.png');
+		height: 15px;
+		width: 22px;
+		position: absolute;
+	}
+	&-call {
+		background-image: url('#{$image-path}icon-call.png');
+		height: 14px;
+		width: 14px;
+		position: absolute;
+	}
+	&-star-sm {
+		background-image: url('#{$image-path}icon-star-sm.png');
+		height: 13px;
+		width: 12px;
+		position: absolute;
+		&.active{
+			background-image: url('#{$image-path}icon-star-active-sm.png ')!important;
+		}
+	}
+
 }
 .search-addon i{
 	color: #848484;
