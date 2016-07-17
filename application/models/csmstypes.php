@@ -14,7 +14,7 @@ class CSmsTypes extends CEosPlural {
 		return self::fetchObject( 'CSmsType', $strSQL, $objDatabase );
 	}
 
-	public static function fetchAllPublishedSmsTemplates( $objDatabase ) {
+	public static function fetchAllSmsTypes( $objDatabase ) {
 		$strSQL = 'SELECT * FROM sms_types';
 
 		return self::fetchSmsTypes( $strSQL, $objDatabase );

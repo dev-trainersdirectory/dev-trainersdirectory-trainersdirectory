@@ -1,6 +1,6 @@
 <?php
 
-class CSmsTemplate extends CEosPlural {
+class CSmsTemplates extends CEosPlural {
 	
 	function __construct() {
 		parent::__construct();
@@ -14,10 +14,29 @@ class CSmsTemplate extends CEosPlural {
 		return self::fetchObject( 'CSmsTemplate', $strSQL, $objDatabase );
 	}
 
-	public static function fetchAllPublishedSmsTemplates( $objDatabase ) {
-		$strSQL = 'SELECT * FROM sms_templates';
+	public static function fetchAllSmsTemplates( $objDatabase ) {
+		$strSQL = 'SELECT 
+						st.subject as sms_type,
+						t.* 
+					FROM 
+						sms_templates t
+						JOIN sms_types st ON ( t.sms_type_id = st.id )';
 
 		return self::fetchSmsTemplates( $strSQL, $objDatabase );
+	}
+
+	public static function fetchSmsTemplateById( $intSmsTemplateId, $objDatabase ) {
+		$strSQL = 'SELECT * 
+					FROM 
+						sms_templates t
+					WHERE 
+						id = ' . (int) $intSmsTemplateId;
+
+		return self::fetchSmsTemplate( $strSQL, $objDatabase );
+	}
+
+	public static function fetchActiveSmsTemplateCountBySmsTypeId( $objDatabase ) {
+		return 0;
 	}
 }
 
