@@ -54,7 +54,11 @@ $route['category_subjects/(.*)'] = "admin/cadmincategorysubjectscontroller/$1";
 $route['sms_templates'] = "admin/cadminsmstemplatescontroller";
 $route['sms_templates/(.*)'] = "admin/cadminsmstemplatescontroller/$1";
 $route['register'] = "cregistercontroller";
-$route['register/(.*)'] = "cregistercontroller/$1";
+$route['register/(.*)'] = "admin/cregistercontroller/$1";
+$route['admin_states'] = "admin/cadminstatescontroller";
+$route['admin_states/(.*)'] = "admin/cadminstatescontroller/$1";
+$route['admin_cities'] = "admin/cadmincitiescontroller";
+$route['admin_cities/(.*)'] = "admin/cadmincitiescontroller/$1";
 $route['404_override'] = '';
 
 /*$arrControllerMapping = array( 'search' => 'CSearchTrainerController' );

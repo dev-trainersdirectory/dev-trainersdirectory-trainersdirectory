@@ -139,10 +139,9 @@ class CCity extends CEosSingular {
 
 		$arrStrInsertData = array(
 								'name'			=> $this->strName,
+								'state_id'		=> $this->intStateId,
 								'map_location'	=> $this->strMapLocation,
 								'is_published'	=> $this->boolIsPublished,
-								'deleted_by'	=> $this->intDeletedBy,
-								'deleted_on' 	=> $this->intDeletedOn,
 								'created_by'	=> $this->intCreatedBy,
 								'created_on'	=> $this->strCreatedOn,
 							);
@@ -156,9 +155,10 @@ class CCity extends CEosSingular {
 
 		$arrStrUpdateData = array();
 
-		if( false == is_null( $this->strName ) ) $arrStrUpdateData['name'] = $this->strName;
-		if( false == is_null( $this->strMapLocation ) ) $arrStrUpdateData['map_location'] = $this->strMapLocation;
-		if( false == is_null( $this->boolIsPublished ) ) $arrStrUpdateData['is_published'] = $this->boolIsPublished;
+		$arrStrUpdateData['name'] = $this->strName;
+		$arrStrUpdateData['state_id'] = $this->intStateId;
+		$arrStrUpdateData['map_location'] = $this->strMapLocation;
+		$arrStrUpdateData['is_published'] = $this->boolIsPublished;
 
 		$this->db->where( 'id =', $this->intId );
 
