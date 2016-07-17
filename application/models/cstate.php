@@ -12,7 +12,9 @@ class CState extends CEosSingular {
 	public $strCreatedOn;
 
 	public $boolIsPublished;
-	
+
+	public $arrstrCities;
+
 	function __construct() {
 		parent::__construct();
 	}
@@ -79,6 +81,10 @@ class CState extends CEosSingular {
 		$this->intCreatedOn = $intCreatedOn;
 	}
 
+	public function setCities( $arrstrCities ) {
+		$this->arrstrCities = $arrstrCities;
+	}
+
 	public function getId() {
 		return $this->intId;
 	}
@@ -111,6 +117,10 @@ class CState extends CEosSingular {
 		return $this->intCreatedOn;
 	}
 
+	public function getCities() {
+		return $this->arrstrCities;
+	}
+
 	public function validate( $strAction ) {
 
 		$boolResult = true;
@@ -131,8 +141,8 @@ class CState extends CEosSingular {
 								'name'			=> $this->strName,
 								'map_location'	=> $this->strMapLocation,
 								'is_published'	=> $this->boolIsPublished,
-								'created_by'	=> $this->intCreatedBy,
-								'created_on'	=> NOW(),
+								'created_by'	=> 1,
+								'created_on'	=> 'NOW()',
 							);
 
 		if( false == $this->db->insert( 'states', $arrStrInsertData ) ) return false;
@@ -144,9 +154,9 @@ class CState extends CEosSingular {
 
 		$arrStrUpdateData = array();
 
-		if( false == is_null( $this->strName ) ) $arrStrInsertData['name'] = $this->strName;
-		if( false == is_null( $this->strMapLocation ) ) $arrStrInsertData['map_location'] = $this->strMapLocation;
-		if( false == is_null( $this->boolIsPublished ) ) $arrStrInsertData['is_published'] = $this->boolIsPublished;
+		$arrStrUpdateData['name'] = $this->strName;
+		$arrStrUpdateData['map_location'] = $this->strMapLocation;
+		$arrStrUpdateData['is_published'] = $this->boolIsPublished;
 		
 		$this->db->where( 'id =', $this->intId );
 

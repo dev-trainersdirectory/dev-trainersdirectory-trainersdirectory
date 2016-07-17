@@ -58,7 +58,7 @@
                         <td><?php echo $user->getContactNumber()?></td>
                         <td><?php echo $lead->getAddress()?></td>
                         <td><?php echo $statuses[$user->getStatusId()]->getName()?></td>
-                        <td><a href='#' class='js-edit_trainer' id='<?php echo $user->getId() ?>'>Edit</a></td>
+                        <td><a href='#' class='js-edit_trainer' data-toggle="modal" data-target="#myModal-add_user" id='<?php echo $user->getId() ?>'>Edit</a></td>
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -72,14 +72,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add User</h4>
+        <h4 class="modal-title" id="myModalLabel">Add Trainer</h4>
       </div>
       <div class="modal-body">
         
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="js-modal_close" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary js-update_user" >Save changes</button>
+        <button type="button" class="btn btn-primary js-update_trainer" >Save changes</button>
       </div>
     </div>
   </div>
@@ -88,6 +88,7 @@
 <script type="text/javascript">
 
     $(".js-filter_trainer").click(function(){
+    $('.container-fluid').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({
             type: "post",
             data: $( "form" ).serialize(),
@@ -101,6 +102,7 @@
     });
 
     $(".js-add_trainer").click(function(){
+    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({
             type: "post",
             url: '<?=base_url()?>admin_trainers/addTrainer',
@@ -113,20 +115,21 @@
     });
 
     $(".js-edit_trainer").click(function(){
+    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({
             type: "post",
             data: { id: this.id },
             url: '<?=base_url()?>admin_trainers/editTrainer',
             success: function(result) {
                 if(result) {
-                    $('.container-fluid').html(result);
+                    $('.modal-body').html(result);
                 }
             }
         })
     });
 
     $(".js-update_trainer").click(function(){
-
+    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         if( 0 !== <?php echo ( int ) $user->getId() ?> )
             action = 'updateTrainer';
         else
@@ -140,7 +143,7 @@
                 output = JSON.parse(result);
                 if( 'success' == output.type ) {
                     $( "#js-modal_close" ).trigger( "click" );
-                    loadTab('<?=base_url()?>admin_users')
+                    loadTab('<?=base_url()?>admin_trainers')
                 } else {
                     alert( output.message )
                 }

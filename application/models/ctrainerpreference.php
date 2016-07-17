@@ -96,7 +96,7 @@ class CTrainerPreference extends CEosSingular {
 								'created_on' => 'NOW()',
 							);
 
-		if( false == $this->db->insert( 'trainer_preferences', $arrStrInsertData ) ) return false;
+		if( false == $this->db->insert( 'trainer_prefereces', $arrStrInsertData ) ) return false;
 
 		return true;
 	}
@@ -110,7 +110,7 @@ class CTrainerPreference extends CEosSingular {
 
 		$this->db->where( 'id =', $this->intId );
 
-		if( false == $this->db->update( 'trainer_preferences', $arrStrUpdateData ) ) return false;
+		if( false == $this->db->update( 'trainer_prefereces', $arrStrUpdateData ) ) return false;
 
 		return true;
 	}
@@ -119,7 +119,7 @@ class CTrainerPreference extends CEosSingular {
 
 		$this->db->where( 'id =', $this->intId );
  	
- 		if( false == $this->db->delete( 'trainer_preferences' ) ) return false;
+ 		if( false == $this->db->delete( 'trainer_prefereces' ) ) return false;
 
 		return true;
 	}
