@@ -193,7 +193,8 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label>Trainer's Locations: </label>
-                    <div class="btn-group">
+                    <a href="#myModal-locations" data-toggle="modal">Select Locations</a>
+                    <!-- <div class="btn-group">
 					  <button data-toggle="dropdown" class="btn dropdown-toggle"  data-placeholder="Please select">Checked option <span class="caret"></span></button>
 					    <ul class="dropdown-menu">
 					    <?php foreach( $locations AS $location ) { ?>
@@ -203,7 +204,7 @@
 					      </li>
 					    <?php } ?>
 					    </ul>
-					</div>
+					</div> -->
                 </div>
             </div>
         </div>
@@ -238,4 +239,23 @@
         <input type="hidden" name=lead[id] value="<?php echo $lead->getId()?>">
     </div>
 </div>
+     
+<div class="modal fade" id="myModal-locations" tabindex="-1" aria-labelledby="myModalLabel" data-focus-on="input:first">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add User</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" onclick="$('#myModal-locations').modal('hide');">Close</button>
+        <button type="button" class="btn btn-primary js-update_trainer" >Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript" src="/public/admin/js/dropdown-js.js"></script>

@@ -61,6 +61,7 @@
                     </ul>
                 </li>
             </ul>
+
             <!-- Top Menu Items -->
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -76,6 +77,17 @@
                     </li>
                     <li>
                         <a href="#" onclick="loadTab('<?=base_url()?>category_subjects')"><i class="fa fa-fw fa-table"></i> Category & Subject</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> States/Cities <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#" onclick="loadTab('<?=base_url()?>admin_states')">Sates</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="loadTab('<?=base_url()?>admin_cities')">Cities</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -110,6 +122,7 @@
     <script type="text/javascript">
 
     function loadTab(url) {
+    $('.container-fluid').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({
             type: "post",
             url: url,

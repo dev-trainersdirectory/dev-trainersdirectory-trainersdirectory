@@ -86,6 +86,7 @@
 <script type="text/javascript">
 
     $(".js-add_user").off('click').click(function(){
+    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $('.modal-body').html('');
         $.ajax ({
             type: "post",
@@ -99,6 +100,7 @@
     });
 
     $(".js-edit_user").click(function(){
+    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({
             type: "post",
             data: { id: this.id },
@@ -112,6 +114,7 @@
     });
 
     $(".js-filter_user").click(function(){
+    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({
             type: "post",
             data: $( "form" ).serialize(),
@@ -125,7 +128,7 @@
     });
 
     $(".js-update_user").click(function(){
-
+    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         if( '' == $("#js-user_id").val() )
             action = 'insertUser';
         else

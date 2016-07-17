@@ -103,29 +103,62 @@ class CAdminTrainersController extends CAdminSystemController {
 		$objUser = CUsers::fetchUserById( $intUserId, $this->db );
 		$objLead = CLeads::fetchLeadByUserId( $intUserId, $this->db );
 		$objTrainer = CTrainers::fetchTrainerByUserId( $intUserId, $this->db );
+		$arrobjTrainerPreferences = ( array ) CTrainerPreferences::fetchTrainerPreferencesByTrainerId( $objTrainer->getId(), $this->db );
+		$objClonableTrainerPreference = new CTrainerPreference();
 
 		$objUser->applyRequestForm( $this->input->post( 'user' ), $this->_arrstrUserFields );
 		$objLead->applyRequestForm( $this->input->post( 'lead' ), $this->_arrstrLeadFields );
 		$objTrainer->applyRequestForm( $this->input->post( 'trainer' ), $this->_arrstrTrainerFields );
+
+		foreach( $this->input->post('trainer_preferences') as $intPreferenceId ){
+			$objTrainerPreference = clone $objClonableTrainerPreference;
+			$objTrainerPreference->setPreferenceId( $intPreferenceId );
+			$arrobjInsertingTrainerPreferences[ $intPreferenceId ] = $objTrainerPreference;
+		}
+
+		$arrobjDeletingTrainerPreferences = array_diff_key( $arrobjTrainerPreferences, $arrobjInsertingTrainerPreferences );
+		$arrobjInsertingTrainerPreferences = array_diff_key( $arrobjInsertingTrainerPreferences, $arrobjTrainerPreferences );
 
 		switch( NULL ) {
 			default:
 				$this->db->trans_begin();
 
 				if( false == $objUser->update( $this->db ) ) {
+					$this->db->trans_rollback();
 					break;
 				}
 
 				if( false == $objLead->update( $this->db ) ) {
+					$this->db->trans_rollback();
 					break;
 				}
 
 				if( false == $objTrainer->update( $this->db ) ) {
+					$this->db->trans_rollback();
 					break;
 				}
 
+				if( true == valArr( $arrobjInsertingTrainerPreferences ) ) {
+					foreach( $arrobjInsertingTrainerPreferences as $objInsertingTrainerPreference ) {
+						$objInsertingTrainerPreference->setTrainerId( $objTrainer->getId() );
+						if( false == $objInsertingTrainerPreference->insert( $this->db ) ) {
+							$this->db->trans_rollback();
+							break 2;
+						}
+					}
+				}
+
+				if( true == valArr( $arrobjDeletingTrainerPreferences )  ) {
+					foreach( $arrobjDeletingTrainerPreferences as $objDeletingTrainerPreference ) {
+						if( false == $objDeletingTrainerPreference->delete( $this->db ) ) {
+							$this->db->trans_rollback();
+							break 2;
+						}
+					}
+				}
+
 				$this->db->trans_commit();
-				$this->index();
+				echo json_encode( array( 'type' => 'success', 'message' => 'Trainer added.' ) );
 		}
 
 	}
@@ -199,11 +232,13 @@ class CAdminTrainersController extends CAdminSystemController {
 					break;
 				}
 
-				foreach( $arrobjInsertingTrainerPreferences as $objInsertingTrainerPreference ) {
-					$objInsertingTrainerPreference->setTrainerId( $objTrainer->getId() );
-					if( false == $objInsertingTrainerPreference->insert( $this->db ) ) {
-						$this->db->trans_rollback();
-						break 2;
+				if( true == $arrobjInsertingTrainerPreferences ) {
+					foreach( $arrobjInsertingTrainerPreferences as $objInsertingTrainerPreference ) {
+						$objInsertingTrainerPreference->setTrainerId( $objTrainer->getId() );
+						if( false == $objInsertingTrainerPreference->insert( $this->db ) ) {
+							$this->db->trans_rollback();
+							break 2;
+						}
 					}
 				}
 
