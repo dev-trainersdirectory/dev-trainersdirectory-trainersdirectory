@@ -178,7 +178,7 @@ class CTrSubject extends CEosSingular {
 	public function delete() {
 
 		$arrStrDeleteData = array(
-								'deleted_by'	=> $this->intDeletedBy,
+								'deleted_by'	=> 1,
 								'deleted_on' 	=> 'NOW()',
 							);
 
