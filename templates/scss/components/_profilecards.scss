@@ -62,7 +62,17 @@
             border-radius: 150px;
 	-webkit-border-radius: 150px;
 	-moz-border-radius: 150px;
-
+            &:focus,
+            &hover, {
+                outline: none;
+            }
+        }
+        & a {
+            &:focus,
+            &:hover, {
+                outline: none;
+                opacity: 1;
+            }
         }
     }
     &-name {
@@ -83,7 +93,8 @@
         font-weight: regular;
         word-break: break-all;
     }
-    &-social {
+    &-social ,
+    &-social-modal{
         border-top:1px solid $white-1;
         margin-top:15px;
         padding-top: 15px;
@@ -108,6 +119,12 @@
             }
         }
     }
+    &-social-modal {
+        position: absolute;
+        bottom: 17px;
+        border-top: none;
+        margin-left: 13px;
+    }
 }
 .back {
     & .more-details-dropdown{
@@ -129,7 +146,7 @@
 .filtered {
     & .select-trasnperant {
 color: #0993b8;
-    }    
+    }
 }
 .more-details-dropdown-conainter {
     min-width: 108px;

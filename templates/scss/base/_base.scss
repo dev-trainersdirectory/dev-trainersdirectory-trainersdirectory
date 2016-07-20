@@ -38,6 +38,9 @@ body {
 	font-weight: bold;
 }
 
+.text-left {
+	text-align: left !important
+}
 
 .header {
 	height: 90px;
@@ -54,7 +57,29 @@ body {
 		}
 	}
 }
+.scrollbar {
+	&::-webkit-scrollbar {
+    width: 5px;
+	}
 
+	/* Track */
+	&::-webkit-scrollbar-track {
+
+	    -webkit-border-radius: 10px;
+	    border-radius: 10px;
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		-webkit-border-radius: 1px;
+		border-radius: 1px;
+		background: rgba(6, 6, 6, 0.21);
+
+	}
+	&::-webkit-scrollbar-thumb:window-inactive {
+
+	}
+}
 /* modal */
 .vertical-alignment-helper {
     display:table;

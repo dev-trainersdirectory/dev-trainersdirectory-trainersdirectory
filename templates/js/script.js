@@ -8,7 +8,14 @@
         $(this).parents("div.flipper").find('.front').toggleClass('hide show');
         $(this).parents("div.flipper").find('.back').toggleClass('show hide');
     });
+    /* blur on modal open, unblur on close */
+    $('#myModal').on('show.bs.modal', function () {
+       $('.container').addClass('blur');
+    })
 
+    $('#myModal').on('hide.bs.modal', function () {
+       $('.container').removeClass('blur');
+    })
 
     // for carousel
   $(".carousel").carousel({interval:false});
