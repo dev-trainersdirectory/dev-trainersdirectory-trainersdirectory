@@ -144,11 +144,11 @@ class CReviewRating extends CEosSingular {
 								'ratings' 		=> $this->intRatings,
 								'deleted_by' 	=> $this->intDeletedBy,
 								'deleted_on' 	=> $this->strDeletedOn,
-								'created_by' 	=> $this->intCreatedBy,
-								'created_on' 	=> $this->strCreatedOn,
+								'created_by' 	=> 1,
+								'created_on' 	=> 'NOW()',
 							);
 
-		if( false == $this->db->insert( 'review_ratings', $arrStrInsertData ) ) return false;
+		if( false == $this->db->insert( 'reviews_ratings', $arrStrInsertData ) ) return false;
 
 		return true;
 	}
@@ -157,18 +157,14 @@ class CReviewRating extends CEosSingular {
 
 		$arrStrUpdateData = array();
 
-		if( false == is_null( $this->intReviewerid ) ) $arrStrUpdateData['reviewer_id'] = $this->intReviewerid;
-		if( false == is_null( $this->intRevieweeid ) ) $arrStrUpdateData['reviewee_id'] = $this->intRevieweeid;
-		if( false == is_null( $this->strReview ) ) $arrStrUpdateData['review'] = $this->strReview;
-		if( false == is_null( $this->intRatings ) ) $arrStrUpdateData['ratings'] = $this->intRatings;
-		if( false == is_null( $this->intDeletedBy ) ) $arrStrUpdateData['deleted_by'] = $this->intDeletedBy;
-		if( false == is_null( $this->strDeletedOn ) ) $arrStrUpdateData['deleted_on'] = $this->strDeletedOn;
-		if( false == is_null( $this->intCreatedBy ) ) $arrStrUpdateData['created_by'] = $this->intCreatedBy;
-		if( false == is_null( $this->intCreatedOn ) ) $arrStrUpdateData['created_on'] = $this->intCreatedOn;
+		$arrStrUpdateData['reviewer_id'] = $this->intReviewerid;
+		$arrStrUpdateData['reviewee_id'] = $this->intRevieweeid;
+		$arrStrUpdateData['review'] = $this->strReview;
+		$arrStrUpdateData['ratings'] = $this->intRatings;
 
 		$this->db->where( 'id =', $this->intId );
 
-		if( false == $this->db->update( 'review_ratings', $arrStrUpdateData ) ) return false;
+		if( false == $this->db->update( 'reviews_ratings', $arrStrUpdateData ) ) return false;
 
 		return true;
 	}
@@ -177,12 +173,12 @@ class CReviewRating extends CEosSingular {
 
 		$arrStrUpdateData = array(
 									'deleted_by' => 1,
-									'deleted_on' => 'NOW()';
+									'deleted_on' => 'NOW()'
 								);
 
 		$this->db->where( 'id =', $this->intId );
 
-		if( false == $this->db->update( 'review_ratings', $arrStrUpdateData ) ) return false;
+		if( false == $this->db->update( 'reviews_ratings', $arrStrUpdateData ) ) return false;
 
 		return true;
 	}
