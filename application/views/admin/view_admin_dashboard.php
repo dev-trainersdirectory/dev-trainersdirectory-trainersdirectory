@@ -90,6 +90,17 @@
                         </ul>
                         <a href="#" onclick="loadTab('<?=base_url()?>sms_templates')"><i class="fa fa-fw fa-table"></i> SMS Templates</a>
                     </li>
+                    <li>
+                        <a href="#" onclick="loadTab('<?=base_url()?>admin_reviews')"><i class="fa fa-fw fa-table"></i> Reviews</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#coin_mng"><i class="fa fa-fw fa-arrows-v"></i> Coin Management <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="coin_mng" class="collapse">
+                            <li>
+                                <a href="#" onclick="loadTab('<?=base_url()?>admin_coin_transactions')">Coin Transactions</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

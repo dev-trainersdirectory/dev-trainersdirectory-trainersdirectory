@@ -14,11 +14,24 @@ class CReviewRatings extends CEosPlural {
 		return self::fetchObject( 'CReviewRating', $strSQL, $objDatabase );
 	}
 
-	public static function fetchAllPublishedReviewRatings( $objDatabase ) {
-		$strSQL = 'SELECT * FROM review_ratings';
+	public static function fetchAllReviewRatings( $objDatabase ) {
+		$strSQL = 'SELECT * FROM reviews_ratings';
 
-		return self::fetchDays( $strSQL, $objDatabase );
+		return self::fetchReviewRatings( $strSQL, $objDatabase );
 	}
+
+	public static function fetchAllPublishedReviewRatings( $objDatabase ) {
+		$strSQL = 'SELECT * FROM reviews_ratings';
+
+		return self::fetchReviewRatings( $strSQL, $objDatabase );
+	}
+
+	public static function fetchReviewById( $intReviewId, $objDatabase ) {
+		$strSQL = 'SELECT * FROM reviews_ratings WHERE id = ' . ( int ) $intReviewId;
+
+		return self::fetchReviewRating( $strSQL, $objDatabase );
+	}
+	
 }
 
 ?>
