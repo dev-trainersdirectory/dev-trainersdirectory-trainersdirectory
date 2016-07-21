@@ -77,6 +77,22 @@ class CLeads extends CEosPlural
 		return self::fetchLead( $strSQL, $objDatabase );
 	}
 
+	public function fetchLeadNamesByUserIds( $arrintUserIds, $objDatabase ) {
+		if( false == valArr( $arrintUserIds ) ) return NULL;
+
+		$strSQL = 'SELECT id, user_id, first_name, last_name FROM leads WHERE user_id IN ( ' . implode( ',', $arrintUserIds ) .' )';
+
+		return self::fetchLeads( $strSQL, $objDatabase );
+	}
+
+	public function fetchLeadNamesByLeadIds( $arrintUserIds, $objDatabase ) {
+		if( false == valArr( $arrintUserIds ) ) return NULL;
+
+		$strSQL = 'SELECT id, user_id, first_name, last_name FROM leads WHERE id IN ( ' . implode( ',', $arrintUserIds ) .' )';
+
+		return self::fetchLeads( $strSQL, $objDatabase );
+	}
+
 }
 
 ?>
