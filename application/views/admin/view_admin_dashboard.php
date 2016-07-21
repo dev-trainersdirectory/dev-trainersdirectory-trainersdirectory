@@ -88,6 +88,7 @@
                                 <a href="#" onclick="loadTab('<?=base_url()?>admin_cities')">Cities</a>
                             </li>
                         </ul>
+                        <a href="#" onclick="loadTab('<?=base_url()?>sms_templates')"><i class="fa fa-fw fa-table"></i> SMS Templates</a>
                     </li>
                     <li>
                         <a href="#" onclick="loadTab('<?=base_url()?>admin_reviews')"><i class="fa fa-fw fa-table"></i> Reviews</a>

@@ -12,7 +12,20 @@ body {
 	-o-background-size: auto, cover;
 	background-size: auto, cover;
 }
-
+.footer {
+	height: 48px;
+	background: white;
+	font-size: 12px;
+  color: #353d40;
+	position: relative;
+	& p {
+		margin-top: 18px;
+		font-weight: bold;
+	}
+}
+.full-page {
+	height: 100%
+}
 .v-top {
 	vertical-align: top;
 }
@@ -23,4 +36,69 @@ body {
 
 .strong {
 	font-weight: bold;
+}
+
+.text-left {
+	text-align: left !important
+}
+
+.header {
+	height: 90px;
+	position: relative;
+	background: url(../images/header-bg.jpg);
+	& .logo {
+		height:87px;
+		padding:0px;
+		position: absolute;
+		top:11px;
+		left: 10px;
+		& img {
+			height: 100%;
+		}
+	}
+}
+.scrollbar {
+	&::-webkit-scrollbar {
+    width: 5px;
+	}
+
+	/* Track */
+	&::-webkit-scrollbar-track {
+
+	    -webkit-border-radius: 10px;
+	    border-radius: 10px;
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		-webkit-border-radius: 1px;
+		border-radius: 1px;
+		background: rgba(6, 6, 6, 0.21);
+
+	}
+	&::-webkit-scrollbar-thumb:window-inactive {
+
+	}
+}
+/* modal */
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+		width: 100%;
 }

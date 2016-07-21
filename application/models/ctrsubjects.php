@@ -15,7 +15,7 @@ class CTrSubjects extends CEosPlural {
 	}
 
 	public static function fetchAllPublishedSubjects( $objDatabase ) {
-		$strSQL = 'SELECT * FROM tr_subjects';
+		$strSQL = 'SELECT * FROM tr_subjects WHERE deleted_by IS NULL AND deleted_on IS NULL';
 		return self::fetchSubjects( $strSQL, $objDatabase );
 	}
 
@@ -25,8 +25,8 @@ class CTrSubjects extends CEosPlural {
 					FROM 
 						tr_subjects 
 					WHERE 
-						tr_category_id = ' . ( int ) $intTrCategoryId . ' 
-						AND is_published = true';
+						tr_category_id = ' . ( int ) $intTrCategoryId . ' AND deleted_by IS NULL AND deleted_on IS NULL';
+
 		return self::fetchSubjects( $strSQL, $objDatabase );
 	}
 }

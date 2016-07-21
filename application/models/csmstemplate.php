@@ -6,6 +6,8 @@ class CSmsTemplate extends CEosSingular {
 	public $intSmsTypeId;
 	public $strContent;
 	public $boolIsActive;
+
+	public $strSmsType;
 	
 	function __construct() {
 		parent::__construct();
@@ -27,6 +29,9 @@ class CSmsTemplate extends CEosSingular {
 		if( true == array_key_exists( 'is_active', $arrstrRequestData ) )
 			$this->setIsActive( $arrstrRequestData['is_active'] );
 
+		if( true == array_key_exists( 'sms_type', $arrstrRequestData ) )
+			$this->setSmsType( $arrstrRequestData['sms_type'] );
+
 	}
 
 	public function setId( $intId ) {
@@ -45,6 +50,10 @@ class CSmsTemplate extends CEosSingular {
 		$this->boolIsActive = $boolIsActive;
 	}
 
+	public function setSmsType( $strSmsType ) {
+		$this->strSmsType = $strSmsType;
+	}
+
 	public function getId() {
 		return $this->intId;;
 	}
@@ -61,12 +70,22 @@ class CSmsTemplate extends CEosSingular {
 		return $this->boolIsActive;
 	}
 
-	public function validate( $strAction ) {
+	public function getSmsType() {
+		return $this->strSmsType;
+	}
+
+	public function validate( $strAction, $objDatabase ) {
 
 		$boolResult = true;
 
 		switch ( $strAction ) {
 			
+			case 'insert':
+			case 'update':
+				//$intCount = CSmsTemplates::fetchActiveSmsTemplateCountBySmsTypeId( $objDatabase );
+				//if( $intCount > 0 ) $boolResult = false;
+				break;
+
 			default:
 				return true;
 				break;
