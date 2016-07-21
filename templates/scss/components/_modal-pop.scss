@@ -1,10 +1,76 @@
-.modal-dialog {
+.modal-xl {
+  width: 1024px;
+  height: 590px;
+}
+.modal {
+  background: rgba(8, 8, 8, 0.65);
+  & .padding-0{
+  }
+}
 
+.block {
+  &-1 {
+    width: 570px;
+    height: 272px;
+    background: url(../images/modal-pop-bg-1.png) no-repeat 99% 16px;
+  }
+  &-2 {
+  width: 450px;
+  background: url(../images/modal-pop-bg-2.png) no-repeat 100% 9px;
+  }
+  &-3 {
+      height: 250px;
+      padding-right: 5px;
+      background: url(../images/modal-pop-bg-3.png) no-repeat 94% 0;
+  }
+  &-4 {
+  }
+}
+.modal-header{
+    height: 50px;
+    background: $green;
+    display: block;
+    border-radius: 3px;
+    border-bottom: none;
+    padding: 7px 15px;
+    color:#fff;
+    & .icon-minimize-cirle,
+    .icon-close-circle{
+      display: block;
+      opacity: 1;
+    }
+    & .minimize {
+      padding: 0;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      -webkit-appearance: none;
+      margin-top: 8px;
+      margin-right: 12px;
+    }
+    & .close {
+      opacity: 1;
+      margin-top: 8px;
+    }
+}
+.blur {
+    -webkit-filter: blur(5px) grayscale(50%);
+}
+
+.modal-body {
+  margin-top: 4px;
+  background: #ffffff;
+  border-radius: 3px;
+  padding: 0px;
+  height: 525px;/*body height*/
 }
 .thumbnail {
   margin-bottom:6px;
 }
-
+.modal-content {
+  background: transparent;
+  height: 580px;
+}
 .carousel-control.left,
 .carousel-control.right{
   background-image:none;
@@ -13,7 +79,7 @@
 }
 
 .modal-dialog {
-  width: 70%
+  // width: 70%
 }
 .thumbnail {
   margin-bottom:6px;
@@ -24,36 +90,86 @@
   margin-top:10%;
   width:5%;
 }
-.modal-header{
-  height: 40px;
-    background: $green;
-    display: block
-}
-.trainer-profile-pic a:hover{
-  opacity: 1
+
+.traner-contact-details {
+  & .trainer-location-details{
+    border-radius-left:3px;
+    padding: 17px 15px;
+    width:120px;
+    background: #ededed;
+    height: 100%;
+    height: 270px;
+    & .trainer-profile-modal-pic{
+      overflow: hidden;
+      border-radius: 50%;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto;
+      box-shadow: 1px 1px 0px rgba(0,0,0,0.12), 0 -1px 3px rgba(0,0,0,0.24);
+    }
+    & .trainer-location {
+      width: 80px;
+      margin: 0 auto;
+      margin-top: 50px;
+
+    }
+  }
+
+  & .trainer-details {
+    width:450px;
+    padding: 13px 3px;
+    & .form-group {
+    margin-bottom: 7px;
+      & .col-sm-3 + .col-sm-9 {
+        padding-left:2px !important;
+      }
+    }
+    & .control-label {
+      font-size: 13px;
+      text-align: left !important;
+      color: #9a9a9a;
+      &.text-left {
+        color: #212121;
+      }
+      & span {
+        color:#212121;
+      }
+      &.col-sm-3 {
+        width:21%;
+      }
+    }
+  }
 }
 .details-contact{
-  width: 570px;
-  height: 270px;
+  // width: 570px;
+  // height: 270px;
 }
-.trainer-location {
-  margin-top: 150px;
-}
+// .trainer-location {
+//   margin-top: 150px;
+// }
 .details-contact .trainer-profile-pic{
   top: 10%;
   left: 45%;
 }
 .modal-dialog .left.carousel-control {
   position: absolute;
-  left: -60px;
+  left: -90px;
   top: 30%;
-  height: 40px;
+  padding: 0px;
+  height: 43px!important;
+  background: transparent;
+  opacity: 1;
+  width: 43px !important;
 }
 .modal-dialog .right.carousel-control {
-  position: absolute;
-  right: -60px;
-  top: 30%;
-  height: 40px;
+  opacity: 1;
+    right: -50px;
+    padding: 0px;
+    position: absolute;
+    top: 30%;
+    height: 43px !important;
+    width: 43px !important;
+    background: transparent;
 }
 .modal.and.carousel {
   position: absolute; // Needed because the carousel overrides the position property
