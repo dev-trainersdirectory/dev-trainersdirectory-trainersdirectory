@@ -2,7 +2,10 @@
 div.well{
   height: 250px;
 }
-
+.search-container {
+height: 600px;
+margin-top: 5%;
+}
 .Absolute-Center {
   margin: auto;
   position: absolute;
@@ -121,9 +124,10 @@ div.well{
 
 /*marketing*/
 .marketing {
-  margin-top: 25%;
   margin-left: 15px;
-  width: 100%;
+  width: 630px;
+  margin: 0 auto;
+  margin-top: 15%;
   & a {
     color: #1e1e1e !important;
   }
