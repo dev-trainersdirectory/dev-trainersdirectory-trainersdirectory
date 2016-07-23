@@ -82,12 +82,14 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> States/Cities <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#" onclick="loadTab('<?=base_url()?>admin_states')">Sates</a>
+                                <a href="#" onclick="loadTab('<?=base_url()?>admin_states')">States</a>
                             </li>
                             <li>
                                 <a href="#" onclick="loadTab('<?=base_url()?>admin_cities')">Cities</a>
                             </li>
                         </ul>
+                    </li>
+                    <li>
                         <a href="#" onclick="loadTab('<?=base_url()?>sms_templates')"><i class="fa fa-fw fa-table"></i> SMS Templates</a>
                     </li>
                     <li>
@@ -98,6 +100,17 @@
                         <ul id="coin_mng" class="collapse">
                             <li>
                                 <a href="#" onclick="loadTab('<?=base_url()?>admin_coin_transactions')">Coin Transactions</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#dd_advertisements"><i class="fa fa-fw fa-arrows-v"></i> Advertisements <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="dd_advertisements" class="collapse">
+                            <li>
+                                <a href="#" onclick="loadTab('<?=base_url()?>admin_advertisers')">Advertiser</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="loadTab('<?=base_url()?>admin_advertisements')">Advertisement</a>
                             </li>
                         </ul>
                     </li>
