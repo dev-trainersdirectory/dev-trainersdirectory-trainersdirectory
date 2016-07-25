@@ -15,9 +15,24 @@ class CAdvertisements extends CEosPlural {
 	}
 
 	public static function fetchAllAdvertisements( $objDatabase ) {
-		$strSQL = 'SELECT * FROM advertisements';
+		$strSQL = 'SELECT 
+						adv.*,
+						ad.name AS advertiser_name 
+					FROM advertisements adv 
+					JOIN advertisers ad ON( adv.advertiser_id = ad.id )';
 
 		return self::fetchAdvertisements( $strSQL, $objDatabase );
+	}
+
+	public static function fetchAdvertisementById( $intAdvertisementId, $objDatabase ) {
+		$strSQL = 'SELECT 
+						adv.*,
+						ad.name AS advertiser_name 
+					FROM advertisements adv 
+					JOIN advertisers ad ON( adv.advertiser_id = ad.id )
+					WHERE adv.id = ' . (int) $intAdvertisementId;
+
+		return self::fetchAdvertisement( $strSQL, $objDatabase );
 	}
 }
 
