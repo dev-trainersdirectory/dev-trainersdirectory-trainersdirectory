@@ -14,6 +14,8 @@ class CAdvertisement extends CEosSingular {
 	public $intCreatedBy;
 	public $strCreatedOn;
 
+	public $strAdvertiserName;
+
 	function __construct() {
 		parent::__construct();
 	}
@@ -38,7 +40,7 @@ class CAdvertisement extends CEosSingular {
 			$this->setCategoryIds( $arrstrRequestData['category_ids'] );
 
 		if( true == array_key_exists( 'notes', $arrstrRequestData ) )
-			$this->setIsActive( $arrstrRequestData['notes'] );
+			$this->setNotes( $arrstrRequestData['notes'] );
 
 		if( true == array_key_exists( 'is_active', $arrstrRequestData ) )
 			$this->setIsActive( $arrstrRequestData['is_active'] );
@@ -55,6 +57,8 @@ class CAdvertisement extends CEosSingular {
 		if( true == array_key_exists( 'created_on', $arrstrRequestData ) )
 			$this->setCreatedOn( $arrstrRequestData['created_on'] );
 
+		if( true == array_key_exists( 'advertiser_name', $arrstrRequestData ) )
+			$this->setAdvertiserName( $arrstrRequestData['advertiser_name'] );
 	}
 
 	public function setId( $intId ) {
@@ -101,11 +105,15 @@ class CAdvertisement extends CEosSingular {
 		$this->intCreatedBy = $intCreatedBy;
 	}
 
+	public function setAdvertiserName( $strAdvertiserName ) {
+		$this->strAdvertiserName = $strAdvertiserName;
+	}
+
 	public function getId() {
 		return $this->intId;;
 	}
 
-	public function getAdevrtiserId() {
+	public function getAdvertiserId() {
 		return $this->intAdvertiserId;
 	}
 
@@ -118,7 +126,8 @@ class CAdvertisement extends CEosSingular {
 	}
 
 	public function getCategoryIds() {
-		return $this->strCategoryIds;
+		return array();
+		//return $this->strCategoryIds;
 	}
 
 	public function getNotes() {
@@ -145,6 +154,9 @@ class CAdvertisement extends CEosSingular {
 		return $this->strCreatedOn;
 	}
 
+	public function getAdvertiserName() {
+		return $this->strAdvertiserName;
+	}
 	public function validate( $strAction, $objDatabase ) {
 
 		$boolResult = true;

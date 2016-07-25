@@ -13,20 +13,20 @@
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
-                        <th width="20%">Name</th>
-                        <th >Address</th>
-                        <th width="25%">Contact Number</th>
-                        <th width="10%">Coins</th>
+                        <th width="20%">Advertiser Name</th>
+                        <th >Notes</th>
+                        <th width="25%">Redirect Link</th>
+                        <th width="10%">Active</th>
                         <th width="5%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach( $advertisements as $advertisement ) {?>
                     <tr>
-                        <td><?php echo $advertisement->getName() ?></td>
-                        <td><?php echo $advertisement->getAddress() ?></td>
-                        <td><?php echo $advertisement->getContactNumber() ?></td>
-                        <td><?php echo $advertisement->getCoins() ?></td>
+                        <td><?php echo $advertisement->getAdvertiserName() ?></td>
+                        <td><?php echo $advertisement->getNotes() ?></td>
+                        <td><?php echo $advertisement->getRedirectLink() ?></td>
+                        <td><?php echo $advertisement->getIsActive() ?></td>
                         <td>
                         <button type="button" class="btn btn-info js-edit_advertisement" data-toggle="modal" data-target="#jsModal-advertisement" id="<?php echo $advertisement->getId() ?>">Edit</button></td>
                         </td>
