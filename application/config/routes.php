@@ -63,6 +63,10 @@ $route['admin_reviews'] = "admin/cadminreviewscontroller";
 $route['admin_reviews/(.*)'] = "admin/cadminreviewscontroller/$1";
 $route['admin_coin_transactions'] = "admin/cadmincointransactionscontroller";
 $route['admin_coin_transactions/(.*)'] = "admin/cadmincointransactionscontroller/$1";
+$route['admin_advertisers'] = "admin/cadminadvertiserscontroller";
+$route['admin_advertisers/(.*)'] = "admin/cadminadvertiserscontroller/$1";
+$route['admin_advertisements'] = "admin/cadminadvertisementscontroller";
+$route['admin_advertisements/(.*)'] = "admin/cadminadvertisementscontroller/$1";
 $route['404_override'] = '';
 
 /*$arrControllerMapping = array( 'search' => 'CSearchTrainerController' );

@@ -2,9 +2,9 @@ body {
   // padding-top: 50px; // fixed navbar on site
 //  background: url(#{$image-path}report-detail-bg.gif) 0 0 repeat-x;
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-    padding-top: 100px;
+
     &.popup-page {
-      padding-top: 50px;
+      // padding-top: 50px;
     }
   }
 }

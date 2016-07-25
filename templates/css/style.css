@@ -8358,7 +8358,7 @@ a.btnprint {
 }
 /* line 122, ../scss/base/_buttons.scss */
 .btn-circle:hover, .btn-circle:focus, .btn-circle:active {
-  outline: none;
+  outline: none !important;
   background-color: #fff;
 }
 
@@ -9256,18 +9256,32 @@ body {
   font-weight: bold;
 }
 
-/* line 41, ../scss/base/_base.scss */
+/* line 40, ../scss/base/_base.scss */
+.wrapper.search-page {
+  height: 100%;
+  min-height: 100%;
+}
+
+/* line 44, ../scss/base/_base.scss */
 .text-left {
   text-align: left !important;
 }
 
-/* line 45, ../scss/base/_base.scss */
+/* line 47, ../scss/base/_base.scss */
+.search-container-footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: 40px;
+}
+
+/* line 53, ../scss/base/_base.scss */
 .header {
   height: 90px;
   position: relative;
   background: url(../images/header-bg.jpg);
 }
-/* line 49, ../scss/base/_base.scss */
+/* line 57, ../scss/base/_base.scss */
 .header .logo {
   height: 87px;
   padding: 0px;
@@ -9275,26 +9289,26 @@ body {
   top: 11px;
   left: 10px;
 }
-/* line 55, ../scss/base/_base.scss */
+/* line 63, ../scss/base/_base.scss */
 .header .logo img {
   height: 100%;
 }
 
-/* line 60, ../scss/base/_base.scss */
+/* line 68, ../scss/base/_base.scss */
 .scrollbar {
   /* Track */
   /* Handle */
 }
-/* line 61, ../scss/base/_base.scss */
+/* line 69, ../scss/base/_base.scss */
 .scrollbar::-webkit-scrollbar {
   width: 5px;
 }
-/* line 66, ../scss/base/_base.scss */
+/* line 74, ../scss/base/_base.scss */
 .scrollbar::-webkit-scrollbar-track {
   -webkit-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 73, ../scss/base/_base.scss */
+/* line 81, ../scss/base/_base.scss */
 .scrollbar::-webkit-scrollbar-thumb {
   -webkit-border-radius: 1px;
   border-radius: 1px;
@@ -9302,7 +9316,7 @@ body {
 }
 
 /* modal */
-/* line 84, ../scss/base/_base.scss */
+/* line 92, ../scss/base/_base.scss */
 .vertical-alignment-helper {
   display: table;
   height: 100%;
@@ -9311,7 +9325,7 @@ body {
   /* This makes sure that we can still click outside of the modal to close it */
 }
 
-/* line 90, ../scss/base/_base.scss */
+/* line 98, ../scss/base/_base.scss */
 .vertical-align-center {
   /* To center vertically */
   display: table-cell;
@@ -9319,7 +9333,7 @@ body {
   pointer-events: none;
 }
 
-/* line 96, ../scss/base/_base.scss */
+/* line 104, ../scss/base/_base.scss */
 .modal-content {
   /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
   width: inherit;
@@ -9328,17 +9342,6 @@ body {
   margin: 0 auto;
   pointer-events: all;
   width: 100%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  /* line 1, ../scss/base/_generic.scss */
-  body {
-    padding-top: 100px;
-  }
-  /* line 6, ../scss/base/_generic.scss */
-  body.popup-page {
-    padding-top: 50px;
-  }
 }
 
 /* line 13, ../scss/base/_generic.scss */
@@ -10545,7 +10548,13 @@ div.well {
   height: 250px;
 }
 
-/* line 6, ../scss/components/_search.scss */
+/* line 5, ../scss/components/_search.scss */
+.search-container {
+  height: 600px;
+  margin-top: 5%;
+}
+
+/* line 9, ../scss/components/_search.scss */
 .Absolute-Center {
   margin: auto;
   position: absolute;
@@ -10555,7 +10564,7 @@ div.well {
   right: 0;
 }
 
-/* line 12, ../scss/components/_search.scss */
+/* line 15, ../scss/components/_search.scss */
 .Absolute-Center.is-Responsive {
   width: 50%;
   height: 60%;
@@ -10564,14 +10573,14 @@ div.well {
   padding: 0px;
 }
 
-/* line 19, ../scss/components/_search.scss */
+/* line 22, ../scss/components/_search.scss */
 .search-box {
   max-width: 535px;
   width: 515px  !important;
   font-size: 15px;
 }
 
-/* line 24, ../scss/components/_search.scss */
+/* line 27, ../scss/components/_search.scss */
 #logo-container {
   margin: auto;
   margin-bottom: 10px;
@@ -10579,63 +10588,63 @@ div.well {
   height: 30px;
 }
 
-/* line 34, ../scss/components/_search.scss */
+/* line 37, ../scss/components/_search.scss */
 .search-control .col-md-10.form-group {
   padding: 0;
 }
 
-/* line 39, ../scss/components/_search.scss */
+/* line 42, ../scss/components/_search.scss */
 .block {
   border: 1px solid red;
   text-align: center;
   vertical-align: middle;
 }
 
-/* line 45, ../scss/components/_search.scss */
+/* line 48, ../scss/components/_search.scss */
 .select-category {
   min-width: 600px;
 }
-/* line 47, ../scss/components/_search.scss */
+/* line 50, ../scss/components/_search.scss */
 .select-category > li {
   float: left;
 }
 
-/* line 53, ../scss/components/_search.scss */
+/* line 56, ../scss/components/_search.scss */
 .logo {
   padding: 25px;
 }
 
-/* line 56, ../scss/components/_search.scss */
+/* line 59, ../scss/components/_search.scss */
 .sub-category {
   float: left;
   padding: 10px;
 }
-/* line 59, ../scss/components/_search.scss */
+/* line 62, ../scss/components/_search.scss */
 .sub-category ul {
   padding: 0;
   margin: 0;
   list-style: none;
   position: relative;
 }
-/* line 64, ../scss/components/_search.scss */
+/* line 67, ../scss/components/_search.scss */
 .sub-category ul li {
   height: 20px;
 }
-/* line 67, ../scss/components/_search.scss */
+/* line 70, ../scss/components/_search.scss */
 .sub-category ul li:nth-child(4) ~ li {
   left: 100px;
   top: -80px;
   position: relative;
 }
 
-/* line 74, ../scss/components/_search.scss */
+/* line 77, ../scss/components/_search.scss */
 .note-box {
   background: #f4f4f4;
   color: #8d9193;
   padding: 10px;
 }
 
-/* line 80, ../scss/components/_search.scss */
+/* line 83, ../scss/components/_search.scss */
 .search-by-city .dropdown-menu-right {
   width: 300px;
   left: 0 !important;
@@ -10643,114 +10652,115 @@ div.well {
   margin-top: 15px;
   white-space: normal;
 }
-/* line 87, ../scss/components/_search.scss */
+/* line 90, ../scss/components/_search.scss */
 .search-by-city-container {
   padding: 0;
 }
-/* line 89, ../scss/components/_search.scss */
+/* line 92, ../scss/components/_search.scss */
 .search-by-city-container form {
   padding: 10px;
 }
 
-/* line 94, ../scss/components/_search.scss */
+/* line 97, ../scss/components/_search.scss */
 .dropdown.dropdown-lg .dropdown-menu {
   margin-top: -1px;
   padding: 6px 20px;
 }
 
-/* line 98, ../scss/components/_search.scss */
+/* line 101, ../scss/components/_search.scss */
 .input-group-btn .btn-group {
   display: flex !important;
 }
 
-/* line 101, ../scss/components/_search.scss */
+/* line 104, ../scss/components/_search.scss */
 .btn-group .btn {
   border-radius: 0;
   margin-left: -1px;
 }
 
-/* line 105, ../scss/components/_search.scss */
+/* line 108, ../scss/components/_search.scss */
 .btn-group .btn:last-child {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
 }
 
-/* line 109, ../scss/components/_search.scss */
+/* line 112, ../scss/components/_search.scss */
 .btn-group .form-horizontal .btn[type="submit"] {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
 
-/* line 113, ../scss/components/_search.scss */
+/* line 116, ../scss/components/_search.scss */
 .form-horizontal .form-group {
   margin-left: 0;
   margin-right: 0;
 }
 
-/* line 117, ../scss/components/_search.scss */
+/* line 120, ../scss/components/_search.scss */
 .form-group .form-control:last-child {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
 
 /*marketing*/
-/* line 123, ../scss/components/_search.scss */
+/* line 126, ../scss/components/_search.scss */
 .marketing {
-  margin-top: 25%;
   margin-left: 15px;
-  width: 100%;
+  width: 630px;
+  margin: 0 auto;
+  margin-top: 15%;
 }
-/* line 127, ../scss/components/_search.scss */
+/* line 131, ../scss/components/_search.scss */
 .marketing a {
   color: #1e1e1e !important;
 }
 
-/* line 131, ../scss/components/_search.scss */
+/* line 135, ../scss/components/_search.scss */
 .marketing .col-lg-4 {
   margin-bottom: 20px;
   text-align: center;
 }
 
-/* line 136, ../scss/components/_search.scss */
+/* line 140, ../scss/components/_search.scss */
 .marketing ul {
   list-style: none;
   padding: 0px;
 }
 
-/* line 140, ../scss/components/_search.scss */
+/* line 144, ../scss/components/_search.scss */
 .marketing ul li {
   float: left;
   margin-right: 160px;
   text-align: center;
 }
-/* line 144, ../scss/components/_search.scss */
+/* line 148, ../scss/components/_search.scss */
 .marketing ul li:last-child {
   margin-right: 0;
 }
 
-/* line 149, ../scss/components/_search.scss */
+/* line 153, ../scss/components/_search.scss */
 .img-circle {
   border-radius: 50%;
 }
 
-/* line 151, ../scss/components/_search.scss */
+/* line 155, ../scss/components/_search.scss */
 .marketing h2 {
   font-weight: normal;
 }
 
 @media screen and (min-width: 768px) {
-  /* line 156, ../scss/components/_search.scss */
+  /* line 160, ../scss/components/_search.scss */
   #adv-search {
     width: 500px;
     margin: 0 auto;
   }
 
-  /* line 160, ../scss/components/_search.scss */
+  /* line 164, ../scss/components/_search.scss */
   .dropdown.dropdown-lg {
     position: static !important;
   }
 
-  /* line 163, ../scss/components/_search.scss */
+  /* line 167, ../scss/components/_search.scss */
   .dropdown.dropdown-lg .dropdown-menu {
     min-width: 500px;
   }
