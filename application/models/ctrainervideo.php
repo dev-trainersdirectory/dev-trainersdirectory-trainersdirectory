@@ -33,7 +33,7 @@ class CTrainerVideo extends CEosSingular
 			$this->setVideoLink( $arrstrRequestData['video_link'] );
 
 		if( true == array_key_exists( 'is_published', $arrstrRequestData ) )
-			$this->setIsPublished( $arrstrRequestData['trainer_skill_id'] );
+			$this->setIsPublished( $arrstrRequestData['is_published'] );
 
 		if( true == array_key_exists( 'deleted_by', $arrstrRequestData ) )
 			$this->setDeletedBy( $arrstrRequestData['deleted_by'] );
@@ -141,11 +141,11 @@ class CTrainerVideo extends CEosSingular
 								'trainer_skill_id' 	=> $this->intTrainerSkillId,
 								'video_link' 		=> $this->strVideoLink,
 								'is_published' 		=> $this->boolIsPublished,
-								'created_by'		=> $this->intCreatedBy,
+								'created_by'		=> 1,
 								'created_on'		=> 'NOW()'
 							);
 
-		if( false == $this->db->insert( 'trainer_skills', $arrStrInsertData ) ) return false;
+		if( false == $this->db->insert( 'trainer_videos', $arrStrInsertData ) ) return false;
 
 		return true;
 	}
@@ -154,28 +154,28 @@ class CTrainerVideo extends CEosSingular
 
 		$arrStrUpdateData = array();
 
-		if( false == is_null( $this->intTrainerId ) ) $arrStrUpdateData['trainer_id'] = $this->intTrainerId;
-		if( false == is_null( $this->intTrainerSkillId ) ) $arrStrUpdateData['trainer_skill_id'] = $this->intTrainerSkillId;
-		if( false == is_null( $this->strVideoLink ) ) $arrStrUpdateData['video_link'] = $this->strVideoLink;
-		if( false == is_null( $this->boolIsPublished ) ) $arrStrUpdateData['is_published'] = $this->boolIsPublished;
+		$arrStrUpdateData['trainer_id'] = $this->intTrainerId;
+		$arrStrUpdateData['trainer_skill_id'] = $this->intTrainerSkillId;
+		$arrStrUpdateData['video_link'] = $this->strVideoLink;
+		$arrStrUpdateData['is_published'] = $this->boolIsPublished;
 
 		$this->db->where( 'id =', $this->intId );
 
-		if( false == $this->db->update( 'trainer_skills', $arrStrUpdateData ) ) return false;
+		if( false == $this->db->update( 'trainer_videos', $arrStrUpdateData ) ) return false;
 
 		return true;
 	}
 
 	public function delete() {
 
-		$arrStrDeleteData = array(
-								'deleted_by' => $this->intDeletedBy,
+		$arrStrDeleteData = array(	
+								'deleted_by' => 1,
 								'deleted_on' => 'NOW()'
 							);
 
 		$this->db->where( 'id =', $this->intId );
  	
- 		if( false == $this->db->update( 'trainer_skills', $arrStrDeleteData ) ) return false;
+ 		if( false == $this->db->update( 'trainer_videos', $arrStrDeleteData ) ) return false;
 
 		return true;
 	}

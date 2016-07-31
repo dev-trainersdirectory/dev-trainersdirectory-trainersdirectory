@@ -111,6 +111,23 @@ class CLeads extends CEosPlural
 		return self::fetchLeads( $strSQL, $objDatabase );
 	}
 
+	public function fetchLeadNamesByTrainerIds( $arrintTrainerIds, $objDatabase ) {
+		if( false == valArr( $arrintTrainerIds ) ) return NULL;
+
+		$strSQL = ' SELECT
+						l.id,
+						l.user_id,
+						l.first_name,
+						l.last_name,
+						t.id
+					FROM
+						leads l
+						JOIN trainers t ON ( t.lead_id = l.id )
+					WHERE t.id IN ( ' . implode( ',', $arrintTrainerIds ) .' )';
+
+		return self::fetchLeads( $strSQL, $objDatabase );
+	}
+
 }
 
 ?>
