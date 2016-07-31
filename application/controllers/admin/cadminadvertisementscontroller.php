@@ -24,9 +24,13 @@ class CAdminAdvertisementsController extends CAdminSystemController {
 
 	public function addAdvertisement() {
 		$objAdvertisement = new CAdvertisement();
+		$arrobjAdvertisers = ( array ) CAdvertisers::fetchAllAdvertisers( $this->db );
+		$arrobjTrCategories = ( array ) CTrCategories::fetchAllPublishedTrCategories( $this->db ); 
 
 		$data = array();
-		$data['advertisement'] = $objAdvertisement;
+		$data['advertisers'] 	= $arrobjAdvertisers;
+		$data['advertisement'] 	= $objAdvertisement;
+		$data['categories'] 	= $arrobjTrCategories;
 
 		$this->load->view( 'admin/add_edit_advertisement', $data );
 	}
@@ -56,8 +60,13 @@ class CAdminAdvertisementsController extends CAdminSystemController {
 		$intAdvertisementId = $this->input->post( 'advertisement_id' );
 		$objAdvertisement = CAdvertisements::fetchAdvertisementById( $intAdvertisementId, $this->db );
 
+		$arrobjAdvertisers = ( array ) CAdvertisers::fetchAllAdvertisers( $this->db );
+		$arrobjTrCategories = ( array ) CTrCategories::fetchAllPublishedTrCategories( $this->db );
+
 		$data = array();
 		$data['advertisement'] = $objAdvertisement;
+		$data['advertisers'] 	= $arrobjAdvertisers;
+		$data['categories'] 	= $arrobjTrCategories;
 
 		$this->load->view( 'admin/add_edit_advertisement', $data );
 	}
@@ -86,4 +95,32 @@ class CAdminAdvertisementsController extends CAdminSystemController {
 		exit;
 	}
 
+	public function uploadAdvertisementImage() {
+		$intAdvertisementId = $this->input->post('advertisement')['id'];
+		$objAdvertisement = CAdvertisements::fetchAdvertisementById( $intAdvertisementId, $this->db );
+
+		$strTempImagePath = $_FILES['advertisement']['tmp_name']['image_path'];
+		$strFilePath = 'public\images\advertisements\\';
+		$strFileName = 'ad_' . $intAdvertisementId . '_' . $_FILES['advertisement']['name']['image_path'];
+
+		$strDestFilePath = FCPATH . $strFilePath . $strFileName;
+
+		$objAdvertisement->setImagePath( $strFilePath . $strFileName );
+
+		switch( NULL ) {
+			default:
+
+				if( false == copy( $strTempImagePath, $strDestFilePath ) ) {
+					break;
+				}
+
+				if( false == $objAdvertisement->update( $this->db ) ) {
+					break;
+				}
+
+				echo $strFilePath . $strFileName;
+				exit;
+		}
+
+	}
 }
