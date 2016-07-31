@@ -6,7 +6,9 @@
         </h3>
     </div>
 </div>
-<div align="right"><a hre="#" class="btn btn-primary js-add_coins" data-toggle="modal" data-target="#myModal-add_coins">Add Coins</a></div>
+<div align="right">
+<a hre="#" class="btn btn-primary js-add_coins" data-toggle="modal" data-target="#myModal-add_coins">Add Coins</a>
+</div><br>
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
@@ -19,14 +21,12 @@
                         <th width="5%">Dedit</th>
                         <th>Remark</th>
                         <th width="10%">Status</th>
-                        <th width="5%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php foreach( $coin_transactions as $coin_transaction ) {?>
                     <tr>
-                        <td><?php echo $leads[$coin_transaction->getId()]->getFirstName().' '.$leads[$coin_transaction->getId()]->getLastName()?></td>
-                        <td>
+                        <td><?php echo $leads[$coin_transaction->getLeadId()]->getFirstName().' '.$leads[$coin_transaction->getLeadId()]->getLastName()?></td>
                         <td><?php echo $coin_transaction->getCredit() ?></td>
                         <td><?php echo $coin_transaction->getDebit() ?></td>
                         <td><?php echo $coin_transaction->getRemark() ?></td>
@@ -44,7 +44,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add State</h4>
+        <h4 class="modal-title" id="myModalLabel">Add Coins</h4>
       </div>
       <div class="modal-body">
         
@@ -80,6 +80,7 @@
             data: $( "#frm_edit_coins" ).serialize(),
             url: '<?=base_url()?>admin_coin_transactions/' + action,
             success: function(result) {
+                //$('.modal-body').html(result);
                 output = JSON.parse(result);
                 if( 'success' == output.type ) {
                     $( "#js-modal_close" ).trigger( "click" );

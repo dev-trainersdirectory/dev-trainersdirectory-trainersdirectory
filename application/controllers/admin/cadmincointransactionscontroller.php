@@ -40,9 +40,27 @@ class CAdminCoinTransactionsController extends CAdminSystemController {
 
 	public function insertCoins() {
 
+		$strTransactionType = $this->input->post( 'coin_transaction' )['transaction_type'];
+		$intCoins = $this->input->post( 'coin_transaction' )['coins'];
+		$intLeadId = $this->input->post( 'coin_transaction' )['lead_id'];
+
 		$objCoinTransaction = new CCoinTransaction();
 
-		$objCoinTransaction->applyRequestForm( $this->input->post( 'coin_transaction' ), $this->_arrstrCoinTransactionFields );
+		$objCoinTransaction->setLeadId( $this->input->post( 'coin_transaction' )['lead_id'] );
+		$objCoinTransaction->setRemark( $this->input->post( 'coin_transaction' )['remark'] );
+		$objCoinTransaction->setStatus( 'Approved' );
+
+		if( 'credit' == $strTransactionType ) $objCoinTransaction->setCredit( $intCoins );
+		else $objCoinTransaction->setDebit( $intCoins );
+
+		$objLead = CLeads::fetchLeadById( $intLeadId, $this->db );
+
+		$intLeadCoins = $objLead->getCoins();
+
+		if( 'credit' == $strTransactionType ) $intLeadCoins = $intLeadCoins + $intCoins;
+		else $intLeadCoins = $intLeadCoins - $intCoins;
+
+		$objLead->setCoins( $intLeadCoins );
 
 		switch( NULL ) {
 			default:
@@ -53,9 +71,32 @@ class CAdminCoinTransactionsController extends CAdminSystemController {
 					break;
 				}
 
+				if( false == $objLead->update( $this->db ) ) {
+					$this->db->trans_rollback();
+					break;
+				}
+
 				$this->db->trans_commit();
 				echo json_encode( array( 'type' => 'success', 'message' => 'Coins added.' ) );
 		}
+	}
+
+	public function loadUsersList() {
+
+		$strUserList = '';
+		$key = $this->input->post('key');
+
+		$arrobjLeadNames = CLeads::fetchLeadNamesByKey( $key, $this->db );
+
+		foreach( $arrobjLeadNames as $objLeadName ) {
+			$strUserList .= '<li  class="js-username">
+			<a href="#" data-userid="'.$objLeadName->getId().'" onclick="setUsername(this)">'
+			.$objLeadName->getFirstName().' '.$objLeadName->getLastName().
+			'</a>
+			</li>';
+		}
+
+		echo $strUserList;
 	}
 
 }
