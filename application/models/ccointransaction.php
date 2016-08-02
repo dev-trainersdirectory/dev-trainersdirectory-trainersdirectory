@@ -151,13 +151,14 @@ class CCoinTransaction extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
-								'user_id'			=> $this->intUserId,
+								'lead_id'			=> $this->intLeadId,
 								'credit'			=> $this->floatCredit,
 								'debit'				=> $this->floatDebit,
 								'purchased_lead_id' => $this->intPurchasedLeadId,
 								'remark'			=> $this->strRemark,
 								'status'			=> $this->boolStatus,
-								'created_on'		=> NOW(),
+								'created_by'		=> 1,
+								'created_on'		=> 'NOW()',
 							);
 
 		if( false == $this->db->insert( 'coin_transactions', $arrStrInsertData ) ) return false;

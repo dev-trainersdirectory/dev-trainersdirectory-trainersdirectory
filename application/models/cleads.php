@@ -93,6 +93,24 @@ class CLeads extends CEosPlural
 		return self::fetchLeads( $strSQL, $objDatabase );
 	}
 
+	public function fetchLeadNamesByKey( $key, $objDatabase ) {
+		
+		$strCond = '';
+		if( '' != $key ) {
+			$strCond = ' WHERE first_name LIKE "%' . $key . '%"	OR last_name LIKE "%' . $key . '%"';
+		}
+
+		$strSQL = ' SELECT
+						id,
+						user_id,
+						first_name,
+						last_name
+					FROM
+						leads' . $strCond;
+
+		return self::fetchLeads( $strSQL, $objDatabase );
+	}
+
 }
 
 ?>
