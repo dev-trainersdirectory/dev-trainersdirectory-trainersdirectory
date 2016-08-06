@@ -31,6 +31,12 @@ class CReviewRatings extends CEosPlural {
 
 		return self::fetchReviewRating( $strSQL, $objDatabase );
 	}
+
+	public static function fetchReviewRatingsByTrainerIdByLimit( $intTrainerId, $intLimit, $objDatabase ) {
+		$strSQL = 'SELECT * FROM reviews_ratings WHERE reviewee_id = ' . ( int ) $intTrainerId .' limit ' . $intLimit;
+
+		return self::fetchReviewRatings( $strSQL, $objDatabase );
+	}
 	
 }
 

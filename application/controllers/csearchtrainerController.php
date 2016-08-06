@@ -20,4 +20,29 @@ class CSearchTrainerController extends CSystemController {
 
 		$this->load->view('search_trainer', $data);
 	}
+
+	public function viewTrainer(){
+
+		$strSubjects = '';
+		$intTrainerId = $this->input->post('id');
+
+		$objTrainer = CTrainers::fetchTrainerDetailById( $intTrainerId, $this->db );
+
+		$arrObjTraineReviews = CReviewRatings::fetchReviewRatingsByTrainerIdByLimit( $intTrainerId, 5, $this->db );
+
+		$objTrainerSkills = (array) CTrainerSkills::fetchTrainerSkillsByTrainerId( $intTrainerId, $this->db );
+		$objTrainerSkills = (array) rekeyObjects( 'TrSubjectId', $objTrainerSkills );
+
+		$arrobjSubjectNames = (array) CTrSubjects::fetchSubjectNamesByIds( array_keys( $objTrainerSkills ), $this->db );
+
+		foreach ( $arrobjSubjectNames as $objSubjectName ) {
+			$strSubjects .= $objSubjectName->getName().',';
+		}
+
+		$data['trainer'] = $objTrainer;
+		$data['tr_subject_names'] = rtrim( $strSubjects, ',' );
+		$data['trainer_reviews'] = $arrObjTraineReviews;
+
+		$this->load->view('view_trainer_details_popup', $data);
+	}
 }

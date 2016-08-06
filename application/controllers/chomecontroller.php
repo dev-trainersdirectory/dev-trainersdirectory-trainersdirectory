@@ -23,6 +23,7 @@ class CHomeController extends CSystemController {
 		$data['arrstrParentTrCategories'] = $arrstrParentTrCategories;
 		$data['arrstrSubTrCategories'] = $arrstrSubTrCategories;
 		$data['arrstrTrSubjects'] = $arrstrTrSubjects;
+		$data['search_filter'] = $this->load->view('search_filter', NULL, TRUE);
 
 		$this->load->view('home', $data);
 	}

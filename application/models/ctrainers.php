@@ -101,6 +101,24 @@ class CTrainers extends CEosPlural {
 		
 		return self::fetchTrainers( $strSQL, $objDatabase );
 	}
+
+	public function fetchTrainerDetailById( $intId, $objDatabase ) {
+		
+		$strSQL = ' SELECT
+						t.*,
+						l.first_name,
+						l.last_name,
+						u.contact_number,
+						u.email_id
+					FROM
+						trainers t
+						JOIN leads l ON ( l.id = t.lead_id )
+						JOIN users u ON ( u.id = t.user_id )
+					WHERE
+						t.id = '. (int) $intId;
+		
+		return self::fetchTrainer( $strSQL, $objDatabase );
+	}
 }
 
 ?>
