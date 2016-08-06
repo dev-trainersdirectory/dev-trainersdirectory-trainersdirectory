@@ -32,14 +32,14 @@
                         <td><?php echo $review->getReview() ?></td>
                         <td><?php echo $review->getRatings() ?></td>
                         <td>
-                        <button class='js-edit_review btn btn-primary' data-toggle="modal" data-target="#myModal-edit_review" id='<?php echo $review->getId() ?>'>Edit</button>
+                        <button class='js-edit_review btn btn-primary' data-toggle="modal" data-target="#myModal-edit_review" id='<?php echo $review->getId() ?>'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
                         </td>
                     </tr>
                 <?php } ?>
                 </tbody>
             </table>
         </div>
-    </div>    
+    </div>
 </div>
 
 <div class="modal fade" id="myModal-edit_review" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -50,7 +50,7 @@
         <h4 class="modal-title" id="myModalLabel">Add City</h4>
       </div>
       <div class="modal-body">
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="js-modal_close" data-dismiss="modal">Close</button>

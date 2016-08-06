@@ -20,6 +20,12 @@ class CTrainerSkills extends CEosPlural {
 		return self::fetchTrainerSkills( $strSQL, $objDatabase );
 	}
 
+	public static function fetchTrainerSkillsByTrainerId( $intTrainerId, $objDatabase ) {
+		$strSQL = 'SELECT * FROM trainer_skills WHERE trainer_id = ' . (int) $intTrainerId;
+
+		return self::fetchTrainerSkills( $strSQL, $objDatabase );
+	}
+
 }
 
 ?>
