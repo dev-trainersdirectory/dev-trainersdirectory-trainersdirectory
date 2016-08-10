@@ -120,6 +120,9 @@
                     <li>
                         <a href="#" onclick="loadTab('<?=base_url()?>admin_videos_images')"><i class="fa fa-fw fa-table"></i> Videos</a>
                     </li>
+                    <li>
+                        <a href="#" onclick="loadTab('<?=base_url()?>admin_transactions')"><i class="fa fa-fw fa-table"></i> Transaction Costs</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
