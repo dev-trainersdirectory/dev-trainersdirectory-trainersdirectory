@@ -9,6 +9,24 @@
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
+        <form id="frm_filter_reviewee" method="post" role="form">
+            <div class="row form-group">
+                <div class="col-lg-3">
+                    <input class="form-control" type="text" name="filter[name]" value="<?php echo $filter['name']?>" placeholder="Trainer Name">
+                </div>
+                <div class="col-lg-3">
+                    <a href="#" class="btn btn-primary js-filter_reviewee">Filter</a>
+                    <a href="#" class="btn btn-default js-filter_reviewee" onclick="document.getElementById('filter_reset').value = 1;">
+                        Reset
+                    </a>
+                </div>
+                <input class="form-control" type="hidden" name="filter[reset]" vaue="0" id="filter_reset">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
         <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped">
                 <thead>
@@ -62,6 +80,20 @@
 
 <script type="text/javascript">
     
+     $(".js-filter_reviewee").click(function(){
+    
+        $.ajax ({
+            type: "post",
+            data: $( '#frm_filter_reviewee' ).serialize(),
+            url: '<?=base_url()?>admin_reviews/',
+            success: function(result) {
+                if(result) {
+                    $('.container-fluid').html(result);
+                }
+            }
+        })
+    });
+
     $(".js-edit_review").click(function(){
     $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({

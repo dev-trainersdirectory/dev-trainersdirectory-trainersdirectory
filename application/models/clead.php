@@ -22,6 +22,8 @@ class CLead extends CEosSingular {
 	public $strCreatedBy;
 	public $strCreatedOn;
 
+	public $intContactNumber;
+
 	function __construct() {
 		parent::__construct();
 	}
@@ -86,6 +88,9 @@ class CLead extends CEosSingular {
 
 		if( true == array_key_exists( 'created_on', $arrstrRequestData ) )
 			$this->setCreatedOn( $arrstrRequestData['created_on'] );
+
+		if( true == array_key_exists( 'contact_number', $arrstrRequestData ) )
+			$this->setContactNumber( $arrstrRequestData['contact_number'] );
 
 	}
 
@@ -165,6 +170,10 @@ class CLead extends CEosSingular {
 		$this->strCreatedBy = $strCreatedBy;
 	}
 
+	public function setContactNumber( $intContactNumber ) {
+		$this->intContactNumber = $intContactNumber;
+	}
+
 	public function getId() {
 		return $this->intId;
 	}
@@ -241,6 +250,10 @@ class CLead extends CEosSingular {
 		return $this->strCreatedBy;
 	}
 
+	public function getContactNumber() {
+		return $this->intContactNumber;
+	}
+	
 	public function getFullName() {
 		return $this->getFirstName() . ' ' . $this->getLastName();
 	}

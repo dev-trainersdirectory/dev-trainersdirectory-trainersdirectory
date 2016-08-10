@@ -15,7 +15,7 @@ class CUserTypes extends CEosPlural {
 	}
 
 	public static function fetchAllPublishedUserTypes( $objDatabase ) {
-		$strSQL = 'SELECT * FROM user_type';
+		$strSQL = 'SELECT * FROM user_types';
 
 		return self::fetchUserTypes( $strSQL, $objDatabase );
 	}
