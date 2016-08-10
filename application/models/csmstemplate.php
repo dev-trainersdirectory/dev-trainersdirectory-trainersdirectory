@@ -111,9 +111,9 @@ class CSmsTemplate extends CEosSingular {
 
 		$arrStrUpdateData = array();
 
-		if( false == is_null( $this->intSmsTypeId ) ) $arrStrUpdateData['sms_type_id'] 		= $this->intSmsTypeId;
-		if( false == is_null( $this->strContent ) ) $arrStrUpdateData['content'] 	= $this->strContent;
-		if( false == is_null( $this->boolIsActive ) ) $arrStrUpdateData['is_active'] = $this->boolIsActive;
+		$arrStrUpdateData['sms_type_id'] 	= $this->intSmsTypeId;
+		$arrStrUpdateData['content'] 		= $this->strContent;
+		$arrStrUpdateData['is_active'] 		= $this->boolIsActive;
 
 		$this->db->where( 'id =', $this->intId );
 

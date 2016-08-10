@@ -20,6 +20,24 @@ class CReviewRatings extends CEosPlural {
 		return self::fetchReviewRatings( $strSQL, $objDatabase );
 	}
 
+	public static function fetchAllReviewRatingsByFilter( $arrstrFilter, $objDatabase ) {
+		$strWhere = ' WHERE true ';
+		$arrstrFilter = array_filter( $arrstrFilter );
+		if( true == valArr( $arrstrFilter ) ) {
+			if( true == array_key_exists( 'name', $arrstrFilter ) )
+				$strWhere .= 'AND  (lower( l.first_name ) like \'%'. trim( strtolower ($arrstrFilter['name'] ) ) . '%\' OR lower( l.last_name ) like \'%'. trim( strtolower ($arrstrFilter['name'] ) ) . '%\' )'; 
+		}
+
+		$strSQL = 'SELECT 
+						rr.* 
+					FROM 
+						reviews_ratings rr 
+						JOIN users u ON ( rr.reviewee_id = u.id )
+						JOIN leads l ON ( l.user_id = u.id ) ' . $strWhere;
+
+		return self::fetchReviewRatings( $strSQL, $objDatabase );
+	}
+
 	public static function fetchAllPublishedReviewRatings( $objDatabase ) {
 		$strSQL = 'SELECT * FROM reviews_ratings';
 

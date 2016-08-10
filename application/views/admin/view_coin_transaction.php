@@ -2,13 +2,14 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 class="page-header">
-            States
+            Coin Transactions
         </h3>
     </div>
 </div>
-<div align="right">
-<a hre="#" class="btn btn-primary js-add_coins" data-toggle="modal" data-target="#myModal-add_coins">Add Coins</a>
-</div><br>
+ <div align="right">
+    <a hre="#" class="btn btn-primary js-add_coins" data-toggle="modal" data-target="#myModal-add_coins">Add Coins</a>
+</div>
+<br>
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">

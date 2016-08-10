@@ -16,7 +16,7 @@
                     <?php } ?>
                     </select>
                     <br/><br/>
-                    <strong>Content : </strong> <input type="textarea" rows="10" name="sms_template[content]" value="<?php echo $smsTemplate->getContent()?>">
+                    <strong>Content : </strong> <textarea rows="5" cols="75" name="sms_template[content]"> <?php echo $smsTemplate->getContent()?></textarea>
                     <br/><br/>
                     <strong>Active : </strong> <input type="checkbox" name="sms_template[is_active]" value="1" <?php if( true == $smsTemplate->getIsActive() ) { ?> checked <?php } ?>>
                     <input type="hidden" id="js-sms_template_id" name="sms_template[id]" value="<?php echo $smsTemplate->getId()?>">

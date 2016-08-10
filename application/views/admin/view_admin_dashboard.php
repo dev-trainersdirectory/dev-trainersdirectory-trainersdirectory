@@ -93,6 +93,9 @@
                         <a href="#" onclick="loadTab('<?=base_url()?>sms_templates')"><i class="fa fa-fw fa-table"></i> SMS Templates</a>
                     </li>
                     <li>
+                        <a href="#" onclick="loadTab('<?=base_url()?>email_templates')"><i class="fa fa-fw fa-table"></i> Email Templates</a>
+                    </li>
+                    <li>
                         <a href="#" onclick="loadTab('<?=base_url()?>admin_reviews')"><i class="fa fa-fw fa-table"></i> Reviews</a>
                     </li>
                     <li>
@@ -145,11 +148,10 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<?=base_url()?>public/admin/js/bootstrap.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="<?=base_url()?>public/admin/js/plugins/morris/raphael.min.js"></script>
-    <script src="<?=base_url()?>public/admin/js/plugins/morris/morris.min.js"></script>
-    <script src="<?=base_url()?>public/admin/js/plugins/morris/morris-data.js"></script>
+    
+
     <script type="text/javascript" src="/public/js/jquery.min.js"></script>
+    <script src="<?=base_url() ?>public/js/third_party/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
 
     function loadTab(url) {

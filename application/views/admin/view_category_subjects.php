@@ -1,10 +1,14 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 class="page-header">
-            Category & Subjects <input type="button" class="btn js-add_category" value="Add Category" data-toggle="modal" data-target="#jsModal-add_category">
+            Category & Subjects
         </h3>
     </div>
 </div>
+ <div align="right">
+     <input type="button" class="btn js-add_category" value="Add Category" data-toggle="modal" data-target="#jsModal-add_category">
+</div>
+<br>
 <div class="row">
     <div class="col-lg-12">
         <div class="table-responsive">
