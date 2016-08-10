@@ -39,12 +39,12 @@
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email Address</th>
-                        <th>Contact No</th>
+                        <th width="20%">Name</th>
+                        <th width="20%">Email Address</th>
+                        <th width="10%">Contact No</th>
                         <th>Address</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th width="15%">Status</th>
+                        <th width="5%">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,7 +56,7 @@
                         <td><?php echo $user->getContactNumber()?></td>
                         <td><?php echo $lead->getAddress()?></td>
                         <td><?php echo $statuses[$user->getStatusId()]->getName()?></td>
-                        <td><a href='#' class='js-edit_user' data-toggle="modal" data-target="#myModal-add_user" id='<?php echo $user->getId() ?>'>Edit</a></td>
+                        <td><a href='#' class='btn btn-primary js-edit_user' data-toggle="modal" data-target="#myModal-add_user" id='<?php echo $user->getId() ?>'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
                     </tr>
                 <?php } ?>
                 </tbody>

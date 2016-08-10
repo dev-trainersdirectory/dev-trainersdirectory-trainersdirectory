@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array( 'CEosSingular', 'CEosPlural', 'CCity', 'CCities', 'CTrSubject', 'CTrSubjects', 'CState', 'CStates', 'CUser', 'CUsers', 'CLead', 'CLeads', 'CBaseTrainer', 'CTrainer', 'CTrainers', 'CTrCategory', 'CTrCategories', 'CStatus', 'CStatuses', 'CUserType', 'CUserTypes', 'CDay', 'CDays', 'CTime', 'CTimes', 'CTrainerLocations', 'CTrainerLocation', 'CTrainerPreferences', 'CTrainerPreference', 'CLocations', 'CLocation', 'CPreferences', 'CPreference', 'CGender', 'CGenders', 'CUserTypeAssociation', 'CUserTypeAssociations', 'CReviewRating', 'CReviewRatings', 'CCoinTransaction', 'CCoinTransactions', 'CSmsTemplate', 'CSmsTemplates', 'CSmsType', 'CSmsTypes', 'CAdvertiser', 'CAdvertisers', 'CAdvertisement', 'CAdvertisements' );
+$autoload['model'] = array( 'CEosSingular', 'CEosPlural', 'CCity', 'CCities', 'CTrSubject', 'CTrSubjects', 'CState', 'CStates', 'CUser', 'CUsers', 'CLead', 'CLeads', 'CBaseTrainer', 'CTrainer', 'CTrainers', 'CTrCategory', 'CTrCategories', 'CStatus', 'CStatuses', 'CUserType', 'CUserTypes', 'CDay', 'CDays', 'CTime', 'CTimes', 'CTrainerLocations', 'CTrainerLocation', 'CTrainerPreferences', 'CTrainerPreference', 'CLocations', 'CLocation', 'CPreferences', 'CPreference', 'CGender', 'CGenders', 'CUserTypeAssociation', 'CUserTypeAssociations', 'CReviewRating', 'CReviewRatings', 'CCoinTransaction', 'CCoinTransactions', 'CSmsTemplate', 'CSmsTemplates', 'CSmsType', 'CSmsTypes', 'CAdvertiser', 'CAdvertisers', 'CAdvertisement', 'CAdvertisements','CTrainerVideos', 'CTrainerVideo', 'CTrainerSkills', 'CTrainerSkill' );
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */
