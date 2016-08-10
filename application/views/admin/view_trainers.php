@@ -88,7 +88,6 @@
 <script type="text/javascript">
 
     $(".js-filter_trainer").click(function(){
-    $('.container-fluid').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({
             type: "post",
             data: $( "form" ).serialize(),

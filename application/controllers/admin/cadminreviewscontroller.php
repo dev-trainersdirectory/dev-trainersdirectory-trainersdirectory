@@ -11,7 +11,16 @@ class CAdminReviewsController extends CAdminSystemController {
 
 	public function index() {
 
-		$arrobjReviewRatings = ( array ) CReviewRatings::fetchAllReviewRatings( $this->db );
+		$arrstrFilter 		= array( 'name' => '' );
+		$arrstrPostFilter 	= ( array ) $this->input->post( 'filter' );
+		$arrstrPostFilter 	= array_filter( $arrstrPostFilter );
+
+		if( true == array_key_exists( 'reset', $arrstrPostFilter ) ) {
+			$arrstrPostFilter = array();
+		}
+		$arrstrFilter = array_merge( $arrstrFilter, $arrstrPostFilter );
+
+		$arrobjReviewRatings = ( array ) CReviewRatings::fetchAllReviewRatingsByFilter( $arrstrFilter, $this->db );
 
 		foreach( $arrobjReviewRatings as $objReviewRating ) {
 			$arrintUserIds[$objReviewRating->getReviewerId()] = $objReviewRating->getReviewerId();
@@ -21,6 +30,7 @@ class CAdminReviewsController extends CAdminSystemController {
 		$arrobjLeads = ( array ) CLeads::fetchLeadNamesByUserIds( array_keys( $arrintUserIds ), $this->db );
 		$arrobjLeads = ( array ) rekeyObjects( 'UserId', $arrobjLeads );
 
+		$data['filter'] = $arrstrFilter;
 		$data['reviews'] = $arrobjReviewRatings;
 		$data['leads'] = $arrobjLeads;
 

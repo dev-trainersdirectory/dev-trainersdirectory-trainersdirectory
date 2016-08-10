@@ -33,11 +33,11 @@ class CUserType extends CEosSingular {
 		$this->strName = $strName;
 	}
 
-	public function getId( $intId ) {
+	public function getId() {
 		return $this->intId;
 	}
 
-	public function getName( $strName ) {
+	public function getName() {
 		return $this->strName;
 	}
 

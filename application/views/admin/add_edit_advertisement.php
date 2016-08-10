@@ -30,6 +30,7 @@
                             <div class="form-group">
                                 <image src="<?=base_url() . $advertisement->getImagePath()?>" height="42" width="42" class="js-advertisement_img"></image>
                                 <input type="hidden" name="advertisement[image_path]" class="js-image_path" value="<?php echo $advertisement->getImagePath()?>">
+                                <a href="#" class="js-delete_image">X</a>
                             </div>
                         </div>
                     </div>
@@ -99,4 +100,8 @@
         });
 
     });
+    $(".js-delete_image").click(function(){
+        $('.js-image_path').val( '' );
+        $('.js-advertisement_img').attr('src', '<?=base_url() ?>' );
+    }); 
 </script>

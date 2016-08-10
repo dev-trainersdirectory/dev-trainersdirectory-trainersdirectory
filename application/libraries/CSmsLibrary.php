@@ -20,13 +20,13 @@ class CSmsLibrary {
 
     public function sendSms() {
 
-    	foreach ( $tnis->arrobjSystemSmses as $objSyatemSms ) {
+    	foreach ( $tnis->arrobjSystemSmses as $objSystemSms ) {
 
     		$arrstrApiPostData = array(
 						'authkey'  => AUTHENTICATION_KEY,
-						'mobiles'  => $objSyatemSms->intSendTo,
-						'message'  => $objSyatemSms->strContent,
-						'sender'   => $objSyatemSms->intSentFrom,
+						'mobiles'  => $objSystemSms->intSendTo,
+						'message'  => $objSystemSms->strContent,
+						'sender'   => $objSystemSms->intSentFrom,
 						'route'    => ROUTE,
 						'country'  => COUNTRY_CODE,
 						'flash'    => FLASH,
@@ -54,7 +54,7 @@ class CSmsLibrary {
 			if( true == curl_errno( $objSmsApi ) ) {
 				$this->arrstrSmsErrors[$objSmsApi] = curl_error( $objSmsApi );
 			} else {
-				$objSyatemSms->strDeliveredOn = 'NOW()';
+				$objSystemSms->strDeliveredOn = 'NOW()';
 			}
 
 			curl_close( $objSmsApi );
@@ -66,8 +66,8 @@ class CSmsLibrary {
 
     public function updateSystemSmses() {
 
-    	foreach ( $tnis->arrobjSystemSmses as $objSyatemSms ) {
-    		if( false == $objSyatemSms->update() ) {
+    	foreach ( $tnis->arrobjSystemSmses as $objSystemSms ) {
+    		if( false == $objSystemSms->update() ) {
     			return false;
     		}
     	}
