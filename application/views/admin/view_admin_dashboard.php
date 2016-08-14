@@ -123,6 +123,17 @@
                     <li>
                         <a href="#" onclick="loadTab('<?=base_url()?>admin_transactions')"><i class="fa fa-fw fa-table"></i> Transaction Costs</a>
                     </li>
+                     <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#dd_bulk_upload"><i class="fa fa-fw fa-arrows-v"></i> Bulk Upload <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="dd_bulk_upload" class="collapse">
+                            <li>
+                                <a href="#" onclick="loadTab('<?=base_url()?>admin_bulk_upload/viewAddUsers')">Student</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="loadTab('<?=base_url()?>admin_bulk_upload/viewAddTrainers')">Trainer</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
