@@ -1,4 +1,7 @@
-
+html {
+	position: relative;
+    min-height: 100%;
+}
 
 body {
 	font-size: $base-font-size; /* from style.css */
@@ -17,7 +20,9 @@ body {
 	background: white;
 	font-size: 12px;
   color: #353d40;
-	position: relative;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 	& p {
 		margin-top: 18px;
 		font-weight: bold;

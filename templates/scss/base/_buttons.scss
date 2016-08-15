@@ -23,6 +23,41 @@
       background: darken($primary-color, 10%);
     }
 }
+/*button colors*/
+
+.btn {
+    &-big {
+        height: 50px;
+        width: 100%;
+    }
+    &-green {
+      background-color: $green;
+    }
+
+}
+
+.btn-category {
+    height: 50px;
+    background-color: $white;
+    border-color:$white-1;
+}
+
+.btn {
+    &-transparent {
+        background: none;
+        background-color: transparent;
+        border: none;
+    }
+}
+
+.disabled {
+    cursor: default;
+    &:hover,
+    &:focus,
+    &:active {
+        cursor: default;
+    }
+}
 a.btnprint {
     width: 41px;
     margin: 3px;
