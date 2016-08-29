@@ -47,6 +47,7 @@ background: none;
   color: #fff; }
 .tab-pane {
   padding: 0 0 5px 0;
+  width:665px;
 }
 .tab-content{
   padding: 0 27px;
@@ -126,14 +127,4 @@ right: auto;
 .search-by-city-container:before {
   left: 13px;
   right: auto;
-}
-/*sizes*/
-#educational {
-    width: 665px;
-}
-#fitness {
-      width: 490px;
-}
-#hobby {
-      width: 420px;
 }

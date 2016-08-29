@@ -128,10 +128,17 @@ margin-top: 5%;
   width: 630px;
   margin: 0 auto;
   margin-top: 15%;
-  & a {
+  & p {
     color: #1e1e1e !important;
+    color: $black;
+    font-size: 14px;
+    margin-top: 25px;
+    display: block;
   }
 }
+
+
+
 .marketing .col-lg-4 {
     margin-bottom: 20px;
     text-align: center;
