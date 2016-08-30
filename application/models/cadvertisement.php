@@ -173,6 +173,7 @@ class CAdvertisement extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_advertisements', $this->db ),
 								'advertiser_id' => $this->intAdvertiserId,
 								'image_path' 	=> $this->strImagePath,
 								'redirect_link' => $this->strRedirectLink,
@@ -180,7 +181,7 @@ class CAdvertisement extends CEosSingular {
 								'notes'			=> $this->strNotes,
 								'is_active' 	=> $this->boolIsActive,
 								'created_by' 	=> $this->intCreatedBy,
-								'created_on' 	=> $this->strCreatedOn
+								'created_on'	=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'advertisements', $arrStrInsertData ) ) return false;
@@ -212,7 +213,7 @@ class CAdvertisement extends CEosSingular {
 
 		$arrStrUpdateData = array(
 								'deleted_by'	=> $this->intDeletedBy,
-								'deleted_on' 	=> 'NOW()',
+								'deleted_on' 	=> getCurrentDateTime( $this->db )
 							);
 
 		$this->db->where( 'id =', $this->intId );

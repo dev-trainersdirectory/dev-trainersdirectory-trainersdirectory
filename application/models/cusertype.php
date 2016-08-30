@@ -58,6 +58,7 @@ class CUserType extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_user_types', $this->db ),
 								'name' => $this->strName,
 							);
 

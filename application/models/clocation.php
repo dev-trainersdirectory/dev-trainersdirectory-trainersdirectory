@@ -128,13 +128,14 @@ class CLocation extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_locations', $this->db ),
 								'state_id'		=> $this->intStateId,
 								'city_id'		=> $this->intCityId,
 								'name'			=> $this->strName,
 								'map_location'	=> $this->strMapLocation,
 								'is_published'	=> $this->boolIsPublished,
 								'created_by'	=> $this->intCreatedBy,
-								'created_on'	=> NOW(),
+								'created_on'	=> getCurrentDateTime( $this->db ),
 							);
 
 		if( false == $this->db->insert( 'locations', $arrStrInsertData ) ) return false;

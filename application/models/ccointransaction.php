@@ -151,6 +151,7 @@ class CCoinTransaction extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_coin_transactions', $this->db ),
 								'lead_id'			=> $this->intLeadId,
 								'credit'			=> $this->floatCredit,
 								'debit'				=> $this->floatDebit,
@@ -158,7 +159,7 @@ class CCoinTransaction extends CEosSingular {
 								'remark'			=> $this->strRemark,
 								'status'			=> $this->boolStatus,
 								'created_by'		=> 1,
-								'created_on'		=> 'NOW()',
+								'created_on'		=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'coin_transactions', $arrStrInsertData ) ) return false;

@@ -115,12 +115,13 @@ class CAdvertiser extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_advertisers', $this->db ),
 								'name' 			=> $this->strName,
 								'contact_number' => $this->intContactNumber,
 								'address' 		=> $this->strAddress,
 								'coins' 		=> $this->intCoins,
 								'created_by' 	=> $this->intCreatedBy,
-								'created_on' 	=> $this->strCreatedOn
+								'created_on'	=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'advertisers', $arrStrInsertData ) ) return false;

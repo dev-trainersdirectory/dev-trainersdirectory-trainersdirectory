@@ -26,6 +26,7 @@ class CLead extends CEosSingular {
 
 	function __construct() {
 		parent::__construct();
+		$this->intGenderId = 3;
 	}
 
 	public function assignData( $arrstrRequestData ) {
@@ -274,7 +275,12 @@ class CLead extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_leads', $this->db );
+		}
+
 		$arrStrInsertData = array(
+								'id'						=> $this->intId,
 								'user_id'					=> $this->intUserId,
 								'first_name'				=> $this->strFirstName,
 								'last_name'					=> $this->strLastName,
@@ -291,7 +297,7 @@ class CLead extends CEosSingular {
 								'coins'						=> $this->intCoins,
 								'is_active'					=> $this->boolIsActive,
 								'created_by'				=> $this->strCreatedBy,
-								'created_on'				=> 'NOW()',
+								'created_on'				=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'leads', $arrStrInsertData ) ) return false;

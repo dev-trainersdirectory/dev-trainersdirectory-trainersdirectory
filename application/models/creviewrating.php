@@ -138,6 +138,7 @@ class CReviewRating extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_reviews_ratings', $this->db ),
 								'reviewer_id' 	=> $this->intReviewerid,
 								'reviewee_id' 	=> $this->intRevieweeid,
 								'review' 		=> $this->strReview,
@@ -145,7 +146,7 @@ class CReviewRating extends CEosSingular {
 								'deleted_by' 	=> $this->intDeletedBy,
 								'deleted_on' 	=> $this->strDeletedOn,
 								'created_by' 	=> 1,
-								'created_on' 	=> 'NOW()',
+								'created_on' 	=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'reviews_ratings', $arrStrInsertData ) ) return false;
@@ -173,7 +174,7 @@ class CReviewRating extends CEosSingular {
 
 		$arrStrUpdateData = array(
 									'deleted_by' => 1,
-									'deleted_on' => 'NOW()'
+									'deleted_on' => getCurrentDateTime( $this->db )
 								);
 
 		$this->db->where( 'id =', $this->intId );

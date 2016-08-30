@@ -141,6 +141,7 @@ class CEmailTemplate extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_email_templates', $this->db ),
 								'email_type_id' 		=> $this->intEmailTypeId,
 								'send_from_email_id' 	=> $this->strSendFromEmailId,
 								'user_type_id' 			=> $this->intUserTypeId,
