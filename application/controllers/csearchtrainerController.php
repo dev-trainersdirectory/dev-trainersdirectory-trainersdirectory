@@ -15,6 +15,8 @@ class CSearchTrainerController extends CSystemController {
 
 		$arrObjTrainers = CTrainers::fetchAllActiveTrainersBySubjectIdByCityId( $intSubjectId, $intCityId, $this->db );
 
+		$data['subject_id'] = $intSubjectId;
+		$data['city_id'] = $intCityId;
 		$data['baseUrl'] = base_url();
 		$data['trainers'] = $arrObjTrainers;
 
@@ -44,5 +46,24 @@ class CSearchTrainerController extends CSystemController {
 		$data['trainer_reviews'] = $arrObjTraineReviews;
 
 		$this->load->view('view_trainer_details_popup', $data);
+	}
+
+	public function filterTrainer() {
+
+		
+		$intSubjectId = $this->input->post('filter_trainer')['subject_id'];
+		$intCityId = $this->input->post('filter_trainer')['city_id'];
+		$arrintLocationsIds = $this->input->post('filter_trainer')['locations'];
+		$arrintTimesIds = $this->input->post('filter_trainer')['times'];
+		$arrintPreferencesIds = $this->input->post('filter_trainer')['preferences'];
+
+		$arrObjTrainers = CTrainers::fetchAllActiveTrainersBySubjectIdByCityIdByLocationByTimeByPreference( $intSubjectId, $intCityId, $arrintLocationsIds, $arrintTimesIds, $arrintPreferencesIds, $this->db );
+
+		$data['subject_id'] = $intSubjectId;
+		$data['city_id'] = $intCityId;
+		$data['baseUrl'] = base_url();
+		$data['trainers'] = $arrObjTrainers;
+
+		$this->load->view('search_trainer', $data);
 	}
 }

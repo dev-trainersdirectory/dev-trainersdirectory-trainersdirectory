@@ -122,13 +122,42 @@
                     </div>
 
                     <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <a class="left carousel-control js-view_trainer_2" data-trainer_id="" href="#carousel-example-generic" role="button" data-slide="prev" id="js-prev_trainer_id">
                         <i class="icon-arrow-left-md"></i>
                     </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <a class="right carousel-control js-view_trainer_2" data-trainer_id="" href="#carousel-example-generic" role="button" data-slide="next"  id="js-next_trainer_id">
                         <i class="icon-arrow-right-md"></i>
                     </a>
                 </div>
             </div>
         </div>
+<script type="text/javascript">
+
+    function setTrainerIds() {
+
+        prevTrainerID = $("#trainer_id_<?php echo $trainer->getId(); ?>" ).data("prev");
+        nextTrainerID = $("#trainer_id_<?php echo $trainer->getId(); ?>" ).data("next");
+
+        $("#js-prev_trainer_id").data("trainer_id", prevTrainerID);
+        $("#js-next_trainer_id").data("trainer_id", nextTrainerID);
+    } setTrainerIds();
+    
+    $(".js-view_trainer_2").click(function(){
+
+    trainerID = $(this).data("trainer_id");
+
+    $('#trainer-view').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
+        $.ajax ({
+            type: "post",
+            data: { id: trainerID },
+            url: '<?=base_url()?>csearchtrainercontroller/viewTrainer',
+            success: function(result) {
+                if(result) {
+                    $('#myModal-view_trainer').html(result);
+                }
+            }
+        })
+    });
+
+</script>
 

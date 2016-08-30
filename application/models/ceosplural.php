@@ -1,5 +1,5 @@
 <?php
-require_once( getcwd(). '\application\libraries\commonfunctions.php' );
+require_once( getcwd(). '/application/libraries/commonfunctions.php' );
 
 class CEosPlural extends CI_Model {
 	
