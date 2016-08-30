@@ -145,12 +145,13 @@ class CTrSubject extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_tr_subjects', $this->db ),
 								'tr_category_id'	=> $this->intTrCategoryId,
 								'name'			=> $this->strName,
 								'description'	=> $this->strDescription,
 								'is_published'	=> $this->boolIsPublished,
 								'created_by'	=> $this->intCreatedBy,
-								'created_on'	=> 'NOW()',
+								'created_on'	=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'tr_subjects', $arrStrInsertData ) ) return false;
@@ -179,7 +180,7 @@ class CTrSubject extends CEosSingular {
 
 		$arrStrDeleteData = array(
 								'deleted_by'	=> 1,
-								'deleted_on' 	=> 'NOW()',
+								'deleted_on' 	=> getCurrentDateTime( $this->db )
 							);
 
 		$this->db->where( 'id =', $this->intId );

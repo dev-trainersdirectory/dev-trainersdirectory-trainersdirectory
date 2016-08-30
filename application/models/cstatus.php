@@ -53,6 +53,7 @@ class CStatus extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_statuses', $this->db ),
 								'name' => $this->strName,
 							);
 

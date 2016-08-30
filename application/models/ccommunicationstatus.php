@@ -1,6 +1,6 @@
 <?php
 
-class CComunicationStatus extends CEosSingular {
+class CCommunicationStatus extends CEosSingular {
 	
 	public $intId;
 	public $strName;
@@ -53,7 +53,8 @@ class CComunicationStatus extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
-								'name' => $this->strName,
+								'id'	=> $this->getNextId( 'sq_communication_statuses', $this->db ),
+								'name' 	=> $this->strName,
 							);
 
 		if( false == $this->db->insert( 'comunication_statuses', $arrStrInsertData ) ) return false;

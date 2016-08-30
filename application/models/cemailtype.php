@@ -66,6 +66,7 @@ class CEmailType extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_email_types', $this->db ),
 								'subject' 		=> $this->strName,
 								'is_active' 	=> $this->boolIsActive,
 							);

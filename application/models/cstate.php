@@ -138,11 +138,12 @@ class CState extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_states', $this->db ),
 								'name'			=> $this->strName,
 								'map_location'	=> $this->strMapLocation,
 								'is_published'	=> $this->boolIsPublished,
 								'created_by'	=> 1,
-								'created_on'	=> 'NOW()',
+								'created_on'	=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'states', $arrStrInsertData ) ) return false;
@@ -169,7 +170,7 @@ class CState extends CEosSingular {
 		
 		$arrStrUpdateData = array(
 								'deleted_by'	=> $this->intDeletedBy,
-								'deleted_on' 	=> 'NOW()',
+								'deleted_on' 	=> getCurrentDateTime( $this->db )
 							);
 
 		$this->db->where( 'id =', $this->intId );

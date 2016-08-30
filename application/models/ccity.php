@@ -138,12 +138,13 @@ class CCity extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_cities', $this->db ),
 								'name'			=> $this->strName,
 								'state_id'		=> $this->intStateId,
 								'map_location'	=> $this->strMapLocation,
 								'is_published'	=> $this->boolIsPublished,
 								'created_by'	=> $this->intCreatedBy,
-								'created_on'	=> $this->strCreatedOn,
+								'created_on'	=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'cities', $arrStrInsertData ) ) return false;
@@ -171,7 +172,7 @@ class CCity extends CEosSingular {
 
 		$arrStrDeleteData = array(
 								'deleted_by'	=> $this->intDeletedBy,
-								'deleted_on' 	=> NOW(),
+								'deleted_on' 	=> getCurrentDateTime( $this->db )
 							);
 
 		$this->db->where( 'id =', $this->intId );

@@ -64,8 +64,13 @@ class CUserTypeAssociation extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_user_type_associations', $this->db );
+		}
+
 		$arrStrInsertData = array(
-								'user_id' => $this->intUserId,
+								'id'		=> $this->intId,
+								'user_id' 	=> $this->intUserId,
 								'user_type_id' => $this->intUserTypeId,
 							);
 

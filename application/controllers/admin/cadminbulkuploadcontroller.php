@@ -33,18 +33,21 @@ class CAdminBulkUploadController extends CAdminSystemController {
 			exit;
 		}
 
+		$intUserTypeId = $_POST['user_type'];
+		if( 0 == $intUserTypeId ) {
+			echo json_encode( array( 'type' => 'Error', 'message' => 'Failed to recorgnise input.' ) );
+			exit;
+		}
+
 		$arrUsers = $this->readCsvFile( $strDestFilePath );
 
-		if( false == $this->createUsers( $arrUsers, CUserType::USER_TYPE_STUDENT ) ) {
+		if( false == $this->createUsers( $arrUsers, $intUserTypeId ) ) {
 			echo json_encode( array( 'type' => 'Error', 'message' => 'Failed to add one or more users.' ) );
 			exit;
 		}
 
-		echo json_encode( array( 'type' => 'Success', 'message' => 'Users added successfully.' ) );
+		echo json_encode( array( 'type' => 'Success', 'message' => 'Data uploaded successfully.' ) );
 		exit;
-	}
-
-	public function viewAddTrainers() {
 	}
 
 	function readCsvFile( $strFile ) {
@@ -71,50 +74,91 @@ class CAdminBulkUploadController extends CAdminSystemController {
 	public function createUsers( $arrstrUsers, $intUserTypeId ) {
 		$arrobjUsers = $arrobjUserTypeAssociations = $arrobjLeads = array();
 
+		$intCounter = 0;
 		foreach( $arrstrUsers as $arrstrUser ) {
 			$objUser = new CUser();
 			$objUserTypeAssociation = new CUserTypeAssociation();
 			$objLead = new CLead();
 
 			//set User Data
-			//$objUser->setId();
+			$objUser->setId( $objUser->getNextId( 'sq_users', $this->db ) );
 			$objUser->setContactNumber($arrstrUser['contact_number']);
-			$objUser->setEmailAddress($arrstrUser['email_address']);
+			$objUser->setEmailId($arrstrUser['email_address']);
+			$objUser->setStatusId($arrstrUser['status']);
 
 			//set User Type Association
-			//$objUserTypeAssociation->setId();
+			$objUserTypeAssociation->setId( $objUserTypeAssociation->getNextId( 'sq_user_type_associations', $this->db ) );
 			$objUserTypeAssociation->setUserTypeId( $intUserTypeId );
 			$objUserTypeAssociation->setUserId( $objUser->getId() );
 
 			//set Lead Data
-			//$objLead->setId();
+			$objLead->setId( $objLead->getNextId( 'sq_leads', $this->db ) );
 			$objLead->setUserId( $objUser->getId() );
 			$objLead->setFirstName($arrstrUser['first_name']);
 			$objLead->setLastName($arrstrUser['last_name']);
 
-			$arrobjUsers[] = $objUser;
-			$arrobjUserTypeAssociations[] = $objUserTypeAssociation;
-			$arrobjLeads[] = $objLead;
+			if( CUserType::USER_TYPE_TRAINER == $intUserTypeId ) {
+				//set Trainer Data
+				$objTrainer = new CTrainer();
+				$objTrainer->setId( $objTrainer->getNextId( 'sq_trainers', $this->db ) );
+				$objTrainer->setUserId( $objUser->getId() );
+				$objTrainer->setLeadId( $objLead->getId() );
+				$objTrainer->setDescription($arrstrUser['description']);
+				$objTrainer->setExperience($arrstrUser['experience']);
+
+				$objTrainerVideo = new CTrainerVideo();
+				$objTrainerVideo->setId( $objTrainerVideo->getNextId( 'sq_trainer_videos', $this->db ) );
+				$objTrainerVideo->setTrainerId( $objTrainer->getId() );
+				$objTrainerVideo->setVideoLink($arrstrUser['video_link']);
+
+				$arrobjTrainers[$intCounter] = $objTrainer;
+				$arrobjTrainerVideos[$intCounter] = $objTrainerVideo;
+			}
+
+			$arrobjUsers[$intCounter] = $objUser;
+			$arrobjUserTypeAssociations[$intCounter] = $objUserTypeAssociation;
+			$arrobjLeads[$intCounter] = $objLead;
+			$intCounter++;
 		}
 
 		$boolResult = true;
 		for( $intI = 0; $intI < count( $arrobjUsers ); $intI++ ) {
+			$this->db->trans_begin();
+			
 			if( false == $arrobjUsers[$intI]->insert() ) {
 				$boolResult = false;
+				$this->db->trans_rollback();
 				continue;
 			}
 			
 			if( false == $arrobjUserTypeAssociations[$intI]->insert() ) {
 				$boolResult = false;
+				$this->db->trans_rollback();
 				continue;
 			}
 
 			if( false == $arrobjLeads[$intI]->insert() ) {
 				$boolResult = false;
+				$this->db->trans_rollback();
 				continue;
 			}
+
+			if( true == array_key_exists($intI, $arrobjTrainers) && false == $arrobjTrainers[$intI]->insert() ) {
+				$boolResult = false;
+				$this->db->trans_rollback();
+				continue;
+			}
+
+			if( true == array_key_exists($intI, $arrobjTrainerVideos) && false == $arrobjTrainerVideos[$intI]->insert() ) {
+				$boolResult = false;
+				$this->db->trans_rollback();
+				continue;
+			}
+			$this->db->trans_commit();
 		}
 
 		return $boolResult;
 	}
+
+
 }

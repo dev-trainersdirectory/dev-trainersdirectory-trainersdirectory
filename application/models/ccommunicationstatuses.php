@@ -1,6 +1,6 @@
 <?php
 
-class CComunicationStatuses extends CEosPlural {
+class CCommunicationStatuses extends CEosPlural {
 	
 	function __construct() {
 		parent::__construct();

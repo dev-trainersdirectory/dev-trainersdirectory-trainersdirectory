@@ -283,6 +283,7 @@ class CBaseTrainer extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_trainers', $this->db ),
 								'lead_id'						=> $this->intLeadId,
 								'user_id'						=> $this->intUserId,
 								'description'					=> $this->strDescription,
@@ -302,7 +303,7 @@ class CBaseTrainer extends CEosSingular {
 								'deleted_by'					=> $this->intDeletedBy,
 								'deleted_on'					=> $this->strDeletedOn,
 								'created_by'					=> $this->intCreatedBy,
-								'created_on'					=> 'NOW()',
+								'created_on'					=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'trainers', $arrStrInsertData ) ) return false;
@@ -343,7 +344,7 @@ class CBaseTrainer extends CEosSingular {
 	public function delete() {
 
 		$arrStrUpdateData['deleted_by'] = $this->intDeletedBy;
-		$arrStrUpdateData['deleted_on'] = $this->intDeletedOn;
+		$arrStrUpdateData['deleted_on'] = getCurrentDateTime( $this->db );
 
 		$this->db->where( 'id =', $this->intId );
  	

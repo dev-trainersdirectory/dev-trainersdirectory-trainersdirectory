@@ -139,6 +139,7 @@ class CSystemSms extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_system_sms', $this->db ),
 								'subject'					=> $this->strSubject,
 								'communication_type_id'		=> $this->intCommunicationTypeId,
 								'send_to'					=> $this->intSendTo,
@@ -146,7 +147,7 @@ class CSystemSms extends CEosSingular {
 								'content'					=> $this->strContent,
 								'communication_status_id'	=> $this->intCommunicationStatusId,
 								'delivered_on'				=> $this->strDeliveredOn,
-								'created_on'				=> 'NOW()',
+								'created_on'				=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'system_sms', $arrStrInsertData ) ) return false;
