@@ -4,15 +4,13 @@ require_once( getcwd(). '/application/controllers/admin/cadminsystemcontroller.p
 class CAdminBulkUploadController extends CAdminSystemController {
 
 	public function index() {
-	}
-
-	public function viewAddUsers() {
 		$data = array();
 
 		$this->load->view( 'admin/view_admin_bulk_upload_users', $data );
 	}
 
 	public function addUsers() {
+
 		$strMimeTypes = array('application/vnd.ms-excel','text/plain','text/csv','text/tsv');
 
 		$arrstrFile = $_FILES['bulk_upload'];
@@ -47,6 +45,7 @@ class CAdminBulkUploadController extends CAdminSystemController {
 		}
 
 		echo json_encode( array( 'type' => 'Success', 'message' => 'Data uploaded successfully.' ) );
+		header( 'location:' . base_url() . 'admin_dashboard/' );
 		exit;
 	}
 
@@ -123,6 +122,12 @@ class CAdminBulkUploadController extends CAdminSystemController {
 
 		$boolResult = true;
 		for( $intI = 0; $intI < count( $arrobjUsers ); $intI++ ) {
+			
+			if( false == $arrobjUsers[$intI]->validate( 'insert' ) ) {
+				$boolResult = false;
+				continue;
+			}
+
 			$this->db->trans_begin();
 			
 			if( false == $arrobjUsers[$intI]->insert() ) {
@@ -160,5 +165,20 @@ class CAdminBulkUploadController extends CAdminSystemController {
 		return $boolResult;
 	}
 
+	public function download_sample_document() {
 
+		$file = FCPATH . 'public/csv_uploads/sample_doc.csv';
+
+		if( file_exists( $file ) ) {
+		    header('Content-Description: File Transfer');
+		    header('Content-Type: application/octet-stream');
+		    header('Content-Disposition: attachment; filename="'.basename($file).'"');
+		    header('Expires: 0');
+		    header('Cache-Control: must-revalidate');
+		    header('Pragma: public');
+		    header('Content-Length: ' . filesize($file));
+		    readfile($file);
+		    exit;
+		}
+	}
 }

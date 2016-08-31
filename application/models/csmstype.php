@@ -65,8 +65,11 @@ class CSmsType extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_sms_types', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_sms_types', $this->db ),
+								'id'			=> $this->intId,
 								'subject' 		=> $this->strName,
 								'is_active' 	=> $this->boolIsActive,
 							);

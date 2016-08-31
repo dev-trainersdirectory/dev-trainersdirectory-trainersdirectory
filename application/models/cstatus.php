@@ -52,9 +52,12 @@ class CStatus extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_statuses', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_statuses', $this->db ),
-								'name' => $this->strName,
+								'id'	=> $this->intId,
+								'name' 	=> $this->strName,
 							);
 
 		if( false == $this->db->insert( 'statuses', $arrStrInsertData ) ) return false;

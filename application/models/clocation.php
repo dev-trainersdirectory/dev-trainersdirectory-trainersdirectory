@@ -127,8 +127,11 @@ class CLocation extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_locations', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_locations', $this->db ),
+								'id'			=> $this->intId,
 								'state_id'		=> $this->intStateId,
 								'city_id'		=> $this->intCityId,
 								'name'			=> $this->strName,

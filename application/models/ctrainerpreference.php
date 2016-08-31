@@ -89,11 +89,15 @@ class CTrainerPreference extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_trainer_preferences', $this->db );
+		}
 		$arrStrInsertData = array(
+								'id'			=> $this->intId,
 								'trainer_id' 	=> $this->intTrainerId,
 								'preference_id' => $this->intPreferenceId,
 								'created_by' => $this->strCreatedBy,
-								'created_on' => 'NOW()',
+								'created_on' => getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'trainer_prefereces', $arrStrInsertData ) ) return false;

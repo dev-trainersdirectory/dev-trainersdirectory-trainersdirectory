@@ -64,8 +64,11 @@ class CProfileStep extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_profile_steps', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_profile_steps', $this->db ),
+								'id'			=> $this->intId,
 								'user_type_id' 	=> $this->boolIsGrouped,
 								'name' 		=> $this->strName
 							);

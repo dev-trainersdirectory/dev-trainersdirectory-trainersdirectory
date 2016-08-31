@@ -150,8 +150,11 @@ class CCoinTransaction extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_coin_transactions', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_coin_transactions', $this->db ),
+								'id'				=> $this->intId,
 								'lead_id'			=> $this->intLeadId,
 								'credit'			=> $this->floatCredit,
 								'debit'				=> $this->floatDebit,

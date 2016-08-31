@@ -126,8 +126,11 @@ class CSystemEmail extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_system_emails', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_system_emails', $this->db ),
+								'id'						=> $this->intId,
 								'email_subject'				=> $this->strEmailSubject,
 								'email_to'					=> $this->strEmailTo,
 								'email_from'				=> $this->strEmailFrom,
