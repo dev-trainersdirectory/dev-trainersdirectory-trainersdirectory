@@ -1,5 +1,8 @@
+.owl-carousel.owl-loaded {
+    margin-bottom: 45px;
+}
 .trainer-panel{
-    box-shadow: 0 2px 0 rgba(0,0,0,0.075);
+    // box-shadow: 0 2px 0 rgba(0,0,0,0.075);
     border-radius: 0;
     border: 0;
     margin-top: 24px;
@@ -32,7 +35,48 @@
 .widget-body {
     padding: 60px 15px 15px;
     position: relative;
-    height: 255px;
+    height: 200px;
+    border:1px solid #f2f4f6;
+}
+.trainer-view-profile{
+width: 100%;
+}
+.trainer-view-profile ul{
+
+    margin: 0px;
+    padding: 0px;
+    & li {
+        &:last-child {
+            padding-left: 0px;
+            padding-top: 11px;
+        }
+        width: 50%;
+        float: left;
+        height: 30px;
+        background: #fff;
+        padding: 9px;
+        text-align: center;
+        & span{
+            display: inline-block;
+            margin-left: 25px;
+            color: $black;
+        }
+        & a.trainer-view{
+            font-size: 14px;
+            color: #1e88e5;
+            border-left: 1px solid #c6c6c6;
+            display: block;
+            height: 15px;
+            line-height: 1;
+            &:focus,
+            &:active {
+                border: none;
+                outline: none;
+            }
+
+        }
+
+    }
 }
 .panel-body {
     padding: 25px 20px;
