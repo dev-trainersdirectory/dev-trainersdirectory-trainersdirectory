@@ -129,7 +129,12 @@ class CCity extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_cities', $this->db );
+		}
+
 		$arrStrInsertData = array(
+								'id'			=> $this->intId,
 								'name'			=> $this->strName,
 								'map_location'	=> $this->strMapLocation,
 								'is_published'	=> $this->boolIsPublished,

@@ -138,8 +138,11 @@ class CSystemSms extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_system_sms', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_system_sms', $this->db ),
+								'id'						=> $this->intId,
 								'subject'					=> $this->strSubject,
 								'communication_type_id'		=> $this->intCommunicationTypeId,
 								'send_to'					=> $this->intSendTo,

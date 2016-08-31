@@ -96,8 +96,11 @@ class CSmsTemplate extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_sms_templates', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_sms_templates', $this->db ),
+								'id'			=> $this->intId,
 								'sms_type_id' 	=> $this->intSmsTypeId,
 								'content' 		=> $this->strContent,
 								'is_active' 	=> $this->boolIsActive,

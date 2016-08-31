@@ -190,8 +190,11 @@ class CTrCategory extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_tr_categories', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_tr_categories', $this->db ),
+								'id'					=> $this->intId,
 								'parent_tr_category_id'	=> $this->intParentTrCategoryId,
 								'name'					=> $this->strName,
 								'description'			=> $this->strDescription,

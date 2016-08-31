@@ -79,6 +79,14 @@ class CUsers extends CEosPlural
 		return self::fetchUsers( $strSQL, $objDatabase );
 	}
 
+	public function fetchUserCountByContactNumber( $intContactNumber, $objDatabase ) {
+
+		$strSQL = 'SELECT count(id) as cnt FROM users WHERE contact_number = ' . $intContactNumber ;
+		$arrResult = fetchData( $strSQL, $objDatabase );
+		if( false == valArr( $arrResult ) ) return 0;
+		return reset($arrResult)['cnt'];
+	}
+
 }
 
 ?>

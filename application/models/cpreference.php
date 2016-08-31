@@ -89,8 +89,11 @@ class CPreference extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_preferences', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_preferences', $this->db ),
+								'id'			=> $this->intId,
 								'title' 		=> $this->strTitle,
 								'description' 	=> $this->strDescription,
 								'created_by' 	=> $this->strCreatedBy,

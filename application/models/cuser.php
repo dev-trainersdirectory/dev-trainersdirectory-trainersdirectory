@@ -142,6 +142,8 @@ class CUser extends CEosSingular {
 			case 'login':
 				$boolResult = $this->validateLogin();
 				break;
+			case 'insert':
+				$boolResult = $this->validateContactNumber();
 
 			default:
 				return true;
@@ -149,6 +151,11 @@ class CUser extends CEosSingular {
 		}
 
 		return $boolResult;
+	}
+
+	public function validateContactNumber() {
+		if( 0 < (int) CUsers::fetchUserCountByContactNumber( $this->intContactNumber,$this->db ) ) return false;
+		return true;
 	}
 
 	public function validateLogin() {
