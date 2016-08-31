@@ -38,7 +38,10 @@ class CAdminBulkUploadController extends CAdminSystemController {
 		}
 
 		$arrUsers = $this->readCsvFile( $strDestFilePath );
-
+		if( false == valArr( $arrUsers ) ) {
+			echo json_encode( array( 'type' => 'Error', 'message' => 'Data is not valid.' ) );
+			exit;
+		}
 		if( false == $this->createUsers( $arrUsers, $intUserTypeId ) ) {
 			echo json_encode( array( 'type' => 'Error', 'message' => 'Failed to add one or more users.' ) );
 			exit;
@@ -104,14 +107,15 @@ class CAdminBulkUploadController extends CAdminSystemController {
 				$objTrainer->setLeadId( $objLead->getId() );
 				$objTrainer->setDescription($arrstrUser['description']);
 				$objTrainer->setExperience($arrstrUser['experience']);
-
-				$objTrainerVideo = new CTrainerVideo();
-				$objTrainerVideo->setId( $objTrainerVideo->getNextId( 'sq_trainer_videos', $this->db ) );
-				$objTrainerVideo->setTrainerId( $objTrainer->getId() );
-				$objTrainerVideo->setVideoLink($arrstrUser['video_link']);
-
 				$arrobjTrainers[$intCounter] = $objTrainer;
-				$arrobjTrainerVideos[$intCounter] = $objTrainerVideo;
+
+				if( true == is_string( $arrstrUser['video_link'] ) ) {
+					$objTrainerVideo = new CTrainerVideo();
+					$objTrainerVideo->setId( $objTrainerVideo->getNextId( 'sq_trainer_videos', $this->db ) );
+					$objTrainerVideo->setTrainerId( $objTrainer->getId() );
+					$objTrainerVideo->setVideoLink($arrstrUser['video_link']);
+					$arrobjTrainerVideos[$intCounter] = $objTrainerVideo;
+				}
 			}
 
 			$arrobjUsers[$intCounter] = $objUser;
