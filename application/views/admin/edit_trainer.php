@@ -1,8 +1,24 @@
 <link href="<?=base_url()?>public/admin/css/dropdown-css.css" rel="stylesheet">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Trainer </h4>
+      </div>
+      <div class="modal-body">
 <div class="row">
     <div class="col-lg-12">
-    <form id="edit_trainer" method="post" enctype="multipart/form-data" class="form">
+    
+    <form id="frm_edit_trainer" method="post" enctype="multipart/form-data" class="form">
     	<div class="row">
+            <div class="col-lg-12">
+            <span style="float: right;">
+            <button type="button" id="showSmsPopup" data-user_id="<?php echo $lead->getUserId(); ?>" class="btn btn-default js-send_message">Send SMS</button>
+            <button type="button" id="showEmailPopup" data-user_id="<?php echo $lead->getUserId(); ?>" class="btn btn-default js-send_message">Send Email</button>
+            </span>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-lg-6">
                 <div class="form-group">
                     <label>First Name: </label>
@@ -170,26 +186,18 @@
             </div>
             <div class="col-lg-6">
                 <div class="form-group">
-                    <label>Available Start Time: </label>
-                    <select class="form-control" name=trainer[available_start_time_id]>
+                    <label>Available Times: </label>
+                    <select multiple class="form-control" name=trainer_timings[]>
 						<?php foreach( $times AS $time ) { ?>
-							<option value="<?php echo $time->getId()?>" <?php if( $time->getId() == $trainer->getAvailableStartTimeId() ) { ?> selected <?php } ?>><?php echo $time->getName()?></option>
+							<option value="<?php echo $time->getId()?>" <?php if( true == in_array($time->getId(), array_keys($trainer_timings) )){?> selected <?php } ?> >
+                                <?php echo $time->getName()?>
+                            </option>
 						<?php } ?>
 					</select>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6">
-                <div class="form-group">
-                    <label>Available End Time: </label>
-                    <select class="form-control" name=trainer[available_end_time_id]>
-						<?php foreach( $times AS $time ) { ?>
-							<option value="<?php echo $time->getId()?>" <?php if( $time->getId() == $trainer->getAvailableEndTimeId() ) { ?> selected <?php } ?>><?php echo $time->getName()?></option>
-						<?php } ?>
-					</select>
-                </div>
-            </div>
             <div class="col-lg-6">
                 <div class="form-group">
                     <label>Trainer's Locations: </label>
@@ -235,27 +243,58 @@
                 </div>
             </div>
         </div>
-        <input type="hidden" name=user[id] value="<?php echo $user->getId()?>"> 
-        <input type="hidden" name=lead[id] value="<?php echo $lead->getId()?>">
+        <input type="hidden" id="js-user_id" name=user[id] value="<?php echo $user->getId()?>"> 
+        <input type="hidden" id="js-lead_id" name=lead[id] value="<?php echo $lead->getId()?>">
     </div>
 </div>
-     
-<div class="modal fade" id="myModal-locations" tabindex="-1" aria-labelledby="myModalLabel" data-focus-on="input:first">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add User</h4>
-      </div>
-      <div class="modal-body">
-        
-      </div>
+</div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="$('#myModal-locations').modal('hide');">Close</button>
+        <button type="button" class="btn btn-default" id="js-modal_close" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary js-update_trainer" >Save changes</button>
       </div>
     </div>
   </div>
-</div>
 
 <script type="text/javascript" src="/public/admin/js/dropdown-js.js"></script>
+<script type="text/javascript">
+$(".js-send_message").click(function(){
+
+    action = this.id;
+    userId = $("#js-user_id").val();
+    leadId = $("#js-lead_id").val();
+
+    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
+        $.ajax ({
+            type: "post",
+            data: { user_id: userId, lead_id: leadId },
+            url: '<?=base_url()?>admin_broadcast/'+action,
+            success: function(result) {
+                if(result) {
+                    $('#myModal-add_user').html(result);
+                }
+            }
+        })
+    });
+
+    $(".js-update_trainer").click(function(){
+       if( 0 !== <?php echo ( int ) $user->getId() ?> )
+            action = 'updateTrainer';
+        else
+            action = 'insertTrainer';
+
+        $.ajax ({
+            type: "post",
+            data: $( "#frm_edit_trainer" ).serialize(),
+            url: '<?=base_url()?>admin_trainers/' + action,
+            success: function(result) {
+                output = JSON.parse(result);
+                if( 'success' == output.type ) {
+                    $( "#js-modal_close" ).trigger( "click" );
+                    loadTab('<?=base_url()?>admin_trainers')
+                } else {
+                    alert( output.message )
+                }
+            }
+        })
+    });
+</script>

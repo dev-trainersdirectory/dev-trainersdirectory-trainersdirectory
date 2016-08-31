@@ -25,6 +25,10 @@ class CSystemController extends CI_Controller {
 		$data['arrstrTrSubjects'] = $arrstrTrSubjects;
 		$data['search_filter'] = $this->load->view( 'search_filter', NULL, TRUE );
 
+		$data['preferences'] = CPreferences::fetchAllPublishedPrefernces( $this->db );
+		$data['times'] = CTimes::fetchAllPublishedTimes( $this->db );
+		$data['locations'] = CLocations::fetchAllPublishedLocations( $this->db );
+
 		return $data;
 	}
 }
