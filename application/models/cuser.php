@@ -111,6 +111,7 @@ class CUser extends CEosSingular {
 	}
 
 	public function getStatusId ( ) {
+		if( true == is_null( $this->intStatusId) ) $this->intStatusId = 1;
 		return $this->intStatusId;
 	}
 

@@ -6,7 +6,7 @@
     </div>
 </div>
  <div align="right">
-     <input type="button" class="btn js-add_category" value="Add Category" data-toggle="modal" data-target="#jsModal-add_category">
+     <input type="button" class="btn btn-primary js-add_category" value="Add Category" data-toggle="modal" data-target="#jsModal-add_category">
 </div>
 <br>
 <div class="row">
