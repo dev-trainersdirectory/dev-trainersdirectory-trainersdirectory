@@ -87,6 +87,19 @@ class CUsers extends CEosPlural
 		return reset($arrResult)['cnt'];
 	}
 
+	public static function fetchUserDetailsById( $intUserId, $objDatabase ) {
+		$strSQL = 'SELECT
+						u.*, l.first_name, l.last_name
+					FROM 
+						users u
+						JOIN user_type_associations uta ON ( u.id = uta.user_id )
+						JOIN leads l ON ( u.id = l.user_id )
+					WHERE 
+						u.id =' . $intUserId;
+
+		return self::fetchUser( $strSQL, $objDatabase );
+	}
+
 }
 
 ?>
