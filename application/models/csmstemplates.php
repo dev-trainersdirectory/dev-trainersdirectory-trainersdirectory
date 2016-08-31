@@ -38,6 +38,19 @@ class CSmsTemplates extends CEosPlural {
 	public static function fetchActiveSmsTemplateCountBySmsTypeId( $objDatabase ) {
 		return 0;
 	}
+
+	public static function fetchAllActiveSmsTemplates( $objDatabase ) {
+		$strSQL = 'SELECT 
+						st.subject as sms_type,
+						t.* 
+					FROM 
+						sms_templates t
+						JOIN sms_types st ON ( t.sms_type_id = st.id )
+					WHERE
+						t.is_active = 1';
+
+		return self::fetchSmsTemplates( $strSQL, $objDatabase );
+	}
 }
 
 ?>

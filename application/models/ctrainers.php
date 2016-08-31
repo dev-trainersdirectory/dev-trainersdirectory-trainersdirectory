@@ -61,7 +61,7 @@ class CTrainers extends CEosPlural {
 		return self::fetchTrainers( $strSQL, $objDatabase );
 	}
 
-	public function fetchTrainersByUserIds( $arrintUserIds, $objDatabase ) {
+	public static function fetchTrainersByUserIds( $arrintUserIds, $objDatabase ) {
 		if( false == valArr( $arrintUserIds ) ) return NULL;
 
 		$strSQL = ' SELECT
@@ -74,7 +74,7 @@ class CTrainers extends CEosPlural {
 		return self::fetchTrainers( $strSQL, $objDatabase );
 	}
 
-	public function fetchTrainerByUserId( $intUserId, $objDatabase ) {
+	public static function fetchTrainerByUserId( $intUserId, $objDatabase ) {
 		if( false == isset( $intUserId ) ) return NULL;
 
 		$strSQL = ' SELECT
@@ -87,7 +87,7 @@ class CTrainers extends CEosPlural {
 		return self::fetchTrainer( $strSQL, $objDatabase );
 	}
 
-	public function fetchTrainerDetailsByIds( $arrintIds, $objDatabase ) {
+	public static function fetchTrainerDetailsByIds( $arrintIds, $objDatabase ) {
 		
 		$strSQL = ' SELECT
 						t.id,
@@ -102,7 +102,7 @@ class CTrainers extends CEosPlural {
 		return self::fetchTrainers( $strSQL, $objDatabase );
 	}
 
-	public function fetchTrainerDetailById( $intId, $objDatabase ) {
+	public static function fetchTrainerDetailById( $intId, $objDatabase ) {
 		
 		$strSQL = ' SELECT
 						t.*,
@@ -118,6 +118,37 @@ class CTrainers extends CEosPlural {
 						t.id = '. (int) $intId;
 		
 		return self::fetchTrainer( $strSQL, $objDatabase );
+	}
+
+	public static function fetchAllActiveTrainersBySubjectIdByCityIdByLocationByTimeByPreference( $intSubjectId, $intCityId, $arrintLocationsIds, $arrintTimesIds, $arrintPreferencesIds, $objDatabase ) {
+
+		$strJOIN = '';
+		$strWhere = '';
+
+		if( true == valArr( $arrintLocationsIds ) )
+			$strJOIN .= 'JOIN trainer_locations tl ON ( t.id = tl.trainer_id AND tl.location_id IN ( '.implode( $arrintLocationsIds, ',' ).' ) ) ';
+
+		if( true == valArr( $arrintPreferencesIds ) )
+			$strJOIN .= 'JOIN trainer_prefereces tp ON ( t.id = tp.trainer_id AND tp.preference_id IN ( '.implode( $arrintPreferencesIds, ',' ).' ) ) ';
+
+		
+
+		$strSQL = ' SELECT
+						t.*,
+						l.first_name,
+						l.last_name
+					FROM
+						trainers t
+						JOIN leads l ON ( t.lead_id = l.id )
+						JOIN cities c ON ( l.city_id = c.id )
+						JOIN trainer_skills ts ON ( ts.trainer_id = t.id )
+						'. $strJOIN .'
+					WHERE
+						ts.tr_subject_id = ' . $intSubjectId . '
+						AND c.id = ' . $intCityId;
+
+		return self::fetchTrainers( $strSQL, $objDatabase );
+
 	}
 }
 

@@ -6,11 +6,15 @@
         </h3>
     </div>
 </div>
-<div align="right"><a hre="#" class="btn btn-primary js-add_trainer" data-toggle="modal" data-target="#myModal-add_user">Add Trainer</a></div>
+<div align="right">
+    <a hre="#" class="btn btn-primary js-add_trainer" data-toggle="modal" data-target="#myModal-add_user">Add Trainer</a>
+    <a hre="#" class="btn btn-primary js-send_broadcast" data-action="showBulkSMSPopup" data-toggle="modal" data-target="#myModal-add_user">Send Email</a>
+    <a hre="#" class="btn btn-primary js-send_broadcast" data-action="showBulkEmailPopup" data-toggle="modal" data-target="#myModal-add_user">Send SMS</a>
+</div><br>
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
-        <form name="user_filter" method="post" role="form">
+        <form id="form_user_filter" method="post" role="form">
             <div class="row form-group">
                 <div class="col-lg-3">
                     <input class="form-control" type="text" name="filter[name]" value="<?php echo $filter['name']?>" placeholder="Name">
@@ -36,8 +40,10 @@
     <div class="col-lg-12">
         <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped">
+            <form id="frm_broadcast" method="post" class="form">
                 <thead>
                     <tr>
+                        <th width="2%"></th>
                         <th width="20%">Name</th>
                         <th width="20%">EmailID</th>
                         <th width="10%">Contact No</th>
@@ -47,12 +53,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php foreach( $users as $user ) {?>
+                <?php foreach( $users as $key => $user ) {?>
                     <?php 
                         $lead = $leads[$user->getId()];
                         $trainer = $trainers[$user->getId()];
                     ?>
                     <tr>
+                        <td>
+                            <input type="checkbox" name="broadcast[user_ids][<?=$key?>]" value="<?=$user->getId()?>" />
+                            <input type="hidden" name="broadcast[lead_ids][<?=$key?>]" value="<?=$lead->getId()?>" />
+                        </td>
                         <td><?php echo $lead->getFullName()?></td>
                         <td><?php echo $user->getEmailId() ?></td>
                         <td><?php echo $user->getContactNumber()?></td>
@@ -63,27 +73,16 @@
                     </tr>
                 <?php } ?>
                 </tbody>
+            </form>
             </table>
         </div>
     </div>    
 </div>
 
 <div class="modal fade" id="myModal-add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add Trainer</h4>
-      </div>
-      <div class="modal-body">
+  
         
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" id="js-modal_close" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary js-update_trainer" >Save changes</button>
-      </div>
-    </div>
-  </div>
+      
 </div>
 
 <script type="text/javascript">
@@ -91,7 +90,7 @@
     $(".js-filter_trainer").click(function(){
         $.ajax ({
             type: "post",
-            data: $( "form" ).serialize(),
+            data: $( "#form_user_filter" ).serialize(),
             url: '<?=base_url()?>admin_trainers/',
             success: function(result) {
                 if(result) {
@@ -102,50 +101,42 @@
     });
 
     $(".js-add_trainer").click(function(){
-    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
+    $('#myModal-add_user').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({
             type: "post",
             url: '<?=base_url()?>admin_trainers/addTrainer',
             success: function(result) {
                 if(result) {
-                    $('.modal-body').html(result);
+                    $('#myModal-add_user').html(result);
                 }
             }
         })
     });
 
     $(".js-edit_trainer").click(function(){
-    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
+    $('#myModal-add_user').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({
             type: "post",
             data: { id: this.id },
             url: '<?=base_url()?>admin_trainers/editTrainer',
             success: function(result) {
                 if(result) {
-                    $('.modal-body').html(result);
+                    $('#myModal-add_user').html(result);
                 }
             }
         })
     });
 
-    $(".js-update_trainer").click(function(){
-    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
-        if( 0 !== <?php echo ( int ) $user->getId() ?> )
-            action = 'updateTrainer';
-        else
-            action = 'insertTrainer';
+    $(".js-send_broadcast").click(function(){
+        action = $( this ).data("action");
 
         $.ajax ({
             type: "post",
-            data: $( "form" ).serialize(),
-            url: '<?=base_url()?>admin_trainers/' + action,
+            data: $( "#frm_broadcast" ).serialize(),
+            url: '<?=base_url()?>admin_broadcast/' + action,
             success: function(result) {
-                output = JSON.parse(result);
-                if( 'success' == output.type ) {
-                    $( "#js-modal_close" ).trigger( "click" );
-                    loadTab('<?=base_url()?>admin_trainers')
-                } else {
-                    alert( output.message )
+                if(result) {
+                    $('#myModal-add_user').html(result);
                 }
             }
         })

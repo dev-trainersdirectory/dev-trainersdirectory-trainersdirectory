@@ -40,6 +40,21 @@ class CEmailTemplates extends CEosPlural {
 	public static function fetchActiveEmailTemplateCountByEmailTypeIdByUserTypeId( $objDatabase ) {
 		return 0;
 	}
+
+	public function fetchAllActiveEmailTemplates( $objDatabase ) {
+		$strSQL = 'SELECT 
+						et.subject as email_type,
+						ut.name as user_type,
+						t.* 
+					FROM 
+						email_templates t
+						JOIN email_types et ON ( t.email_type_id = et.id )
+						JOIN user_types ut ON ( t.user_type_id = ut.id )
+					WHERE
+						t.is_active = 1';
+
+		return self::fetchEmailTemplates( $strSQL, $objDatabase );
+	}
 }
 
 ?>
