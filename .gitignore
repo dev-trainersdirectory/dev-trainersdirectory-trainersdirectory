@@ -57,3 +57,8 @@ $RECYCLE.BIN/
 *.lnk
 *.jpg
 templates/images/TD/
+templates/images/old/details.png
+templates/images/old/details2.png
+templates/images/old/search-1.png
+templates/images/old/search-2.png
+templates/search-results-slider-old.html

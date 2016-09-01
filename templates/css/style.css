@@ -9748,8 +9748,29 @@ body {
   width: 18px;
   position: absolute;
 }
+/* line 106, ../scss/components/_icons.scss */
+.icon-like {
+  background-image: url("../images/icon-like.png");
+  height: 36px;
+  width: 36px;
+  position: absolute;
+}
+/* line 112, ../scss/components/_icons.scss */
+.icon-lock {
+  background-image: url("../images/icon-lock.png");
+  height: 36px;
+  width: 36px;
+  position: absolute;
+}
+/* line 118, ../scss/components/_icons.scss */
+.icon-download {
+  background-image: url("../images/icon-download.png");
+  height: 36px;
+  width: 36px;
+  position: absolute;
+}
 
-/* line 108, ../scss/components/_icons.scss */
+/* line 126, ../scss/components/_icons.scss */
 .search-addon i {
   color: #848484;
   padding: 15px 10px 0 25px !important;
@@ -9757,17 +9778,17 @@ body {
   z-index: 111;
 }
 
-/* line 114, ../scss/components/_icons.scss */
+/* line 132, ../scss/components/_icons.scss */
 .left-inner-addon {
   position: relative;
 }
 
-/* line 117, ../scss/components/_icons.scss */
+/* line 135, ../scss/components/_icons.scss */
 .left-inner-addon input {
   padding-left: 57px;
 }
 
-/* line 120, ../scss/components/_icons.scss */
+/* line 138, ../scss/components/_icons.scss */
 .left-inner-addon i {
   position: absolute;
   padding: 10px 12px;
@@ -9983,11 +10004,17 @@ li {
 
 /*profile cards*/
 /* line 1, ../scss/components/_profilecards.scss */
+.compair-trainers {
+  background: #1d89e4 !important;
+  width: 78px !important;
+}
+
+/* line 6, ../scss/components/_profilecards.scss */
 .owl-carousel.owl-loaded {
   margin-bottom: 45px;
 }
 
-/* line 4, ../scss/components/_profilecards.scss */
+/* line 9, ../scss/components/_profilecards.scss */
 .trainer-panel {
   border-radius: 0;
   border: 0;
@@ -9996,41 +10023,41 @@ li {
   background: #fff;
 }
 
-/* line 12, ../scss/components/_profilecards.scss */
+/* line 17, ../scss/components/_profilecards.scss */
 .trainer-panel .panel-heading, .trainer-panel > :first-child {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-/* line 16, ../scss/components/_profilecards.scss */
+/* line 21, ../scss/components/_profilecards.scss */
 .bg-primary, .bg-primary a {
   color: #fff;
 }
 
-/* line 19, ../scss/components/_profilecards.scss */
+/* line 24, ../scss/components/_profilecards.scss */
 .bg-success, .bg-success a {
   color: #fff;
 }
 
-/* line 22, ../scss/components/_profilecards.scss */
+/* line 27, ../scss/components/_profilecards.scss */
 .bg-success {
   background-color: #4db6ac;
 }
 
-/* line 26, ../scss/components/_profilecards.scss */
+/* line 31, ../scss/components/_profilecards.scss */
 .widget-header {
   height: 50px;
   position: relative;
   overflow: initial;
 }
 
-/* line 31, ../scss/components/_profilecards.scss */
+/* line 36, ../scss/components/_profilecards.scss */
 .trainer-panel .panel-footer, .trainer-panel > :last-child {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-/* line 35, ../scss/components/_profilecards.scss */
+/* line 40, ../scss/components/_profilecards.scss */
 .widget-body {
   padding: 60px 15px 15px;
   position: relative;
@@ -10038,17 +10065,17 @@ li {
   border: 1px solid #f2f4f6;
 }
 
-/* line 41, ../scss/components/_profilecards.scss */
+/* line 46, ../scss/components/_profilecards.scss */
 .trainer-view-profile {
   width: 100%;
 }
 
-/* line 44, ../scss/components/_profilecards.scss */
+/* line 49, ../scss/components/_profilecards.scss */
 .trainer-view-profile ul {
   margin: 0px;
   padding: 0px;
 }
-/* line 48, ../scss/components/_profilecards.scss */
+/* line 53, ../scss/components/_profilecards.scss */
 .trainer-view-profile ul li {
   width: 50%;
   float: left;
@@ -10057,18 +10084,18 @@ li {
   padding: 9px;
   text-align: center;
 }
-/* line 49, ../scss/components/_profilecards.scss */
+/* line 54, ../scss/components/_profilecards.scss */
 .trainer-view-profile ul li:last-child {
   padding-left: 0px;
   padding-top: 11px;
 }
-/* line 59, ../scss/components/_profilecards.scss */
+/* line 64, ../scss/components/_profilecards.scss */
 .trainer-view-profile ul li span {
   display: inline-block;
   margin-left: 25px;
   color: #000;
 }
-/* line 64, ../scss/components/_profilecards.scss */
+/* line 69, ../scss/components/_profilecards.scss */
 .trainer-view-profile ul li a.trainer-view {
   font-size: 14px;
   color: #1e88e5;
@@ -10077,33 +10104,33 @@ li {
   height: 15px;
   line-height: 1;
 }
-/* line 71, ../scss/components/_profilecards.scss */
+/* line 76, ../scss/components/_profilecards.scss */
 .trainer-view-profile ul li a.trainer-view:focus, .trainer-view-profile ul li a.trainer-view:active {
   border: none;
   outline: none;
 }
 
-/* line 81, ../scss/components/_profilecards.scss */
+/* line 86, ../scss/components/_profilecards.scss */
 .panel-body {
   padding: 25px 20px;
 }
 
-/* line 85, ../scss/components/_profilecards.scss */
+/* line 90, ../scss/components/_profilecards.scss */
 .img-border-light {
   box-shadow: 0 0 0 4px #fff;
 }
 
-/* line 88, ../scss/components/_profilecards.scss */
+/* line 93, ../scss/components/_profilecards.scss */
 .img-border {
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
 }
 
-/* line 91, ../scss/components/_profilecards.scss */
+/* line 96, ../scss/components/_profilecards.scss */
 .mar-no {
   margin: 0 !important;
 }
 
-/* line 96, ../scss/components/_profilecards.scss */
+/* line 101, ../scss/components/_profilecards.scss */
 .trainer-profile-pic {
   overflow: hidden;
   border-radius: 50%;
@@ -10114,33 +10141,33 @@ li {
   margin-left: -32px;
   top: -32px;
 }
-/* line 105, ../scss/components/_profilecards.scss */
+/* line 110, ../scss/components/_profilecards.scss */
 .trainer-profile-pic img {
   border-radius: 150px;
   -webkit-border-radius: 150px;
   -moz-border-radius: 150px;
 }
-/* line 109, ../scss/components/_profilecards.scss */
+/* line 114, ../scss/components/_profilecards.scss */
 .trainer-profile-pic img:focus, .trainer-profile-pic imghover {
   outline: none;
 }
-/* line 115, ../scss/components/_profilecards.scss */
+/* line 120, ../scss/components/_profilecards.scss */
 .trainer-profile-pic a:focus, .trainer-profile-pic a:hover {
   outline: none;
   opacity: 1;
 }
-/* line 122, ../scss/components/_profilecards.scss */
+/* line 127, ../scss/components/_profilecards.scss */
 .trainer-name {
   font-weight: bold;
   margin-top: 40px;
 }
-/* line 127, ../scss/components/_profilecards.scss */
+/* line 132, ../scss/components/_profilecards.scss */
 .trainer-profession {
   font-size: 13px;
   color: #848484;
   font-weight: regular;
 }
-/* line 132, ../scss/components/_profilecards.scss */
+/* line 137, ../scss/components/_profilecards.scss */
 .trainer-subjects {
   width: 150px;
   margin: 0 auto;
@@ -10149,22 +10176,18 @@ li {
   font-weight: regular;
   word-break: break-all;
 }
-/* line 140, ../scss/components/_profilecards.scss */
+/* line 145, ../scss/components/_profilecards.scss */
 .trainer-social, .trainer-social-modal {
   border-top: 1px solid #efefef;
   margin-top: 15px;
   padding-top: 15px;
   font-size: 17px;
 }
-/* line 146, ../scss/components/_profilecards.scss */
-.trainer-social a, .trainer-social-modal a {
-  margin-right: 45px;
-}
-/* line 148, ../scss/components/_profilecards.scss */
+/* line 153, ../scss/components/_profilecards.scss */
 .trainer-social a:last-child, .trainer-social-modal a:last-child {
   margin-right: 0;
 }
-/* line 151, ../scss/components/_profilecards.scss */
+/* line 156, ../scss/components/_profilecards.scss */
 .trainer-social a .watch-count, .trainer-social-modal a .watch-count {
   font-size: 10px;
   margin: 0px;
@@ -10177,21 +10200,21 @@ li {
   margin-top: -12px;
   font-weight: bold;
 }
-/* line 166, ../scss/components/_profilecards.scss */
+/* line 171, ../scss/components/_profilecards.scss */
 .trainer-social-modal {
   position: absolute;
-  bottom: 17px;
+  bottom: 15px;
   border-top: none;
   margin-left: 13px;
 }
 
-/* line 174, ../scss/components/_profilecards.scss */
+/* line 179, ../scss/components/_profilecards.scss */
 .back .more-details-dropdown {
   top: 5px !important;
   right: 5px !important;
 }
 
-/* line 179, ../scss/components/_profilecards.scss */
+/* line 184, ../scss/components/_profilecards.scss */
 .more-details-dropdown {
   position: absolute;
   right: 15px;
@@ -10200,17 +10223,17 @@ li {
   padding: 0px;
   width: 12px;
 }
-/* line 186, ../scss/components/_profilecards.scss */
+/* line 191, ../scss/components/_profilecards.scss */
 .more-details-dropdown:focus {
   outline: none;
 }
 
-/* line 191, ../scss/components/_profilecards.scss */
+/* line 196, ../scss/components/_profilecards.scss */
 .filtered .select-trasnperant {
   color: #0993b8;
 }
 
-/* line 195, ../scss/components/_profilecards.scss */
+/* line 200, ../scss/components/_profilecards.scss */
 .more-details-dropdown-conainter {
   min-width: 108px;
   text-align: right;
@@ -10220,25 +10243,25 @@ li {
   border-radius: 2px;
   min-width: 109px;
 }
-/* line 204, ../scss/components/_profilecards.scss */
+/* line 209, ../scss/components/_profilecards.scss */
 .more-details-dropdown-conainter a {
   padding: 6px 15px !important;
   text-align: right;
   font-size: 13px;
 }
-/* line 208, ../scss/components/_profilecards.scss */
+/* line 213, ../scss/components/_profilecards.scss */
 .more-details-dropdown-conainter a:hover {
   background: transparent;
   background-color: transparent  !important;
   color: #129999 !important;
   opacity: 1;
 }
-/* line 215, ../scss/components/_profilecards.scss */
+/* line 220, ../scss/components/_profilecards.scss */
 .more-details-dropdown-conainter .divider {
   margin: 0px auto !important;
   width: 70px;
 }
-/* line 219, ../scss/components/_profilecards.scss */
+/* line 224, ../scss/components/_profilecards.scss */
 .more-details-dropdown-conainter:after, .more-details-dropdown-conainter:before {
   left: 100%;
   top: 19%;
@@ -10249,14 +10272,14 @@ li {
   position: absolute;
   pointer-events: none;
 }
-/* line 231, ../scss/components/_profilecards.scss */
+/* line 236, ../scss/components/_profilecards.scss */
 .more-details-dropdown-conainter:after {
   border-color: rgba(136, 183, 213, 0);
   border-left-color: #fff;
   border-width: 6px;
   margin-top: -6px;
 }
-/* line 237, ../scss/components/_profilecards.scss */
+/* line 242, ../scss/components/_profilecards.scss */
 .more-details-dropdown-conainter:before {
   border-color: rgba(194, 225, 245, 0);
   border-left-color: #c2e1f5;
@@ -10264,27 +10287,122 @@ li {
   margin-top: -7px;
 }
 
-/* line 244, ../scss/components/_profilecards.scss */
+/* line 249, ../scss/components/_profilecards.scss */
 .details-page {
   background-color: #4db6ac;
 }
-/* line 246, ../scss/components/_profilecards.scss */
+/* line 251, ../scss/components/_profilecards.scss */
 .details-page .widget-header {
   padding: 10px;
 }
-/* line 255, ../scss/components/_profilecards.scss */
+/* line 260, ../scss/components/_profilecards.scss */
 .details-page .widget-body {
   padding: 0 10px 10px;
   margin-top: 0;
   font-size: 13px;
 }
-/* line 260, ../scss/components/_profilecards.scss */
+/* line 265, ../scss/components/_profilecards.scss */
 .details-page h3 {
   text-align: left;
   color: #000;
   margin-top: 0;
   padding: 0px;
   font-weight: 100;
+}
+
+/* line 1, ../scss/components/_tooltip.scss */
+.tooltip-container {
+  width: 38px;
+  -webkit-transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  height: 40px;
+  margin-right: 15px;
+  float: left;
+}
+
+/* line 10, ../scss/components/_tooltip.scss */
+.tooltip-container .tooltip-box {
+  background: #757575;
+  bottom: 100%;
+  color: #d1d1d1;
+  display: block;
+  left: 10px;
+  font-size: 12px;
+  margin-bottom: 25px;
+  opacity: 0;
+  padding: 10px;
+  pointer-events: none;
+  position: absolute;
+  width: 212px;
+  -webkit-transform: translateY(10px);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  -o-transform: translateY(10px);
+  transform: translateY(10px);
+  -webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -ms-transition: all .25s ease-out;
+  -o-transition: all .25s ease-out;
+  transition: all .25s ease-out;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+}
+
+/* line 39, ../scss/components/_tooltip.scss */
+.tooltip-container .tooltip-box span {
+  color: #fff;
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+/* line 45, ../scss/components/_tooltip.scss */
+.tooltip-container .tooltip-box:before {
+  bottom: -20px;
+  content: " ";
+  display: block;
+  height: 20px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+/* CSS Triangles - see Trevor's post */
+/* line 56, ../scss/components/_tooltip.scss */
+.tooltip-container .tooltip-box:after {
+  border-left: solid transparent 0px;
+  border-right: solid transparent 20px;
+  border-top: solid #757575 15px;
+  bottom: -15px;
+  content: " ";
+  height: 0;
+  left: 10%;
+  margin-left: -13px;
+  position: absolute;
+  width: 0;
+}
+
+/* line 69, ../scss/components/_tooltip.scss */
+.tooltip-container:hover .tooltip-box {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+/* IE can just show/hide with no transition */
+/* line 80, ../scss/components/_tooltip.scss */
+.lte8 .tooltip-container .tooltip {
+  display: none;
+}
+
+/* line 84, ../scss/components/_tooltip.scss */
+.lte8 .tooltip-container:hover .tooltip {
+  display: block;
 }
 
 /* line 1, ../scss/components/_modal-pop.scss */
@@ -10513,30 +10631,31 @@ ul.minimized-tray li a {
   font-weight: 100;
   margin-right: 0px;
   display: inline-block;
+  font-weight: 400;
 }
-/* line 27, ../scss/components/_minimized-tray.scss */
+/* line 28, ../scss/components/_minimized-tray.scss */
 ul.minimized-tray li a.minimized-trainer-name {
   width: 133px;
   padding-left: 5px;
 }
-/* line 31, ../scss/components/_minimized-tray.scss */
+/* line 32, ../scss/components/_minimized-tray.scss */
 ul.minimized-tray li a.minimized-trainer-min, ul.minimized-tray li a.minimized-trainer-close {
   font-size: 18px;
 }
-/* line 35, ../scss/components/_minimized-tray.scss */
+/* line 36, ../scss/components/_minimized-tray.scss */
 ul.minimized-tray li a.minimized-trainer-max {
   width: 20px;
   float: left;
   margin-top: 2px;
 }
-/* line 40, ../scss/components/_minimized-tray.scss */
+/* line 41, ../scss/components/_minimized-tray.scss */
 ul.minimized-tray li a.minimized-trainer-close {
   width: 20px;
   float: left;
   top: 7px;
   margin-left: 25px;
 }
-/* line 45, ../scss/components/_minimized-tray.scss */
+/* line 46, ../scss/components/_minimized-tray.scss */
 ul.minimized-tray li a.minimized-trainer-close .icon-close-circle {
   position: absolute;
   top: 7px;
