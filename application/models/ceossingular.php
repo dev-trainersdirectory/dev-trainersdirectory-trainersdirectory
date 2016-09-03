@@ -19,7 +19,8 @@ class CEosSingular extends CI_Model {
 
 	function getnextId( $strSequence, $objDatabase ) {
 		$arrResult = fetchData( 'SELECT nextval( "' . $strSequence . '") as id ', $objDatabase );
-		if( false == valArr( $arrResult ) ) return 0;
+
+		if( false == valArr( array_filter( reset( $arrResult ) ) ) ) trigger_error( $strSequence . ' Sequence Missing');
 		return (int) reset( $arrResult )['id'];
 	}
 

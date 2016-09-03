@@ -77,8 +77,12 @@ class CDay extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_days', $this->db );
+		}
+		
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_days', $this->db ),
+								'id'			=> $this->intId,
 								'name' 			=> $this->strName,
 								'is_grouped' 	=> $this->boolIsGrouped,
 								'is_published' 	=> $this->boolIsPublished,

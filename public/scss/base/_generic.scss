@@ -2,13 +2,25 @@ body {
   // padding-top: 50px; // fixed navbar on site
 //  background: url(#{$image-path}report-detail-bg.gif) 0 0 repeat-x;
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-    padding-top: 100px;
+
     &.popup-page {
-      padding-top: 50px;
+      // padding-top: 50px;
     }
   }
 }
 
+.padding {
+  &-10{
+    padding: 10px;
+  }
+  &-0{
+    padding: 0px;
+  }
+}
+.row-simple {
+  margin-left: 0px;
+margin-right: 0px;
+}
 .page-header {
   border-bottom: 0;
   margin: 0;
@@ -30,6 +42,31 @@ body {
   &-white {
     color:$white;
   }
+  &-blue {
+    color:#2196f3;
+  }
+  &-dark {
+    color: #353d40 ;
+  }
+}
+
+/*font size*/
+.font {
+  &-25 {
+    font-size: 25px;
+  }
+  &-20 {
+    font-size: 20px;
+  }
+  &-15 {
+    font-size: 15px;
+  }
+  &-13 {
+    font-size: 13px;
+  }
+  &-10 {
+    font-size: 10px;
+  }
 }
 .info-text {
   font-size: $base-font-size;
@@ -46,8 +83,13 @@ body {
 }
 
 /*borders*/
-.border-bottom-1 {
-    border-bottom:1px solid $light-white2;
+.border {
+  &-no{
+    border: none;
+  }
+  &-bottom-1 {
+      border-bottom:1px solid $light-white2;
+  }
 }
 
 /* margins */

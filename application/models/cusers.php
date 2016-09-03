@@ -105,6 +105,27 @@ class CUsers extends CEosPlural
 					LIMIT ' . $intLimit .' OFFSET ' . $intOffset;
 
 		return self::fetchUsers( $strSQL, $objDatabase );
+
+	public function fetchUserCountByContactNumber( $intContactNumber, $objDatabase ) {
+
+		$strSQL = 'SELECT count(id) as cnt FROM users WHERE contact_number = ' . $intContactNumber ;
+		$arrResult = fetchData( $strSQL, $objDatabase );
+		if( false == valArr( $arrResult ) ) return 0;
+		return reset($arrResult)['cnt'];
+	}
+
+	public static function fetchUserDetailsById( $intUserId, $objDatabase ) {
+		$strSQL = 'SELECT
+						u.*, l.first_name, l.last_name
+					FROM 
+						users u
+						JOIN user_type_associations uta ON ( u.id = uta.user_id )
+						JOIN leads l ON ( u.id = l.user_id )
+					WHERE 
+						u.id =' . $intUserId;
+
+		return self::fetchUser( $strSQL, $objDatabase );
+
 	}
 
 }

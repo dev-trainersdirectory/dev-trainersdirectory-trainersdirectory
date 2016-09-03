@@ -7,8 +7,13 @@ class CAdminDashboardController extends CI_Controller {
 		if( NULL == $this->session->userdata('userID') ) {
 			header("location:".base_url()."admin/");
 		}
+		$intUserId = $this->session->userdata('userID');
+		$objUser = CUsers::fetchUserDetailsById( $intUserId, $this->db );
 
-		$this->load->view( 'admin/view_admin_dashboard' );
+		$data = array();
+		$data['user'] 	= $objUser;
+
+		$this->load->view( 'admin/view_admin_dashboard', $data );
 	}
 
 	public function admin_panel() {

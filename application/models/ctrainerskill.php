@@ -112,8 +112,11 @@ class CTrainerSkill extends CEosSingular
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_trainer_skills', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_trainer_skills', $this->db ),
+								'id'			=> $this->intId,
 								'trainer_id' 	=> $this->intTrainerId,
 								'tr_subject_id' => $this->intTrSubjectId,
 								'created_by'	=> $this->intCreatedBy,

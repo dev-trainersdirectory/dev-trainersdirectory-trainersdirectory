@@ -172,8 +172,12 @@ class CAdvertisement extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_advertisements', $this->db );
+		}
+
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_advertisements', $this->db ),
+								'id'			=> $this->intId,
 								'advertiser_id' => $this->intAdvertiserId,
 								'image_path' 	=> $this->strImagePath,
 								'redirect_link' => $this->strRedirectLink,

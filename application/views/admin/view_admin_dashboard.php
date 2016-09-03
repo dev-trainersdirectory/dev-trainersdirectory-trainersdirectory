@@ -49,12 +49,12 @@
             </div>
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $user->getFirstName()?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
+                        <!--<li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
-                        <li class="divider"></li>
+                        <li class="divider"></li> -->
                         <li>
                             <a href="logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
@@ -124,15 +124,7 @@
                         <a href="#" onclick="loadTab('<?=base_url()?>admin_transactions')"><i class="fa fa-fw fa-table"></i> Transaction Costs</a>
                     </li>
                      <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#dd_bulk_upload"><i class="fa fa-fw fa-arrows-v"></i> Bulk Upload <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="dd_bulk_upload" class="collapse">
-                            <li>
-                                <a href="#" onclick="loadTab('<?=base_url()?>admin_bulk_upload/viewAddUsers')">Student</a>
-                            </li>
-                            <li>
-                                <a href="#" onclick="loadTab('<?=base_url()?>admin_bulk_upload/viewAddTrainers')">Trainer</a>
-                            </li>
-                        </ul>
+                        <a href="#" onclick="loadTab('<?=base_url()?>admin_bulk_upload')"><i class="fa fa-fw fa-table"></i> Bulk Upload </a>
                     </li>
                 </ul>
             </div>

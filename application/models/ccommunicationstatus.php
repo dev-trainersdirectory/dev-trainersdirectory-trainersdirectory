@@ -52,8 +52,12 @@ class CCommunicationStatus extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_communication_statuses', $this->db );
+		}
+		
 		$arrStrInsertData = array(
-								'id'	=> $this->getNextId( 'sq_communication_statuses', $this->db ),
+								'id'	=> $this->intId,
 								'name' 	=> $this->strName,
 							);
 

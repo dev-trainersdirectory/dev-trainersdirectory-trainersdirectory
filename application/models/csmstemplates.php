@@ -51,6 +51,17 @@ class CSmsTemplates extends CEosPlural {
 
 		return self::fetchSmsTemplates( $strSQL, $objDatabase );
 	}
+
+	public static function fetchActiveSmsTemplateBySmsTypeId( $intSmsTypeId, $objDatabase ) {
+		$strSQL = 'SELECT * 
+					FROM 
+						sms_templates t
+					WHERE 
+						sms_type_id = ' . (int) $intSmsTypeId . '
+						AND is_active = 1';
+
+		return self::fetchSmsTemplate( $strSQL, $objDatabase );
+	}
 }
 
 ?>

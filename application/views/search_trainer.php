@@ -177,14 +177,18 @@
                                         <p class="trainer-profession">English Trainer</p>
                                         <p class="trainer-subjects"><?php echo $trainer->getSkills();?></p>
                                         <!-- / trainer details -->
-                                        <!-- social details -->
-                                        <div class="trainer-social">
-                                            <a class="" href="#"><i class="icon-call"></i></a>
-                                            <a class="" href="#"><i class="icon-msgs"></i></a>
-                                            <a class="" href="#"><i class="icon-likes"></i></a>
-                                            <a class="" href="#"><i class="icon-watched"></i><span class="watch-count">(<?php echo $trainer->getViews();?>)</span></a>
+                                         <!-- view profile -->
+                                        <div class="trainer-view-profile clearfix">
+                                            <ul>
+                                                <li>
+                                                    <a class="" href="#"><i class="icon-watched"></i><span class="watch-count">(<?php echo $trainer->getViews();?>)</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#trainer-view" class="trainer-view" data-toggle="modal">View Profile</a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <!-- / social details -->
+                                        <!--/ view profile-->
                                     </div>
                                 </div>
                             </div>

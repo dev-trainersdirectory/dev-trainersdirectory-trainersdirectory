@@ -41,6 +41,8 @@
 $route['default_controller'] = "chomecontroller";
 $route['search'] = "csearchtrainercontroller";
 $route['search/(.*)'] = "csearchtrainercontroller/$1";
+$route['trainer_profile'] = "ctrainerprofilecontroller";
+$route['trainer_profile/(.*)'] = "ctrainerprofilecontroller/$1";
 $route['admin'] = "admin/cadminauthenticationcontroller";
 $route['admin/(.*)'] = "admin/cadminauthenticationcontroller/$1";
 $route['admin_dashboard'] = "admin/cadmindashboardcontroller";

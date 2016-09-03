@@ -52,6 +52,12 @@ class CUser extends CEosSingular {
 		if( true == array_key_exists( 'created_on', $arrstrRequestData ) )
 			$this->setCreatedOn( $arrstrRequestData['created_on'] );
 
+		if( true == array_key_exists( 'first_name', $arrstrRequestData ) )
+			$this->setFirstName( $arrstrRequestData['first_name'] );
+
+		if( true == array_key_exists( 'last_name', $arrstrRequestData ) )
+			$this->setLastName( $arrstrRequestData['last_name'] );
+
 	}
 
 	public function setId ( $intId ) {
@@ -94,6 +100,14 @@ class CUser extends CEosSingular {
 		$this->strCreatedOn = $strCreatedOn;
 	}
 
+	public function setFirstName( $strFirstName ) {
+		$this->strFirstName = $strFirstName;
+	}
+
+	public function setLastName( $strLastName ) {
+		$this->strLastName = $strLastName;
+	}
+
 	public function getId ( ) {
 		return (int) $this->intId;
 	}
@@ -111,6 +125,7 @@ class CUser extends CEosSingular {
 	}
 
 	public function getStatusId ( ) {
+		if( true == is_null( $this->intStatusId) ) $this->intStatusId = 1;
 		return $this->intStatusId;
 	}
 
@@ -134,6 +149,14 @@ class CUser extends CEosSingular {
 		return $this->strCreatedOn;
 	}
 
+	public function getFirstName() {
+		return $this->strFirstName;
+	}
+
+	public function getLastName() {
+		return $this->strLastName;
+	}
+	
 	public function validate( $strAction ) {
 
 		$boolResult = true;
@@ -142,6 +165,8 @@ class CUser extends CEosSingular {
 			case 'login':
 				$boolResult = $this->validateLogin();
 				break;
+			case 'insert':
+				$boolResult = $this->validateContactNumber();
 
 			default:
 				return true;
@@ -149,6 +174,11 @@ class CUser extends CEosSingular {
 		}
 
 		return $boolResult;
+	}
+
+	public function validateContactNumber() {
+		if( 0 < (int) CUsers::fetchUserCountByContactNumber( $this->intContactNumber,$this->db ) ) return false;
+		return true;
 	}
 
 	public function validateLogin() {

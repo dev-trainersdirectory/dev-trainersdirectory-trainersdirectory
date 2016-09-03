@@ -144,8 +144,11 @@ class CTrSubject extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_tr_subjects', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_tr_subjects', $this->db ),
+								'id'			=> $this->intId,
 								'tr_category_id'	=> $this->intTrCategoryId,
 								'name'			=> $this->strName,
 								'description'	=> $this->strDescription,

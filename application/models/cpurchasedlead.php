@@ -1,10 +1,10 @@
 <?php
 
-class CPurchasedLead extends CEosSingular {
+class CPurchasedUser extends CEosSingular {
 
 	public $intId;
-	public $intLeadId;
-	public $intBoughtLeadId;
+	public $intUserId;
+	public $intBoughtUserId;
 	
 	public $strNotifiedOn;
 	public $strClosedOn;
@@ -21,11 +21,11 @@ class CPurchasedLead extends CEosSingular {
 		if( true == array_key_exists( 'id', $arrstrRequestData ) )
 			$this->setId( $arrstrRequestData['id'] );
 
-		if( true == array_key_exists( 'lead_id', $arrstrRequestData ) )
-			$this->setLeadId( $arrstrRequestData['lead_id'] );
+		if( true == array_key_exists( 'user_id', $arrstrRequestData ) )
+			$this->setUserId( $arrstrRequestData['user_id'] );
 
-		if( true == array_key_exists( 'bought_lead_id', $arrstrRequestData ) )
-			$this->setBoughtLeadId( $arrstrRequestData['bought_lead_id'] );
+		if( true == array_key_exists( 'bought_user_id', $arrstrRequestData ) )
+			$this->setBoughtUserId( $arrstrRequestData['bought_user_id'] );
 
 		if( true == array_key_exists( 'notified_on', $arrstrRequestData ) )
 			$this->setNotifiedOn( $arrstrRequestData['notified_on'] );
@@ -45,12 +45,12 @@ class CPurchasedLead extends CEosSingular {
 		$this->intId = $intId;
 	}
 
-	public function setLeadId( $intLeadId ) {
-		$this->intLeadId = $intLeadId;
+	public function setUserId( $intUserId ) {
+		$this->intUserId = $intUserId;
 	}
 
-	public function setBoughtLeadId( $intBoughtLeadId ) {
-		$this->intBoughtLeadId = $intBoughtLeadId;
+	public function setBoughtUserId( $intBoughtUserId ) {
+		$this->intBoughtUserId = $intBoughtUserId;
 	}
 
 	public function setNotifiedOn( $strNotifiedOn ) {
@@ -69,12 +69,12 @@ class CPurchasedLead extends CEosSingular {
 		return $this->intId;
 	}
 
-	public function getLeadId( $intLeadId ) {
-		return $this->intLeadId;
+	public function getUserId( $intUserId ) {
+		return $this->intUserId;
 	}
 
-	public function getBoughtLeadId( $intBoughtLeadId ) {
-		return $this->intBoughtLeadId;
+	public function getBoughtUserId( $intBoughtUserId ) {
+		return $this->intBoughtUserId;
 	}
 
 	public function getNotifiedOn( $strNotifiedOn ) {
@@ -85,7 +85,7 @@ class CPurchasedLead extends CEosSingular {
 		return $this->strClosedOn;
 	}
 
-	public function setCreatedOn() {
+	public function getCreatedOn() {
 		return $this->strCreatedOn;
 	}
 
@@ -105,16 +105,19 @@ class CPurchasedLead extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_purchased_users', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_purchased_leads', $this->db ),
-								'lead_id'			=> $this->intLeadId,
-								'bought_lead_id'	=> $this->intBoughtLeadId,
+								'id'				=> $this->intId,
+								'user_id'			=> $this->intUserId,
+								'bought_user_id'	=> $this->intBoughtUserId,
 								'notified_on'		=> $this->strNotifiedOn,
 								'closed_on'			=> $this->strClosedOn,
 								'created_on'		=> getCurrentDateTime( $this->db )
 							);
 
-		if( false == $this->db->insert( 'purchased_leads', $arrStrInsertData ) ) return false;
+		if( false == $this->db->insert( 'purchased_users', $arrStrInsertData ) ) return false;
 
 		return true;
 	}
@@ -123,15 +126,15 @@ class CPurchasedLead extends CEosSingular {
 
 		$arrStrUpdateData = array();
 
-		if( false == is_null( $this->intLeadId ) ) $arrStrUpdateData['lead_id'] = $this->intLeadId;
-		if( false == is_null( $this->intBoughtLeadId ) ) $arrStrUpdateData['bought_lead_id'] = $this->intBoughtLeadId;
+		if( false == is_null( $this->intUserId ) ) $arrStrUpdateData['user_id'] = $this->intUserId;
+		if( false == is_null( $this->intBoughtUserId ) ) $arrStrUpdateData['bought_user_id'] = $this->intBoughtUserId;
 		if( false == is_null( $this->strNotifiedOn ) ) $arrStrUpdateData['notified_on'] = $this->strNotifiedOn;
 		if( false == is_null( $this->strClosedOn ) ) $arrStrUpdateData['closed_on'] = $this->strClosedOn;
 								
 
 		$this->db->where( 'id =', $this->intId );
 
-		if( false == $this->db->update( 'purchased_leads', $arrStrUpdateData ) ) return false;
+		if( false == $this->db->update( 'purchased_users', $arrStrUpdateData ) ) return false;
 
 		return true;
 	}
@@ -140,7 +143,7 @@ class CPurchasedLead extends CEosSingular {
 
 		$this->db->where( 'id =', $this->intId );
  	
- 		if( false == $this->db->delete( 'purchased_leads' ) ) return false;
+ 		if( false == $this->db->delete( 'purchased_users' ) ) return false;
 
 		return true;
 	}

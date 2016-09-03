@@ -4,6 +4,7 @@ class CSystemSms extends CEosSingular {
 	
 	public $intId;
 	public $intSmsTypeId;
+	public $intSmsTemplateId;
 	public $intSendTo;
 	public $intSentFrom;
 	public $intCommunicationStatusId;
@@ -26,6 +27,9 @@ class CSystemSms extends CEosSingular {
 
 		if( true == array_key_exists( 'subject', $arrstrRequestData ) )
 			$this->setSubject( $arrstrRequestData['subject'] );
+
+		if( true == array_key_exists( 'sms_template_id', $arrstrRequestData ) )
+			$this->setSmsTemplateId( $arrstrRequestData['sms_template_id'] );
 
 		if( true == array_key_exists( 'sms_type_id', $arrstrRequestData ) )
 			$this->setSmsTypeId( $arrstrRequestData['sms_type_id'] );
@@ -62,6 +66,10 @@ class CSystemSms extends CEosSingular {
 		$this->intSmsTypeId = $intSmsTypeId;
 	}
 
+	public function setSmsTemplateId( $intSmsTemplateId ) {
+		$this->intSmsTemplateId = $intSmsTemplateId;
+	}
+
 	public function setSendTo( $intSendTo ) {
 		$this->intSendTo = $intSendTo;
 	}
@@ -96,6 +104,10 @@ class CSystemSms extends CEosSingular {
 
 	public function getSmsTypeId() {
 		return $this->intSmsTypeId;
+	}
+
+	public function getSmsTemplateId() {
+		return $this->intSmsTemplateId;
 	}
 
 	public function getSendTo() {
@@ -138,10 +150,14 @@ class CSystemSms extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_system_sms', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_system_sms', $this->db ),
+								'id'						=> $this->intId,
 								'subject'					=> $this->strSubject,
 								'sms_type_id'				=> $this->intSmsTypeId,
+								'sms_template_id'			=> $this->intSmsTemplateId,
 								'send_to'					=> $this->intSendTo,
 								'sent_from'					=> $this->intSentFrom,
 								'content'					=> $this->strContent,
@@ -161,6 +177,7 @@ class CSystemSms extends CEosSingular {
 
 		if( true == in_array( 'subject', $arrStrColumns ) ) $arrStrUpdateData['subject'] = $this->strSubject;
 		if( true == in_array( 'sms_type_id', $arrStrColumns ) ) $arrStrUpdateData['sms_type_id'] = $this->intSmsTypeId;
+		if( true == in_array( 'sms_template_id', $arrStrColumns ) ) $arrStrUpdateData['sms_template_id'] = $this->intSmsTemplateId;
 		if( true == in_array( 'send_to', $arrStrColumns ) ) $arrStrUpdateData['send_to']	= $this->intSendTo;
 		if( true == in_array( 'sent_from', $arrStrColumns ) ) $arrStrUpdateData['sent_from'] = $this->intSentFrom;
 		if( true == in_array( 'content', $arrStrColumns ) ) $arrStrUpdateData['content']	= $this->strContent;

@@ -137,8 +137,11 @@ class CReviewRating extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_reviews_ratings', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_reviews_ratings', $this->db ),
+								'id'			=> $this->intId,
 								'reviewer_id' 	=> $this->intReviewerid,
 								'reviewee_id' 	=> $this->intRevieweeid,
 								'review' 		=> $this->strReview,

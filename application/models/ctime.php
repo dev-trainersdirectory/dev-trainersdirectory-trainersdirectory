@@ -64,8 +64,11 @@ class CTime extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_times', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_times', $this->db ),
+								'id'			=> $this->intId,
 								'name' 			=> $this->strName,
 								'is_published' 	=> $this->boolIsPublished,
 							);

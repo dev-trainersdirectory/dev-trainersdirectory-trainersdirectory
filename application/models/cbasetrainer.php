@@ -282,8 +282,11 @@ class CBaseTrainer extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_trainers', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_trainers', $this->db ),
+								'id'							=> $this->intId,
 								'lead_id'						=> $this->intLeadId,
 								'user_id'						=> $this->intUserId,
 								'description'					=> $this->strDescription,

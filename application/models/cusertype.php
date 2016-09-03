@@ -2,10 +2,10 @@
 
 class CUserType extends CEosSingular {
 
-	const USER_TYPE_ADMIN = 1;
-	const USER_TYPE_STUDENT = 2;
-	const USER_TYPE_TRAINER = 3;
-	const USER_TYPE_INSTITUTE = 4;
+	const ADMIN = 1;
+	const STUDENT = 2;
+	const TRAINER = 3;
+	const INSTITUTE = 4;
 
 	public $intId;
 	public $strName;
@@ -57,9 +57,12 @@ class CUserType extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_user_types', $this->db );
+		}
 		$arrStrInsertData = array(
-								'id'			=> $this->getNextId( 'sq_user_types', $this->db ),
-								'name' => $this->strName,
+								'id'	=> $this->intId,
+								'name' 	=> $this->strName,
 							);
 
 		if( false == $this->db->insert( 'user_types', $arrStrInsertData ) ) return false;

@@ -6,16 +6,27 @@
 @import 'components/footer';
 @import 'components/tables';
 @import 'components/forms';
-@import 'components/vcenter';
-@import 'components/buttons';
+//@import 'components/vcenter';
 @import 'components/tabs';
 @import 'components/header';
-@import 'components/pagination';
+@import 'components/carousel';
+@import 'components/navigation';
 @import 'components/panels';
 @import 'base/base';
 @import 'base/generic';
 @import 'base/browser-hacks';
 @import 'base/utilities';
+@import 'components/icons';
+/*carousel*/
+@import 'components/carousel';
 
+@import 'components/ratings';
+/*profile cards*/
+@import 'components/profilecards';
+@import 'components/tooltip';
+// @import 'components/flip';
+@import 'components/modal-pop';
+@import 'components/minimized-tray';
 /*page wise*/
-@import "components/search"
+@import "components/search";
+@import "components/search-result";

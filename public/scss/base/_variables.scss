@@ -1,8 +1,10 @@
 /*colors*/
 
 $green:              #4db6ac;
-
-
+$white-1:            #e3e3e3;
+$grey:               #848484;
+$black-1:            #242424;
+$black-2:            #212121;
 $white:                   #fff;
 $white-ddd:               #DDD;
 $white-ccc:               #ccc;
@@ -32,6 +34,6 @@ $image-path:   '../images/';
 /* ----typography */
 
 /* fonts */
-$base-font-family: Arial, Helvetica, sans-serif;
+$base-font-family: 'Roboto';
 $base-font-size: 12px;
 /* font-size */
