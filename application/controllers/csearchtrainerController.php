@@ -41,11 +41,17 @@ class CSearchTrainerController extends CSystemController {
 			$strSubjects .= $objSubjectName->getName().',';
 		}
 
+		$objTrainerService = new CTrainerViewsService();
+		$objTrainerService->addTrainerView( $objTrainer, $this->db );
+
+		$arrExitTags['show_interest'] = base_url() . 'trainer_profile/showInterest/' . $objTrainer->getUserId();
+
 		$data['trainer'] = $objTrainer;
 		$data['tr_subject_names'] = rtrim( $strSubjects, ',' );
 		$data['trainer_reviews'] = $arrObjTraineReviews;
+		$data['exit_tags'] = $arrExitTags;
 
-		$this->load->view('view_trainer_details_popup', $data);
+		$this->load->view( 'view_trainer_details_popup', $data );
 	}
 
 	public function filterTrainer() {

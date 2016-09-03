@@ -6,18 +6,18 @@ class CMergeFields extends CEosPlural {
 		parent::__construct();
 	}
 
-	public function fetchDays( $strSQL, $objDatabase ) {
-		return self::fetchObjects( 'CDay', $strSQL, $objDatabase );
+	public function fetchMergeFields( $strSQL, $objDatabase ) {
+		return self::fetchObjects( 'CMergeField', $strSQL, $objDatabase );
 	}
 
-	public function fetchDay( $strSQL, $objDatabase ) {
-		return self::fetchObject( 'CDay', $strSQL, $objDatabase );
+	public function fetchMergeField( $strSQL, $objDatabase ) {
+		return self::fetchObject( 'CMergeField', $strSQL, $objDatabase );
 	}
 
-	public static function fetchAllPublishedDays( $objDatabase ) {
-		$strSQL = 'SELECT * FROM days';
+	public static function fetchAllMergeFields( $objDatabase ) {
+		$strSQL = 'SELECT * FROM merge_fields';
 
-		return self::fetchDays( $strSQL, $objDatabase );
+		return self::fetchMergeFields( $strSQL, $objDatabase );
 	}
 }
 

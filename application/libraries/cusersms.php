@@ -2,20 +2,20 @@
 
 class CUserSms extends CBaseLibrary {
 
-	protected $objSender;
-	protected $objReceiver;
+	protected $objSenderLead;
+	protected $objReceiverLead;
 	protected $objDatabase;
 
 	protected $arrmixData;
 
 	protected $intSmsTypeId;
 
-	public function setSender( $objSender ) {
-		$this->objSender = $objSender;
+	public function setSenderLead( $objSenderLead ) {
+		$this->objSenderLead = $objSenderLead;
 	}
 
-	public function setReceiver( $objReceiver ) {
-		$this->objReceiver = $objReceiver;
+	public function setReceiverLead( $objReceiverLead ) {
+		$this->objReceiverLead = $objReceiverLead;
 	}
 
 	public function setDatabase( $objDatabase ) {
@@ -39,9 +39,9 @@ class CUserSms extends CBaseLibrary {
 		$objSystemSMS = new CSystemSMS();
 		$objSystemSMS->setSmsTypeId( $this->intSmsTypeId );
 		$objSystemSMS->setSmsTemplateId( $objSmsTemplate->getId() );
-		$objSystemSMS->setSendTo( $this->objSender->getContactNumber() );
-		$objSystemSMS->setSendFrom( "TrainD" );
-		$objSystemSMS->setSubject( $objSmsTemplate->getName() );
+		$objSystemSMS->setSendTo( $this->objSenderLead->getContactNumber() );
+		$objSystemSMS->setSentFrom( "TrainD" );
+		//$objSystemSMS->setSubject( $objSmsTemplate->getName() );
 		$objSystemSMS->setContent( $this->getSmsText( $objSmsTemplate ) );
 
 		return $objSystemSMS;
@@ -56,7 +56,7 @@ class CUserSms extends CBaseLibrary {
 	}
 
 	public function getMappedMergeFields() {
-		$arrobjMergeFields = ( array ) CMergeFields::fetchMergeFields( $this->objDatabase );
+		$arrobjMergeFields = ( array ) CMergeFields::fetchAllMergeFields( $this->objDatabase );
 		
 		$arrstrMappedMergeFields = array();
 
@@ -64,25 +64,27 @@ class CUserSms extends CBaseLibrary {
 			$strValue = '';
 			switch( $objMergeField->getName() ) {
 
-				case 'RECEIPIENT' :
-					$strValue = $this->objReceiver->getFullName();
+				case '{RECEIPIENT}' :
+					$strValue = $this->objReceiverLead->getFullName();
 					break;
 
-				case 'OTP' :
+				case '{OTP}' :
+					if( false == valArr( $this->arrmixData ) ) break;
 					if( true == array_key_exists( 'OTP', $this->arrmixData ) ) 
 						$strValue = $this->arrmixData['OTP'];
 					break;
 
-				case 'LEAD' :
-					$strValue = $this->objSender->getFullName();
+				case '{LEAD}' :
+					$strValue = $this->objSenderLead->getFullName();
 					break;
 
-				case 'URL' :
+				case '{URL}' :
+					if( false == valArr( $this->arrmixData ) ) break;
 					$strValue = $this->arrmixData['viewslug'];
 					break;
 
-				case 'LEAD_MOBILE_NUMBER' :
-					$strValue = $this->objSender->getContactNumber();
+				case '{LEAD_MOBILE_NUMBER}' :
+					$strValue = $this->objSenderLead->getContactNumber();
 					break;
 
 				default:

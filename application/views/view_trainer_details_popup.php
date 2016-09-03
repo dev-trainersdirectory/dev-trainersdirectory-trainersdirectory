@@ -70,8 +70,8 @@
                                                         </div>
                                                     </form>
                                                     <div class="trainer-social-modal">
-                                                        <a class="" href="#"><i class="icon-likes"></i></a>
-                                                        <a class="" href="#"><i class="icon-watched"></i><span class="watch-count">(<?php $trainer->getViews(); ?>)</span></a>
+                                                        <a class="js-show_interest" href="javascript:void(0);"><i class="icon-likes"></i></a>
+                                                        <a class="" href="javascript:void(0);"><i class="icon-watched"></i><span class="watch-count">(<?php echo $trainer->getViews(); ?>)</span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,6 +155,16 @@
                 if(result) {
                     $('#myModal-view_trainer').html(result);
                 }
+            }
+        })
+    });
+
+    $('.js-show_interest').click(function(){
+        $.ajax ({
+            type: "post",
+            url: '<?=$exit_tags["show_interest"]?>',
+            success: function(result) {
+                
             }
         })
     });

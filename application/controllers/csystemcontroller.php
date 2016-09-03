@@ -31,4 +31,17 @@ class CSystemController extends CI_Controller {
 
 		return $data;
 	}
+
+	public function validateUser( $intUserId ) {
+		$arrUserTypeAssociations = ( array ) CUserTypeAssociations::fetchUserTypeAssociationsByUserId( $intUserId, $this->db );
+		if( false == valArr( $arrUserTypeAssociations ) ) {
+			return false;
+		}
+
+		foreach( $arrUserTypeAssociations as $objUserTypeAssociation ) {
+			if( true == in_array( $objUserTypeAssociation->getUserTypeId(), array( CUserType::STUDENT, CUserType::TRAINER, CUserType::INSTITUTE ) ) ) return true;
+		}
+
+		return false;
+	}
 }

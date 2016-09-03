@@ -327,17 +327,33 @@ VALUES ( 1, 'Verification Pending' ),
 
 CREATE TABLE IF NOT EXISTS purchased_leads(
 	id INT NOT NULL AUTO_INCREMENT,
-	lead_id INT NOT NULL,
-	bought_lead_id INT NOT NULL,
+	user_id INT NOT NULL,
+	bought_user_id INT NOT NULL,
 	notified_on TIMESTAMP,
 	closed_on TIMESTAMP,
 	created_on TIMESTAMP,
 	PRIMARY KEY (id),
-	FOREIGN KEY fk_lead_id(lead_id)
-		REFERENCES leads(id)
+	FOREIGN KEY fk_user_id(user_id)
+		REFERENCES users(id)
 		ON DELETE RESTRICT,
-	FOREIGN KEY fk_bought_lead_id(bought_lead_id)
-		REFERENCES leads(id)
+	FOREIGN KEY fk_bought_user_id(bought_user_id)
+		REFERENCES users(id)
+		ON DELETE RESTRICT
+)ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS show_interests(
+	id INT NOT NULL AUTO_INCREMENT,
+	user_id INT NOT NULL,
+	trainer_user_id INT NOT NULL,
+	notified_on TIMESTAMP,
+	closed_on TIMESTAMP,
+	created_on TIMESTAMP,
+	PRIMARY KEY (id),
+	FOREIGN KEY fk_user_id(user_id)
+		REFERENCES users(id)
+		ON DELETE RESTRICT,
+	FOREIGN KEY fk_trainer_user_id(trainer_user_id)
+		REFERENCES users(id)
 		ON DELETE RESTRICT
 )ENGINE=InnoDB;
 
@@ -497,7 +513,62 @@ CREATE TABLE trainer_videos(
 		REFERENCES trainer_skills(id)
 		ON DELETE RESTRICT
 )ENGINE=InnoDB;
-		
+	
+CREATE TABLE `sequence_data` (
+	`sequence_name` varchar(100) NOT NULL,
+	`sequence_increment` int(11) unsigned NOT NULL DEFAULT 1,
+	`sequence_min_value` int(11) unsigned NOT NULL DEFAULT 1,
+	`sequence_max_value` bigint(20) unsigned NOT NULL DEFAULT 18446744073709551615,
+	`sequence_cur_value` bigint(20) unsigned DEFAULT 1,
+	`sequence_cycle` boolean NOT NULL DEFAULT FALSE,
+	PRIMARY KEY (`sequence_name`)
+) ENGINE=MyISAM;
+
+INSERT INTO sequence_data
+	(sequence_name)
+VALUE
+	('sq_users'),('sq_user_type_associations'),('sq_leads'),('sq_trainers'),('sq_trainer_videos')
+	,('sq_advertisements'),('sq_advertisers'),('sq_cities'),('sq_coin_transactions'),('sq_communication_statuses'),
+	('sq_days'),('email_templates'),('email_types'),('sq_genders'),('sq_locations'),('sq_merge_fields'),('sq_otps'),
+	('sq_preferences'),('sq_profile_steps'),('sq_purchased_leads'),('sq_review_ratings'),('sq_sms_templates'),
+	('sq_sms_types'),('sq_states'),('sq_statuses'),('sq_system_emails'),('sq_system_sms'),('sq_times'),('sq_trainer_locations'),
+	('sq_trainer_preferences'),('sq_trainer_skills'),('sq_tr_categories'),('sq_tr_subjects'),('sq_show_interests');
+
+DELIMITER //
+CREATE FUNCTION `nextval` (`seq_name` varchar(100))
+RETURNS bigint(20) NOT DETERMINISTIC
+BEGIN
+	DECLARE cur_val bigint(20);
+
+	SELECT
+		sequence_cur_value INTO cur_val
+	FROM
+		sequence_data
+	WHERE
+		sequence_name = seq_name
+	;
+
+	IF cur_val IS NOT NULL THEN
+		UPDATE
+			sequence_data
+		SET
+			sequence_cur_value = IF (
+				(sequence_cur_value + sequence_increment) > sequence_max_value,
+				IF (
+					sequence_cycle = TRUE,
+					sequence_min_value,
+					NULL
+				),
+				sequence_cur_value + sequence_increment
+			)
+		WHERE
+			sequence_name = seq_name
+		;
+	END IF;
+
+	RETURN cur_val;
+END//
+DELIMITER ;	
 		
 INSERT INTO `users` (`id`, `contact_number`, `email_id`, `encrypted_password`, `facebook_id`, `google_id`, `status_id`, `verified_by`, `verified_on`, `deleted_by`, `deleted_on`, `created_by`, `created_on`) VALUES
 (1, 1425639685, '', '$1$9y2.cV4.$VTKHzOUEs2MRsw8QL0iwP.', '', '', 0, 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 1, '0000-00-00 00:00:00'),
