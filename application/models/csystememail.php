@@ -127,13 +127,14 @@ class CSystemEmail extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_system_emails', $this->db ),
 								'email_subject'				=> $this->strEmailSubject,
 								'email_to'					=> $this->strEmailTo,
 								'email_from'				=> $this->strEmailFrom,
 								'email_body'				=> $this->strEmailBody,
 								'communication_status_id'	=> $this->intCommunicationStatusId,
 								'delivered_on'				=> $this->strDeliveredOn,
-								'created_on'				=> 'NOW()';,
+								'created_on'				=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'system_emails', $arrStrInsertData ) ) return false;

@@ -102,6 +102,7 @@ class COtp extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_otps', $this->db ),
 								'name' 		=> $this->strName,
 								'is_grouped' 	=> $this->boolIsGrouped,
 								'is_published' 	=> $this->boolIsPublished,

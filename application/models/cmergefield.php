@@ -66,6 +66,7 @@ class CMergeField extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'		=> $this->getNextId( 'sq_merge_fields', $this->db ),
 								'name' 		=> $this->strName,
 								'lable' 	=> $this->strLable
 							);

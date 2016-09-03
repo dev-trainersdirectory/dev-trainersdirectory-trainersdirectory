@@ -191,6 +191,7 @@ class CTrCategory extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_tr_categories', $this->db ),
 								'parent_tr_category_id'	=> $this->intParentTrCategoryId,
 								'name'					=> $this->strName,
 								'description'			=> $this->strDescription,
@@ -198,7 +199,7 @@ class CTrCategory extends CEosSingular {
 								'is_published'			=> $this->boolIsPublished,
 								'order_num'				=> $this->intOrderNum,
 								'created_by'			=> $this->intCreatedBy,
-								'created_on'			=> 'NOW()',
+								'created_on'			=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'tr_categories', $arrStrInsertData ) ) return false;
@@ -228,7 +229,7 @@ class CTrCategory extends CEosSingular {
 
 		$arrStrDeleteData = array(
 								'delete_by'	=> $this->intDeletedBy,
-								'delete_by'	=> 'NOW()',
+								'delete_by'	=> getCurrentDateTime( $this->db )
 							);
 
 		$this->db->where( 'id =', $this->intId );

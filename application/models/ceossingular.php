@@ -1,4 +1,6 @@
 <?php
+require_once( getcwd(). '\application\libraries\commonfunctions.php' );
+
 class CEosSingular extends CI_Model {
 	
 	function __construct() {
@@ -13,6 +15,12 @@ class CEosSingular extends CI_Model {
 		}
 		$arrstrRequestData = array_merge( $arrstrFields, $arrstrRequestData );
 		$this->assignData( $arrstrRequestData );
+	}
+
+	function getnextId( $strSequence, $objDatabase ) {
+		$arrResult = fetchData( 'SELECT nextval( "' . $strSequence . '") as id ', $objDatabase );
+		if( false == valArr( $arrResult ) ) return 0;
+		return (int) reset( $arrResult )['id'];
 	}
 
 }

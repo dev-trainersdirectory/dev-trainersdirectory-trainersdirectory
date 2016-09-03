@@ -137,12 +137,13 @@ class CTrainerVideo extends CEosSingular
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_trainer_videos', $this->db ),
 								'trainer_id' 		=> $this->intTrainerId,
 								'trainer_skill_id' 	=> $this->intTrainerSkillId,
 								'video_link' 		=> $this->strVideoLink,
 								'is_published' 		=> $this->boolIsPublished,
 								'created_by'		=> 1,
-								'created_on'		=> 'NOW()'
+								'created_on'		=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'trainer_videos', $arrStrInsertData ) ) return false;
@@ -170,7 +171,7 @@ class CTrainerVideo extends CEosSingular
 
 		$arrStrDeleteData = array(	
 								'deleted_by' => 1,
-								'deleted_on' => 'NOW()'
+								'deleted_on' => getCurrentDateTime( $this->db )
 							);
 
 		$this->db->where( 'id =', $this->intId );

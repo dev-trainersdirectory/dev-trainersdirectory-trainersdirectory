@@ -14,8 +14,6 @@ class CUser extends CEosSingular {
 	public $strVerifiedOn;
 	public $strCreatedOn;
 
-	public $objUser;
-	
 	function __construct() {
 		parent::__construct();
 	}
@@ -97,7 +95,7 @@ class CUser extends CEosSingular {
 	}
 
 	public function getId ( ) {
-		return $this->intId;
+		return (int) $this->intId;
 	}
 
 	public function getContactNumber() {
@@ -173,7 +171,11 @@ class CUser extends CEosSingular {
 
 	public function insert() {
 
+		if( true == is_null( $this->intId ) ) {
+			$this->intId = $this->getNextId( 'sq_users', $this->db );
+		}
 		$arrStrInsertData = array(
+								'id'					=> $this->intId,
 								'email_id'				=> $this->strEmailId,
 								'encrypted_password' 	=> $this->strEncryptedPassword,
 								'contact_number'		=> $this->intContactNumber,
@@ -182,7 +184,7 @@ class CUser extends CEosSingular {
 								'status_id'				=> $this->intStatusId,
 								'verified_by'			=> $this->intVerifiedBy,
 								'verified_on'			=> $this->strVerifiedOn,
-								'created_on'			=> $this->strCreatedOn,
+								'created_on'			=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'users', $arrStrInsertData ) ) return false;

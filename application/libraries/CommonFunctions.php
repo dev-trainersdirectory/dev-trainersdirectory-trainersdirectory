@@ -9,8 +9,14 @@
         return $objResult;
     }
 
-    function fetchData( $strSQL, $database ) {
+    function fetchData( $strSQL, $objDatabase ) {
+    	return ( array ) $objDatabase->query( $strSQL )->result_array();
+    }
 
+    function getCurrentDateTime( $objDatabase ) {
+    	$strSQL = 'SELECT NOW() as time';
+    	$arrResult = ( array ) $objDatabase->query( $strSQL )->result_array();
+    	return reset( $arrResult )['time'];
     }
 
     function compressImage( $strSourcePath, $strDestinationPath ) {

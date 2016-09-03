@@ -65,11 +65,12 @@ class CTime extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
-								'name' 		=> $this->strName,
+								'id'			=> $this->getNextId( 'sq_times', $this->db ),
+								'name' 			=> $this->strName,
 								'is_published' 	=> $this->boolIsPublished,
 							);
 
-		if( false == $this->db->insert( 'time', $arrStrInsertData ) ) return false;
+		if( false == $this->db->insert( 'times', $arrStrInsertData ) ) return false;
 
 		return true;
 	}
@@ -83,7 +84,7 @@ class CTime extends CEosSingular {
 
 		$this->db->where( 'id =', $this->intId );
 
-		if( false == $this->db->update( 'time', $arrStrUpdateData ) ) return false;
+		if( false == $this->db->update( 'times', $arrStrUpdateData ) ) return false;
 
 		return true;
 	}
@@ -92,7 +93,7 @@ class CTime extends CEosSingular {
 
 		$this->db->where( 'id =', $this->intId );
  	
- 		if( false == $this->db->delete( 'time' ) ) return false;
+ 		if( false == $this->db->delete( 'times' ) ) return false;
 
 		return true;
 	}

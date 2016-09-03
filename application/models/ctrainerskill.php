@@ -113,10 +113,11 @@ class CTrainerSkill extends CEosSingular
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_trainer_skills', $this->db ),
 								'trainer_id' 	=> $this->intTrainerId,
 								'tr_subject_id' => $this->intTrSubjectId,
 								'created_by'	=> $this->intCreatedBy,
-								'created_on'	=> 'NOW()'
+								'created_on'	=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'trainer_skills', $arrStrInsertData ) ) return false;
@@ -142,7 +143,7 @@ class CTrainerSkill extends CEosSingular
 
 		$arrStrDeleteData = array(
 								'deleted_by' => $this->intDeletedBy,
-								'deleted_on' => $this->intDeletedOn
+								'deleted_on' => getCurrentDateTime( $this->db )
 							);
 
 		$this->db->where( 'id =', $this->intId );

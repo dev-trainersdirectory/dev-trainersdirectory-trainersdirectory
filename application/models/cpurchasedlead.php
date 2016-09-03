@@ -106,11 +106,12 @@ class CPurchasedLead extends CEosSingular {
 	public function insert() {
 
 		$arrStrInsertData = array(
+								'id'			=> $this->getNextId( 'sq_purchased_leads', $this->db ),
 								'lead_id'			=> $this->intLeadId,
 								'bought_lead_id'	=> $this->intBoughtLeadId,
 								'notified_on'		=> $this->strNotifiedOn,
 								'closed_on'			=> $this->strClosedOn,
-								'created_on'		=> NOW(),
+								'created_on'		=> getCurrentDateTime( $this->db )
 							);
 
 		if( false == $this->db->insert( 'purchased_leads', $arrStrInsertData ) ) return false;
