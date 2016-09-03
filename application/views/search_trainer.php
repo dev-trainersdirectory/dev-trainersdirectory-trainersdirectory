@@ -66,7 +66,7 @@
                             </button>
                             <ul class="dropdown-menu" style="max-height: 500px; overflow-y:scroll; overflow-x: hidden;">
                             <?php foreach( $locations as $location ) {?>
-                                <li>
+                                <li class="js-location-dd">
                                 <a tabindex="-1">
                                     <input type="checkbox" name="filter_trainer[locations][]" value="<?php echo $location->getId(); ?>" />
                                     <?php echo $location->getName(); ?>
@@ -103,7 +103,7 @@
                                 <li>
                                 <a tabindex="-1">
                                     <input type="checkbox" name="filter_trainer[preferences][]" value="<?php echo $preference->getId(); ?>" />
-                                    <?php echo $preference->getTitle(); ?>
+                                    <?php echo $preference->getDescription(); ?>
                                 </a>
                                 </li>
                             <?php } ?>
@@ -144,60 +144,57 @@
             </div>
         </div>
         <button hidden="true" class="js-view_trainer_1" id="js-trainer_id" data-trainer_id="" data-toggle="modal" data-target="#myModal-view_trainer">Click</button>
+        
         <div class="slider-row">
-            <div id="owl2row-plugin" class="owl-carousel">
-            <?php $prevId = NULL; foreach( $trainers as $key => $trainer ) { ?>
-                <div class="item">
-                    <button hidden="true" id="trainer_id_<?php echo $key; ?>" data-prev="<?php echo $prevId;?>" data-next=""></button>
-                    <script type="text/javascript"> $("#trainer_id_<?php echo $prevId; ?>").data("next", <?php echo $key; ?> ); </script>
-                    <div class="flip-container">
-                        <div class="flipper">
-                            <div class="front show">
-                                <div class="trainer-panel widget">
-                                    <div class="widget-header bg-success text-right">
-                                        
-                                    </div>
-                                    <div class="widget-body text-center">
-                                        <!--trainer profile picture-->
-                                        <div class="trainer-profile-pic">
-                                            <a href='#' id="<?php echo $key; ?>" onclick="setValue(<?php echo $key; ?>);" class="js-view_trainer" data-toggle="modal" data-target="#myModal-view_user" >
-                                                <img alt="Profile Picture" class="rounded" id="image-1" src="<?php echo base_url() . $trainer->getProfilePic() ?>">
-                                            </a>
-                                        </div>
-                                        <!-- / trainer profile picture-->
-                                        <!--ratings-->
-                                        <div class="rating">
-                                        <?php for( $count = 0; $count < $trainer->getRating(); $count++ ) { ?>
-                                        <i class="icon-star-sm active one-rating"></i>
-                                        <?php } ?>
-                                        </div>
-                                        <!-- / ratings-->
-                                        <!-- trainer details -->
-                                        <h3 class="trainer-name"><?php echo $trainer->getName();?></h3>
-                                        <p class="trainer-profession">English Trainer</p>
-                                        <p class="trainer-subjects"><?php echo $trainer->getSkills();?></p>
-                                        <!-- / trainer details -->
-                                         <!-- view profile -->
-                                        <div class="trainer-view-profile clearfix">
-                                            <ul>
-                                                <li>
-                                                    <a class="" href="#"><i class="icon-watched"></i><span class="watch-count">(<?php echo $trainer->getViews();?>)</span></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#trainer-view" class="trainer-view" data-toggle="modal">View Profile</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!--/ view profile-->
-                                    </div>
+    <div id="owl2row-plugin" class="owl-carousel">
+    <?php $prevId = NULL; foreach( $trainers as $key => $trainer ) { ?>
+        <div class="item">
+            <button hidden="true" id="trainer_id_<?php echo $key; ?>" data-prev="<?php echo $prevId;?>" data-next=""></button>
+            <script type="text/javascript"> $("#trainer_id_<?php echo $prevId; ?>").data("next", <?php echo $key; ?> ); </script>
+            <div class="flip-container">
+                <div class="flipper">
+                    <div class="front show">
+                        <div class="trainer-panel widget">
+                            <div class="widget-header bg-success text-right">
+                                
+                            </div>
+                            <div class="widget-body text-center">
+                                <!--trainer profile picture-->
+                                <div class="trainer-profile-pic">
+                                    <a href='#' id="<?php echo $key; ?>" onclick="setValue(<?php echo $key; ?>);" class="js-view_trainer" data-toggle="modal" data-target="#myModal-view_user" >
+                                        <img alt="Profile Picture" class="rounded" id="image-1" src="<?php echo base_url() . $trainer->getProfilePic() ?>">
+                                    </a>
                                 </div>
+                                <!-- / trainer profile picture-->
+                                <!--ratings-->
+                                <div class="rating">
+                                <?php for( $count = 0; $count < $trainer->getRating(); $count++ ) { ?>
+                                <i class="icon-star-sm active one-rating"></i>
+                                <?php } ?>
+                                </div>
+                                <!-- / ratings-->
+                                <!-- trainer details -->
+                                <h3 class="trainer-name"><?php echo $trainer->getName();?></h3>
+                                <p class="trainer-profession">English Trainer</p>
+                                <p class="trainer-subjects"><?php echo $trainer->getSkills();?></p>
+                                <!-- / trainer details -->
+                                <!-- social details -->
+                                <div class="trainer-social">
+                                    <a class="" href="#"><i class="icon-call"></i></a>
+                                    <a class="" href="#"><i class="icon-msgs"></i></a>
+                                    <a class="" href="#"><i class="icon-likes"></i></a>
+                                    <a class="" href="#"><i class="icon-watched"></i><span class="watch-count">(<?php echo $trainer->getViews();?>)</span></a>
+                                </div>
+                                <!-- / social details -->
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php $prevId = $key; } ?>
             </div>
         </div>
+    <?php $prevId = $key; } ?>
+    </div>
+</div>
 
     </div>
     <!-- footer -->
@@ -274,6 +271,20 @@
             }
         })
     });
+
+    $(".js-location_textbox").keyup(function(){
+        searchString = $(this).val();
+
+        if( '' != searchString ) {
+            $( ".js-location-dd" ).each(function( i ) {
+                if( 0 == $( this ).text().indexOf( searchString ) ) {
+                  alert(searchString);  $(this).remove();
+                }
+            });
+        }
+    });
+
+   // $(".js-filter_trainer").trigger("click");
 
 </script>
 </body>
