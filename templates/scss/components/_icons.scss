@@ -91,6 +91,22 @@
 		width: 43px;
 	  position: absolute;
 	}
+	&-user {
+		background-image: url('#{$image-path}icon-user.png');
+		height: 18px;
+		width: 18px;
+	  display: block;
+		margin-top: 18px;
+	}
+	&-password {
+		background-image: url('#{$image-path}icon-password.png');
+		height: 18px;
+		width: 13px;
+	  display: block;
+		margin-top: 17px;
+		margin-left: 2px;
+		margin-right: 3px;
+	}
 	&-arrow-right-md {
 		background-image: url('#{$image-path}icon-arrow-right-md.png');
 		height: 43px;

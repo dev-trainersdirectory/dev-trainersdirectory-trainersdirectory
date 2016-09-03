@@ -23,6 +23,16 @@
       background: darken($primary-color, 10%);
     }
 }
+
+.btn-primary-blue  {
+    background: $primary-color-blue;
+    color: $white !important;
+    text-transform: uppercase;
+    font-weight: 500;
+    &:hover {
+        color: $white;
+    }
+}
 /*button colors*/
 
 .btn {

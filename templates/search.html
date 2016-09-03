@@ -30,12 +30,56 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <!-- <a class="navbar-brand" href="#">Project name</a> -->
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-
                     <ul class="nav navbar-nav navbar-right top-right-navigation">
-                        <li><a href="../navbar/">Login</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                             Login
+                             </a>
+                            <div class="dropdown-menu form-login stop-propagation" role="menu">
+                              <div class="form-header">
+                                  <h4>Login</h2>
+                                  <a href="">Do you have an account?</a>
+                              </div>
+                              <div class="form-body material">
+                                  <div class="form-group clearfix">
+                                      <div class="pull-left margin-right-15">
+                                          <i class="icon-user"></i>
+                                      </div>
+                                      <div class="pull-right">
+                                          <label for="exampleInputEmail1">User Name</label>
+                                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Your Email ID/ Mobile No" />
+                                      </div>
+                                  </div>
+                                  <div class="form-group clearfix">
+                                      <div class="pull-left margin-right-15">
+                                          <i class="icon-password"></i>
+                                      </div>
+                                      <div class="pull-right">
+                                          <label for="exampleInputEmail1">Password</label>
+                                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Password" />
+                                      </div>
+                                  </div>
+                                  <div class="form-group full-width clearfix ">
+                                      <div class="checkbox stop-propagation pull-left">
+                                            <input id="checkbox1" type="checkbox">
+                                            <label for="checkbox1">
+                                                Keep me logged in.
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary-blue pull-right">
+                                             Login
+                                        </button>
+                                  </div>
+                                  <div class="form-group  full-width">
+                                      <a href="" class="italic-text  font-12">Forget your password?</a>
+                                  </div>
+
+                              </div>
+
+                            </div>
+                          </li>
                         </li>
                         <li><a href="../navbar-static-top/">Register</a>
                         </li>
