@@ -164,13 +164,20 @@ margin-top: 5%;
 }
 
 /*login*/
-.form-login{
-  min-width: 360px;
-  margin-top: 20px !important;
-  right: -80px !important;
-  border-top-right-radius: 4px !important;
-  border-top-left-radius: 4px !important;
-  -webkit-box-shadow: 0 0 10px 2200px rgba(0, 0, 0, 0.4);
+.form-login,
+.form-registration {
+
+}
+
+.form-login,
+.form-registration{
+    border: none !important;
+    min-width: 360px;
+    margin-top: 20px !important;
+    right: -80px !important;
+    border-top-right-radius: 4px !important;
+    border-top-left-radius: 4px !important;
+    -webkit-box-shadow: 0 0 10px 2200px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 0 10px 2200px rgba(0, 0, 0, 0.4);
     box-shadow:0 0 10px 2200px rgba(0, 0, 0, 0.4);
     padding: 0px;
@@ -197,14 +204,19 @@ margin-top: 5%;
       padding-left: 14px;
     }
 }
-.form-login{
-  border: none !important;
+.form-login,
+.form-registration{
   & .form-body {
-    .font-12 {
-      text-align: right;
-      color:#1e88e5 !important;
+    .font-12,
+    .font-11 {
       text-transform: none !important;
       display: block;
+    }
+    .font-blue {
+      color:#2196f3 !important;
+    }
+    .font-11{
+      color:#b3b5b6 !important;
     }
     & .form-group {
       margin-bottom: 12px !important;
@@ -232,17 +244,40 @@ margin-top: 5%;
     & .full-width.clearfix {
       display: block !important;
     }
+    & .btn {
+      text-transform: uppercase;
+    }
   }
 }
-.form-header:before {
-    content: "";
-    border-bottom: 7px solid #4db6ac;
-    border-right: 7px solid transparent;
-    border-left: 7px solid transparent;
-    position: absolute;
-    top: -7px;
+.form-login,
+.form-registration {
+  & .form-header:before {
+      content: "";
+      border-bottom: 7px solid #4db6ac;
+      border-right: 7px solid transparent;
+      border-left: 7px solid transparent;
+      position: absolute;
+      top: -7px;
+      z-index: 10;
+  }
+}
+.form-login {
+  & .form-header:before {
     right: 107px;
-    z-index: 10;
+  }
+}
+.form-registration {
+  & .form-header:before {
+    right: 120px;
+  }
+}
+
+.otp-counter {
+  width: 85px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 @media screen and (min-width: 768px) {
     #adv-search {

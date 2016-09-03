@@ -1,11 +1,11 @@
 .btn-secondary {
 //    @extend .btn;
     border-color: $white-c5;
-    color: $black;
+    color: $white;
     background-color: $white-c5;
     &:hover,&:focus {
       border-color: darken($white-c5, 10%);
-      color: $black;
+      color: $white;
       background: darken($white-c5, 10%);
     }
 }
@@ -27,7 +27,6 @@
 .btn-primary-blue  {
     background: $primary-color-blue;
     color: $white !important;
-    text-transform: uppercase;
     font-weight: 500;
     &:hover {
         color: $white;
@@ -59,7 +58,9 @@
         border: none;
     }
 }
-
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    color: $white;
+}
 .disabled {
     cursor: default;
     &:hover,

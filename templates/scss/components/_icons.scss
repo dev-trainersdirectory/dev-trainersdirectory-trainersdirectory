@@ -98,6 +98,15 @@
 	  display: block;
 		margin-top: 18px;
 	}
+	&-mobile {
+		background-image: url('#{$image-path}icon-mobile.png');
+		height: 18px;
+		width: 11px;
+	  display: block;
+		margin-top: 18px;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
 	&-password {
 		background-image: url('#{$image-path}icon-password.png');
 		height: 18px;
