@@ -1,3 +1,8 @@
+.compair-trainers{
+    background: #1d89e4 !important;
+    width: 78px !important;
+}
+
 .owl-carousel.owl-loaded {
     margin-bottom: 45px;
 }
@@ -144,7 +149,7 @@ width: 100%;
         padding-top: 15px;
         font-size: 17px;
         & a {
-                margin-right: 45px;
+
             &:last-child {
                 margin-right: 0;
             }
@@ -165,7 +170,7 @@ width: 100%;
     }
     &-social-modal {
         position: absolute;
-        bottom: 17px;
+        bottom: 15px;
         border-top: none;
         margin-left: 13px;
     }

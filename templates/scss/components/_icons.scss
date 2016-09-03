@@ -103,6 +103,24 @@
 		width: 18px;
 		position: absolute;
 	}
+	&-like {
+		background-image: url('#{$image-path}icon-like.png');
+		height: 36px;
+		width: 36px;
+		position: absolute;
+	}
+	&-lock {
+		background-image: url('#{$image-path}icon-lock.png');
+		height: 36px;
+		width: 36px;
+		position: absolute;
+	}
+	&-download {
+		background-image: url('#{$image-path}icon-download.png');
+		height: 36px;
+		width: 36px;
+		position: absolute;
+	}
 
 }
 .search-addon i{
