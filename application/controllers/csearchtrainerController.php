@@ -56,11 +56,22 @@ class CSearchTrainerController extends CSystemController {
 
 	public function filterTrainer() {
 
-		
+		$arrintLocationsIds = array();
+		$arrintTimesIds = array();
+		$arrintPreferencesIds = array();
+		$data = array();
+		$data = $this->loadSearchFilter();
+
 		$intSubjectId = $this->input->post('filter_trainer')['subject_id'];
 		$intCityId = $this->input->post('filter_trainer')['city_id'];
+		
+		if( true == isset( $this->input->post('filter_trainer')['locations'] ) )
 		$arrintLocationsIds = $this->input->post('filter_trainer')['locations'];
+
+		if( true == isset( $this->input->post('filter_trainer')['times'] ) )
 		$arrintTimesIds = $this->input->post('filter_trainer')['times'];
+
+		if( true == isset( $this->input->post('filter_trainer')['preferences'] ) )
 		$arrintPreferencesIds = $this->input->post('filter_trainer')['preferences'];
 
 		$arrObjTrainers = CTrainers::fetchAllActiveTrainersBySubjectIdByCityIdByLocationByTimeByPreference( $intSubjectId, $intCityId, $arrintLocationsIds, $arrintTimesIds, $arrintPreferencesIds, $this->db );
