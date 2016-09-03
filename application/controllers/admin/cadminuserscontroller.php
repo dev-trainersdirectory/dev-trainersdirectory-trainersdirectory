@@ -27,29 +27,54 @@ class CAdminUsersController extends CAdminSystemController {
 	public function index() {
 
 		$arrstrFilter = array( 'name' => '', 'email_id' => '', 'contact_number' => '' );
+		
+		$data['filter'] 	= $arrstrFilter;
+		$this->load->view( 'admin/view_users', $data );
+	}
+
+	public function viewPaginatedUsers() {
+
+		$arrstrFilter = array( 'name' => '', 'email_id' => '', 'contact_number' => '' );
+
 		$arrstrPostFilter = ( array ) $this->input->post( 'filter' );
 		$arrstrPostFilter = array_filter( $arrstrPostFilter );
 
-		if( true == array_key_exists( 'reset', $arrstrPostFilter ) ) {
+		if( true == array_key_exists( 'reset', $arrstrPostFilter ) && 1 == $arrstrPostFilter['reset'] ) {
 			$arrstrPostFilter = array();
 		}
 		$arrstrFilter = array_merge( $arrstrFilter, $arrstrPostFilter );
-		
+
+		$intLimit = 5;
+		if( $this->input->post('page') ) {
+			$intOffset = $this->input->post('page');
+		} else {
+			$intOffset = 0;
+		}
+
 		$arrobjUsers = ( array ) CUsers::fetchUsersByFilter( $arrstrFilter, $this->db );
+
+		$config['target']      	= '#js-user_inner_content';
+        $config['base_url']    	= base_url().'admin_users/viewPaginatedUsers';
+        $config['total_rows']  	= count( $arrobjUsers );
+        $config['per_page']    	= 5;
+        $config['cur_page']   	= $intOffset;
+
+        $this->pagination->initialize($config);
+
+        $arrobjUsers = CUsers::fetchUsersByFilterByOffsetByLimit( $arrstrFilter, $intLimit, $intOffset, $this->db );
 
 		$arrintUserIds =  array_keys( $arrobjUsers );
 		$arrobjLeads = ( array ) CLeads::fetchLeadsByUserIds( $arrintUserIds, $this->db );
 		$arrobjLeads = ( array ) rekeyObjects( 'UserId', $arrobjLeads );
 
 		$arrobjStatuses = ( array ) CStatuses::fetchAllStatuses( $this->db );
-		
+
 		$data = array();
 		$data['users'] 		= $arrobjUsers;
 		$data['leads'] 		= $arrobjLeads;
 		$data['statuses'] 	= $arrobjStatuses;
-		$data['filter'] 	= $arrstrFilter;
 
-		$this->load->view( 'admin/view_users', $data );
+		$this->load->view( 'admin/view_users_list', $data );
 	}
 
 	public function addUser() {

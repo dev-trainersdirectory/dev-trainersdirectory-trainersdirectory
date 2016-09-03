@@ -41,17 +41,42 @@ class CAdminTrainersController extends CAdminSystemController {
 
 	public function index() {
 
+		$arrstrFilter = array( 'name' => '', 'email_id' => '', 'contact_number' => '', 'user_type_id' => CUserType::USER_TYPE_TRAINER );
+
+		$filterData['filter'] = $arrstrFilter;
+		$this->load->view( 'admin/view_trainers', $filterData );
+	}
+
+	public function viewPaginatedTrainers() {
+
 		$arrstrFilter = array( 'name' => '', 'email_id' => '', 'contact_number' => '' );
 		$arrstrPostFilter = ( array ) $this->input->post( 'filter' );
 		$arrstrPostFilter = array_filter( $arrstrPostFilter );
 
-		if( true == array_key_exists( 'reset', $arrstrPostFilter ) ) {
+		if( true == array_key_exists( 'reset', $arrstrPostFilter ) && 1 == $arrstrPostFilter['reset'] ) {
 			$arrstrPostFilter = array();
 		}
 		$arrstrFilter = array_merge( $arrstrFilter, $arrstrPostFilter );
 		$arrstrFilter['user_type_id'] = CUserType::USER_TYPE_TRAINER;
 
+		$intLimit = 5;
+		if( $this->input->post('page') ) {
+			$intOffset = $this->input->post('page');
+		} else {
+			$intOffset = 0;
+		}
+
 		$arrobjUsers = CUsers::fetchUsersByFilter( $arrstrFilter, $this->db );
+
+		$config['target']      	= '#js-trainer_inner_content';
+        $config['base_url']    	= base_url().'admin_trainers/viewPaginatedTrainers';
+        $config['total_rows']  	= count( $arrobjUsers );
+        $config['per_page']    	= 5;
+        $config['cur_page']   	= $intOffset;
+
+        $this->pagination->initialize($config);
+
+        $arrobjUsers = CUsers::fetchUsersByFilterByOffsetByLimit( $arrstrFilter, $intLimit, $intOffset, $this->db );
 
 		$arrintUserIds = array();
 		foreach( $arrobjUsers as $objUser )
@@ -70,9 +95,8 @@ class CAdminTrainersController extends CAdminSystemController {
 		$data['leads'] = $arrobjLeads;
 		$data['statuses'] = $arrobjStatuses;
 		$data['trainers'] = $arrobjTrainers;
-		$data['filter'] 	= $arrstrFilter;
 
-		$this->load->view( 'admin/view_trainers', $data );
+		$this->load->view( 'admin/view_trainers_list', $data );
 	}
 
 	public function editTrainer() {

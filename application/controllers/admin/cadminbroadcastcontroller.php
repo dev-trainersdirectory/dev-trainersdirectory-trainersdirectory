@@ -95,13 +95,10 @@ class CAdminBroadcastController extends CAdminSystemController {
 
 	public function showBulkSMSPopup() {
 
-		show($this->input->post('broadcast'));
-
-		$intLeadId = $this->input->post('lead_id');
-		$intUserId = $this->input->post('user_id');
+		$arrintUserIds = $this->input->post('broadcast')['user_ids'];
 
 		$data['sms_templates'] = CSmsTemplates::fetchAllActiveSmsTemplates( $this->db );
-		$data['lead'] = CLeads::fetchLeadNamesByLeadId( $intLeadId, $this->db );
+		$data['leads'] = CLeads::fetchLeadNamesByUserIds( $arrintUserIds, $this->db );
 
 		$this->load->view( 'admin/view_bulk_send_sms', $data );
 	}

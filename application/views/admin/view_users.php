@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-lg-3">
                     <a href="#" class="btn btn-primary js-filter_user">Filter</a>
-                    <a href="#" class="btn btn-default js-filter_user" onclick="document.getElementById('filter_reset').value = 1;">
+                    <a href="#" class="btn btn-default js-reset_filter_user" onclick="document.getElementById('filter_reset').value = 1;">
                         Reset
                     </a>
                 </div>
@@ -35,32 +35,8 @@
 <!-- Modal Box -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th width="20%">Name</th>
-                        <th width="20%">Email Address</th>
-                        <th width="10%">Contact No</th>
-                        <th>Address</th>
-                        <th width="15%">Status</th>
-                        <th width="5%">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php foreach( $users as $user ) {?>
-                    <?php $lead = $leads[$user->getId()]?>
-                    <tr>
-                        <td><?php echo $lead->getFullName()?></td>
-                        <td><?php echo $user->getEmailId() ?></td>
-                        <td><?php echo $user->getContactNumber()?></td>
-                        <td><?php echo $lead->getAddress()?></td>
-                        <td><?php echo $statuses[$user->getStatusId()]->getName()?></td>
-                        <td><a href='#' class='btn btn-primary js-edit_user' data-toggle="modal" data-target="#myModal-add_user" id='<?php echo $user->getId() ?>'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
+        <div class="table-responsive" id="js-user_inner_content">
+            
         </div>
     </div>    
 </div>
@@ -99,29 +75,32 @@
         })
     });
 
-    $(".js-edit_user").click(function(){
-    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
+    $(".js-filter_user").click(function(){
+    $('#js-user_inner_content').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
+        document.getElementById('filter_reset').value = 0;
         $.ajax ({
             type: "post",
-            data: { id: this.id },
-            url: '<?=base_url()?>admin_users/editUser',
+            data: $( "form" ).serialize(),
+            url: '<?=base_url()?>admin_users/viewPaginatedUsers',
             success: function(result) {
                 if(result) {
-                    $('.modal-body').html(result);
+                    $('#js-user_inner_content').html(result);
                 }
             }
         })
     });
 
-    $(".js-filter_user").click(function(){
-    $('.modal-body').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
+    $(".js-filter_user").trigger('click');
+
+    $(".js-reset_filter_user").click(function(){
+    $('#js-user_inner_content').html('<div align="center"><img align="center" src="<?=base_url()?>public/images/load.gif"></div>');
         $.ajax ({
             type: "post",
             data: $( "form" ).serialize(),
-            url: '<?=base_url()?>admin_users/',
+            url: '<?=base_url()?>admin_users/viewPaginatedUsers',
             success: function(result) {
                 if(result) {
-                    $('.container-fluid').html(result);
+                    $('#js-user_inner_content').html(result);
                 }
             }
         })
