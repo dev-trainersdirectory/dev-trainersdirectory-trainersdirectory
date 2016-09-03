@@ -105,6 +105,7 @@ class CUsers extends CEosPlural
 					LIMIT ' . $intLimit .' OFFSET ' . $intOffset;
 
 		return self::fetchUsers( $strSQL, $objDatabase );
+	}
 
 	public function fetchUserCountByContactNumber( $intContactNumber, $objDatabase ) {
 

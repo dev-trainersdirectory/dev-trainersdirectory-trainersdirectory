@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','session','CBaseLibrary','CTrainerViewsService','CUserSms','CCommunicationLibrary');
+$autoload['libraries'] = array('database','session','CBaseLibrary','CTrainerViewsService','CUserSms','CCommunicationLibrary', 'pagination');
 
 
 /*
