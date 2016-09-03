@@ -79,6 +79,34 @@ class CUsers extends CEosPlural
 		return self::fetchUsers( $strSQL, $objDatabase );
 	}
 
+	public static function fetchUsersByFilterByOffsetByLimit( $arrstrFilter, $intLimit, $intOffset, $objDatabase ) {
+		$strWhere = ' WHERE true ';
+		$strJoin = '';
+		$arrstrFilter = array_filter( $arrstrFilter );
+		if( true == valArr( $arrstrFilter ) ) {
+			if( true == array_key_exists( 'name', $arrstrFilter ) )
+				$strWhere .= 'AND lower( l.first_name ) like \'%'. trim( strtolower ($arrstrFilter['name'] ) ) . '%\' ';
+			if( true == array_key_exists( 'email_id', $arrstrFilter ) )
+				$strWhere .= 'AND lower( u.email_id ) like \'%'. trim( strtolower ($arrstrFilter['email_id'] ) ) . '%\' ';
+			if( true == array_key_exists( 'contact_number', $arrstrFilter ) )
+				$strWhere .= 'AND u.contact_number like \'%'. trim( $arrstrFilter['contact_number'] ) . '%\' ';
+			if( true == array_key_exists( 'user_type_id', $arrstrFilter ) ) {
+				$strWhere .= 'AND uta.user_type_id = ' . ( int ) $arrstrFilter['user_type_id'];
+				$strJoin .= 'JOIN user_type_associations uta ON ( u.id = uta.user_id )';
+			}
+
+		}
+
+		$strSQL = ' SELECT
+						u.*
+					FROM 
+						users u ' . $strJoin . '						
+						JOIN leads l ON ( u.id = l.user_id )' . $strWhere .'
+					LIMIT ' . $intLimit .' OFFSET ' . $intOffset;
+
+		return self::fetchUsers( $strSQL, $objDatabase );
+	}
+
 }
 
 ?>

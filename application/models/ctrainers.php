@@ -131,7 +131,8 @@ class CTrainers extends CEosPlural {
 		if( true == valArr( $arrintPreferencesIds ) )
 			$strJOIN .= 'JOIN trainer_prefereces tp ON ( t.id = tp.trainer_id AND tp.preference_id IN ( '.implode( $arrintPreferencesIds, ',' ).' ) ) ';
 
-		
+		if( true == valArr( $arrintTimesIds ) )
+			$strJOIN .= 'JOIN trainer_timings tt ON ( t.id = tt.trainer_id AND tt.time_id IN ( '.implode( $arrintTimesIds, ',' ).' ) ) ';
 
 		$strSQL = ' SELECT
 						t.*,
