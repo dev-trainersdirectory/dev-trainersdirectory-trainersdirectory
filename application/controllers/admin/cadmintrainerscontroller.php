@@ -41,7 +41,7 @@ class CAdminTrainersController extends CAdminSystemController {
 
 	public function index() {
 
-		$arrstrFilter = array( 'name' => '', 'email_id' => '', 'contact_number' => '', 'user_type_id' => CUserType::USER_TYPE_TRAINER );
+		$arrstrFilter = array( 'name' => '', 'email_id' => '', 'contact_number' => '', 'user_type_id' => CUserType::TRAINER );
 
 		$filterData['filter'] = $arrstrFilter;
 		$this->load->view( 'admin/view_trainers', $filterData );
@@ -57,7 +57,7 @@ class CAdminTrainersController extends CAdminSystemController {
 			$arrstrPostFilter = array();
 		}
 		$arrstrFilter = array_merge( $arrstrFilter, $arrstrPostFilter );
-		$arrstrFilter['user_type_id'] = CUserType::USER_TYPE_TRAINER;
+		$arrstrFilter['user_type_id'] = CUserType::TRAINER;
 
 		$intLimit = 5;
 		if( $this->input->post('page') ) {
