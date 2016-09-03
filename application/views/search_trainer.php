@@ -161,7 +161,7 @@
                             <div class="widget-body text-center">
                                 <!--trainer profile picture-->
                                 <div class="trainer-profile-pic">
-                                    <a href='#' id="<?php echo $key; ?>" onclick="setValue(<?php echo $key; ?>);" class="js-view_trainer" data-toggle="modal" data-target="#myModal-view_user" >
+                                    <a href='#' id="<?php echo $key; ?>" class="js-view_trainer" data-toggle="modal" data-target="#myModal-view_user" >
                                         <img alt="Profile Picture" class="rounded" id="image-1" src="<?php echo base_url() . $trainer->getProfilePic() ?>">
                                     </a>
                                 </div>
@@ -178,14 +178,18 @@
                                 <p class="trainer-profession">English Trainer</p>
                                 <p class="trainer-subjects"><?php echo $trainer->getSkills();?></p>
                                 <!-- / trainer details -->
-                                <!-- social details -->
-                                <div class="trainer-social">
-                                    <a class="" href="#"><i class="icon-call"></i></a>
-                                    <a class="" href="#"><i class="icon-msgs"></i></a>
-                                    <a class="" href="#"><i class="icon-likes"></i></a>
-                                    <a class="" href="#"><i class="icon-watched"></i><span class="watch-count">(<?php echo $trainer->getViews();?>)</span></a>
-                                </div>
-                                <!-- / social details -->
+                                <!-- view profile -->
+                                    <div class="trainer-view-profile clearfix">
+                                        <ul>
+                                            <li>
+                                                <a class="" href="javascript:void(0);"><i class="icon-watched"></i><span class="watch-count">(<?php echo $trainer->getViews();?>)</span></a>
+                                            </li>
+                                            <li>
+                                                <a  onclick="setValue(<?php echo $key; ?>);" class="trainer-view" data-toggle="modal">View Profile</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--/ view profile-->
                             </div>
                         </div>
                     </div>
