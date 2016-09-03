@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','session');
+$autoload['libraries'] = array('database','session','CBaseLibrary','CTrainerViewsService','CUserSms','CCommunicationLibrary');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array( 'CEosSingular', 'CEosPlural', 'CCity', 'CCities', 'CTrSubject', 'CTrSubjects', 'CState', 'CStates', 'CUser', 'CUsers', 'CLead', 'CLeads', 'CBaseTrainer', 'CTrainer', 'CTrainers', 'CTrCategory', 'CTrCategories', 'CStatus', 'CStatuses', 'CUserType', 'CUserTypes', 'CDay', 'CDays', 'CTime', 'CTimes', 'CTrainerLocations', 'CTrainerLocation', 'CTrainerPreferences', 'CTrainerPreference', 'CLocations', 'CLocation', 'CPreferences', 'CPreference', 'CGender', 'CGenders', 'CUserTypeAssociation', 'CUserTypeAssociations', 'CReviewRating', 'CReviewRatings', 'CCoinTransaction', 'CCoinTransactions', 'CSmsTemplate', 'CSmsTemplates', 'CSmsType', 'CSmsTypes', 'CAdvertiser', 'CAdvertisers', 'CAdvertisement', 'CAdvertisements','CTrainerVideos', 'CTrainerVideo', 'CTrainerSkills', 'CTrainerSkill', 'CEmailTemplate', 'CEmailTemplates', 'CEmailType', 'CEmailTypes', 'CTrainerTiming', 'CTrainerTimings', 'CTransactionTypes', 'CTransactionType', 'CTransactionCosts', 'CTransactionCost' );
+$autoload['model'] = array( 'CEosSingular', 'CEosPlural', 'CCity', 'CCities', 'CTrSubject', 'CTrSubjects', 'CState', 'CStates', 'CUser', 'CUsers', 'CLead', 'CLeads', 'CBaseTrainer', 'CTrainer', 'CTrainers', 'CTrCategory', 'CTrCategories', 'CStatus', 'CStatuses', 'CUserType', 'CUserTypes', 'CDay', 'CDays', 'CTime', 'CTimes', 'CTrainerLocations', 'CTrainerLocation', 'CTrainerPreferences', 'CTrainerPreference', 'CLocations', 'CLocation', 'CPreferences', 'CPreference', 'CGender', 'CGenders', 'CUserTypeAssociation', 'CUserTypeAssociations', 'CReviewRating', 'CReviewRatings', 'CCoinTransaction', 'CCoinTransactions', 'CSmsTemplate', 'CSmsTemplates', 'CSmsType', 'CSmsTypes', 'CAdvertiser', 'CAdvertisers', 'CAdvertisement', 'CAdvertisements','CTrainerVideos', 'CTrainerVideo', 'CTrainerSkills', 'CTrainerSkill', 'CEmailTemplate', 'CEmailTemplates', 'CEmailType', 'CEmailTypes', 'CTrainerTiming', 'CTrainerTimings', 'CTransactionTypes', 'CTransactionType', 'CTransactionCosts', 'CTransactionCost','CSystemSMS','CSystemSMSes', 'CMergeFields', 'CMergeField', 'CShowInterest', 'CShowInterests' );
 
 
 /* End of file autoload.php */

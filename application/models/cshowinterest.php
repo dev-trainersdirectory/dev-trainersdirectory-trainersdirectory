@@ -1,10 +1,10 @@
 <?php
 
-class CPurchasedUser extends CEosSingular {
+class CShowInterest extends CEosSingular {
 
 	public $intId;
 	public $intUserId;
-	public $intBoughtUserId;
+	public $intTrainerUserId;
 	
 	public $strNotifiedOn;
 	public $strClosedOn;
@@ -24,8 +24,8 @@ class CPurchasedUser extends CEosSingular {
 		if( true == array_key_exists( 'user_id', $arrstrRequestData ) )
 			$this->setUserId( $arrstrRequestData['user_id'] );
 
-		if( true == array_key_exists( 'bought_user_id', $arrstrRequestData ) )
-			$this->setBoughtUserId( $arrstrRequestData['bought_user_id'] );
+		if( true == array_key_exists( 'trainer_user_id', $arrstrRequestData ) )
+			$this->setTrainerUserId( $arrstrRequestData['trainer_user_id'] );
 
 		if( true == array_key_exists( 'notified_on', $arrstrRequestData ) )
 			$this->setNotifiedOn( $arrstrRequestData['notified_on'] );
@@ -49,8 +49,8 @@ class CPurchasedUser extends CEosSingular {
 		$this->intUserId = $intUserId;
 	}
 
-	public function setBoughtUserId( $intBoughtUserId ) {
-		$this->intBoughtUserId = $intBoughtUserId;
+	public function setTrainerUserId( $intTrainerUserId ) {
+		$this->intTrainerUserId = $intTrainerUserId;
 	}
 
 	public function setNotifiedOn( $strNotifiedOn ) {
@@ -73,8 +73,8 @@ class CPurchasedUser extends CEosSingular {
 		return $this->intUserId;
 	}
 
-	public function getBoughtUserId( $intBoughtUserId ) {
-		return $this->intBoughtUserId;
+	public function getTrainerUserId( $intTrainerUserId ) {
+		return $this->intTrainerUserId;
 	}
 
 	public function getNotifiedOn( $strNotifiedOn ) {
@@ -106,18 +106,18 @@ class CPurchasedUser extends CEosSingular {
 	public function insert() {
 
 		if( true == is_null( $this->intId ) ) {
-			$this->intId = $this->getNextId( 'sq_purchased_users', $this->db );
+			$this->intId = $this->getNextId( 'sq_show_interests', $this->db );
 		}
 		$arrStrInsertData = array(
 								'id'				=> $this->intId,
 								'user_id'			=> $this->intUserId,
-								'bought_user_id'	=> $this->intBoughtUserId,
+								'trainer_user_id'	=> $this->intTrainerUserId,
 								'notified_on'		=> $this->strNotifiedOn,
 								'closed_on'			=> $this->strClosedOn,
 								'created_on'		=> getCurrentDateTime( $this->db )
 							);
 
-		if( false == $this->db->insert( 'purchased_users', $arrStrInsertData ) ) return false;
+		if( false == $this->db->insert( 'show_interests', $arrStrInsertData ) ) return false;
 
 		return true;
 	}
@@ -127,14 +127,14 @@ class CPurchasedUser extends CEosSingular {
 		$arrStrUpdateData = array();
 
 		if( false == is_null( $this->intUserId ) ) $arrStrUpdateData['user_id'] = $this->intUserId;
-		if( false == is_null( $this->intBoughtUserId ) ) $arrStrUpdateData['bought_user_id'] = $this->intBoughtUserId;
+		if( false == is_null( $this->intTrainerUserId ) ) $arrStrUpdateData['trainer_user_id'] = $this->intTrainerUserId;
 		if( false == is_null( $this->strNotifiedOn ) ) $arrStrUpdateData['notified_on'] = $this->strNotifiedOn;
 		if( false == is_null( $this->strClosedOn ) ) $arrStrUpdateData['closed_on'] = $this->strClosedOn;
 								
 
 		$this->db->where( 'id =', $this->intId );
 
-		if( false == $this->db->update( 'purchased_users', $arrStrUpdateData ) ) return false;
+		if( false == $this->db->update( 'show_interests', $arrStrUpdateData ) ) return false;
 
 		return true;
 	}
@@ -143,7 +143,7 @@ class CPurchasedUser extends CEosSingular {
 
 		$this->db->where( 'id =', $this->intId );
  	
- 		if( false == $this->db->delete( 'purchased_users' ) ) return false;
+ 		if( false == $this->db->delete( 'show_interests' ) ) return false;
 
 		return true;
 	}

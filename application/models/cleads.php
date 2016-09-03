@@ -135,6 +135,22 @@ class CLeads extends CEosPlural
 		return self::fetchLeads( $strSQL, $objDatabase );
 	}
 
+	public static function fetchLeadDetailsByUserId( $intUserId, $objDatabase ) {
+
+		$strSQL = ' SELECT
+						*,
+						u.email_id,
+						u.contact_number
+					FROM
+						leads l
+						JOIN users u ON ( l.user_id = u.id )
+					WHERE
+						user_id = ' . $intUserId;
+		
+		return self::fetchLead( $strSQL, $objDatabase );
+	}
+
+
 }
 
 ?>

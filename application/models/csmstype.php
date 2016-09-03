@@ -6,6 +6,8 @@ class CSmsType extends CEosSingular {
 	public $strSubject;
 	public $boolIsActive;
 	
+	const SHOW_INTEREST = 2;
+	
 	function __construct() {
 		parent::__construct();
 	}
