@@ -1,0 +1,25 @@
+/*button colors*/
+
+.btn {
+    &-big {
+        height: 50px;
+        width: 100%;
+    }
+    &-green {
+      background-color: $green;
+    }
+
+}
+
+
+
+.btn {
+    &-transparent {
+        background: none;
+        background-color: transparent;
+        border: none;
+    }
+}
+.icon-btn {
+
+}

@@ -70,8 +70,21 @@
                                                         </div>
                                                     </form>
                                                     <div class="trainer-social-modal">
-                                                        <a class="js-show_interest" href="javascript:void(0);"><i class="icon-likes"></i></a>
-                                                        <a class="" href="javascript:void(0);"><i class="icon-watched"></i><span class="watch-count">(<?php echo $trainer->getViews(); ?>)</span></a>
+                                                        <div class="tooltip-container">
+                                                         <a class="js-show_interest" href="javascript:void(0);"><i class="icon-like"></i></a>
+                                                          <div class="tooltip-box">
+                                                              <span>Like : </span>Notification would be sent to Trainer. </div>
+                                                        </div>
+                                                       <!-- <div class="tooltip-container">
+                                                         <a class="" href="#"><i class="icon-lock"></i></a>
+                                                          <div class="tooltip-box">
+                                                              <span>Lock : </span>Lorem Ipsum is simply dummy text </div>
+                                                        </div>
+                                                        <div class="tooltip-container">
+                                                         <a class="" href="#"><i class="icon-download"></i></a>
+                                                          <div class="tooltip-box">
+                                                              <span>Download : </span>Lorem Ipsum is simply dummy text </div>
+                                                        </div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,11 +106,11 @@
                                                 <label class="margin-top-10">Average Ratings</span>
                                                 </label>
                                                 <div class="rating pull-right">
-                                                    <i class="icon-star-sm one-rating"></i>
-                                                    <i class="icon-star-sm two-rating"></i>
-                                                    <i class="icon-star-sm three-rating"></i>
-                                                    <i class="icon-star-sm four-rating"></i>
-                                                    <i class="icon-star-sm five-rating"></i>
+                                                    <i class="icon-star-sm one-rating <?php if (1 <= $floatAvgRating/5) {?> active <?php }?>"></i>
+                                                    <i class="icon-star-sm two-rating <?php if (2 <= $floatAvgRating/5) {?> active <?php }?>"></i>
+                                                    <i class="icon-star-sm three-rating <?php if (3 <= $floatAvgRating/5) {?> active <?php }?>"></i>
+                                                    <i class="icon-star-sm four-rating <?php if (4 <= $floatAvgRating/5) {?> active <?php }?>"></i>
+                                                    <i class="icon-star-sm five-rating <?php if (5 <= $floatAvgRating/5) {?> active <?php }?>"></i>
                                                     <span class="rating-count"><?php echo $floatAvgRating/5; ?></span>
                                                 </div>
                                             </div>
@@ -105,7 +118,7 @@
                                     </div>
                                     <div class="row row-simple">
                                         <div class="col-lg-7 block-3">
-                                            <div class="">
+                                            <div class="scrollbar description">
                                                 <label class="font-15">Description:</label>
                                                 <p>
                                                     <?php echo $trainer->getDescription();?>

@@ -1,0 +1,67 @@
+.rating{
+width: 90px;
+margin: 0 auto;
+margin-top: -10px;
+position: relative;
+}
+
+.flipper {
+  & .one-rating{
+    left: 3px;
+  }
+  & .two-rating{
+    top: 10px;
+  left: 20px;
+  }
+  & .three-rating{
+    top: 15px;
+    left: 39px;
+  }
+  & .four-rating{
+    top: 10px;
+right: 16px;
+  }
+  & .five-rating{
+      right: -3px;
+  }
+}
+
+.reviews-and-ratings {
+    border-top: 1px solid #d4dde4;
+    padding: 10px 0px 0px 0px;
+  & .rating {
+    width: 130px;
+    margin-top: 0px;
+  }
+  & .one-rating  {
+    left: 0px;
+    top: 10px;
+  }
+  & .two-rating{
+    left: 20px;
+    top: 10px;
+  }
+  & .three-rating{
+    left: 40px;
+    top: 10px;
+  }
+  & .four-rating{
+    left: 60px;
+    top: 10px;
+  }
+  & .five-rating{
+      left: 80px;
+      top: 10px;
+  }
+  & .rating-count {
+    font-size: 15px;
+    color: #cecece;
+    background: #232322;
+    padding: 5px;
+    float: right;
+    border-radius: 3px;
+  }
+  & a {
+    font-weight: bold;
+  }
+}
