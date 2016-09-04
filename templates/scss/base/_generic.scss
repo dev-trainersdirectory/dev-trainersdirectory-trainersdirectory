@@ -17,6 +17,18 @@ body {
     padding: 0px;
   }
 }
+
+.padding {
+  &-top {
+    &-30 {
+    padding-top:30px;
+    }
+    &-20 {
+    padding-top:20px;
+    }
+  }
+}
+
 .row-simple {
   margin-left: 0px;
 margin-right: 0px;
@@ -61,6 +73,9 @@ margin-right: 0px;
   &-15 {
     font-size: 15px;
   }
+  &-14 {
+    font-size: 14px;
+  }
   &-13 {
     font-size: 13px;
   }
@@ -93,6 +108,9 @@ margin-right: 0px;
   &-no{
     border: none;
   }
+  &-top-1 {
+      border-top:1px solid $light-white2;
+  }
   &-bottom-1 {
       border-bottom:1px solid $light-white2;
   }
@@ -102,8 +120,18 @@ margin-right: 0px;
 .margin-bottom-10{
   margin-bottom:10px !important;
 }
+
 .margin-top-10{
   margin-top:10px
+}
+.margin-top-15{
+  margin-top:15px
+}
+.margin-top-20{
+  margin-top:20px
+}
+.margin-top-30{
+  margin-top:30px
 }
 
 .margin-top--45{

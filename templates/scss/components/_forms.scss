@@ -118,9 +118,14 @@ input[type=radio] {
     text-align: left;
     color: inherit;
     box-shadow: 0 0 0 0;
+    height: 28px;
+    padding: 0px;
     &:focus{
       outline: none;
     }
+  }
+  & label {
+    margin-bottom: 0px;
   }
 }
 
@@ -190,7 +195,7 @@ input[type=radio] {
     top: 0;
     margin-left: -20px;
     padding-left: 3px;
-    padding-top: 1px;
+    padding-top: 2px;
     font-size: 11px;
     color: #555555;
 }
