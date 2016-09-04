@@ -8554,7 +8554,12 @@ a.btnprint {
   padding: 5px 0;
 }
 
-/* line 9, ../scss/components/_forms.scss */
+/* line 1, ../scss/components/_forms.scss */
+.req {
+  color: #d50000;
+}
+
+/* line 11, ../scss/components/_forms.scss */
 .form-header {
   display: block;
   height: 50px;
@@ -8562,12 +8567,12 @@ a.btnprint {
   background-color: #4db6ac !important;
 }
 
-/* line 15, ../scss/components/_forms.scss */
+/* line 17, ../scss/components/_forms.scss */
 .form-body {
   padding: 10px 24px 5px;
 }
 
-/* line 18, ../scss/components/_forms.scss */
+/* line 20, ../scss/components/_forms.scss */
 .search-box {
   border-radius: 0 0 0 0;
   border: 1px solid #fff;
@@ -8577,7 +8582,7 @@ a.btnprint {
   box-shadow: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
-/* line 24, ../scss/components/_forms.scss */
+/* line 26, ../scss/components/_forms.scss */
 .search-box:focus {
   outline: none;
   -webkit-box-shadow: none;
@@ -8585,33 +8590,33 @@ a.btnprint {
   border-color: #006899;
 }
 
-/* line 31, ../scss/components/_forms.scss */
+/* line 33, ../scss/components/_forms.scss */
 input[type=checkbox],
 input[type=radio] {
   margin-top: 1px;
 }
 
-/* line 36, ../scss/components/_forms.scss */
+/* line 38, ../scss/components/_forms.scss */
 .form-block {
   display: block;
 }
 
-/* line 39, ../scss/components/_forms.scss */
+/* line 41, ../scss/components/_forms.scss */
 .inline-block {
   display: inline-block;
 }
 
-/* line 44, ../scss/components/_forms.scss */
+/* line 46, ../scss/components/_forms.scss */
 .form-panel {
   padding-top: 10px;
 }
 
-/* line 48, ../scss/components/_forms.scss */
+/* line 50, ../scss/components/_forms.scss */
 .form-search {
   padding: 15px 5px;
 }
 
-/* line 51, ../scss/components/_forms.scss */
+/* line 53, ../scss/components/_forms.scss */
 .form-label-heading {
   padding-top: 5px;
   padding-bottom: 7px;
@@ -8620,50 +8625,50 @@ input[type=radio] {
   font-weight: bold;
 }
 
-/* line 69, ../scss/components/_forms.scss */
+/* line 71, ../scss/components/_forms.scss */
 .form-batch-result .form-block {
   border-bottom: 1px solid #DDD;
   margin-bottom: 10px;
 }
-/* line 72, ../scss/components/_forms.scss */
+/* line 74, ../scss/components/_forms.scss */
 .form-batch-result .form-block.no-border-bottom {
   border-bottom: 0;
 }
 
-/* line 80, ../scss/components/_forms.scss */
+/* line 82, ../scss/components/_forms.scss */
 .form-horizontal.form-group-reset .form-group {
   margin-bottom: 0;
 }
-/* line 84, ../scss/components/_forms.scss */
+/* line 86, ../scss/components/_forms.scss */
 .form-horizontal .radio, .form-horizontal .checkbox {
   padding-top: 6px;
   vertical-align: top;
 }
-/* line 88, ../scss/components/_forms.scss */
+/* line 90, ../scss/components/_forms.scss */
 .form-horizontal .control-label {
   padding-top: 7px;
 }
-/* line 91, ../scss/components/_forms.scss */
+/* line 93, ../scss/components/_forms.scss */
 .form-horizontal .form-control-static {
   min-height: 10px;
 }
 
-/* line 96, ../scss/components/_forms.scss */
+/* line 98, ../scss/components/_forms.scss */
 .form-control-static {
   word-wrap: break-word;
 }
 
-/* line 99, ../scss/components/_forms.scss */
+/* line 101, ../scss/components/_forms.scss */
 .bulk-checkbox {
   padding: 10px 0;
 }
-/* line 102, ../scss/components/_forms.scss */
+/* line 104, ../scss/components/_forms.scss */
 .bulk-checkbox .form-block label {
   font-weight: normal;
 }
 
 /* material */
-/* line 109, ../scss/components/_forms.scss */
+/* line 111, ../scss/components/_forms.scss */
 .material input.form-control {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
@@ -8679,33 +8684,33 @@ input[type=radio] {
   height: 28px;
   padding: 0px;
 }
-/* line 123, ../scss/components/_forms.scss */
+/* line 125, ../scss/components/_forms.scss */
 .material input.form-control:focus {
   outline: none;
 }
-/* line 127, ../scss/components/_forms.scss */
+/* line 129, ../scss/components/_forms.scss */
 .material label {
   margin-bottom: 0px;
 }
 
-/* line 133, ../scss/components/_forms.scss */
+/* line 135, ../scss/components/_forms.scss */
 .select-trasnperant {
   background: none;
   border: none;
   box-shadow: 0 0 0 0;
 }
-/* line 137, ../scss/components/_forms.scss */
+/* line 139, ../scss/components/_forms.scss */
 .select-trasnperant:focus {
   box-shadow: 0 0 0 0;
 }
 
 /* checkbox */
-/* line 146, ../scss/components/_forms.scss */
+/* line 148, ../scss/components/_forms.scss */
 .checkbox {
   padding-left: 20px;
 }
 
-/* line 149, ../scss/components/_forms.scss */
+/* line 151, ../scss/components/_forms.scss */
 .checkbox label {
   display: inline-block;
   position: relative;
@@ -8714,24 +8719,24 @@ input[type=radio] {
   color: #929698 !important;
 }
 
-/* line 160, ../scss/components/_forms.scss */
+/* line 162, ../scss/components/_forms.scss */
 .checkbox label::selection,
 .radio label::selection {
   background-color: #fff;
 }
-/* line 165, ../scss/components/_forms.scss */
+/* line 167, ../scss/components/_forms.scss */
 .checkbox input:focus, .checkbox label:focus,
 .radio input:focus,
 .radio label:focus {
   outline: none;
 }
-/* line 169, ../scss/components/_forms.scss */
+/* line 171, ../scss/components/_forms.scss */
 .checkbox label,
 .radio label {
   line-height: 1.1;
 }
 
-/* line 174, ../scss/components/_forms.scss */
+/* line 176, ../scss/components/_forms.scss */
 .checkbox label::before {
   content: "";
   display: inline-block;
@@ -8748,7 +8753,7 @@ input[type=radio] {
   transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 
-/* line 189, ../scss/components/_forms.scss */
+/* line 191, ../scss/components/_forms.scss */
 .checkbox label::after {
   display: inline-block;
   position: absolute;
@@ -8763,52 +8768,118 @@ input[type=radio] {
   color: #555555;
 }
 
-/* line 202, ../scss/components/_forms.scss */
+/* line 204, ../scss/components/_forms.scss */
 .checkbox input[type="checkbox"] {
   opacity: 0;
 }
 
-/* line 205, ../scss/components/_forms.scss */
+/* line 207, ../scss/components/_forms.scss */
 .checkbox input[type="checkbox"]:focus + label::before {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 
-/* line 209, ../scss/components/_forms.scss */
+/* line 211, ../scss/components/_forms.scss */
 .checkbox input[type="checkbox"]:checked + label::after {
   font-family: 'FontAwesome';
   content: "\f00c";
 }
 
-/* line 212, ../scss/components/_forms.scss */
+/* line 214, ../scss/components/_forms.scss */
 .checkbox input[type="checkbox"]:disabled + label {
   opacity: 0.65;
 }
 
-/* line 214, ../scss/components/_forms.scss */
+/* line 216, ../scss/components/_forms.scss */
 .checkbox input[type="checkbox"]:disabled + label::before {
   background-color: #eeeeee;
   cursor: not-allowed;
 }
 
-/* line 217, ../scss/components/_forms.scss */
+/* line 219, ../scss/components/_forms.scss */
 .checkbox.checkbox-circle label::before {
   border-radius: 50%;
 }
 
-/* line 219, ../scss/components/_forms.scss */
+/* line 221, ../scss/components/_forms.scss */
 .checkbox.checkbox-inline {
   margin-top: 0;
 }
 
-/* radio */
 /* line 224, ../scss/components/_forms.scss */
+.checkbox input[type="checkbox"]:checked + label::before {
+  background-color: #757575;
+  border-color: #757575;
+}
+
+/* line 227, ../scss/components/_forms.scss */
+.checkbox input[type="checkbox"]:checked + label::after {
+  color: #fff;
+}
+
+/* line 230, ../scss/components/_forms.scss */
+.checkbox-primary input[type="checkbox"]:checked + label::before {
+  background-color: #428bca;
+  border-color: #428bca;
+}
+
+/* line 233, ../scss/components/_forms.scss */
+.checkbox-primary input[type="checkbox"]:checked + label::after {
+  color: #fff;
+}
+
+/* line 236, ../scss/components/_forms.scss */
+.checkbox-danger input[type="checkbox"]:checked + label::before {
+  background-color: #d9534f;
+  border-color: #d9534f;
+}
+
+/* line 239, ../scss/components/_forms.scss */
+.checkbox-danger input[type="checkbox"]:checked + label::after {
+  color: #fff;
+}
+
+/* line 242, ../scss/components/_forms.scss */
+.checkbox-info input[type="checkbox"]:checked + label::before {
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+}
+
+/* line 245, ../scss/components/_forms.scss */
+.checkbox-info input[type="checkbox"]:checked + label::after {
+  color: #fff;
+}
+
+/* line 248, ../scss/components/_forms.scss */
+.checkbox-warning input[type="checkbox"]:checked + label::before {
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
+}
+
+/* line 251, ../scss/components/_forms.scss */
+.checkbox-warning input[type="checkbox"]:checked + label::after {
+  color: #fff;
+}
+
+/* line 254, ../scss/components/_forms.scss */
+.checkbox-success input[type="checkbox"]:checked + label::before {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+
+/* line 257, ../scss/components/_forms.scss */
+.checkbox-success input[type="checkbox"]:checked + label::after {
+  color: #fff;
+}
+
+/* radio */
+/* line 262, ../scss/components/_forms.scss */
 .radio {
   padding-left: 20px;
 }
 
-/* line 228, ../scss/components/_forms.scss */
+/* line 266, ../scss/components/_forms.scss */
 .radio label {
   display: inline-block;
   position: relative;
@@ -8817,7 +8888,7 @@ input[type=radio] {
   padding-left: 5px;
 }
 
-/* line 234, ../scss/components/_forms.scss */
+/* line 272, ../scss/components/_forms.scss */
 .radio label::before {
   content: "";
   display: inline-block;
@@ -8834,7 +8905,7 @@ input[type=radio] {
   transition: border 0.15s ease-in-out;
 }
 
-/* line 248, ../scss/components/_forms.scss */
+/* line 286, ../scss/components/_forms.scss */
 .radio label::after {
   display: inline-block;
   position: absolute;
@@ -8856,19 +8927,19 @@ input[type=radio] {
   transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
 }
 
-/* line 267, ../scss/components/_forms.scss */
+/* line 305, ../scss/components/_forms.scss */
 .radio input[type="radio"] {
   opacity: 0;
 }
 
-/* line 269, ../scss/components/_forms.scss */
+/* line 307, ../scss/components/_forms.scss */
 .radio input[type="radio"]:focus + label::before {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 
-/* line 273, ../scss/components/_forms.scss */
+/* line 311, ../scss/components/_forms.scss */
 .radio input[type="radio"]:checked + label::after {
   -webkit-transform: scale(1, 1);
   -ms-transform: scale(1, 1);
@@ -8876,92 +8947,92 @@ input[type=radio] {
   transform: scale(1, 1);
 }
 
-/* line 278, ../scss/components/_forms.scss */
+/* line 316, ../scss/components/_forms.scss */
 .radio input[type="radio"]:disabled + label {
   opacity: 0.65;
 }
 
-/* line 280, ../scss/components/_forms.scss */
+/* line 318, ../scss/components/_forms.scss */
 .radio input[type="radio"]:disabled + label::before {
   cursor: not-allowed;
 }
 
-/* line 282, ../scss/components/_forms.scss */
+/* line 320, ../scss/components/_forms.scss */
 .radio.radio-inline {
   margin-top: 0;
 }
 
-/* line 285, ../scss/components/_forms.scss */
+/* line 323, ../scss/components/_forms.scss */
 .radio-primary input[type="radio"] + label::after {
   background-color: #428bca;
 }
 
-/* line 287, ../scss/components/_forms.scss */
+/* line 325, ../scss/components/_forms.scss */
 .radio-primary input[type="radio"]:checked + label::before {
   border-color: #428bca;
 }
 
-/* line 289, ../scss/components/_forms.scss */
+/* line 327, ../scss/components/_forms.scss */
 .radio-primary input[type="radio"]:checked + label::after {
   background-color: #428bca;
 }
 
-/* line 292, ../scss/components/_forms.scss */
+/* line 330, ../scss/components/_forms.scss */
 .radio-danger input[type="radio"] + label::after {
   background-color: #d9534f;
 }
 
-/* line 294, ../scss/components/_forms.scss */
+/* line 332, ../scss/components/_forms.scss */
 .radio-danger input[type="radio"]:checked + label::before {
   border-color: #d9534f;
 }
 
-/* line 296, ../scss/components/_forms.scss */
+/* line 334, ../scss/components/_forms.scss */
 .radio-danger input[type="radio"]:checked + label::after {
   background-color: #d9534f;
 }
 
-/* line 299, ../scss/components/_forms.scss */
+/* line 337, ../scss/components/_forms.scss */
 .radio-info input[type="radio"] + label::after {
   background-color: #5bc0de;
 }
 
-/* line 301, ../scss/components/_forms.scss */
+/* line 339, ../scss/components/_forms.scss */
 .radio-info input[type="radio"]:checked + label::before {
   border-color: #5bc0de;
 }
 
-/* line 303, ../scss/components/_forms.scss */
+/* line 341, ../scss/components/_forms.scss */
 .radio-info input[type="radio"]:checked + label::after {
   background-color: #5bc0de;
 }
 
-/* line 306, ../scss/components/_forms.scss */
+/* line 344, ../scss/components/_forms.scss */
 .radio-warning input[type="radio"] + label::after {
   background-color: #f0ad4e;
 }
 
-/* line 308, ../scss/components/_forms.scss */
+/* line 346, ../scss/components/_forms.scss */
 .radio-warning input[type="radio"]:checked + label::before {
   border-color: #f0ad4e;
 }
 
-/* line 310, ../scss/components/_forms.scss */
+/* line 348, ../scss/components/_forms.scss */
 .radio-warning input[type="radio"]:checked + label::after {
   background-color: #f0ad4e;
 }
 
-/* line 313, ../scss/components/_forms.scss */
+/* line 351, ../scss/components/_forms.scss */
 .radio-success input[type="radio"] + label::after {
   background-color: #5cb85c;
 }
 
-/* line 315, ../scss/components/_forms.scss */
+/* line 353, ../scss/components/_forms.scss */
 .radio-success input[type="radio"]:checked + label::before {
   border-color: #5cb85c;
 }
 
-/* line 317, ../scss/components/_forms.scss */
+/* line 355, ../scss/components/_forms.scss */
 .radio-success input[type="radio"]:checked + label::after {
   background-color: #5cb85c;
 }
@@ -11615,8 +11686,15 @@ div.well {
 .registration-popup .modal-body {
   height: 585px;
 }
+/* line 5, ../scss/components/_registration.scss */
+.registration-popup .scrollbar {
+  height: 330px;
+  overflow-x: hidden;
+  padding: 0;
+  margin-bottom: 15px;
+}
 
-/* line 6, ../scss/components/_registration.scss */
+/* line 12, ../scss/components/_registration.scss */
 .upload-details {
   background: #e3e3e3;
   width: 100%;
@@ -11624,7 +11702,7 @@ div.well {
   padding: 10px;
   border-radius: 4px;
 }
-/* line 12, ../scss/components/_registration.scss */
+/* line 18, ../scss/components/_registration.scss */
 .upload-details .trainer-profile-pic {
   position: relative;
   top: 0px;
@@ -11634,25 +11712,25 @@ div.well {
   height: 90px;
   left: auto;
 }
-/* line 21, ../scss/components/_registration.scss */
+/* line 27, ../scss/components/_registration.scss */
 .upload-details .clearfix.full-width {
   border-bottom: 1px solid #a8a8a8;
   padding-bottom: 15px;
 }
 
-/* line 27, ../scss/components/_registration.scss */
+/* line 33, ../scss/components/_registration.scss */
 .upload-trainer-photo,
 .upload-trainer-video {
   width: 50%;
   height: 185px;
 }
 
-/* line 33, ../scss/components/_registration.scss */
+/* line 39, ../scss/components/_registration.scss */
 .upload-trainer-photo {
   border-right: 1px solid #a8a8a8;
 }
 
-/* line 37, ../scss/components/_registration.scss */
+/* line 43, ../scss/components/_registration.scss */
 .trainer-map {
   -webkit-box-shadow: 0px 5px 32px -4px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 5px 32px -4px rgba(0, 0, 0, 0.75);
@@ -11660,22 +11738,56 @@ div.well {
   margin: 20px 10px;
 }
 
-/* line 44, ../scss/components/_registration.scss */
+/* line 50, ../scss/components/_registration.scss */
 .registration-form .checkbox label, .registration-form .radio label {
   line-height: 1.3;
 }
-/* line 47, ../scss/components/_registration.scss */
+/* line 53, ../scss/components/_registration.scss */
 .registration-form .form-group {
   margin-bottom: 25px;
 }
 
-/* line 52, ../scss/components/_registration.scss */
+/* line 58, ../scss/components/_registration.scss */
+.registration-steps {
+  border-bottom: 1px solid #e1e1e1;
+  padding: 0 0 12px 0;
+  margin-bottom: 12px;
+}
+/* line 62, ../scss/components/_registration.scss */
+.registration-steps ul {
+  margin: 0px;
+  padding: 0px;
+}
+/* line 65, ../scss/components/_registration.scss */
+.registration-steps ul li {
+  float: left;
+  margin-right: 5px;
+}
+/* line 68, ../scss/components/_registration.scss */
+.registration-steps ul li:after {
+  content: ">";
+  color: #9a9a9a;
+  padding-left: 5px;
+}
+/* line 74, ../scss/components/_registration.scss */
+.registration-steps ul li a {
+  font-size: 12px;
+  color: #9a9a9a;
+}
+/* line 78, ../scss/components/_registration.scss */
+.registration-steps ul li.active a {
+  border-bottom: 1px solid #bdbdbd;
+  color: #2196f3;
+  padding-bottom: 2px;
+}
+
+/* line 85, ../scss/components/_registration.scss */
 .promotional-space {
   height: 100px;
   background-color: #e3e3e3;
 }
 
-/* line 57, ../scss/components/_registration.scss */
+/* line 89, ../scss/components/_registration.scss */
 .btn-file {
   display: block;
   margin: 0 auto;
@@ -11687,7 +11799,7 @@ div.well {
   margin-top: 10px;
 }
 
-/* line 71, ../scss/components/_registration.scss */
+/* line 103, ../scss/components/_registration.scss */
 .btn-file > input {
   cursor: pointer;
   font-size: 10px;
@@ -11697,12 +11809,12 @@ div.well {
   top: 0;
 }
 
-/* line 81, ../scss/components/_registration.scss */
+/* line 113, ../scss/components/_registration.scss */
 input[type="file"] {
   display: block;
 }
 
-/* line 85, ../scss/components/_registration.scss */
+/* line 117, ../scss/components/_registration.scss */
 .fileinput-new {
   font-size: 13px;
   color: #1e88e5;
