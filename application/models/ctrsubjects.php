@@ -36,6 +36,13 @@ class CTrSubjects extends CEosPlural {
 
 		return self::fetchSubjects( $strSQL, $objDatabase );
 	}
+
+	public static function fetchSubjectById( $intId, $objDatabase ) {
+
+		$strSQL = 'SELECT * FROM tr_subjects WHERE id =' . $intId ;
+
+		return self::fetchSubject( $strSQL, $objDatabase );
+	}
 }
 
 ?>

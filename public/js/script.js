@@ -1,6 +1,8 @@
 // Carousel Auto-Cycle
   $(document).ready(function() {
-
+    $('.stop-propagation').on('click', function (e) {
+        e.stopPropagation();
+    });
 
     //for flipper
     $('.trainer-introduction').click(function (e) {

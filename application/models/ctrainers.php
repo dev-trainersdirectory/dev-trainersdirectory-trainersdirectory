@@ -35,15 +35,19 @@ class CTrainers extends CEosPlural {
 		$strSQL = ' SELECT
 						t.*,
 						l.first_name,
-						l.last_name
+						l.last_name,
+						GROUP_CONCAT(DISTINCT s.name) as skills
 					FROM
 						trainers t
 						JOIN leads l ON ( t.lead_id = l.id )
 						JOIN cities c ON ( l.city_id = c.id )
 						JOIN trainer_skills ts ON ( ts.trainer_id = t.id )
+						JOIN trainer_skills ts1 ON ( ts.trainer_id = t.id )
+						JOIN tr_subjects s ON (ts1.tr_subject_id = s.id)
 					WHERE
 						ts.tr_subject_id = ' . $intSubjectId . '
-						AND c.id = ' . $intCityId;
+						AND c.id = ' . $intCityId . '
+					GROUP BY t.id';
 
 		return self::fetchTrainers( $strSQL, $objDatabase );
 	}

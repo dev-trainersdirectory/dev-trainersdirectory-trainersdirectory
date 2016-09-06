@@ -64,23 +64,23 @@
                     <!--bottom marketing links-->
                     <div class="marketing">
                         <ul class="clearfix">
-                            <li>
-                                <button type="button" class="btn btn-default btn-circle btn-lg">
+                             <li>
+                                <button type="button" class="btn btn-default btn-circle btn-lg disabled">
                                     <i class="icon icon-search"></i>
                                 </button>
-                                <a class="" href="#" role="button">Search Trainers</a>
+                                <p>Search Trainers</p>
                             </li>
                             <li>
-                                <button type="button" class="btn btn-default btn-circle btn-lg">
+                                <button type="button" class="btn btn-default btn-circle btn-lg disabled">
                                     <i class="icon icon-video"></i>
                                 </button>
-                                <a class="" href="#" role="button">Watch Videos</a>
+                                <p>Watch Videos</p>
                             </li>
                             <li>
-                                <button type="button" class="btn btn-default btn-circle btn-lg">
+                                <button type="button" class="btn btn-default btn-circle btn-lg disabled">
                                     <i class="icon icon-hire"></i>
                                 </button>
-                                <a class="" href="#" role="button">Hire Them!</a>
+                                <p>Hire Them!</p>
                             </li>
                         </ul>
 
