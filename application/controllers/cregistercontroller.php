@@ -6,7 +6,7 @@ class CRegisterController extends CSystemController {
 
 	public $assignData;
 
-	public function CRegisterController()
+	function index()
 	{
 		parent::__construct();
 		
@@ -20,19 +20,17 @@ class CRegisterController extends CSystemController {
 
 	public function login() {
 
-		if( $_POST ) {
-			$objUser = new CUser();
+		$objUser = new CUser();
 
-			$objUser->strEmailId	= $this->input->post( 'login_email' );
-			$objUser->strPassword 	= $this->input->post( 'login_password' );
+		$objUser->strEmailId	= $this->input->post('login')['email'];
+		$objUser->strPassword 	= $this->input->post('login')['password'];
 
-			if( true == $objUser->processLogin() ) {
-				header("location:".base_url()."student/dashboard/");			
-			}
-		
-			echo 'Invalid login cridentials';
+		if( true == $objUser->processLogin() ) {
+			echo json_encode( array( 'type' => 'success', 'location' => base_url()."dashboard/" ) );
+		} else {
+			echo json_encode( array( 'type' => 'error', 'message' => 'Invalid login cre' ) );
 		}
-		$this->load->view( 'login', $this->assignData );
+
 	}
 
 	public function signup() {
