@@ -33,16 +33,18 @@
                         <img src="public/images/trainers-directory-logo.png" class="logo">
                     </div>
                     <div class="col-sm-6 col-md-5 col-md-offset-2 no-padding">
+                        <div class="form-group col-md-10 no-padding">
                         <!-- search group-->
-                        <div class="input-group material search-box-container">
-                            <!--search box-->
-                            <i class="icon-search-sm" aria-hidden="true"></i>
-                            <input type="text" class="form-control header-search-box" placeholder="Search learning needs">
-                            <!--/ search box-->
-                            <?php include('search_filter_result_page.php'); ?>
-                            
-                        </div>
+                            <div class="input-group material search-box-container">
+                                <!--search box-->
+                                <i class="icon-search-sm" aria-hidden="true"></i>
+                                <input type="text" class="form-control header-search-box" placeholder="Search learning needs">
+                                <!--/ search box-->
+                                <?php include('search_filter_result_page.php'); ?>
+                                
+                            </div>
                         <!-- / search group -->
+                        </div>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right top-right-navigation">
@@ -56,7 +58,7 @@
 
         </div>
         <div class="container-fulid search-filter-header card">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                 <form id="frm_filter_trainer" method="post">
                     <div class="col-md-2 col-md-offset-1">
@@ -135,7 +137,10 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a class="btn js-filter_trainer">Search</a>
+                        
+                         <button class="btn js-filter_trainer" >
+                                Search
+                        </button>
                         <input type="hidden" name="filter_trainer[subject_id]" value="<?php echo $subject_id; ?>" />
                         <input type="hidden" name="filter_trainer[city_id]" value="<?php echo $city_id; ?>" />
                     </div>
@@ -168,29 +173,31 @@
                                 <!-- / trainer profile picture-->
                                 <!--ratings-->
                                 <div class="rating">
-                                <?php for( $count = 0; $count < $trainer->getRating(); $count++ ) { ?>
-                                <i class="icon-star-sm active one-rating"></i>
-                                <?php } ?>
+                                <i class="icon-star-sm one-rating <?php if (1 <= $trainer->getRating()) {?> active <?php }?>"></i>
+                                <i class="icon-star-sm two-rating <?php if (2 <= $trainer->getRating()) {?> active <?php }?>"></i>
+                                <i class="icon-star-sm three-rating <?php if (3 <= $trainer->getRating()) {?> active <?php }?>"></i>
+                                <i class="icon-star-sm four-rating <?php if (4 <= $trainer->getRating()) {?> active <?php }?>"></i>
+                                <i class="icon-star-sm five-rating <?php if (5 <= $trainer->getRating()) {?> active <?php }?>"></i>
                                 </div>
                                 <!-- / ratings-->
                                 <!-- trainer details -->
                                 <h3 class="trainer-name"><?php echo $trainer->getName();?></h3>
-                                <p class="trainer-profession">English Trainer</p>
-                                <p class="trainer-subjects"><?php echo $trainer->getSkills();?></p>
+                                <p class="trainer-profession"><?php echo $subject->getName();?> Trainer</p>
+                                <p class="trainer-subjects" style=" text-overflow: ellipsis;overflow: hidden;white-space: nowrap;"><?php echo $trainer->getSkills();?></p>
                                 <!-- / trainer details -->
-                                <!-- view profile -->
-                                    <div class="trainer-view-profile clearfix">
-                                        <ul>
-                                            <li>
-                                                <a class="" href="javascript:void(0);"><i class="icon-watched"></i><span class="watch-count">(<?php echo $trainer->getViews();?>)</span></a>
-                                            </li>
-                                            <li>
-                                                <a  onclick="setValue(<?php echo $key; ?>);" class="trainer-view" data-toggle="modal">View Profile</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!--/ view profile-->
                             </div>
+                            <!-- view profile -->
+                            <div class="trainer-view-profile clearfix">
+                                <ul>
+                                    <li>
+                                        <a class="" href="javascript:void(0);"><i class="icon-watched"></i><span class="watch-count">(<?php echo $trainer->getViews();?>)</span></a>
+                                    </li>
+                                    <li>
+                                        <a  onclick="setValue(<?php echo $key; ?>);" class="trainer-view" data-toggle="modal">View Profile</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--/ view profile-->
                         </div>
                     </div>
                 </div>
@@ -263,7 +270,8 @@
         })
     });
 
-    $(".js-filter_trainer").click(function(){
+    $(".js-filter_trainer").click(function(e){
+        e.preventDefault();
         $.ajax ({
             type: "post",
             data: $( "#frm_filter_trainer" ).serialize(),
