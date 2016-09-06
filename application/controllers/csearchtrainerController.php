@@ -15,7 +15,10 @@ class CSearchTrainerController extends CSystemController {
 
 		$arrObjTrainers = CTrainers::fetchAllActiveTrainersBySubjectIdByCityId( $intSubjectId, $intCityId, $this->db );
 
+		$objSubject = CTrSubjects::fetchSubjectById( $intSubjectId, $this->db );
+
 		$data['subject_id'] = $intSubjectId;
+		$data['subject'] = $objSubject;
 		$data['city_id'] = $intCityId;
 		$data['baseUrl'] = base_url();
 		$data['trainers'] = $arrObjTrainers;
@@ -76,7 +79,10 @@ class CSearchTrainerController extends CSystemController {
 
 		$arrObjTrainers = CTrainers::fetchAllActiveTrainersBySubjectIdByCityIdByLocationByTimeByPreference( $intSubjectId, $intCityId, $arrintLocationsIds, $arrintTimesIds, $arrintPreferencesIds, $this->db );
 
+		$objSubject = CTrSubjects::fetchSubjectById( $intSubjectId, $this->db );
+
 		$data['subject_id'] = $intSubjectId;
+		$data['subject'] = $objSubject;
 		$data['city_id'] = $intCityId;
 		$data['baseUrl'] = base_url();
 		$data['trainers'] = $arrObjTrainers;
