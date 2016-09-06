@@ -163,6 +163,122 @@ margin-top: 5%;
     font-weight: normal;
 }
 
+/*login*/
+.form-login,
+.form-registration {
+
+}
+
+.form-login,
+.form-registration{
+    border: none !important;
+    min-width: 360px;
+    margin-top: 20px !important;
+    right: -80px !important;
+    border-top-right-radius: 4px !important;
+    border-top-left-radius: 4px !important;
+    -webkit-box-shadow: 0 0 10px 2200px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 10px 2200px rgba(0, 0, 0, 0.4);
+    box-shadow:0 0 10px 2200px rgba(0, 0, 0, 0.4);
+    padding: 0px;
+    & .form-header{
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      & h4 {
+        color:$white;
+        margin: 0;
+        padding: 0;
+        float: left;
+        font-size: 20px;
+      }
+      & a {
+        font-size: 13px;
+        text-decoration: underline;
+        color:$white !important;
+        float: right;
+        margin-top: 5px;
+        text-transform: none;
+      }
+    }
+    & .checkbox label{
+      padding-left: 14px;
+    }
+}
+.form-login,
+.form-registration{
+  & .form-body {
+    .font-12,
+    .font-11 {
+      text-transform: none !important;
+      display: block;
+    }
+    .font-blue {
+      color:#2196f3 !important;
+    }
+    .font-11{
+      color:#b3b5b6 !important;
+    }
+    & .form-group {
+      margin-bottom: 12px !important;
+    }
+    & label {
+      color:#2196f3;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: capitalize;
+      margin: 0px;
+    }
+    & .pull-right{
+      width: 274px;
+      & .form-control {
+        height: 28px;
+        padding: 0px !important;
+      }
+    }
+    & .pull-right.btn {
+      width: auto !important;
+    }
+    & input {
+      font-size: 15px;
+    }
+    & .full-width.clearfix {
+      display: block !important;
+    }
+    & .btn {
+      text-transform: uppercase;
+    }
+  }
+}
+.form-login,
+.form-registration {
+  & .form-header:before {
+      content: "";
+      border-bottom: 7px solid #4db6ac;
+      border-right: 7px solid transparent;
+      border-left: 7px solid transparent;
+      position: absolute;
+      top: -7px;
+      z-index: 10;
+  }
+}
+.form-login {
+  & .form-header:before {
+    right: 107px;
+  }
+}
+.form-registration {
+  & .form-header:before {
+    right: 120px;
+  }
+}
+
+.otp-counter {
+  width: 85px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
 @media screen and (min-width: 768px) {
     #adv-search {
         width: 500px;
