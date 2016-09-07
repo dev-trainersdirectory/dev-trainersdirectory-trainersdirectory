@@ -14,8 +14,11 @@ class CSystemSms extends CEosSingular {
 	public $strDeliveredOn;
 	public $strCreatedOn;
 
+	public $boolSendSmsRuntime;
+	
 	function __construct() {
 		parent::__construct();
+		$this->boolSendSmsRuntime = false;
 	}
 
 	public function assignData( $arrstrRequestData ) {
@@ -167,6 +170,12 @@ class CSystemSms extends CEosSingular {
 							);
 
 		if( false == $this->db->insert( 'system_sms', $arrStrInsertData ) ) return false;
+
+		if( true == $this->boolSendSmsRuntime ) {
+			$objSmsLibrary = new CSmsLibrary();
+			$objSmsLibrary->arrobjSystemSmses = array( $this );
+			if( false == $objSmsLibrary->sendSms() ) return false;
+		}
 
 		return true;
 	}

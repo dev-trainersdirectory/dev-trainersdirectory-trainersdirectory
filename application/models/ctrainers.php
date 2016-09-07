@@ -30,20 +30,29 @@ class CTrainers extends CEosPlural {
 		return self::fetchTrainer( $strSQL, $objDatabase );
 	}
 
-	public static function fetchAllActiveTrainersBySubjectIdByCityId( $intSubjectId, $intCityId, $objDatabase ) {
+	public static function fetchAllActiveTrainersBySubjectIdByCityId( $intSubjectId, $intCityId, $objDatabase, $intUserId = 0 ) {
 		
+		$strSelect = ',FALSE AS show_details';
+		$strJoin = '';
+		if( 0 != (int) $intUserId  ) {
+			$strSelect = ',CASE IF pl.id THEN true
+								ELSE FALSE 
+							END as show_details';
+			$strJoin = 'LEFT JOIN purchased_leads pl ON ( pl.bought_user_id = t.user_id AND pl.user_id = ' . $intUserId . ' )';
+		}
 		$strSQL = ' SELECT
 						t.*,
 						l.first_name,
 						l.last_name,
-						GROUP_CONCAT(DISTINCT s.name) as skills
+						l.profile_pic,
+						GROUP_CONCAT(DISTINCT s.name) as skills ' . $strSelect . '
 					FROM
 						trainers t
 						JOIN leads l ON ( t.lead_id = l.id )
 						JOIN cities c ON ( l.city_id = c.id )
 						JOIN trainer_skills ts ON ( ts.trainer_id = t.id )
 						JOIN trainer_skills ts1 ON ( ts.trainer_id = t.id )
-						JOIN tr_subjects s ON (ts1.tr_subject_id = s.id)
+						JOIN tr_subjects s ON (ts1.tr_subject_id = s.id) ' . $strJoin . '
 					WHERE
 						ts.tr_subject_id = ' . $intSubjectId . '
 						AND c.id = ' . $intCityId . '

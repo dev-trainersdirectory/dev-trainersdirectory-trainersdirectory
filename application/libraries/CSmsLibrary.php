@@ -61,7 +61,7 @@ class CSmsLibrary {
 
     	}
 
-    	$this->updateSystemSmses();
+    	return $this->updateSystemSmses();
     }
 
     public function updateSystemSmses() {
@@ -71,6 +71,7 @@ class CSmsLibrary {
     			return false;
     		}
     	}
+    	return true;
     }
 }
 
