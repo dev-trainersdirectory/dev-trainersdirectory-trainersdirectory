@@ -34,12 +34,165 @@
                     <!-- <a class="navbar-brand" href="#">Project name</a> -->
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right top-right-navigation">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                             Login
+                             </a>
+                        <div class="dropdown-menu form-login stop-propagation" role="menu">
+                            <div class="form-header">
+                                <h4>Login</h2>
+                                  <a href="">Do you have an account?</a>
+                              </div>
+                              <div class="form-body material">
+                              <form id="frm_login" method="post">
+                                  <div class="login_error"></div>
+                                  <div class="form-group clearfix">
+                                      <div class="pull-left margin-right-15">
+                                          <i class="icon-user"></i>
+                                      </div>
+                                      <div class="pull-right">
+                                          <label for="">User Name</label>
+                                          <input type="email" class="form-control" placeholder="Enter Your Email ID/ Mobile No" name="login[email]" />
+                                      </div>
+                                  </div>
+                                  <div class="form-group clearfix">
+                                      <div class="pull-left margin-right-15">
+                                          <i class="icon-password"></i>
+                                      </div>
+                                      <div class="pull-right">
+                                          <label for="">Password</label>
+                                          <input type="password" class="form-control" placeholder="Enter Password" name="login[password]" />
+                                      </div>
+                                  </div>
+                                  <div class="form-group full-width clearfix ">
+                                      <div class="checkbox stop-propagation pull-left">
+                                            <input id="checkbox1" type="checkbox">
+                                            <label for="checkbox1">
+                                                Keep me logged in.
+                                            </label>
+                                        </div>
+                                        <button class="btn btn-primary-blue pull-right js-login_btn">
+                                             Login
+                                        </button>
+                                  </div>
+                                  <div class="form-group full-width">
+                                      <a href="" class="italic-text text-right font-12 font-blue">Forget your password?</a>
+                                  </div>
+                              </form>
+                              </div>
 
-                    <ul class="nav navbar-nav navbar-right top-right-navigation">
-                        <li><a href="register/login">LOGIN</a></li>
-                        <li><a href="register/signup">REGISTER</a></li>
+                            </div>
+                          </li>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                             register
+                            </a>
+                            <!-- Registration step 1 - generate OTP -->
+
+                            <div class="dropdown-menu form-registration stop-propagation hide" role="menu">
+                              <div class="form-header">
+                                  <h4>Registration</h2>
+                                  <a href="">Already have an account?</a>
+                              </div>
+                              <div class="form-body material">
+                                  <div class="form-group clearfix">
+                                      <div class="pull-left margin-right-15">
+                                          <i class="icon-mobile"></i>
+                                      </div>
+                                      <div class="pull-right">
+                                          <label for="">Mobile No.</label>
+                                          <input type="email" class="form-control" id="" placeholder="Enter your mobile number" />
+                                      </div>
+                                  </div>
+                                  <div class="form-group full-width clearfix ">
+                                    <button type="submit" class="btn btn-primary-blue pull-right">
+                                         Generate OTP
+                                    </button>
+                                  </div>
+                                  <div class="form-group full-width">
+                                      <a href="" class="italic-text font-11 text-left ">* You can find OTP in your registered mobile number, which is
+valid for next 15:00 min.</a>
+                                  </div>
+                              </div>
+                            </div>
+
+                            <!-- ./ Registration step 1 - generate OTP -->
+
+                            <!-- Registration step 2 - enter OTP and register-->
+
+                            <div class="dropdown-menu form-registration stop-propagation" role="menu">
+                              <div class="form-header">
+                                  <h4>Registration</h2>
+                                  <a href="">Already have an account?</a>
+                              </div>
+                              <div class="form-body material">
+                                  <div class="form-group clearfix">
+                                      <div class="pull-left margin-right-15">
+                                          <i class="icon-mobile"></i>
+                                      </div>
+                                      <div class="pull-right">
+                                          <label for="">Mobile No.</label>
+                                          <input type="email" class="form-control" id="" placeholder="Enter your mobile number" />
+                                      </div>
+                                  </div>
+                                  <div class="form-group clearfix">
+                                      <div class="pull-left margin-right-15">
+                                          <i class="icon-password"></i>
+                                      </div>
+                                      <div class="pull-right">
+                                          <label for="">One Time Password</label>
+                                          <input type="email" class="form-control" id="" placeholder="Enter 6 digit OTP" />
+                                      </div>
+                                  </div>
+                                  <div class="form-group full-width clearfix ">
+                                      <div class="pull-left margin-right-15">
+                                          <i class="icon-mobile"></i>
+                                      </div>
+                                      <div class="pull-right">
+                                          <label class="margin-bottom-10">I am</label>
+                                          <div>
+                                              <div class="radio radio-inline">
+                                                  <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                                                  <label for="inlineRadio1"> Student</label>
+                                              </div>
+                                              <div class="radio radio-inline">
+                                                  <input type="radio" id="inlineRadio2" value="option1" name="radioInline" checked="">
+                                                  <label for="inlineRadio2"> Trainer</label>
+                                              </div>
+                                              <div class="radio radio-inline">
+                                                  <input type="radio" id="inlineRadio3" value="option1" name="radioInline" checked="">
+                                                  <label for="inlineRadio3"> Institute</label>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="form-group full-width clearfix ">
+                                    <p class="pull-left font-10 otp-counter">
+                                        00:18
+                                    </p>
+                                    <button type="submit" class="btn btn-primary-blue pull-right">
+                                         Register
+                                    </button>
+                                    <button type="submit" disabled="disabled" class="btn btn-secondary pull-right margin-right-5">
+                                         Resend
+                                    </button>
+                                  </div>
+                                  <div class="form-group full-width">
+                                      <p class="italic-text font-11 text-left ">
+                                          * Please provide OTP to continue authentication. Press RESEND if you will not get OTP in next 30sec. Onclick of REGISTRATION
+you will find registration page to build relationship with us.</p>
+                                  </div>
+                              </div>
+                            </div>
+
+                            <!-- ./ Registration step 2 - enter OTP and register -->
+                          </li>
                     </ul>
                 </div>
+                <!--/.nav-collapse -->
+            </div>
                 <!--/.nav-collapse -->
             </div>
         </nav>
@@ -121,6 +274,30 @@
 
     <script src='public/js/owl.carousel.js'></script>
     <script src='public/js/owl.custom.js'></script>
+
+<script type="text/javascript">
+
+    $(".js-login_btn").click(function(e){
+        e.preventDefault();
+        $.ajax ({
+            type: "post",
+            data: $( "#frm_login" ).serialize(),
+            url: '<?=base_url()?>register/login',
+            success: function(result) {
+                output = JSON.parse(result);
+                if(result) {
+                    if( 'success' == output.type ) {
+                        alert(1);
+                        location.href = output.location;
+                    } else {
+                        $('.login_error').html(output.message);    
+                    }
+                }
+            }
+        })
+    });
+
+</script>
 </body>
 
 </html>
