@@ -325,7 +325,7 @@ VALUES ( 1, 'Verification Pending' ),
 	( 3, 'Suspended' ),
 	( 4, 'Banned' );
 
-CREATE TABLE IF NOT EXISTS purchased_leads(
+CREATE TABLE IF NOT EXISTS purchased_users(
 	id INT NOT NULL AUTO_INCREMENT,
 	user_id INT NOT NULL,
 	bought_user_id INT NOT NULL,
@@ -362,7 +362,7 @@ CREATE TABLE IF NOT EXISTS coin_transactions(
 	lead_id INT NOT NULL,
 	credit INT DEFAULT 0,
 	debit INT DEFAULT 0,
-	purchased_lead_id INT,
+	purchased_user_id INT,
 	remark VARCHAR(50),
 	status VARCHAR(50),
 	coin_transaction_id INT,
@@ -372,8 +372,8 @@ CREATE TABLE IF NOT EXISTS coin_transactions(
 	FOREIGN KEY fk_lead_id(lead_id)
 		REFERENCES leads(id)
 		ON DELETE RESTRICT,
-	FOREIGN KEY fk_purchased_lead_id(purchased_lead_id)
-		REFERENCES purchased_leads(id)
+	FOREIGN KEY fk_purchased_user_id(purchased_user_id)
+		REFERENCES purchased_users(id)
 		ON DELETE RESTRICT
 )ENGINE=InnoDB;
 
@@ -531,7 +531,7 @@ VALUE
 	('sq_users'),('sq_user_type_associations'),('sq_leads'),('sq_trainers'),('sq_trainer_videos')
 	,('sq_advertisements'),('sq_advertisers'),('sq_cities'),('sq_coin_transactions'),('sq_communication_statuses'),
 	('sq_days'),('email_templates'),('email_types'),('sq_genders'),('sq_locations'),('sq_merge_fields'),('sq_otps'),
-	('sq_preferences'),('sq_profile_steps'),('sq_purchased_leads'),('sq_review_ratings'),('sq_sms_templates'),
+	('sq_preferences'),('sq_profile_steps'),('sq_purchased_users'),('sq_review_ratings'),('sq_sms_templates'),
 	('sq_sms_types'),('sq_states'),('sq_statuses'),('sq_system_emails'),('sq_system_sms'),('sq_times'),('sq_trainer_locations'),
 	('sq_trainer_preferences'),('sq_trainer_skills'),('sq_tr_categories'),('sq_tr_subjects'),('sq_show_interests');
 

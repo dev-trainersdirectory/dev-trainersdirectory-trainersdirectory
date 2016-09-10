@@ -3,16 +3,19 @@
 class CCoinTransaction extends CEosSingular {
 
 	public $intId;
-	public $intLeadId;
+	public $intUserId;
 	public $floatCredit;
 	public $floatDebit;
-	public $intPurchasedLeadId;
+	public $intPurchasedUserId;
 	public $strRemark;
 	public $boolStatus;
 	public $intCoinTransactionId;
 	public $strCreatedOn;
 	public $strCreatedBy;
 
+	const STATUS_PENDING = 1;
+	const STATUS_APPROVED = 2;
+	const STATUS_CANCELLED = 3;
 	function __construct()
 	{
 		parent::__construct();
@@ -25,8 +28,8 @@ class CCoinTransaction extends CEosSingular {
 		if( true == array_key_exists( 'id', $arrstrRequestData ) )
 			$this->setId( $arrstrRequestData['id'] );
 
-		if( true == array_key_exists( 'lead_id', $arrstrRequestData ) )
-			$this->setLeadId( $arrstrRequestData['lead_id'] );
+		if( true == array_key_exists( 'user_id', $arrstrRequestData ) )
+			$this->setUserId( $arrstrRequestData['user_id'] );
 
 		if( true == array_key_exists( 'credit', $arrstrRequestData ) )
 			$this->setCredit( $arrstrRequestData['credit'] );
@@ -34,8 +37,8 @@ class CCoinTransaction extends CEosSingular {
 		if( true == array_key_exists( 'debit', $arrstrRequestData ) )
 			$this->setDebit( $arrstrRequestData['debit'] );
 
-		if( true == array_key_exists( 'purchased_lead_id', $arrstrRequestData ) )
-			$this->setPurchasedLeadId( $arrstrRequestData['purchased_lead_id'] );
+		if( true == array_key_exists( 'purchased_user_id', $arrstrRequestData ) )
+			$this->setPurchasedUserId( $arrstrRequestData['purchased_user_id'] );
 
 		if( true == array_key_exists( 'remark', $arrstrRequestData ) )
 			$this->setRemark( $arrstrRequestData['remark'] );
@@ -58,8 +61,8 @@ class CCoinTransaction extends CEosSingular {
 		$this->intId = $intId;
 	}
 
-	public function setLeadId( $intLeadId ) {
-		$this->intLeadId = $intLeadId;
+	public function setUserId( $intUserId ) {
+		$this->intUserId = $intUserId;
 	}
 
 	public function setCredit( $floatCredit ) {
@@ -70,8 +73,8 @@ class CCoinTransaction extends CEosSingular {
 		$this->floatDebit = $floatDebit;
 	}
 
-	public function setPurchasedLeadId( $intPurchasedLeadId ) {
-		$this->intPurchasedLeadId = $intPurchasedLeadId;
+	public function setPurchasedUserId( $intPurchasedUserId ) {
+		$this->intPurchasedUserId = $intPurchasedUserId;
 	}
 
 	public function setRemark( $strRemark ) {
@@ -98,8 +101,8 @@ class CCoinTransaction extends CEosSingular {
 		return $this->intId;
 	}
 
-	public function getLeadId() {
-		return $this->intLeadId;
+	public function getUserId() {
+		return $this->intUserId;
 	}
 
 	public function getCredit() {
@@ -110,8 +113,8 @@ class CCoinTransaction extends CEosSingular {
 		return $this->floatDebit;
 	}
 
-	public function getPurchasedLeadId() {
-		return $this->intPurchasedLeadId;
+	public function getPurchasedUserId() {
+		return $this->intPurchasedUserId;
 	}
 
 	public function getRemark() {
@@ -155,10 +158,10 @@ class CCoinTransaction extends CEosSingular {
 		}
 		$arrStrInsertData = array(
 								'id'				=> $this->intId,
-								'lead_id'			=> $this->intLeadId,
+								'user_id'			=> $this->intUserId,
 								'credit'			=> $this->floatCredit,
 								'debit'				=> $this->floatDebit,
-								'purchased_lead_id' => $this->intPurchasedLeadId,
+								'purchased_user_id' => $this->intPurchasedUserId,
 								'remark'			=> $this->strRemark,
 								'status'			=> $this->boolStatus,
 								'created_by'		=> 1,
@@ -177,7 +180,7 @@ class CCoinTransaction extends CEosSingular {
 		if( false == is_null( $this->intUserId ) ) $arrStrUpdateData['user_id'] = $this->intUserId;
 		if( false == is_null( $this->floatCredit ) ) $arrStrUpdateData['credit'] = $this->floatCredit;
 		if( false == is_null( $this->floatDebit ) ) $arrStrUpdateData['debit'] = $this->floatDebit;
-		if( false == is_null( $this->intPurchasedLeadId ) ) $arrStrUpdateData['purchased_lead_id'] = $this->intPurchasedLeadId;
+		if( false == is_null( $this->intPurchasedUserId ) ) $arrStrUpdateData['purchased_user_id'] = $this->intPurchasedUserId;
 		if( false == is_null( $this->strRemark ) ) $arrStrUpdateData['remark'] = $this->strRemark;
 		if( false == is_null( $this->boolStatus ) ) $arrStrUpdateData['status'] = $this->boolStatus;
 		
