@@ -5,6 +5,8 @@ class CTransactionType extends CEosSingular {
 	public $intId;
 	public $strName;
 
+	const STUDENT_TRAINER = 11;
+
 	function __construct() {
 		parent::__construct();
 	}

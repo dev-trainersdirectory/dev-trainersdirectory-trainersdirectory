@@ -9,11 +9,14 @@ class CTrainer extends CBaseTrainer {
 	public $intRating;
 	public $strContactNumber;
 	public $strEmailId;
+
+	public $boolShowDetails;
 	
 	function __construct() {
 		parent::__construct();
 		$this->intRating = 4;
 		$this->strProfilePic = 'public/images/trainer.jpg';
+		$this->boolShowDetails = false;
 	}
 
 	public function assignData( $arrstrRequestData ) {
@@ -39,6 +42,9 @@ class CTrainer extends CBaseTrainer {
 
 		if( true == array_key_exists( 'email_id', $arrstrRequestData ) )
 			$this->setEmailId( $arrstrRequestData['email_id'] );
+
+		if( true == array_key_exists( 'show_details', $arrstrRequestData ) )
+			$this->setShowDetails( $arrstrRequestData['show_details'] );
 	}
 
 	public function setFirstName( $strFirstName ) {
@@ -58,6 +64,7 @@ class CTrainer extends CBaseTrainer {
 	}
 
 	public function setProfilePic( $strProfilePic ) {
+		if( 0 < strlen( $strProfilePic ) )
 		$this->strProfilePic = $strProfilePic;
 	}
 
@@ -67,6 +74,10 @@ class CTrainer extends CBaseTrainer {
 
 	public function setEmailId( $strEmailId ) {
 		$this->strEmailId = $strEmailId;
+	}
+
+	public function setShowDetails( $showDetails ) {
+		$this->boolShowDetails = $showDetails;
 	}
 
 	public function getFirstName() {
@@ -99,6 +110,10 @@ class CTrainer extends CBaseTrainer {
 
 	public function getEmailId() {
 		return $this->strEmailId;
+	}
+
+	public function getShowDetails() {
+		return $this->boolShowDetails;
 	}
 }
 

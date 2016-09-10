@@ -56,5 +56,47 @@ class CTrainerProfileController extends CSystemController {
 
 		echo 'Review added successfully';exit;
 	}
+
+	public function unlockProfile( $intTrainerUserId ) {
+		$intUserId = (int) $this->session->userdata('userID');
+		
+		if( 0 == $intUserId ) {
+			alert( 'You will need to login to unlock profile.' );
+			exit;
+		}
+		
+		$objLead = CLeads::fetchLeadByUserId( $intUserId );
+		$objTransactionCost = CTransactionCosts::fetchTransactionCostByTransactionTypeId( $this->intTransactionTypeId, $this->objDatabase );
+
+		if( (int) $objLead->getCoins() < (int) $objTransactionCost->getCoins() ) {
+			alert( 'Please recharge your wallet to unlock profile' );
+			exit;
+		} 
+
+		$objBuyProfileLibrary = new CBuyProfileLibrary();
+		$objBuyProfileLibrary->objDatabase = $this->db;
+		$objBuyProfileLibrary->intUserId = $intUserId;
+		$objBuyProfileLibrary->intBoughtUserId = $intTrainerUserId;
+
+		$objBuyProfileLibrary->intTransactionTypeId = CTransactionType::STUDENT_TRAINER;
+		
+		switch( true ) {
+			$this->db->trans_begin();
+			
+			if( false == $objBuyProfileLibrary->buyProfile() ) {
+				$this->db->trans_rollback();
+				break;
+			}
+			
+			$this->db->trans_commit();
+
+			//Reload Pop up in JS here
+			echo json_encode( 'status'=> 'success' );
+			exit;
+		}
+
+		echo json_encode( 'status'=> 'error' );
+		exit;
+	}
 }
 ?>

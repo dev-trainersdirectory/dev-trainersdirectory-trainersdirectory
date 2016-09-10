@@ -43,7 +43,10 @@
                                                             <div class="col-sm-9">
                                                                 <label for="" class="control-label text-left">
                                                                 <?php
-                                                                echo substr($trainer->getContactNumber(), 0, -5) . str_repeat('*', 5);
+                                                                if( false == $trainer->getShowDetails() )
+                                                                    echo substr($trainer->getContactNumber(), 0, -5) . str_repeat('*', 5);
+                                                                else 
+                                                                    echo $trainer->getContactNumber();
                                                                 ?>
                                                                 </label>
                                                             </div>
@@ -53,9 +56,13 @@
                                                             <div class="col-sm-9">
                                                                 <label for="" class="control-label text-left">
                                                                 <?php
-                                                                $strToken = strtok($trainer->getEmailId(), '@');
-                                                                $strReplace = str_repeat( '*', strlen($strToken));
-                                                                echo str_replace($strToken,$strReplace,$trainer->getEmailId());
+                                                                if( false == $trainer->getShowDetails() ) {
+                                                                    $strToken = strtok($trainer->getEmailId(), '@');
+                                                                    $strReplace = str_repeat( '*', strlen($strToken));
+                                                                    echo str_replace($strToken,$strReplace,$trainer->getEmailId());
+                                                                } else {
+                                                                    echo $trainer->getEmailId();
+                                                                }
                                                                 ?>
                                                                 </label>
                                                             </div>
@@ -75,12 +82,12 @@
                                                           <div class="tooltip-box">
                                                               <span>Like : </span>Notification would be sent to Trainer. </div>
                                                         </div>
-                                                       <!-- <div class="tooltip-container">
+                                                        <div class="tooltip-container">
                                                          <a class="" href="#"><i class="icon-lock"></i></a>
                                                           <div class="tooltip-box">
                                                               <span>Lock : </span>Lorem Ipsum is simply dummy text </div>
                                                         </div>
-                                                        <div class="tooltip-container">
+                                                        <!--<div class="tooltip-container">
                                                          <a class="" href="#"><i class="icon-download"></i></a>
                                                           <div class="tooltip-box">
                                                               <span>Download : </span>Lorem Ipsum is simply dummy text </div>

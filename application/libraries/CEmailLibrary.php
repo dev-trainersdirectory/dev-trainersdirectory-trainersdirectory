@@ -26,10 +26,10 @@ class CEmailLibrary {
 
 			if( true == $this->objMailer->send( $this->objMessage ) ) {
 				$objSystemEmail->strDeliveredOn = 'NOW()';
-			}
+			} 
     	}
 
-    	$this->updateSystemEmails();
+    	return $this->updateSystemEmails();
     }
 
     public updateSystemEmails() {
@@ -40,6 +40,7 @@ class CEmailLibrary {
     			return false;
     		}
     	}
+        return true;
     }
 }
 

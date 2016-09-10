@@ -19,6 +19,11 @@ class CCoinTransactions extends CEosPlural {
 
 		return self::fetchCoinTransactions( $strSQL, $objDatabase );
 	}
+
+	public static function fetchCoinTransactionByIdByUserId( $intTransactionId, $intUserId, $objDatabase ) {
+		$strSQL = 'SELECT * FROM coin_transactions WHERE id = ' (int) $intTransactionId . ' AND user_id = '. (int) $intUserId;
+		return self::fetchCoinTransaction( $strSQL, $objDatabase );
+	}
 }
 
 ?>
