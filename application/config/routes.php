@@ -77,6 +77,8 @@ $route['admin_transactions'] = "admin/cadmintransactionscontroller";
 $route['admin_transactions/(.*)'] = "admin/cadmintransactionscontroller/$1";
 $route['admin_bulk_upload'] = "admin/cadminbulkuploadcontroller";
 $route['admin_bulk_upload/(.*)'] = "admin/cadminbulkuploadcontroller/$1";
+$route['dashboard'] = "CDashboardController";
+$route['dashboard/(.*)'] = "CDashboardController/$1";
 $route['404_override'] = '';
 
 /*$arrControllerMapping = array( 'search' => 'CSearchTrainerController' );

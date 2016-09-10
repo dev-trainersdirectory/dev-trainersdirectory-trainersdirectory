@@ -465,7 +465,8 @@ VALUES ( 1, '{RECEIPIENT}', 'Receiver Name' ),
 		
 CREATE TABLE IF NOT EXISTS otps(
 	id INT NOT NULL AUTO_INCREMENT,
-	user_id INT NOT NULL,
+	user_id INT,
+	contact_number BIGINT NOT NULL,
 	otp varchar(10),
 	sent_on TIMESTAMP,
 	expires_on TIMESTAMP,

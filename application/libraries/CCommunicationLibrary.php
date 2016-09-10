@@ -45,5 +45,39 @@ class CCommunicationLibrary extends CBaseLibrary {
 		$this->arrstrErrorMsgs[] = 'Message system is under maintainance. Please try later.';
 		return false;
 	}
+
+	public function generateOPT() {
+
+		$arrmixData['OTP'] = rand(0000,9999);
+
+		$objOtp = new COtp();
+		$objOtp->setContactNumber( $this->objReceiverLead->getContactNumber() );
+		$objOtp->setOtp( $arrmixData['OTP'] );
+
+
+		$objUserSms = new CUserSms();
+		$objUserSms->setSmsTypeId( CSmsType::OTP );
+		$objUserSms->setDatabase( $this->objDatabase );
+		$objUserSms->setSenderLead( $this->objSenderLead );
+		$objUserSms->setReceiverLead( $this->objReceiverLead );
+		$objUserSms->setData( $arrmixData );
+		$objSystemSms = $objUserSms->getSms();
+
+		switch( true ) {
+			default:
+				if( false == $objSystemSms->insert() ) {
+					break;
+				}
+
+				if( false == $objOtp->insert() ) {
+					break;
+				}
+				$this->arrstrSuccessMsgs[] = 'Message is been sent to trainer.';
+				return true;
+		}
+		
+		$this->arrstrErrorMsgs[] = 'Message system is under maintainance. Please try later.';
+		return false;
+	}
 }
 ?>

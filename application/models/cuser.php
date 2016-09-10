@@ -44,7 +44,7 @@ class CUser extends CEosSingular {
 			$this->setEmailId( $arrstrRequestData['email_id'] );
 
 		if( true == array_key_exists( 'password', $arrstrRequestData ) )
-			$this->strEncryptedPassword( $arrstrRequestData['password'] );
+			$this->setEncryptedPassword( md5( $arrstrRequestData['password'] ) );
 
 		if( true == array_key_exists( 'verified_on', $arrstrRequestData ) )
 			$this->setVerifiedOn( $arrstrRequestData['verified_on'] );
