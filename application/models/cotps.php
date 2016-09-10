@@ -17,7 +17,24 @@ class COtps extends CEosPlural {
 	public static function fetchAllPublishedOtps( $objDatabase ) {
 		$strSQL = 'SELECT * FROM otps';
 
-		return self::fetchDays( $strSQL, $objDatabase );
+		return self::fetchOtps( $strSQL, $objDatabase );
+	}
+
+	public static function fetchOtpByMobileNumber( $strContactNumber, $strOtp, $objDatabase ) {
+
+		if( false == isset( $strContactNumber ) || false == isset( $strOtp ) ) return false;
+
+		$strSQL = ' SELECT
+						*
+					FROM
+						otps
+					WHERE
+						contact_number = ' . $strContactNumber .'
+						AND otp = ' . $strOtp . '
+						AND expires_on > \'' . getCurrentDateTime( $objDatabase ) . '\'
+						ORDER BY sent_on DESC';
+
+		return self::fetchOtp( $strSQL, $objDatabase );
 	}
 }
 

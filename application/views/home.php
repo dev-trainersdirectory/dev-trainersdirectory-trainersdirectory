@@ -91,23 +91,25 @@
                             </a>
                             <!-- Registration step 1 - generate OTP -->
 
-                            <div class="dropdown-menu form-registration stop-propagation hide" role="menu">
+                            <div class="dropdown-menu form-registration stop-propagation" id="js-otp_step_1" role="menu">
                               <div class="form-header">
                                   <h4>Registration</h2>
                                   <a href="">Already have an account?</a>
                               </div>
                               <div class="form-body material">
+                              <form id="frm_otp" method="post">
+                              <div class="otp_error"></div>
                                   <div class="form-group clearfix">
                                       <div class="pull-left margin-right-15">
                                           <i class="icon-mobile"></i>
                                       </div>
                                       <div class="pull-right">
                                           <label for="">Mobile No.</label>
-                                          <input type="email" class="form-control" id="" placeholder="Enter your mobile number" />
+                                          <input type="text" class="form-control" name="otp[mobile_number]" placeholder="Enter your mobile number" />
                                       </div>
                                   </div>
                                   <div class="form-group full-width clearfix ">
-                                    <button type="submit" class="btn btn-primary-blue pull-right">
+                                    <button type="submit" class="btn btn-primary-blue pull-right js-generate_otp">
                                          Generate OTP
                                     </button>
                                   </div>
@@ -115,6 +117,7 @@
                                       <a href="" class="italic-text font-11 text-left ">* You can find OTP in your registered mobile number, which is
 valid for next 15:00 min.</a>
                                   </div>
+                              </form>
                               </div>
                             </div>
 
@@ -122,19 +125,21 @@ valid for next 15:00 min.</a>
 
                             <!-- Registration step 2 - enter OTP and register-->
 
-                            <div class="dropdown-menu form-registration stop-propagation" role="menu">
+                            <div class="dropdown-menu form-registration stop-propagation hide" id="js-otp_step_2" role="menu">
                               <div class="form-header">
                                   <h4>Registration</h2>
                                   <a href="">Already have an account?</a>
                               </div>
                               <div class="form-body material">
+                               <form id="frm_otp_2" method="post">
+                               <div class="otp_2_error"></div>
                                   <div class="form-group clearfix">
                                       <div class="pull-left margin-right-15">
                                           <i class="icon-mobile"></i>
                                       </div>
                                       <div class="pull-right">
                                           <label for="">Mobile No.</label>
-                                          <input type="email" class="form-control" id="" placeholder="Enter your mobile number" />
+                                          <input type="text" class="form-control" id="js-otp_mobile_2" placeholder="Enter your mobile number" name="otp_2[mobile_number]" />
                                       </div>
                                   </div>
                                   <div class="form-group clearfix">
@@ -143,7 +148,7 @@ valid for next 15:00 min.</a>
                                       </div>
                                       <div class="pull-right">
                                           <label for="">One Time Password</label>
-                                          <input type="email" class="form-control" id="" placeholder="Enter 6 digit OTP" />
+                                          <input type="text" class="form-control" name="otp_2[otp_number]" placeholder="Enter 4 digit OTP" />
                                       </div>
                                   </div>
                                   <div class="form-group full-width clearfix ">
@@ -154,15 +159,15 @@ valid for next 15:00 min.</a>
                                           <label class="margin-bottom-10">I am</label>
                                           <div>
                                               <div class="radio radio-inline">
-                                                  <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                                                  <input type="radio" id="inlineRadio1" name="otp_2[user_type]" checked="true" value="2">
                                                   <label for="inlineRadio1"> Student</label>
                                               </div>
                                               <div class="radio radio-inline">
-                                                  <input type="radio" id="inlineRadio2" value="option1" name="radioInline" checked="">
+                                                  <input type="radio" id="inlineRadio2" name="otp_2[user_type]" checked="" value="3">
                                                   <label for="inlineRadio2"> Trainer</label>
                                               </div>
                                               <div class="radio radio-inline">
-                                                  <input type="radio" id="inlineRadio3" value="option1" name="radioInline" checked="">
+                                                  <input type="radio" id="inlineRadio3" name="otp_2[user_type]" checked="" value="4">
                                                   <label for="inlineRadio3"> Institute</label>
                                               </div>
                                           </div>
@@ -172,10 +177,10 @@ valid for next 15:00 min.</a>
                                     <p class="pull-left font-10 otp-counter">
                                         00:18
                                     </p>
-                                    <button type="submit" class="btn btn-primary-blue pull-right">
+                                    <button type="submit" class="btn btn-primary-blue pull-right js-otp_step_2">
                                          Register
                                     </button>
-                                    <button type="submit" disabled="disabled" class="btn btn-secondary pull-right margin-right-5">
+                                    <button type="submit" class="btn btn-secondary pull-right margin-right-5 js-resend_otp">
                                          Resend
                                     </button>
                                   </div>
@@ -184,6 +189,7 @@ valid for next 15:00 min.</a>
                                           * Please provide OTP to continue authentication. Press RESEND if you will not get OTP in next 30sec. Onclick of REGISTRATION
 you will find registration page to build relationship with us.</p>
                                   </div>
+                              </form>
                               </div>
                             </div>
 
@@ -196,6 +202,12 @@ you will find registration page to build relationship with us.</p>
                 <!--/.nav-collapse -->
             </div>
         </nav>
+        <button type="button" id="js-register_2" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register-student-popup">
+          open student registration
+        </button>
+        <button type="button" id="js-register_3" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register-teacher-popup">
+          open teacher registration
+        </button>
         <div class="container search-container">
             <div class="row">
                 <div class="">
@@ -242,7 +254,7 @@ you will find registration page to build relationship with us.</p>
                 </div>
             </div>
         </div>
-
+        
     <!-- footer -->
     <div class="footer search-container-footer">
         <div class="container">
@@ -265,6 +277,21 @@ you will find registration page to build relationship with us.</p>
         </a>
     </div>
     <!-- ./ footer -->
+
+    <!-- ******* Modal *******-->
+
+    <!-- registration popup for student-->
+        <div class="modal fade bs-example-modal-lg registration-popup" tabindex="-1" role="dialog" id="register-student-popup" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <?php include('view_student_register.php'); ?>
+        </div>
+    <!-- ./ registration popup for student-->
+
+    <!-- registration popup for teacher-->
+        <div class="modal fade bs-example-modal-lg registration-popup" tabindex="-1" role="dialog" id="register-teacher-popup" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <?php include('view_trainer_register.php'); ?>
+        </div>
+    <!-- ./ registration popup for teacher-->
+
     <!-- script references !-->
     <script src="public/js/jquery.min.js"></script>
     <script src="public/js/bootstrap.min.js"></script>
@@ -287,10 +314,98 @@ you will find registration page to build relationship with us.</p>
                 output = JSON.parse(result);
                 if(result) {
                     if( 'success' == output.type ) {
-                        alert(1);
                         location.href = output.location;
                     } else {
                         $('.login_error').html(output.message);    
+                    }
+                }
+            }
+        })
+    });
+
+    $(".js-generate_otp").click(function(e){
+        e.preventDefault();
+        $.ajax ({
+            type: "post",
+            data: $( "#frm_otp" ).serialize(),
+            url: '<?=base_url()?>register/generateOtp',
+            success: function(result) {
+                output = JSON.parse(result);
+                if(result) {
+                    if( 'success' == output.type ) {
+                        $( "#js-otp_step_1" ).addClass( "hide" );
+                        $( "#js-otp_step_2" ).removeClass( "hide" );
+                        $( "#js-otp_mobile_2" ).val( output.mobile_number );
+                    } else {
+                        $('.otp_error').html(output.message);    
+                    }
+                }
+            }
+        })
+    });
+
+    $(".js-resend_otp").click(function(e){
+        e.preventDefault();
+        $.ajax ({
+            type: "post",
+            data: $( "#frm_otp" ).serialize(),
+            url: '<?=base_url()?>register/generateOtp',
+            success: function(result) {
+                output = JSON.parse(result);
+                if(result) {
+                    if( 'success' == output.type ) {
+                        $( "#js-otp_step_1" ).addClass( "hide" );
+                        $( "#js-otp_step_2" ).removeClass( "hide" );
+                        $( "#js-otp_mobile_2" ).val( output.mobile_number );
+                    } else {
+                        $('.otp_error').html(output.message);    
+                    }
+                }
+            }
+        })
+    });
+
+  $(".js-otp_step_2").click(function(e){
+        e.preventDefault();
+        $.ajax ({
+            type: "post",
+            data: $( "#frm_otp_2" ).serialize(),
+            url: '<?=base_url()?>register/validateOtp',
+            success: function(result) {
+                output = JSON.parse(result);
+                if(result) {
+                    if( 'success' == output.type ) {
+                        $( "#js-register_"+output.user_type ).trigger( 'click' );
+                        $( "#js-stud_reg_mob" ).val( output.mobile_number );
+                    } else {
+                        $('.otp_2_error').html(output.message);    
+                    }
+                }
+            }
+        })
+    });
+    
+    $('.js-agree_terms').click(function(){
+        if( this.checked ) {
+            $(".js-btn_reg_student").removeAttr('disabled');
+        } else {
+            $(".js-btn_reg_student").attr('disabled','disabled');
+        }
+    });
+
+    $(".js-btn_reg_student").click(function(e){
+        e.preventDefault();
+        $.ajax ({
+            type: "post",
+            data: $( "#frm_reg_student" ).serialize(),
+            url: '<?=base_url()?>register/signup',
+            success: function(result) {
+                output = JSON.parse(result);
+                if(result) {
+                    if( 'success' == output.type ) {
+                        location.href = output.location;
+                    } else {
+                        $('.stud_register_error').html(output.message);    
                     }
                 }
             }

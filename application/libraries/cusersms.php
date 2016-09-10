@@ -39,7 +39,7 @@ class CUserSms extends CBaseLibrary {
 		$objSystemSMS = new CSystemSMS();
 		$objSystemSMS->setSmsTypeId( $this->intSmsTypeId );
 		$objSystemSMS->setSmsTemplateId( $objSmsTemplate->getId() );
-		$objSystemSMS->setSendTo( $this->objSenderLead->getContactNumber() );
+		$objSystemSMS->setSendTo( $this->objReceiverLead->getContactNumber() );
 		$objSystemSMS->setSentFrom( "TrainD" );
 		//$objSystemSMS->setSubject( $objSmsTemplate->getName() );
 		$objSystemSMS->setContent( $this->getSmsText( $objSmsTemplate ) );
@@ -65,7 +65,7 @@ class CUserSms extends CBaseLibrary {
 			switch( $objMergeField->getName() ) {
 
 				case '{RECEIPIENT}' :
-					$strValue = $this->objReceiverLead->getFullName();
+					$strValue = '' != trim($this->objReceiverLead->getFullName()) ? $this->objReceiverLead->getFullName() : 'User';
 					break;
 
 				case '{OTP}' :
